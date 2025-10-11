@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Wiki 首页 — piggy idle</title>
+  <style>
+    /* 本文件为独立首页占位样式，简单且与 index 主区样式区分开（中文注释） */
+    .guide-content {
+      padding:16px;
+      box-sizing:border-box;
+      background: linear-gradient(180deg, rgba(14,165,233,0.03), rgba(14,165,233,0.01));
+      border-radius:8px;
+      border:1px solid rgba(14,165,233,0.05);
+    }
+    .guide-content h2 { margin:0 0 8px 0; font-size:20px; color:#0b1220; }
+    .guide-content p { margin:0 0 10px 0; color:#4b5563; line-height:1.6; }
+    .guide-links { margin-top:8px; }
+    .guide-links a { color:#0ea5e9; text-decoration:none; margin-right:12px; }
+    .placeholder { height:10px; background:linear-gradient(90deg, rgba(11,18,32,0.04), rgba(11,18,32,0.02)); border-radius:4px; margin:8px 0; }
+  </style>
+</head>
+<body>
+  <!-- 注意：loadGuidePage 会尝试查找 .guide-content 作为主要内容节点 -->
+  <div class="guide-content" role="main" aria-label="Wiki 首页">
+    <h2>piggy idle wiki — 小猪放置 百科</h2>
+    <p>这是新建的独立首页文件（占位内容）。它与普通章节样式做出区分，方便放置项目简介、快速链接和最近更新。</p>
+
+    <div class="placeholder" style="width:85%;"></div>
+    <div class="placeholder" style="width:60%;"></div>
+
+    <p>示例快速入口：</p>
+    <div class="guide-links">
+      <a href="production-properties.html" onclick="loadGuidePage('production-properties'); return false;">生产属性说明</a>
+      <a href="#" onclick="mountItemsTool(); return false;">打开道具查询工具</a>
+      <a href="#" onclick="mountGeneratorTool(); return false;">打开道具生成器</a>
+    </div>
+
+    <h3 style="margin-top:14px;">最近更新（占位）</h3>
+    <ul>
+      <li>2025-10-11 — 新增首页占位文件</li>
+      <li>示例：更新了目录折叠与首页并列入口</li>
+    </ul>
+
+    <p class="small" style="color:#6b7280; margin-top:10px;">提示：这是占位内容，您可以编辑此文件来放置实际的首页内容或组件。</p>
+  </div>
+</body>
+</html>

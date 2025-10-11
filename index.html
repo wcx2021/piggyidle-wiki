@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>piggy idle wiki（小猪放置游戏wiki）</title>
+  <style>
+    :root { --bg: #f7fafc; --card: #ffffff; --text: #0b1220; --muted:#6b7280; --accent:#0ea5e9; --row-hover: rgba(0,0,0,0.04); --btn-bg: transparent; --btn-border: rgba(11,18,32,0.08); --btn-hover-bg: rgba(11,18,32,0.04); --btn-color: var(--text); }
+    .dark { --bg: #0b1020; --card: #0f1724; --text: #eaeaea; --muted:#9ca3af; --accent:#4cc9f0; --row-hover: rgba(255,255,255,0.03); --btn-bg: transparent; --btn-border: rgba(255,255,255,0.06); --btn-hover-bg: rgba(255,255,255,0.02); --btn-color: var(--text); }
+    body { margin:0; font-family: Inter, system-ui, -apple-system, Arial; background: var(--bg); color: var(--text); }
+    .page {
+      padding: 18px;
+      width: 100%;
+      box-sizing: border-box;
+      max-width: none;
+      margin: 0;
+    }
+    header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+    h1{ font-size:22px; margin:0; }
+    .layout {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    aside {
+      width: 300px;
+      min-width: 220px;
+      flex: 0 0 300px;
+      max-height: 80vh;
+      overflow: auto;
+      border: 1px solid var(--muted);
+      background: var(--card);
+      padding: 10px;
+      border-radius: 6px;
+    }
+    main {
+      flex: 1 1 auto;
+      min-width: 0;
+      min-height: 70vh;
+      border: 1px solid var(--muted);
+      background: var(--card);
+      padding: 14px;
+      border-radius: 6px;
+      overflow: auto;
+    }
+    .nav-group{ margin-bottom:10px; }
+    /* 分组标题突出：字体加大并加下划线，便于与条目区分（中文注释） */
+    .nav-group > .group-title{ font-weight:700; padding:6px 0; font-size:18px; text-decoration:underline; color:var(--text); margin-bottom:4px; }
+    .nav-item{ padding:6px 8px; cursor:pointer; border-radius:4px; }
+    .nav-item:hover{ background:var(--row-hover); }
+    .toolbar{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:8px; }
+    select, button, input{ background:var(--btn-bg); color:var(--btn-color); border:1px solid var(--btn-border); padding:6px 10px; border-radius:6px; }
+    table{ width:100%; border-collapse: collapse; background:var(--card); border:1px solid var(--muted); }
+    thead th{ text-align:left; padding:8px; border-bottom:1px solid var(--muted); font-weight:600; color:var(--text); }
+    td{ padding:8px; border-bottom:1px solid var(--muted); vertical-align:top; }
+    .row{ transition: background 0.2s; }
+    .row:hover{ background:var(--row-hover); }
+    .details{ padding:12px; background:var(--card); border-left:3px solid var(--muted); }
+    .attr-table{ width:100%; border-collapse: collapse; margin-top:8px; }
+    .attr-table th, .attr-table td{ border:1px solid var(--muted); padding:6px 8px; }
+    .notice{ color:var(--accent); font-size:13px; }
+    .hidden{ display:none; }
+    .icon-thumb{ width:28px;height:28px;object-fit:contain;border-radius:4px; }
+    #guideContentContainer { width: 100%; box-sizing: border-box; }
+
+    /* Ensure generator / items components fill the main area */
+    .generator-component,
+    .generatorArea,
+    .items-component,
+    .items-component > div,
+    .items-component .toolbar,
+    .generator-component .generatorArea {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Make tables fill container and avoid overflow causing layout issues */
+    .generator-component table,
+    .items-component table,
+    table.itemsTable,
+    table {
+      width: 100%;
+      box-sizing: border-box;
+      table-layout: auto;
+    }
+
+    /* Allow horizontal scrolling inside the generator area instead of stretching the whole layout */
+    .generatorArea { overflow: auto; }
+
+    .small{ font-size:13px; color:var(--muted); }
+
+    /* 折叠分组样式（中文注释）
+       - 箭头在文字左侧，使用小巧的符号与颜色（不傻大黑粗）
+       - 默认收起；展开时箭头旋转并显示组内条目
+    */
+    .collapsible-group { margin-bottom:8px; }
+    .group-toggle {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      cursor:pointer;
+      padding:6px 6px;
+      font-weight:500; /* 稍微比正常重一点，不要太粗 */
+      color:var(--text);
+      border-radius:6px;
+      user-select:none;
+    }
+    /* 额外保证折叠头部内的 group-title 也有强调样式（用于我们把标题放在 header 内的结构） */
+    .collapsible-group .group-title {
+      font-size:18px;
+      text-decoration:underline;
+      font-weight:700;
+      color:var(--text);
+      line-height:1;
+    }
+    .group-toggle:hover { background: var(--row-hover); }
+    /* 箭头样式：小、浅色，放在文字左侧 */
+    .group-arrow {
+      display:inline-block;
+      width:14px;
+      text-align:center;
+      font-size:12px;
+      color:var(--muted);
+      transition: transform 0.18s ease;
+      transform: rotate(0deg); /* 默认朝右 */
+      margin-right:6px;
+      line-height:1;
+    }
+    /* 展开时箭头顺时针旋转到向下（视觉上表示展开） */
+    .group-toggle[aria-expanded="true"] .group-arrow { transform: rotate(90deg); color:var(--accent); }
+    /* 分组项容器，默认隐藏，使用类控制显示（更可控） */
+    /* 分组项容器：增加左侧缩进使二级标签与分组标题明显区分（中文注释） */
+    .group-items { display:none; padding-left:20px; margin-top:6px; }
+    .group-items.expanded { display:block; }
+    /* 分组内条目：适度缩进并增加左外边距以获得更明显的视觉层次 */
+    .group-items .nav-item { padding-left:24px; margin-left:6px; font-weight:400; border-radius:4px; }
+    .group-items .nav-item:hover { background: var(--row-hover); }
+
+    /* 首页样式：与分组并列但不可展开，默认打开时高亮显示 */
+    .home-item {
+      padding:10px 8px;
+      cursor:pointer;
+      border-radius:8px;
+      background: linear-gradient(90deg, rgba(14,165,233,0.06), transparent);
+      font-weight:700;
+      font-size:18px;
+      margin-bottom:10px;
+      color:var(--text);
+    }
+    .home-item:hover { background: linear-gradient(90deg, rgba(14,165,233,0.09), transparent); }
+    .home-item.active { box-shadow: 0 0 0 2px rgba(14,165,233,0.06) inset; }
+    .home-item .home-sub { display:block; font-size:12px; color:var(--muted); font-weight:400; margin-top:2px; }
+
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <h1>piggy idle wiki（小猪放置游戏wiki）</h1>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button id="themeToggle">关灯</button>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside id="leftNav" aria-label="左侧目录"></aside>
+      <main id="contentArea" aria-live="polite">
+        <div id="guideContentContainer"><p class="notice">加载中…</p></div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Templates for components (keep as templates to render into contentArea) -->
+  <template id="items-template">
+    <div class="items-component">
+      <div class="toolbar">
+        <label>数据源:
+          <select class="datasetFilter" aria-label="数据源切换">
+            <option value="items" selected>道具/物品</option>
+            <option value="actions">行动</option>
+          </select>
+        </label>
+        <label>类别:
+          <select class="typeFilter" aria-label="类别筛选">
+            <option value="all">全部</option>
+            <option value="currency">货币（currency）</option>
+            <option value="map">地图（map）</option>
+            <option value="compendium">图鉴（compendium）</option>
+            <option value="equipment">装备（equipment）</option>
+            <option value="pig">小猪（pig）</option>
+            <option value="suit">套装（suit）</option>
+            <option value="treasure">宝箱（treasure）</option>
+            <option value="resource">资源（resource）</option>
+            <option value="building">建筑（building）</option>
+          </select>
+        </label>
+        <button class="toggleSortBtn" title="按 ID 升序/降序切换">排序: 升序</button>
+        <span class="notice small">(展开详情显示简介、需求等级和属性表)</span>
+      </div>
+      <div style="overflow:auto">
+        <table class="itemsTable" aria-describedby="描述">
+          <thead class="tableHead"></thead>
+          <tbody class="itemsBody"></tbody>
+        </table>
+        <div class="empty notice hidden">无数据</div>
+      </div>
+    </div>
+  </template>
+
+  <template id="generator-template">
+    <div class="generator-component">
+      <div class="toolbar">
+        <button class="importJsonBtn">导入 JSON</button>
+        <input type="file" class="jsonFileInput" accept=".json,application/json" style="display:none" />
+        <button class="pasteJsonBtn">粘贴 JSON</button>
+        <button class="panelToggleBtn">导入/导出面板</button>
+        <button class="newEmptyTableBtn">新建空表</button>
+        <select class="generatorTypeSelect" style="padding:6px;border-radius:6px;">
+          <option value="items" selected>items</option>
+          <option value="actions">actions</option>
+        </select>
+        <button class="exportJsonBtn">导出 JSON</button>
+      </div>
+
+      <!-- Import/Export panel (默认折叠) -->
+      <div class="importExportPanel hidden" style="margin-top:8px;border:1px solid var(--muted);padding:8px;border-radius:6px;background:var(--card);">
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
+          <strong>导入 / 导出 面板</strong>
+          <div style="margin-left:auto;display:flex;gap:6px;">
+            <button class="iex-parse-btn">解析并导入</button>
+            <button class="iex-export-btn">把当前表写入面板</button>
+            <button class="iex-download-btn">下载 JSON</button>
+            <button class="iex-copy-btn">复制到剪贴板</button>
+            <button class="iex-clear-btn">清空</button>
+          </div>
+        </div>
+        <textarea class="iex-textarea" rows="8" style="width:100%;box-sizing:border-box;padding:8px;border:1px solid var(--muted);border-radius:4px;" placeholder="将 JSON 粘贴到这里，点击“解析并导入”。"></textarea>
+        <div class="iex-status small" style="margin-top:6px;color:var(--muted);white-space:pre-wrap;"></div>
+      </div>
+
+      <div class="generatorArea" style="border:1px dashed var(--muted); padding:8px; border-radius:6px;">导入或新建表格后在此编辑</div>
+    </div>
+  </template>
+
+  <script>
+    (function(){
+      // Paths
+      const PATH_ITEMS = 'data/items.json';
+      const PATH_ACTIONS = 'data/actions.json';
+      // simple fetch cache
+      const fetchCache = { items: null, actions: null };
+      // load field mapping for nicer headers (stored on window so other functions can use it)
+      window.fieldMapping = null;
+      fetch('data/fieldMapping.json', {cache: 'no-cache'}).then(r=>{ if(!r.ok) return {}; return r.json(); }).then(j=>{ window.fieldMapping = j || null; }).catch(()=>{ window.fieldMapping = null; });
+
+      // GUIDE NAV config (you can modify later)
+      const GUIDE_NAV = [
+        
+        {
+          group: '游戏标签',
+          items: [
+            { title: '领地', slug: 'tags/territory' },
+            { title: '小猪', slug: 'tags/piglets' },
+            { title: '资源', slug: 'tags/resources' },
+            { title: '探索', slug: 'tags/exploration' },
+            { title: '采集', slug: 'tags/gathering' },
+            { title: '制造', slug: 'tags/manufacturing' },
+            { title: '研究', slug: 'tags/research' },
+            { title: '炼金', slug: 'tags/alchemy' },
+            { title: '套装', slug: 'tags/suits' },
+            { title: '战斗', slug: 'tags/combat' },
+            { title: '任务', slug: 'tags/quests' },
+            { title: '公会', slug: 'tags/guilds' }
+          ]
+        },
+        {
+          group: '游戏指南',
+          items: [
+            { title: '生产属性说明', slug: 'production-properties' },
+            { title: '地图属性说明', slug: 'map-properties' },
+            { title: '战斗属性说明', slug: 'combat-properties' },
+            { title: '经验表', slug: 'experience-table' }
+          ]
+        },
+        {
+          group: '游戏设计',
+          items: [
+            { title: '经济机制', slug: 'design/economy' },
+            { title: '经验机制', slug: 'design/experience' },
+            { title: '属性机制', slug: 'design/attributes' },
+            { title: '技能机制', slug: 'design/skills' },
+            { title: '任务机制', slug: 'design/quests' },
+            { title: '道具设计', slug: 'design/items' },
+            { title: '行动设计', slug: 'design/actions' }
+          ]
+        },
+        {
+          group: '实用工具',
+          items: [
+            { title: '道具查询', type: 'tool', tool: 'items' },
+            { title: '道具生成器', type: 'tool', tool: 'generator' }
+          ]
+        }
+      ];
+
+      // Utility
+      function escapeHTML(s){
+        if(s === null || s === undefined) return '';
+        return String(s)
+          .replace(/&/g, '&')
+          .replace(/</g, '<')
+          .replace(/>/g, '>')
+          .replace(/"/g, '"')
+          .replace(/'/g, '&#039;');
+      }
+
+      // Theme (global) - only one global toggle
+      const themeBtn = document.getElementById('themeToggle');
+      (function(){
+        const apply = (theme) => {
+          document.body.classList.toggle('dark', theme === 'dark');
+          themeBtn.textContent = theme === 'dark' ? '开灯' : '关灯';
+        };
+        const stored = localStorage.getItem('wikiTheme');
+        apply(stored === 'dark' ? 'dark' : 'light');
+        themeBtn.addEventListener('click', ()=>{
+          const now = document.body.classList.contains('dark') ? 'light' : 'dark';
+          apply(now);
+          localStorage.setItem('wikiTheme', now);
+        });
+      })();
+
+      // 左侧目录渲染（中文注释）
+      // 实现可折叠分组：箭头在文字左侧，小巧美观；点击中文分组标题展开/收起组内条目；条目点击加载页面或工具
+      function renderLeftNav(){
+        const left = document.getElementById('leftNav');
+        left.innerHTML = '';
+
+        // 首先创建一个并列的 "首页"（不可展开），在页面加载时默认打开
+        const homeEl = document.createElement('div');
+        homeEl.className = 'home-item';
+        // 仅保留“首页”文字（移除副标题）
+        homeEl.innerHTML = '<div style="display:flex;flex-direction:column;"><span>首页</span></div>';
+        homeEl.addEventListener('click', ()=> {
+          // 清除其它高亮
+          left.querySelectorAll('.nav-item').forEach(n=> n.style.background = '');
+          // 切换 home 高亮样式
+          left.querySelectorAll('.home-item').forEach(h=> h.classList.remove('active'));
+          homeEl.classList.add('active');
+          // 加载首页内容（改为加载独立文件 guide/home.html）
+          loadGuidePage('home');
+        });
+        left.appendChild(homeEl);
+
+        // 然后按配置渲染分组
+        GUIDE_NAV.forEach(section => {
+          // 整个分组外层容器
+          const wrap = document.createElement('div');
+          wrap.className = 'nav-group collapsible-group';
+
+          // 分组头部：包含箭头与分组名称（可键盘操作）
+          const header = document.createElement('div');
+          header.className = 'group-toggle';
+          header.setAttribute('role', 'button');
+          header.setAttribute('tabindex', '0');
+          header.setAttribute('aria-expanded', 'false');
+
+          const arrow = document.createElement('span');
+          arrow.className = 'group-arrow';
+          // 使用小符号作为箭头（轻量且跨平台），视觉在左侧
+          arrow.textContent = '▸';
+          arrow.setAttribute('aria-hidden', 'true');
+
+          const label = document.createElement('span');
+          label.className = 'group-title';
+          label.textContent = section.group;
+
+          header.appendChild(arrow);
+          header.appendChild(label);
+          wrap.appendChild(header);
+
+          // 分组项容器（默认隐藏），通过 .expanded 控制显示
+          const itemsContainer = document.createElement('div');
+          itemsContainer.className = 'group-items';
+          itemsContainer.setAttribute('aria-hidden', 'true');
+
+          // 构建每个子条目（保留原有功能）
+          section.items.forEach(item => {
+            const li = document.createElement('div');
+            li.className = 'nav-item';
+            li.textContent = item.title;
+            li.dataset.type = item.type || 'page';
+            if(item.type === 'tool') li.dataset.tool = item.tool;
+            else li.dataset.slug = item.slug;
+
+            // 点击条目时高亮并加载对应内容
+            li.addEventListener('click', ()=> {
+              // 清除其它条目高亮，包括首页
+              left.querySelectorAll('.nav-item').forEach(n=> n.style.background = '');
+              left.querySelectorAll('.home-item').forEach(h=> h.classList.remove('active'));
+              li.style.background = 'rgba(0,0,0,0.03)';
+
+              if(li.dataset.type === 'tool'){
+                if(li.dataset.tool === 'items'){
+                  mountItemsTool();
+                } else {
+                  mountGeneratorTool();
+                }
+              } else {
+                loadGuidePage(li.dataset.slug);
+              }
+            });
+
+            itemsContainer.appendChild(li);
+          });
+
+          wrap.appendChild(itemsContainer);
+
+          // 切换函数：更新 aria、样式及箭头（中文注释）
+          function toggleGroup(){
+            const wasExpanded = header.getAttribute('aria-expanded') === 'true';
+            const willExpand = !wasExpanded;
+            header.setAttribute('aria-expanded', String(willExpand));
+            if(willExpand){
+              itemsContainer.classList.add('expanded');
+              itemsContainer.setAttribute('aria-hidden', 'false');
+              // 小箭头改为向下符号以兼容部分字体，将字符替换为轻量显示（使用 CSS transform 也可）
+              arrow.textContent = '▾';
+            } else {
+              itemsContainer.classList.remove('expanded');
+              itemsContainer.setAttribute('aria-hidden', 'true');
+              arrow.textContent = '▸';
+            }
+          }
+
+          // 点击 header 或回车/空格键触发切换（可访问性）
+          header.addEventListener('click', toggleGroup);
+          header.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter' || e.key === ' '){
+              e.preventDefault();
+              toggleGroup();
+            }
+          });
+
+          // 初始状态：默认收起（与用户需求一致）
+          itemsContainer.classList.remove('expanded');
+          itemsContainer.setAttribute('aria-hidden', 'true');
+          header.setAttribute('aria-expanded', 'false');
+
+          left.appendChild(wrap);
+        });
+      }
+
+      // Guide page loader
+      function loadGuidePage(slug){
+        const container = document.getElementById('guideContentContainer');
+        container.innerHTML = '<p class="notice">加载中…</p>';
+        const path = 'guide/' + slug + '.html';
+        console.debug('[loadGuidePage] fetch ->', path);
+        fetch(path, { cache: 'no-cache' }).then(res=>{
+          if(!res.ok) throw new Error('HTTP ' + res.status);
+          return res.text();
+        }).then(html=>{
+          try{
+            // parse returned HTML using DOMParser for reliable extraction
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            // selectors to find the fragment containing the main content
+            const selectors = ['.guide-content', '#guide-right', '.content', '.main', '.right', '.col-right', '.article', '.container-right', '.doc-main'];
+            let guideNode = null;
+            for(const s of selectors){
+              guideNode = doc.querySelector(s);
+              if(guideNode) break;
+            }
+            // fallback: prefer last child of body if nothing matched
+            if(!guideNode){
+              const bodyChildren = Array.from(doc.body.children).filter(c=> c.nodeType === 1);
+              if(bodyChildren.length > 1){
+                guideNode = bodyChildren[bodyChildren.length - 1];
+              } else {
+                guideNode = doc.body.firstElementChild || doc.body;
+              }
+            }
+            // inject extracted fragment; if still null, inject raw html as last resort
+            container.innerHTML = guideNode ? guideNode.innerHTML : html;
+          }catch(parseErr){
+            console.error('[loadGuidePage] parse error', parseErr);
+            container.innerHTML = html;
+          }
+          container.scrollTop = 0;
+        }).catch(err=>{
+          console.error('加载章节失败', err);
+          container.innerHTML = `<p class="notice">加载失败：${escapeHTML(String(err.message || err))} （请检查文件 ${escapeHTML(path)} 是否存在）</p>`;
+        });
+      }
+
+      // Fetch with cache
+      function fetchDataset(name){
+        if(name === 'items'){
+          if(fetchCache.items) return Promise.resolve(fetchCache.items);
+          return fetch(PATH_ITEMS).then(r=>{ if(!r.ok) throw new Error('网络错误'); return r.json(); }).then(j=>{ fetchCache.items = j; return j; }).catch(()=>{ return []; });
+        } else {
+          if(fetchCache.actions) return Promise.resolve(fetchCache.actions);
+          return fetch(PATH_ACTIONS).then(r=>{ if(!r.ok) throw new Error('网络错误'); return r.json(); }).then(j=>{ fetchCache.actions = j; return j; }).catch(()=>{ return []; });
+        }
+      }
+
+      // Items component (mount into guideContentContainer)
+      function mountItemsTool(){
+        const container = document.getElementById('guideContentContainer');
+        container.innerHTML = '';
+        const tpl = document.getElementById('items-template');
+        const node = tpl.content.cloneNode(true);
+        container.appendChild(node);
+        // find elements within container scope
+        const root = container.querySelector('.items-component');
+        const datasetFilter = root.querySelector('.datasetFilter');
+        const typeFilter = root.querySelector('.typeFilter');
+        const toggleSortBtn = root.querySelector('.toggleSortBtn');
+        const tableHead = root.querySelector('.tableHead');
+        const itemsBody = root.querySelector('.itemsBody');
+        const emptyNotice = root.querySelector('.empty');
+
+        // column definitions
+        const itemColumns = [
+          { key: 'itemId', label: 'ID', aliases: ['itemId', 'id'] },
+          { key: 'itemName', label: '名称', aliases: ['itemName', 'name'] },
+          { key: 'itemType', label: '类别', aliases: ['itemType', 'type'] },
+          { key: 'growthCoefficient', label: '生长系数', aliases: ['growthCoefficient', 'growth_coefficient'] },
+          { key: 'shopPrice', label: '商店价格', aliases: ['shopPrice', 'price'] },
+          { key: 'iconUrl', label: '图标', aliases: ['iconUrl', 'icon'] },
+          { key: 'tradable', label: '可交易', aliases: ['tradable', 'isTradable', 'is_tradable'] },
+          { key: 'interactive', label: '可互动', aliases: ['interactive', 'isInteractive', 'is_interactive'] },
+          { key: 'decomposable', label: '可分解', aliases: ['decomposable', 'isDecomposable', 'is_decomposable'] }
+        ];
+        const actionColumns = [
+          { key: 'actionId', label: '标识', aliases: ['actionId', 'id'] },
+          { key: 'actionName', label: '名称', aliases: ['actionName', 'name'] },
+          { key: 'professionType', label: '职业类型', aliases: ['professionType', 'profession'] },
+          { key: 'baseDuration', label: '基础时长', aliases: ['baseDuration', 'duration'] },
+          { key: 'baseExperience', label: '基础经验', aliases: ['baseExperience', 'baseExp', 'experience'] }
+        ];
+
+        let currentDataset = datasetFilter.value;
+        let data = [];
+        let expanded = {};
+        let sortAsc = true;
+
+        function formatCell(v){
+          if (v === null || v === undefined || v === '') return '空';
+          return String(v);
+        }
+
+        function buildTableHeader(columns){
+          tableHead.innerHTML = '';
+          const tr = document.createElement('tr');
+          columns.forEach(col => {
+            const th = document.createElement('th');
+            th.textContent = col.label || col.key;
+            tr.appendChild(th);
+          });
+          const opTh = document.createElement('th');
+          opTh.textContent = '操作';
+          tr.appendChild(opTh);
+          tableHead.appendChild(tr);
+        }
+
+        function render(){
+          const typeVal = typeFilter.value;
+          itemsBody.innerHTML = '';
+          let list = data.slice();
+          if(typeVal !== 'all'){
+            list = list.filter(it => {
+              const t = (it.itemType || it.type || it.actionType || '');
+              return t === typeVal;
+            });
+          }
+          list.sort((a,b)=>{
+            const ai = a.itemId ?? a.id ?? a.actionId ?? 0;
+            const bi = b.itemId ?? b.id ?? b.actionId ?? 0;
+            return sortAsc ? ai - bi : bi - ai;
+          });
+
+          if(list.length === 0){
+            emptyNotice.classList.remove('hidden');
+            buildTableHeader([]);
+            return;
+          } else {
+            emptyNotice.classList.add('hidden');
+          }
+
+          const columns = currentDataset === 'items' ? itemColumns : actionColumns;
+          buildTableHeader(columns);
+
+          list.forEach(item=>{
+            const id = item.itemId ?? item.id ?? item.actionId ?? '';
+            const tr = document.createElement('tr');
+            tr.className = 'row';
+            columns.forEach(col=>{
+              let value = '';
+              for(const a of (col.aliases || [col.key])){
+                if(item[a] !== undefined && item[a] !== null){ value = item[a]; break; }
+              }
+              const td = document.createElement('td');
+              if(col.key === 'iconUrl' && typeof value === 'string' && (value.startsWith('http') || value.startsWith('/'))){
+                const img = document.createElement('img'); img.className = 'icon-thumb'; img.src = value; img.alt = 'icon';
+                td.appendChild(img);
+              } else {
+                td.textContent = formatCell(value);
+              }
+              tr.appendChild(td);
+            });
+
+            // op
+            const opTd = document.createElement('td');
+            const copyBtn = document.createElement('button'); copyBtn.textContent = '复制 JSON';
+            const expandBtn = document.createElement('button'); expandBtn.textContent = expanded[id] ? '收起' : '展开详情';
+            opTd.appendChild(copyBtn); opTd.appendChild(document.createTextNode(' ')); opTd.appendChild(expandBtn);
+            tr.appendChild(opTd);
+            itemsBody.appendChild(tr);
+
+            const detailRow = document.createElement('tr'); detailRow.style.display = expanded[id] ? '' : 'none';
+            const colspan = columns.length + 1;
+            const description = item.itemDescription ?? item.description ?? item.actionDescription ?? '';
+            const attrs = item.attributes ?? item.actionAttributes ?? [];
+            detailRow.innerHTML = `<td colspan="${colspan}"><div class="details"><strong>简介:</strong> ${escapeHTML(description)}${renderRequiredLevelsTable(item)}${renderAttributesTableFromList(attrs)}</div></td>`;
+            itemsBody.appendChild(detailRow);
+
+            copyBtn.addEventListener('click', async ()=>{
+              try{ await navigator.clipboard.writeText(JSON.stringify(item, null, 2)); alert('JSON 已复制到剪贴板'); }catch(e){ console.error(e); alert('复制失败'); }
+            });
+            expandBtn.addEventListener('click', ()=>{
+              expanded[id] = !expanded[id];
+              render();
+            });
+          });
+        }
+
+        function renderAttributesTableFromList(attrs){
+          if(!attrs || attrs.length===0) return '<p><em>无属性</em></p>';
+          const rows = attrs.map(a=>{
+            const k = a.name ?? a.key ?? '';
+            const v = a.value ?? '';
+            return `<tr><td>${escapeHTML(k)}</td><td>${escapeHTML(String(v))}</td></tr>`;
+          }).join('');
+          return `<h4>属性表</h4><table class="attr-table" aria-label="属性表"><thead><tr><th>名称</th><th>数值</th></tr></thead><tbody>${rows}</tbody></table>`;
+        }
+
+        function renderRequiredLevelsTable(item){
+          const rl = item.requiredLevels ?? item.required_levels ?? item.required_level ?? null;
+          if (rl === null || rl === undefined || rl === '') return '<p><em>无等级需求</em></p>';
+          if (Array.isArray(rl) && rl.length === 0) return '<p><em>无等级需求</em></p>';
+          if (typeof rl === 'object' && !Array.isArray(rl) && Object.keys(rl).length === 0) return '<p><em>无等级需求</em></p>';
+          if(Array.isArray(rl)){
+            const rows = rl.map(r=>{ const k = r.level ?? r.key ?? ''; const v = r.value ?? r.req ?? JSON.stringify(r); return `<tr><td>${escapeHTML(String(k))}</td><td>${escapeHTML(String(v))}</td></tr>`; }).join('');
+            return `<h4>需求等级</h4><table class="attr-table"><thead><tr><th>等级</th><th>要求</th></tr></thead><tbody>${rows}</tbody></table>`;
+          } else if (typeof rl === 'object'){
+            const rows = Object.entries(rl).map(([k,v])=>`<tr><td>${escapeHTML(k)}</td><td>${escapeHTML(String(v))}</td></tr>`).join('');
+            return `<h4>需求等级</h4><table class="attr-table"><thead><tr><th>键</th><th>值</th></tr></thead><tbody>${rows}</tbody></table>`;
+          } else {
+            return `<p><strong>需求等级:</strong> ${escapeHTML(String(rl))}</p>`;
+          }
+        }
+
+        // data load & bind controls
+        function init(){
+          datasetFilter.addEventListener('change', ()=>{
+            currentDataset = datasetFilter.value;
+            loadDataAndRender();
+          });
+          typeFilter.addEventListener('change', ()=> render());
+          toggleSortBtn.addEventListener('click', ()=>{
+            sortAsc = !sortAsc;
+            toggleSortBtn.textContent = '排序: ' + (sortAsc ? '升序' : '降序');
+            render();
+          });
+          loadDataAndRender();
+        }
+
+        function loadDataAndRender(){
+          fetchDataset(currentDataset).then(arr=>{
+            data = Array.isArray(arr) ? arr : [];
+            expanded = {};
+            render();
+          });
+        }
+
+        init();
+      }
+
+      // Generator component
+      function mountGeneratorTool(){
+        const container = document.getElementById('guideContentContainer');
+        container.innerHTML = '';
+        const tpl = document.getElementById('generator-template');
+        const node = tpl.content.cloneNode(true);
+        container.appendChild(node);
+        const root = container.querySelector('.generator-component');
+        const importBtn = root.querySelector('.importJsonBtn');
+        const fileInput = root.querySelector('.jsonFileInput');
+        const pasteBtn = root.querySelector('.pasteJsonBtn');
+        const newBtn = root.querySelector('.newEmptyTableBtn');
+        const genType = root.querySelector('.generatorTypeSelect');
+        const exportBtn = root.querySelector('.exportJsonBtn');
+        const area = root.querySelector('.generatorArea');
+
+        // import/export panel elements
+        const panel = root.querySelector('.importExportPanel');
+        const panelToggle = root.querySelector('.panelToggleBtn');
+        const panelTextarea = panel ? panel.querySelector('.iex-textarea') : null;
+        const panelParseBtn = panel ? panel.querySelector('.iex-parse-btn') : null;
+        const panelExportBtn = panel ? panel.querySelector('.iex-export-btn') : null;
+        const panelDownloadBtn = panel ? panel.querySelector('.iex-download-btn') : null;
+        const panelCopyBtn = panel ? panel.querySelector('.iex-copy-btn') : null;
+        const panelClearBtn = panel ? panel.querySelector('.iex-clear-btn') : null;
+        const panelStatus = panel ? panel.querySelector('.iex-status') : null;
+
+        // toggle panel visibility
+        if(panelToggle && panel){
+          panelToggle.addEventListener('click', ()=> {
+            panel.classList.toggle('hidden');
+          });
+        }
+
+        // helper: write message to status area
+        function setPanelStatus(msg){
+          if(panelStatus) panelStatus.textContent = msg || '';
+        }
+
+        // parse JSON from panel textarea and render table
+        // 更强的通用解析：支持 JSON 数组 / 单对象（自动包装为数组） / NDJSON（逐行 JSON）
+        // 并在解析前剥离前导说明文本、code fence、以及每行的行号/前缀
+        function parseJsonOrNdjson(text){
+          if(!text || typeof text !== 'string') throw new Error('输入为空');
+          // remove BOM but keep raw for further processing
+          text = text.replace(/^\uFEFF/, '');
+          // If wrapped in a markdown code fence, extract inner content
+          const fenceMatch = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
+          if(fenceMatch && fenceMatch[1]) text = fenceMatch[1];
+          text = text.trim();
+          if(text === '') throw new Error('输入为空');
+
+          // 如果存在前导的说明文字，找到第一个 JSON 起始字符 { 或 [ 并从该位置开始解析
+          const firstJsonPos = text.search(/[{\[]/);
+          if(firstJsonPos >= 0) text = text.slice(firstJsonPos).trim();
+          else throw new Error('未检测到 JSON 起始符号 { 或 [');
+
+          // 先尝试整体 JSON.parse（兼容数组或单对象 -> 包装为数组）
+          try{
+            const parsed = JSON.parse(text);
+            if(Array.isArray(parsed)) return parsed;
+            if(parsed && typeof parsed === 'object') return [parsed];
+          }catch(e){
+            // 整体解析失败，尝试按行 NDJSON 解析
+          }
+
+          // NDJSON 逐行解析：对每行找到第一个 { 或 [ 并从该处开始解析；忽略空行和 fence 标记
+          const lines = text.split(/\r?\n/);
+          const out = [];
+          for(let i=0;i<lines.length;i++){
+            let line = lines[i].trim();
+            if(line === '' || /^```/.test(line)) continue;
+            // 找到行内第一个 JSON 起始字符并截断，剔除行号或前缀
+            const pos = line.search(/[{\[]/);
+            if(pos >= 0) line = line.slice(pos);
+            else continue; // 若该行没有 JSON 起始符，跳过
+            try{
+              const v = JSON.parse(line);
+              out.push(v);
+            }catch(err){
+              throw new Error('NDJSON 解析失败：第 ' + (i+1) + ' 行 JSON 格式有误: ' + err.message);
+            }
+          }
+          if(out.length === 0) throw new Error('无可解析内容');
+          return out;
+        }
+
+        function parseTextarea(){
+          if(!panelTextarea) return;
+          const txt = panelTextarea.value;
+          if(!txt || !txt.trim()){
+            setPanelStatus('面板为空，请粘贴 JSON 数组后再解析。');
+            return;
+          }
+          try{
+            const j = parseJsonOrNdjson(txt);
+            if(!Array.isArray(j)){
+              setPanelStatus('解析结果不是数组');
+              return;
+            }
+            const type = detectDataType(j);
+            genType.value = type;
+            area.innerHTML = '';
+            area.appendChild(buildEditableTable(j, type));
+            setPanelStatus('解析成功：已渲染表格。');
+          }catch(err){
+            setPanelStatus('JSON 解析失败：' + err.message);
+          }
+        }
+
+        // build current table data into textarea (serialize)
+        function writeCurrentTableToTextarea(){
+          if(!panelTextarea) return;
+          const tbody = area.querySelector('tbody');
+          if(!tbody){
+            setPanelStatus('当前无表格内容可导出。');
+            return;
+          }
+          const keys = Array.from(new Set(Array.from(tbody.querySelectorAll('tr')).flatMap(r=>Array.from(r.children).map((c,i)=>{ return null; })))); // placeholder to avoid linter
+          // Instead of trying to detect keys here, reuse table header textContent order
+          const ths = area.querySelectorAll('table thead th');
+          const headers = Array.from(ths).map(th=>th.textContent).filter(h=>h!=='操作');
+          const out = [];
+          const trs = area.querySelectorAll('table tbody tr');
+          // rows come in pairs if details rows exist; only process rows that contain inputs (skip detail rows that were inserted separately)
+          Array.from(trs).forEach(tr=>{
+            if(!tr.querySelector('input,textarea,select')) return;
+            const obj = {};
+            const cells = Array.from(tr.children);
+            for(let i=0;i<headers.length;i++){
+              const k = headers[i];
+              const cell = cells[i];
+              if(!cell){ obj[k] = ''; continue; }
+              // handle composite itemId cell
+              if(k === 'itemId'){
+                const pEl = cell.querySelector('input[data-role="itemPrefix"]');
+                const sEl = cell.querySelector('input[data-role="itemSuffix"]');
+                const prefix = pEl ? (pEl.value || '') : '';
+                const suffixRaw = sEl ? (sEl.value || '') : '';
+                const suffix = suffixRaw === '' ? null : String(suffixRaw).padStart(3,'0');
+                if(prefix && suffix){
+                  obj[k] = Number(String(prefix) + suffix);
+                } else if(suffix && !prefix){
+                  obj[k] = Number(suffix);
+                } else {
+                  obj[k] = null;
+                }
+                continue;
+              }
+              const el = cell.querySelector('input,textarea,select');
+              if(!el){ obj[k] = ''; continue; }
+              const dtype = el.dataset.type;
+              if(dtype === 'boolean') obj[k] = !!el.checked;
+              else if(dtype === 'number') { const v = el.value.trim(); obj[k] = v === '' ? null : Number(v); }
+              else if(dtype === 'json'){ try{ obj[k] = JSON.parse(el.value || '[]'); }catch(e){ obj[k] = el.value; } }
+              else obj[k] = el.value;
+            }
+            out.push(obj);
+          });
+          panelTextarea.value = JSON.stringify(out, null, 2);
+          setPanelStatus('已将当前表格序列化到面板。');
+        }
+
+        function downloadTextarea(){
+          if(!panelTextarea) return;
+          const txt = panelTextarea.value || '';
+          if(!txt){ setPanelStatus('面板为空，无法下载。'); return; }
+          try{
+            JSON.parse(txt); // validate
+          }catch(e){
+            setPanelStatus('不可下载：面板 JSON 非法。');
+            return;
+          }
+          const blob = new Blob([txt], {type:'application/json'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a'); a.href = url;
+          a.download = 'export.json';
+          a.click();
+          URL.revokeObjectURL(url);
+          setPanelStatus('已触发下载。');
+        }
+
+        async function copyTextarea(){
+          if(!panelTextarea) return;
+          try{
+            await navigator.clipboard.writeText(panelTextarea.value || '');
+            setPanelStatus('面板内容已复制到剪贴板。');
+          }catch(e){
+            setPanelStatus('复制失败：' + (e.message || e));
+          }
+        }
+
+        function clearTextarea(){
+          if(!panelTextarea) return;
+          panelTextarea.value = '';
+          setPanelStatus('面板已清空。');
+        }
+
+        function detectDataType(arr){
+          if(!Array.isArray(arr) || arr.length === 0) return genType.value || 'items';
+          const sample = arr[0];
+          if(sample.hasOwnProperty('actionId') || sample.hasOwnProperty('baseDuration') || sample.hasOwnProperty('professionType')) return 'actions';
+          return 'items';
+        }
+
+        function buildEditableTable(arr, type){
+          const itemCols = ['itemId','itemName','itemType','growthCoefficient','shopPrice','iconUrl','isTradable','isInteractive','isDecomposable'];
+          const actionCols = ['actionId','actionName','professionType','baseDuration','baseExperience'];
+          const cols = type === 'actions' ? actionCols : itemCols;
+          // 固定列顺序：仅使用预定义列，避免把任意对象字段并入表头（导致“字段总览”）
+          const keys = cols.slice();
+          const table = document.createElement('table'); table.style.width='100%'; table.style.borderCollapse='collapse';
+          const thead = document.createElement('thead'); const trh = document.createElement('tr');
+          keys.forEach(k=>{
+            const th = document.createElement('th');
+            th.style.padding='6px';
+            th.style.border='1px solid var(--muted)';
+            // 尝试使用 fieldMapping 提供的中文标签（优先按类型查找）
+            let label = k;
+            try{
+              if(window.fieldMapping){
+                if(type === 'actions' && window.fieldMapping.Action && window.fieldMapping.Action[k]) label = window.fieldMapping.Action[k];
+                else if(type === 'items' && window.fieldMapping.Item && window.fieldMapping.Item[k]) label = window.fieldMapping.Item[k];
+                else if(window.fieldMapping.Item && window.fieldMapping.Item[k]) label = window.fieldMapping.Item[k];
+                else if(window.fieldMapping.Action && window.fieldMapping.Action[k]) label = window.fieldMapping.Action[k];
+              }
+            }catch(e){
+              /* ignore and fallback to key */
+            }
+            th.textContent = label;
+            trh.appendChild(th);
+          });
+          const opTh = document.createElement('th'); opTh.style.padding='6px'; opTh.style.border='1px solid var(--muted)'; opTh.textContent='操作'; trh.appendChild(opTh);
+          thead.appendChild(trh); table.appendChild(thead);
+          const tbody = document.createElement('tbody'); table.appendChild(tbody);
+  
+          // Mapping and enums inferred from server models
+          const FIELD_TYPE_OVERRIDES = {
+            isTradable: 'boolean',
+            isInteractive: 'boolean',
+            isDecomposable: 'boolean',
+            itemId: 'number',
+            shopPrice: 'number',
+            growthCoefficient: 'number',
+            actionId: 'number',
+            baseDuration: 'number',
+            baseExperience: 'number',
+            itemDescription: 'textarea',
+            attributes: 'json',
+            requiredLevels: 'json',
+            baseRewards: 'json',
+            rareRewards: 'json',
+            iconUrl: 'text'
+          };
+          // Full enum options and type prefixes
+          const ENUM_OPTIONS = {
+            itemType: ['currency','map','compendium','equipment','pig','suit','treasure','resource','building'],
+            professionType: ['explore','lumber','mining','fishing','forage','cooking','tailor','artisan','research','alchemy']
+          };
+          const TYPE_PREFIX = {
+            currency: '1',
+            map: '2',
+            compendium: '3',
+            equipment: '4',
+            pig: '5',
+            suit: '6',
+            treasure: '7',
+            resource: '8',
+            building: '9'
+          };
+  
+          function pad3(n){ return String(n).padStart(3,'0'); }
+          function parseItemId(num){
+            if(num === '' || num === null || num === undefined) return {prefix:'', suffix:''};
+            const s = String(num);
+            if(s.length >= 4){
+              return { prefix: s[0], suffix: s.slice(1).padStart(3,'0') };
+            } else if(s.length <= 3){
+              return { prefix: '', suffix: pad3(Number(s) || 0) };
+            } else {
+              return { prefix: s[0], suffix: s.slice(1).padStart(3,'0') };
+            }
+          }
+  
+          // scan current tbody and optionally the global dataset to find next available suffix for a prefix
+          function getNextSuffix(prefix, scanGlobal = true){
+            const used = new Set();
+            // scan current table
+            tbody.querySelectorAll('tr').forEach(r=>{
+              const el = r.querySelector('td input[data-role="itemSuffix"]');
+              const pEl = r.querySelector('td input[data-role="itemPrefix"]');
+              if(el && pEl){
+                const p = pEl.value || '';
+                const s = el.value || '';
+                if(p === String(prefix) && s !== ''){
+                  used.add(Number(s));
+                }
+              } else {
+                // fallback: try parse full itemId from first matching cell
+                const firstInput = r.querySelector('td input, td textarea, td select');
+                if(firstInput) { /* nothing */ }
+              }
+            });
+            // scan global items if requested and available
+            if(scanGlobal && window.fetchCache && fetchCache.items && Array.isArray(fetchCache.items)){
+              fetchCache.items.forEach(it=>{
+                const id = it.itemId ?? it.id;
+                if(typeof id === 'number' || (typeof id === 'string' && /^\d+$/.test(id))){
+                  const parsed = parseItemId(id);
+                  if(parsed.prefix === String(prefix) && parsed.suffix !== ''){
+                    used.add(Number(parsed.suffix));
+                  }
+                }
+              });
+            }
+            // find smallest unused from 1..999
+            for(let i=1;i<=999;i++){
+              if(!used.has(i)) return i;
+            }
+            return null;
+          }
+  
+          function createItemIdCell(obj, value){
+            const td = document.createElement('td');
+            td.style.padding='6px'; td.style.border='1px solid var(--muted)';
+            // determine current type to set prefix:
+            // priority: row object itemType/type -> current genType select value -> provided function param 'type'
+            const currentTypeFromRow = (obj && (obj.itemType || obj.type)) || '';
+            const globalType = (typeof genType !== 'undefined' && genType && genType.value) ? genType.value : (type || '');
+            const currentType = currentTypeFromRow || globalType || '';
+            const prefixVal = TYPE_PREFIX[currentType] || '';
+            // parse passed value
+            const parsed = parseItemId(value);
+            // create prefix input (readonly)
+            const prefixInput = document.createElement('input');
+            prefixInput.type = 'text';
+            prefixInput.readOnly = true;
+            prefixInput.value = parsed.prefix || prefixVal || '';
+            prefixInput.style.width = '40px';
+            prefixInput.style.marginRight = '6px';
+            prefixInput.dataset.type = 'number'; // treat as numeric part of id composition
+            prefixInput.dataset.role = 'itemPrefix';
+            // create suffix input
+            const suffixInput = document.createElement('input');
+            suffixInput.type = 'number';
+            suffixInput.min = 0;
+            suffixInput.max = 999;
+            suffixInput.step = 1;
+            suffixInput.value = parsed.suffix ? String(Number(parsed.suffix)) : '';
+            suffixInput.style.width = '80px';
+            suffixInput.dataset.type = 'number';
+            suffixInput.dataset.role = 'itemSuffix';
+            // helper to get full id number
+            suffixInput.getFullId = () => {
+              const p = prefixInput.value || '';
+              const s = suffixInput.value === '' ? '' : pad3(Number(suffixInput.value));
+              return p && s ? Number(String(p) + s) : (s ? Number(s) : null);
+            };
+            // when empty suffix on new row, try auto fill
+            if((suffixInput.value === '' || suffixInput.value === '0') && prefixInput.value){
+              const next = getNextSuffix(prefixInput.value, true);
+              if(next !== null){
+                suffixInput.value = String(next);
+              }
+            }
+            // expose method to update prefix from external handlers
+            td.updatePrefix = function(newPrefix){
+              prefixInput.value = newPrefix || '';
+              if((suffixInput.value === '' || suffixInput.value === '0') && prefixInput.value){
+                const next = getNextSuffix(prefixInput.value, true);
+                if(next !== null) suffixInput.value = String(next);
+              }
+            };
+            td.appendChild(prefixInput);
+            td.appendChild(suffixInput);
+            return td;
+          }
+  
+          function createCellInput(key, value, rowObj){
+            const td = document.createElement('td');
+            td.style.padding='6px'; td.style.border='1px solid var(--muted)';
+            let input;
+            const override = FIELD_TYPE_OVERRIDES[key];
+            // special-case itemId to composite prefix+suffix when editing items
+            if(key === 'itemId' && (type === 'items' || rowObj && rowObj.itemType !== undefined)){
+              return createItemIdCell(rowObj || {}, value);
+            }
+            // boolean
+            if(override === 'boolean' || (override === undefined && typeof value === 'boolean')){
+              input = document.createElement('input');
+              input.type = 'checkbox';
+              input.checked = Boolean(value);
+              input.dataset.type = 'boolean';
+              input.style.width = 'auto';
+            }
+            // JSON / complex
+            else if(override === 'json'){
+              input = document.createElement('textarea');
+              input.rows = 3;
+              try{ input.value = value && typeof value !== 'string' ? JSON.stringify(value, null, 2) : (value || '[]'); }catch(e){ input.value = String(value || '[]'); }
+              input.dataset.type = 'json';
+            }
+            // enum select
+            else if(override === 'select' || ENUM_OPTIONS[key]){
+              input = document.createElement('select');
+              const opts = ENUM_OPTIONS[key] || [];
+              opts.forEach(o=>{
+                const opt = document.createElement('option'); opt.value = o; opt.textContent = o;
+                if(String(value) === String(o)) opt.selected = true;
+                input.appendChild(opt);
+              });
+              input.dataset.type = 'select';
+              // if this select is the itemType selector, update the same-row prefix when user changes type
+              if(key === 'itemType'){
+                input.addEventListener('change', (e)=>{
+                  try{
+                    const selVal = e.target.value;
+                    const desiredPrefix = TYPE_PREFIX[selVal] || '';
+                    const tr = input.closest('tr');
+                    if(!tr) return;
+                    // find id cell (first cell that contains data-role itemPrefix)
+                    const idCell = Array.from(tr.children).find(td=> td.querySelector && td.querySelector('input[data-role="itemPrefix"]'));
+                    if(idCell){
+                      const pEl = idCell.querySelector('input[data-role="itemPrefix"]');
+                      const sEl = idCell.querySelector('input[data-role="itemSuffix"]');
+                      if(pEl && (!pEl.value || pEl.value !== desiredPrefix)){
+                        pEl.value = desiredPrefix;
+                        if(sEl && (sEl.value === '' || sEl.value === '0') && desiredPrefix){
+                          const next = getNextSuffix(desiredPrefix, true);
+                          if(next !== null) sEl.value = String(next);
+                        }
+                      }
+                    }
+                  }catch(err){ /* ignore */ }
+                });
+              }
+            }
+            // textarea for long text or explicit override
+            else if(override === 'textarea' || (override === undefined && typeof value === 'string' && value.length > 120)){
+              input = document.createElement('textarea');
+              input.rows = 3;
+              input.value = value || '';
+              input.dataset.type = 'text';
+            }
+            // number
+            else if(override === 'number' || (override === undefined && typeof value === 'number')){
+              input = document.createElement('input');
+              input.type = 'number';
+              input.step = 'any';
+              input.value = (value === null || value === undefined) ? '' : String(value);
+              input.dataset.type = 'number';
+            }
+            // default text input
+            else {
+              input = document.createElement('input');
+              input.type = 'text';
+              input.value = value === null || value === undefined ? '' : String(value);
+              input.dataset.type = 'text';
+            }
+            input.style.width = '100%';
+            input.style.boxSizing = 'border-box';
+            td.appendChild(input);
+            return td;
+          }
+  
+          function appendRow(obj){
+            const tr = document.createElement('tr');
+            keys.forEach(k=>{
+              const v = obj && obj[k] !== undefined && obj[k] !== null ? obj[k] : '';
+              const td = createCellInput(k, v, obj);
+              tr.appendChild(td);
+            });
+            const opTd = document.createElement('td'); opTd.style.padding='6px'; opTd.style.border='1px solid var(--muted)';
+            const del = document.createElement('button'); del.textContent='删除'; del.addEventListener('click', ()=> tr.remove());
+            opTd.appendChild(del); tr.appendChild(opTd); tbody.appendChild(tr);
+          }
+  
+          arr.forEach(a=> appendRow(a));
+          const addRowBtn = document.createElement('button'); addRowBtn.textContent='新增行'; addRowBtn.addEventListener('click', ()=> appendRow({}));
+          const exportBtn = document.createElement('button'); exportBtn.textContent='生成 JSON 并导出'; exportBtn.style.marginLeft='8px';
+          exportBtn.addEventListener('click', ()=>{
+            const out = [];
+            const conflicts = [];
+            const idSet = new Set();
+            tbody.querySelectorAll('tr').forEach((r, rowIndex)=>{
+              const obj = {}; const cells = Array.from(r.children);
+              for(let i=0;i<keys.length;i++){
+                const cell = cells[i];
+                const k = keys[i];
+                // handle composite itemId
+                if(k === 'itemId'){
+                  const pEl = cell.querySelector('input[data-role="itemPrefix"]');
+                  const sEl = cell.querySelector('input[data-role="itemSuffix"]');
+                  const prefix = pEl ? (pEl.value || '') : '';
+                  const suffixRaw = sEl ? (sEl.value || '') : '';
+                  const suffix = suffixRaw === '' ? null : pad3(Number(suffixRaw));
+                  if(prefix && suffix){
+                    const idNum = Number(String(prefix) + suffix);
+                    obj[k] = idNum;
+                  } else if(suffix && !prefix){
+                    obj[k] = Number(suffix);
+                  } else {
+                    obj[k] = null;
+                  }
+                  continue;
+                }
+                const el = cell.querySelector('input,textarea,select');
+                if(!el){ obj[k] = ''; continue; }
+                const dtype = el.dataset.type;
+                if(dtype === 'boolean') obj[k] = !!el.checked;
+                else if(dtype === 'number') { const v = el.value.trim(); obj[k] = v === '' ? null : Number(v); }
+                else if(dtype === 'json'){ try{ obj[k] = JSON.parse(el.value || '[]'); }catch(e){ obj[k] = el.value; } }
+                else obj[k] = el.value;
+              }
+              // check conflict
+              if(obj.itemId !== null && obj.itemId !== undefined){
+                if(idSet.has(obj.itemId)) conflicts.push({row: rowIndex+1, id: obj.itemId});
+                idSet.add(obj.itemId);
+              }
+              out.push(obj);
+            });
+            if(conflicts.length > 0){
+              let msg = '检测到重复 ID：\n';
+              conflicts.forEach(c=> msg += `行 ${c.row} 重复 ID ${c.id}\n`);
+              msg += '\n请选择：确认将自动为冲突行分配下一个可用后缀，或取消手动处理。';
+              if(confirm(msg)){
+                // auto-resolve conflicts by assigning next available suffix per prefix
+                tbody.querySelectorAll('tr').forEach(r=>{
+                  const cells = Array.from(r.children);
+                  const idCell = cells[keys.indexOf('itemId')];
+                  if(!idCell) return;
+                  const pEl = idCell.querySelector('input[data-role="itemPrefix"]');
+                  const sEl = idCell.querySelector('input[data-role="itemSuffix"]');
+                  if(!pEl || !sEl) return;
+                  const prefix = pEl.value || '';
+                  const fullNum = sEl.getFullId ? sEl.getFullId() : null;
+                  if(fullNum && idSet.has(fullNum)){
+                    const next = getNextSuffix(prefix, true);
+                    if(next !== null){
+                      sEl.value = String(next);
+                      // update idSet to include new value
+                      idSet.add(Number(String(prefix) + pad3(next)));
+                    }
+                  }
+                });
+              } else {
+                alert('导出已取消，请先修复冲突后再导出');
+                return;
+              }
+            }
+            const blob = new Blob([JSON.stringify(out, null, 2)], {type:'application/json'});
+            const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url;
+            a.download = (type === 'actions' ? 'actions_export.json' : 'items_export.json'); a.click(); URL.revokeObjectURL(url);
+          });
+          const copyBtn = document.createElement('button'); copyBtn.textContent='复制到剪贴板'; copyBtn.style.marginLeft='6px';
+          copyBtn.addEventListener('click', async ()=>{
+            const out = [];
+            const conflicts = [];
+            const idSet = new Set();
+            tbody.querySelectorAll('tr').forEach((r, rowIndex)=>{
+              const obj = {}; const cells = Array.from(r.children);
+              for(let i=0;i<keys.length;i++){
+                const cell = cells[i];
+                const k = keys[i];
+                if(k === 'itemId'){
+                  const pEl = cell.querySelector('input[data-role="itemPrefix"]');
+                  const sEl = cell.querySelector('input[data-role="itemSuffix"]');
+                  const prefix = pEl ? (pEl.value || '') : '';
+                  const suffixRaw = sEl ? (sEl.value || '') : '';
+                  const suffix = suffixRaw === '' ? null : pad3(Number(suffixRaw));
+                  if(prefix && suffix){
+                    const idNum = Number(String(prefix) + suffix);
+                    obj[k] = idNum;
+                  } else if(suffix && !prefix){
+                    obj[k] = Number(suffix);
+                  } else {
+                    obj[k] = null;
+                  }
+                  continue;
+                }
+                const el = cell.querySelector('input,textarea,select');
+                if(!el){ obj[k] = ''; continue; }
+                const dtype = el.dataset.type;
+                if(dtype === 'boolean') obj[k] = !!el.checked;
+                else if(dtype === 'number') { const v = el.value.trim(); obj[k] = v === '' ? null : Number(v); }
+                else if(dtype === 'json'){ try{ obj[k] = JSON.parse(el.value || '[]'); }catch(e){ obj[k] = el.value; } }
+                else obj[k] = el.value;
+              }
+              if(obj.itemId !== null && obj.itemId !== undefined){
+                if(idSet.has(obj.itemId)) conflicts.push({row: rowIndex+1, id: obj.itemId});
+                idSet.add(obj.itemId);
+              }
+              out.push(obj);
+            });
+            if(conflicts.length > 0){
+              let msg = '检测到重复 ID：\n';
+              conflicts.forEach(c=> msg += `行 ${c.row} 重复 ID ${c.id}\n`);
+              msg += '\n请选择：确认将自动为冲突行分配下一个可用后缀，或取消手动处理。';
+              if(confirm(msg)){
+                tbody.querySelectorAll('tr').forEach(r=>{
+                  const cells = Array.from(r.children);
+                  const idCell = cells[keys.indexOf('itemId')];
+                  if(!idCell) return;
+                  const pEl = idCell.querySelector('input[data-role="itemPrefix"]');
+                  const sEl = idCell.querySelector('input[data-role="itemSuffix"]');
+                  if(!pEl || !sEl) return;
+                  const prefix = pEl.value || '';
+                  const fullNum = sEl.getFullId ? sEl.getFullId() : null;
+                  if(fullNum && idSet.has(fullNum)){
+                    const next = getNextSuffix(prefix, true);
+                    if(next !== null){
+                      sEl.value = String(next);
+                      idSet.add(Number(String(prefix) + pad3(next)));
+                    }
+                  }
+                });
+              } else {
+                alert('复制已取消，请先修复冲突后再复制');
+                return;
+              }
+            }
+            try{ await navigator.clipboard.writeText(JSON.stringify(out, null, 2)); alert('JSON 已复制到剪贴板'); }catch(e){ alert('复制失败：' + e.message); }
+          });
+          const container = document.createElement('div'); container.appendChild(addRowBtn); container.appendChild(table); container.appendChild(exportBtn); container.appendChild(copyBtn);
+          return container;
+        }
+
+        importBtn.addEventListener('click', ()=> fileInput.click());
+        fileInput.addEventListener('change', (e)=>{
+          const f = e.target.files && e.target.files[0]; if(!f) return;
+          const reader = new FileReader();
+          reader.onload = function(){
+            try{
+              const j = parseJsonOrNdjson(String(reader.result || ''));
+              const type = detectDataType(j);
+              genType.value = type; area.innerHTML = ''; area.appendChild(buildEditableTable(j, type));
+              if(panel) setPanelStatus('解析成功：已渲染表格（来自文件）。');
+            }catch(err){ alert('解析失败：' + err.message); }
+          };
+          reader.readAsText(f);
+        });
+
+        pasteBtn.addEventListener('click', async ()=>{
+          try{
+            let text = '';
+            if(navigator.clipboard && navigator.clipboard.readText){
+              try{ text = await navigator.clipboard.readText(); }catch(e){ text = ''; }
+            }
+            if(!text){
+              text = prompt('检测到无法直接读取剪贴板，请粘贴 JSON 到此处：') || '';
+            }
+            if(!text) return;
+            if(panel && panelTextarea){
+              panelTextarea.value = text;
+              panel.classList.remove('hidden');
+              parseTextarea();
+            } else {
+              try{
+                const j = parseJsonOrNdjson(text);
+                const type = detectDataType(j);
+                genType.value = type; area.innerHTML=''; area.appendChild(buildEditableTable(j, type));
+                if(panel) setPanelStatus('解析成功：已渲染表格（来自粘贴）。');
+              }catch(e){ alert('JSON 解析失败：' + e.message); }
+            }
+          }catch(err){
+            const txt = prompt('请粘贴 JSON 数组：');
+            if(!txt) return;
+            try{
+              const j = parseJsonOrNdjson(txt);
+              const type = detectDataType(j);
+              genType.value = type; area.innerHTML=''; area.appendChild(buildEditableTable(j, type));
+              if(panel) setPanelStatus('解析成功：已渲染表格（来自粘贴）。');
+            }catch(e){ alert('JSON 解析失败：' + e.message); }
+          }
+        });
+
+        newBtn.addEventListener('click', ()=>{
+          const type = genType.value || 'items'; area.innerHTML=''; area.appendChild(buildEditableTable([], type));
+        });
+
+        genType.addEventListener('change', ()=>{
+          // try to update existing table rows in-place: adjust prefix for rows that don't have one
+          const desiredPrefix = TYPE_PREFIX[genType.value] || '';
+          const table = area.querySelector('table');
+          if(table){
+            try{
+              const prefixInputs = table.querySelectorAll('input[data-role="itemPrefix"]');
+              prefixInputs.forEach(pEl=>{
+                if(!pEl) return;
+                if(!pEl.value || pEl.value === ''){
+                  pEl.value = desiredPrefix;
+                  const sEl = pEl.parentElement.querySelector('input[data-role="itemSuffix"]');
+                  if(sEl && (sEl.value === '' || sEl.value === '0') && desiredPrefix){
+                    const next = getNextSuffix(desiredPrefix, true);
+                    if(next !== null) sEl.value = String(next);
+                  }
+                }
+              });
+            }catch(e){ /* ignore and fallback */ }
+          } else {
+            area.innerHTML = ''; area.appendChild(buildEditableTable([], genType.value));
+          }
+        });
+
+        exportBtn.addEventListener('click', ()=>{
+          // trigger export button inside area if exists
+          const btn = area.querySelector('button');
+          if(btn) btn.click(); else alert('当前无可导出的表格，请先导入或新建表格');
+        });
+
+        // initial empty table
+        area.innerHTML = ''; area.appendChild(buildEditableTable([], genType.value));
+      }
+
+      // initial render
+      // 将需要从片段内调用的函数暴露到全局，并添加 hash / 同页锚点处理（中文注释）
+      window.loadGuidePage = loadGuidePage;
+      window.mountItemsTool = mountItemsTool;
+      window.mountGeneratorTool = mountGeneratorTool;
+
+      // 处理 hash（例如 #production-properties、#tool-items、#tool-generator）
+      function handleHash(hash){
+        if(!hash) return;
+        const key = String(hash).replace(/^#/, '');
+        if(!key) return;
+        if(key === 'home'){ loadGuidePage('home'); return; }
+        if(key === 'tool-items'){ mountItemsTool(); return; }
+        if(key === 'tool-generator'){ mountGeneratorTool(); return; }
+        // 默认将 hash 当作章节 slug 处理
+        loadGuidePage(key);
+      }
+
+      // 当地址栏 hash 改变时触发（支持后退/前进）
+      window.addEventListener('hashchange', ()=> handleHash(location.hash));
+
+      // 代理内容区内的 a[href^="#"] 点击，避免依赖片段内的 inline onclick
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a');
+        if(!a) return;
+        const href = a.getAttribute('href') || '';
+        if(href.startsWith('#')){
+          e.preventDefault();
+          // 先尝试处理 hash 再同步到地址栏（避免重复加载）
+          handleHash(href);
+          if(location.hash !== href) location.hash = href;
+        }
+      });
+
+      renderLeftNav();
+      // 默认显示首页（并列的首页，不可展开，默认加载或根据 hash 加载）
+      (function(){
+        const left = document.getElementById('leftNav');
+        const home = left.querySelector('.home-item');
+        if(home){
+          home.classList.add('active');
+        }
+        // 如果地址栏有 hash，则根据 hash 加载对应内容（支持直接链接）
+        if(location.hash && location.hash.length > 1){
+          handleHash(location.hash);
+        } else {
+          // 否则加载默认首页
+          loadGuidePage('home');
+        }
+      })();
+
+    })();
+  </script>
+</body>
+</html>

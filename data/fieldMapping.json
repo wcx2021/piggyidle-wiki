@@ -1,0 +1,25 @@
+{
+  "Item": {
+    "itemId": "标识",
+    "itemName": "名称",
+    "itemType": "类型",
+    "itemDescription": "简介",
+    "growthCoefficient": "生长系数",
+    "requiredLevels": "需求等级",
+    "shopPrice": "商店价格",
+    "iconUrl": "图标",
+    "tradable": "可交易",
+    "interactive": "可互动",
+    "decomposable": "可分解",
+    "attributes": "属性"
+  },
+  "Action": {
+    "actionId": "标识",
+    "professionType": "职业类型",
+    "baseDuration": "基础时长",
+    "actionName": "名称",
+    "baseRewards": "基础奖励",
+    "rareRewards": "稀有奖励",
+    "baseExperience": "基础经验"
+  }
+}

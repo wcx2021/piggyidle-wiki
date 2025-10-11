@@ -1,0 +1,37 @@
+[
+  {
+    "actionId": 2000,
+    "professionType": "explore",
+    "baseDuration": 60,
+    "actionName": "地图探索",
+    "baseRewards": [
+      { "itemId": 1000, "minAmount": 1, "maxAmount": 2, "weight": 1 }
+    ],
+    "rareRewards": [
+      { "itemId": 1002, "minAmount": 1, "maxAmount": 3, "probability": 0.25 }
+    ],
+    "baseExperience": 10
+  },
+  {
+    "actionId": 2001,
+    "professionType": "mining",
+    "baseDuration": 40,
+    "actionName": "矿石开采",
+    "baseRewards": [
+      { "itemId": 1000, "minAmount": 1, "maxAmount": 1, "weight": 1 }
+    ],
+    "rareRewards": [],
+    "baseExperience": 8
+  },
+  {
+    "actionId": 2002,
+    "professionType": "lumber",
+    "baseDuration": 45,
+    "actionName": "砍伐木材",
+    "baseRewards": [
+      { "itemId": 1000, "minAmount": 2, "maxAmount": 5, "weight": 1 }
+    ],
+    "rareRewards": [],
+    "baseExperience": 9
+  }
+]
