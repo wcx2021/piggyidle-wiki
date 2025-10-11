@@ -65,6 +65,53 @@
     .icon-thumb{ width:28px;height:28px;object-fit:contain;border-radius:4px; }
     #guideContentContainer { width: 100%; box-sizing: border-box; }
 
+    /* 移动端覆盖式侧栏：窄屏时隐藏原始侧栏并提供覆盖式滑出菜单（中文注释）
+       - 菜单宽度使用视口的 85%（最大 320px）
+       - 展示遮罩（点击遮罩或按 Esc 关闭）
+       - 菜单通过给 aside#leftNav 添加 .show 类显示
+    */
+    @media (max-width: 720px) {
+      aside#leftNav {
+        display: none;
+        position: fixed;
+        z-index: 1200;
+        top: 0;
+        left: 0;
+        width: 85vw;
+        max-width: 320px;
+        height: 100vh;
+        padding: 12px;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: 0 12px 40px rgba(2,6,23,0.36);
+        background: var(--card);
+        transform: translateX(-100%);
+        transition: transform 220ms ease;
+        overflow: auto;
+      }
+      /* 显示时滑出覆盖页面 */
+      aside#leftNav.show {
+        display: block;
+        transform: translateX(0);
+      }
+      /* 半透明遮罩（使用 body 的伪元素） */
+      body.show-overlay::before {
+        content: "";
+        position: fixed;
+        z-index: 1100;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.45);
+      }
+      /* 主内容占满屏宽，减少间距 */
+      .layout { gap: 8px; }
+      main { padding: 10px; }
+      /* 菜单切换按钮在窄屏可见（header 中默认 inline style 隐藏） */
+      #menuToggle { display: inline-block; }
+    }
+
     /* Ensure generator / items components fill the main area */
     .generator-component,
     .generatorArea,
@@ -163,6 +210,8 @@
       </div>
       <div style="display:flex;align-items:center;gap:8px;">
         <button id="themeToggle">关灯</button>
+        <!-- 菜单切换按钮：仅在窄屏显示（默认由 CSS 控制显示/隐藏），放在“关灯”右侧 -->
+        <button id="menuToggle" aria-label="切换目录" title="切换目录" style="font-size:18px;padding:6px 10px;border-radius:6px;margin-left:6px;" aria-hidden="true">☰</button>
       </div>
     </header>
 
@@ -1441,18 +1490,54 @@
       });
 
       renderLeftNav();
-      // 默认显示首页（并列的首页，不可展开，默认加载或根据 hash 加载）
+
+      // 移动端：绑定菜单切换按钮与遮罩行为（中文注释）
       (function(){
+        const menuBtn = document.getElementById('menuToggle');
         const left = document.getElementById('leftNav');
-        const home = left.querySelector('.home-item');
-        if(home){
-          home.classList.add('active');
+        // 打开侧栏时在 body 上加上 show-overlay，用于显示遮罩（伪元素）
+        function openMenu(){
+          if(!left) return;
+          left.classList.add('show');
+          document.body.classList.add('show-overlay');
+          // 锁住背景滚动
+          document.body.style.overflow = 'hidden';
+          // 把焦点移到侧栏首个可聚焦元素
+          const first = left.querySelector('button, a, [tabindex]');
+          if(first) first.focus();
         }
-        // 如果地址栏有 hash，则根据 hash 加载对应内容（支持直接链接）
+        function closeMenu(){
+          if(!left) return;
+          left.classList.remove('show');
+          document.body.classList.remove('show-overlay');
+          document.body.style.overflow = '';
+          if(menuBtn) menuBtn.focus();
+        }
+        if(menuBtn && left){
+          menuBtn.addEventListener('click', (e)=>{
+            e.stopPropagation();
+            if(left.classList.contains('show')) closeMenu(); else openMenu();
+          });
+          // 点击遮罩或页面空白处关闭侧栏
+          document.addEventListener('click', (e)=>{
+            if(!left.classList.contains('show')) return;
+            if(menuBtn.contains(e.target)) return;
+            if(left.contains(e.target)) return;
+            closeMenu();
+          }, { capture: true });
+          // Esc 键关闭
+          document.addEventListener('keydown', (e)=>{
+            if(e.key === 'Escape') closeMenu();
+          });
+        }
+
+        // 默认显示首页（并列的首页，不可展开，默认加载或根据 hash 加载）
+        const leftNavElem = document.getElementById('leftNav');
+        const home = leftNavElem ? leftNavElem.querySelector('.home-item') : null;
+        if(home) home.classList.add('active');
         if(location.hash && location.hash.length > 1){
           handleHash(location.hash);
         } else {
-          // 否则加载默认首页
           loadGuidePage('home');
         }
       })();
