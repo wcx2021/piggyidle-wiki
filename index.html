@@ -211,7 +211,7 @@
       <div style="display:flex;align-items:center;gap:8px;">
         <button id="themeToggle">关灯</button>
         <!-- 菜单切换按钮：仅在窄屏显示（默认由 CSS 控制显示/隐藏），放在“关灯”右侧 -->
-        <button id="menuToggle" aria-label="切换目录" title="切换目录" style="font-size:18px;padding:6px 10px;border-radius:6px;margin-left:6px;" aria-hidden="true">☰</button>
+        <button id="menuToggle" aria-label="切换目录" title="切换目录" style="font-size:18px;padding:6px 10px;border-radius:6px;margin-left:6px;">☰</button>
       </div>
     </header>
 
@@ -462,6 +462,18 @@
               } else {
                 loadGuidePage(li.dataset.slug);
               }
+
+              // 窄屏适配：如果侧栏是通过覆盖模式展开（带 .show），点击条目后自动关闭侧栏
+              // 这样在移动/窄屏下点击标签会直接收起展开的菜单，符合需求
+              try {
+                if(left && left.classList && left.classList.contains('show')){
+                  left.classList.remove('show');
+                  document.body.classList.remove('show-overlay');
+                  document.body.style.overflow = '';
+                  const menuBtn = document.getElementById('menuToggle');
+                  if(menuBtn) menuBtn.focus();
+                }
+              } catch (e) { /* 忽略任何关闭错误 */ }
             });
 
             itemsContainer.appendChild(li);
