@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>piggy idle wiki（小猪放置游戏wiki）</title>
+  <link rel="stylesheet" href="assets/css/guide.css">
   <style>
     :root { --bg: #f7fafc; --card: #ffffff; --text: #0b1220; --muted:#6b7280; --accent:#0ea5e9; --row-hover: rgba(0,0,0,0.04); --btn-bg: transparent; --btn-border: rgba(11,18,32,0.08); --btn-hover-bg: rgba(11,18,32,0.04); --btn-color: var(--text); }
     .dark { --bg: #0b1020; --card: #0f1724; --text: #eaeaea; --muted:#9ca3af; --accent:#4cc9f0; --row-hover: rgba(255,255,255,0.03); --btn-bg: transparent; --btn-border: rgba(255,255,255,0.06); --btn-hover-bg: rgba(255,255,255,0.02); --btn-color: var(--text); }
@@ -547,7 +548,20 @@
               }
             }
             // inject extracted fragment; if still null, inject raw html as last resort
-            container.innerHTML = guideNode ? guideNode.innerHTML : html;
+            try {
+              if (guideNode) {
+                // 保留并插入根元素（例如 <div class="guide-content">），避免丢失作用于 .guide-content 的样式选择器
+                container.innerHTML = '';
+                const imported = document.importNode(guideNode, true);
+                container.appendChild(imported);
+              } else {
+                container.innerHTML = html;
+              }
+            } catch (injectErr) {
+              console.error('[loadGuidePage] inject error', injectErr);
+              // 兜底：回退到原先行为以保证页面至少可见
+              container.innerHTML = guideNode ? guideNode.innerHTML : html;
+            }
           }catch(parseErr){
             console.error('[loadGuidePage] parse error', parseErr);
             container.innerHTML = html;

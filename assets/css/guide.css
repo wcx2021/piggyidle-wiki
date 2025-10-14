@@ -1,0 +1,145 @@
+/* Shared guide styles for pages under wiki/guide/... */
+.guide-content {
+  font-family: "Noto Sans SC", "Segoe UI", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  color: #222;
+  line-height: 1.75;
+  max-width: 820px;
+}
+
+/* Headings */
+.guide-content h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 10px 0 6px 0;
+  color: #111;
+}
+.guide-content h2::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  background: #f39c12;
+  margin: 10px 0 0 0;
+  border-radius: 2px;
+}
+
+.guide-content h3 {
+  font-size: 20px;
+  margin-top: 22px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #222;
+}
+
+.guide-content h4 {
+  font-size: 16px;
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Paragraphs and text helpers */
+/* 正文字体略小以匹配需求 */
+.guide-content p {
+  margin: 12px 0;
+  color: #333;
+  font-size: 13px;
+}
+.guide-content p.lead {
+  font-size: 14px;
+  color: #1f2937;
+}
+.guide-content p.small {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 8px 0;
+}
+.guide-content .muted {
+  color: #6b7280;
+  font-size: 13px;
+}
+.guide-content .underline {
+  text-decoration: underline;
+}
+.guide-content .important {
+  font-weight: 700;
+  color: #111;
+}
+
+/* Note box */
+.guide-content .note {
+  background: #fff8e6;
+  border-left: 4px solid #f39c12;
+  padding: 10px 12px;
+  margin: 12px 0;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* Spacing and lists */
+.guide-content .spaced {
+  margin-bottom: 18px;
+}
+.guide-content ul {
+  margin: 8px 0 16px 20px;
+}
+
+/* Divider */
+.guide-content hr.divider {
+  border: 0;
+  height: 1px;
+  background: #e6e9ef;
+  margin: 18px 0;
+}
+
+/* Meta small text */
+.guide-content .meta {
+  font-size: 12px;
+  color: #777;
+  margin-top: 6px;
+}
+
+/* 隐藏文本：默认不可见，悬停显示（通用类名 .reveal-on-hover） */
+/* 使用容器 .reveal-container 以便鼠标悬停时显示；color:transparent 保留布局宽度 */
+.guide-content .reveal-container {
+  display: inline-block;
+}
+.guide-content .reveal-container .reveal-on-hover,
+.guide-content .reveal-on-hover {
+  /* 隐藏文本但保留占位 */
+  color: transparent;
+  transition: color .12s ease, opacity .12s ease;
+  opacity: 1;
+  cursor: help;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.guide-content .reveal-container:hover .reveal-on-hover,
+.guide-content .reveal-on-hover:hover {
+  color: #6b7280;
+}
+
+/* 文字颜色与阴影辅助类（便于快速在页面中使用） */
+.guide-content .text-blue {
+  color: #0b63d6;
+}
+.guide-content .text-shadow {
+  color: #0b63d6;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6), 0 2px 8px rgba(11,99,214,0.12);
+}
+.guide-content .bg-shadow {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(11,99,214,0.06);
+  box-shadow: 0 2px 8px rgba(11,99,214,0.06);
+  color: #0b63d6;
+}
+
+/* Utility classes that are useful across pages */
+.guide-content .muted small,
+.guide-content .muted .small {
+  font-size: 12px;
+  color: #6b7280;
+}
