@@ -69,6 +69,20 @@
   "requiredLevels": []
 },
 {
+    "itemId": 6001,
+    "itemName": "小猪套装",
+    "itemType": "suit",
+    "itemDescription": "小猪初始套装，使用后可以让小猪转职成为小猪",
+    "iconUrl": null,
+    "growthCoefficient": null,
+    "shopPrice": 10,
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "requiredLevels": []
+  },
+{
   "itemId": 5002,
   "itemName": "侦查猪",
   "itemType": "pig",
