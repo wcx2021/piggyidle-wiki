@@ -1,8 +1,77 @@
 <div class="guide-content">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
   <h2>属性机制</h2>
-  <p>属性机制分为全局属性、小猪属性、怪物属性三个板块</p>
+  
+  <p class="lead spaced"><strong class="important">属性系统是游戏的核心机制之一</strong>，分为全局属性、小猪属性、怪物属性三个主要板块，共同构成了游戏的数值体系。</p>
+
   <h3>全局属性</h3>
-  <p>本片段仅包含主内容区（红框内容），不会包含页面整体布局或侧边栏。loadGuidePage 会提取此容器的内容并注入主页面的右侧内容区。</p>
-  <h3>全局属性</h3>
-  <h3>全局属性</h3>
+  <hr class="divider" />
+  <p class="spaced">绑定账号的属性，包括人口上限、全局属性加成等，影响玩家整体的游戏体验和发展空间。</p>
+
+  <h3>小猪属性等级</h3>
+  <hr class="divider" />
+  <p class="spaced">小猪的属性等级包括力量、灵巧、智力、敏捷、耐力等，这些属性会影响小猪在各项活动中的表现。以下介绍都以基础职业小猪为范例</p>
+  <p class="spaced">力量：影响小猪的挖矿、伐木采集速度、力工系生产效率、基础攻击强度和破甲。</p>
+  <p class="spaced">灵巧：影响小猪的采集速度、巧匠系生产效率、暴击率、闪避率和连击率。</p>
+  <p class="spaced">智力：影响小猪的经验获取、巫师类制造技能的效率。</p>
+  <p class="spaced">感知：影响小猪的侦查效率、发现稀有物品的概率。</p>
+  <p class="spaced">敏捷：影响小猪的侦查效率、</p>
+  <p class="spaced">耐力：影响小猪的护甲。</p>
+
+  <h3>小猪属性</h3>
+  <hr class="divider" />
+  
+  <h4>生活相关属性</h4>
+  <p class="spaced">生活相关属性影响小猪在非战斗场景中的表现，如生产、采集等活动的效率和质量。</p>
+  基础的属性有两项：
+  专业速度：影响小猪在生产、采集等活动中完成单个活动所需的时间。
+  专业效率：影响小猪在生产、采集等活动中获得的完成次数。
+  专业经验：影响小猪在生产、采集等活动中获得的经验值。
+  这两项有很多种属性，加成范围不同，有大类加成：
+  侦查加成：影响所有侦查类属性
+  采集加成：影响所有采集类属性
+  生产加成：影响所有生产类属性
+  和小类加成，例如：
+  测绘加成：影响测绘类行动的属性
+  钓鱼加成：影响钓鱼类行动的属性
+  缝纫加成：影响缝纫类行动的属性
+  以及专业加成，只影响单独专业的属性。
+
+  还有一些特殊类型的职业有一些新的属性，比如：
+  成功率加成：影响行动成功的概率。
+  稀有加成：影响稀有奖励的概率
+
+  <h4>战斗相关属性</h4>
+  <p class="spaced">战斗相关属性决定小猪在战斗中的表现和能力：</p>
+  
+  <p class="spaced"><span class="underline">初始重量/当前重量</span>：小猪行动或受到伤害都会扣除重量，当前重量小于初始重量的小猪会自动撤退出战斗。</p>
+  
+  <p class="spaced"><span class="underline">当前临时重量/最大临时重量</span>：在加入战斗时，小猪的最大临时重量会被固定为小猪当前重量的数值。小猪受到伤害和消耗的重量可以被临时重量所吸收，临时重量优先于当前重量来计算。</p>
+  
+  <p class="spaced"><span class="underline">攻击力</span>：小猪在战斗中的基础攻击力，小猪越重，基础攻击力越高。</p>
+  
+  <p class="spaced"><span class="underline">护甲</span>：小猪在战斗中的护甲值，用于抵抗伤害。小猪越重，护甲值越高。</p>
+  
+  <p class="spaced"><span class="underline">护甲穿透</span>：小猪在攻击目标时，忽略目标的护甲。</p>
+  
+  <p class="spaced"><span class="underline">准备时间</span>：小猪行动之前会有准备时间。随时间填满准备进度条，小猪在准备进度条填满后行动。</p>
+  
+  <p class="spaced"><span class="underline">蓄力时间</span>：如果在准备过后没有目标，小猪会开始蓄力。蓄力后行动，蓄力条会以50%的比例转化为进度条。部分小猪蓄力满后行动会有特殊效果。</p>
+  
+  <p class="spaced"><span class="underline">暴击率</span>：小猪在攻击目标时，有一定的概率额外造成伤害。</p>
+  
+  <p class="spaced"><span class="underline">暴击伤害</span>：暴击伤害是指在小猪攻击目标时，额外造成的伤害。</p>
+  
+  <p class="spaced"><span class="underline">连击</span>：小猪在普通攻击目标后，有一定的概率继续普通攻击目标。每次连击会使下次连击概率减少30%。</p>
+  
+  <p class="spaced"><span class="underline">吞噬</span>：小猪在战斗中造成伤害后，恢复伤害一定比例的临时重量。</p>
+  
+  <p class="spaced"><span class="underline">再生</span>：小猪战斗中每隔一段时间，恢复最大临时重量一定比例的临时重量。</p>
+  
+  <p class="spaced"><span class="underline">攻击距离</span>：小猪在战斗中的普通攻击距离，攻击距离会影响命中率，具体计算参考战斗机制。</p>
+  
+  <p class="spaced"><span class="underline">命中</span>：增加命中概率。</p>
+  
+  <p class="spaced"><span class="underline">闪避</span>：增加闪避概率。</p>
 </div>
