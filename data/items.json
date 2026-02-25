@@ -42,33 +42,49 @@
     "shopPrice": null
   },
   {
-    "itemId": 9000,
-    "itemName": "初始小猪栏",
-    "itemType": "building",
-    "itemDescription": "新手领地的小猪栏，虽然小但可以容纳两只小猪",
+    "itemId": 3001,
+    "itemName": "探索：初始之地",
+    "itemType": "compendium",
+    "itemDescription": "技艺手册————探索猪圈外的世界，这里看起来并不危险。",
+    "growthCoefficient": null,
+    "shopPrice": 1000,
     "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [],
+    "requiredLevels": []
+  },
+  {
+    "itemId": 5001,
+    "itemName": "小猪",
+    "itemType": "pig",
+    "itemDescription": "普通的小猪，入住了你的领地，吃你的饲料，受你的驱使，而且十分可爱",
+    "iconUrl": null,
     "isTradable": false,
     "isInteractive": false,
     "isDecomposable": false,
-    "attributes": [{ "name": "猪口上限", "value": 2 }],
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": null
+  },
+  
+  {
+    "itemId": 5002,
+    "itemName": "侦查猪",
+    "itemType": "pig",
+    "itemDescription": "受到严苛训练的侦查猪，可以熟练的进行各种侦查任务",
+    "iconUrl": null,
+    "isTradable": false,
+    "isInteractive": false,
+    "isDecomposable": false,
+    "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": null
   },
   {
-  "itemId": 5001,
-  "itemName": "小猪",
-  "itemType": "pig",
-  "itemDescription": "普通的小猪，入住了你的领地，吃你的饲料，受你的驱使，而且十分可爱",
-  "iconUrl": null,
-  "isTradable": false,
-  "isInteractive": false,
-  "isDecomposable": false,
-  "attributes": [],
-  "growthCoefficient": null,
-  "requiredLevels": []
-},
-{
     "itemId": 6001,
     "itemName": "小猪套装",
     "itemType": "suit",
@@ -82,17 +98,46 @@
     "attributes": [],
     "requiredLevels": []
   },
-{
-  "itemId": 5002,
-  "itemName": "侦查猪",
-  "itemType": "pig",
-  "itemDescription": "受到严苛训练的侦查猪，可以熟练的进行各种侦查任务",
-  "iconUrl": null,
-  "isTradable": false,
-  "isInteractive": false,
-  "isDecomposable": false,
-  "attributes": [],
-  "growthCoefficient": null,
-  "requiredLevels": []
-}
+  {
+    "itemId": 7001,
+    "itemName": "猪王宝箱",
+    "itemType": "treasure",
+    "itemDescription": "猪王的宝箱，打开可以获得好猪币和金币",
+    "iconUrl": null,
+    "growthCoefficient": null,
+    "shopPrice": 10,
+    "isTradable": false,
+    "isInteractive": true,
+    "isDecomposable": false,
+    "attributes": [],
+    "requiredLevels": []
+  },
+  {
+    "itemId": 8001,
+    "itemName": "地图碎片：初始之地",
+    "itemType": "resource",
+    "growthCoefficient": null,
+    "shopPrice": 100,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "itemDescription": "侦查小猪搜索到的地图碎片，可以合成初始之地的地图。",
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 9000,
+    "itemName": "初始小猪栏",
+    "itemType": "building",
+    "itemDescription": "新手领地的小猪栏，虽然小但可以容纳两只小猪",
+    "iconUrl": "",
+    "isTradable": false,
+    "isInteractive": false,
+    "isDecomposable": false,
+    "attributes": [{ "name": "猪口上限", "value": 2 }],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": null
+  }
 ]

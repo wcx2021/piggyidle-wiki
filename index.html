@@ -330,7 +330,7 @@
           items: [
             { title: '生活说明', slug: 'guidebook/life-description' },
             { title: '战斗说明', slug: 'guidebook/combat-description' },
-            { title: '战斗属性说明', slug: 'guidebook/combat-properties' },
+            { title: '属性说明', slug: 'guidebook/properties' },
             { title: '战斗设置说明', slug: 'guidebook/combat-settings' },
             { title: '交易说明', slug: 'guidebook/trading-description' }
           ]
@@ -972,7 +972,7 @@
         }
 
         function buildEditableTable(arr, type){
-          const itemCols = ['itemId','itemName','itemType','growthCoefficient','shopPrice','iconUrl','isTradable','isInteractive','isDecomposable'];
+          const itemCols = ['itemId','itemName','itemType','growthCoefficient','shopPrice','iconUrl','isTradable','isInteractive','isDecomposable','itemDescription','requiredLevels','attributes'];
           const actionCols = ['actionId','actionName','professionType','baseDuration','baseExperience'];
           const cols = type === 'actions' ? actionCols : itemCols;
           // 固定列顺序：仅使用预定义列，避免把任意对象字段并入表头（导致“字段总览”）
