@@ -151,3 +151,28 @@
   font-size: 12px;
   color: #6b7280;
 }
+
+/* 数据表格样式 */
+.guide-content table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+  font-size: 13px;
+}
+.guide-content table.data-table th,
+.guide-content table.data-table td {
+  padding: 10px 12px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+.guide-content table.data-table th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #374151;
+}
+.guide-content table.data-table tr:nth-child(even) {
+  background: #fafafa;
+}
+.guide-content table.data-table tr:hover {
+  background: #f0f7ff;
+}
