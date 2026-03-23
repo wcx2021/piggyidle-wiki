@@ -1,37 +1,111 @@
 [
   {
-    "actionId": 2000,
-    "professionType": "explore",
-    "baseDuration": 60,
-    "actionName": "地图探索",
-    "baseRewards": [
-      { "itemId": 1000, "minAmount": 1, "maxAmount": 2, "weight": 1 }
-    ],
-    "rareRewards": [
-      { "itemId": 1002, "minAmount": 1, "maxAmount": 3, "probability": 0.25 }
-    ],
-    "baseExperience": 10
+    "actionId": "ITEM_USE_001",
+    "actionType": "ITEM_USE",
+    "subActionType": "treasure_box",
+    "actionName": "打开猪王宝箱",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "7001",
+    "rewardTableId": "7001",
+    "extraParams": {}
   },
   {
-    "actionId": 2001,
-    "professionType": "mining",
-    "baseDuration": 40,
-    "actionName": "矿石开采",
-    "baseRewards": [
-      { "itemId": 1000, "minAmount": 1, "maxAmount": 1, "weight": 1 }
-    ],
-    "rareRewards": [],
-    "baseExperience": 8
+    "actionId": "PCRAFT_001",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "surveying",
+    "actionName": "探索初始之地",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "8001",
+    "rewardTableId": "8001",
+    "extraParams": {
+      "duration": 6.0,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "surveying"
+        }
+      ]
+    }
   },
   {
-    "actionId": 2002,
-    "professionType": "lumber",
-    "baseDuration": 45,
-    "actionName": "砍伐木材",
-    "baseRewards": [
-      { "itemId": 1000, "minAmount": 2, "maxAmount": 5, "weight": 1 }
-    ],
-    "rareRewards": [],
-    "baseExperience": 9
+    "actionId": "ITEM_USE_CRAFTBOOK_PCRAFT001",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书：探索-初始之地",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "3001",
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PCRAFT_001",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "CRAFT_MAP_INITIAL_LAND",
+    "actionType": "ITEM_USE",
+    "subActionType": "map_craft",
+    "actionName": "合成初始之地地图",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": "9001",
+    "rewardTableId": "9001",
+    "extraParams": {}
+  },
+  {
+    "actionId": "PCRAFT_MAP_GRASSLAND_HARVEST",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "exploration",
+    "actionName": "草原探索·采集作物",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": "10001",
+    "rewardTableId": "10001",
+    "extraParams": {
+      "duration": 5,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "exploration"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "crop"
+      },
+      "baseYieldMin": 10,
+      "baseYieldMax": 30,
+      "rewardTarget": "map_resource"
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_PCRAFT_MAP_GRASSLAND",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书：草原探索·采集作物",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "3002",
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PCRAFT_MAP_GRASSLAND_HARVEST",
+      "expPerBook": 500
+    }
   }
 ]

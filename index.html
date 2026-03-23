@@ -298,6 +298,42 @@
     </div>
   </template>
 
+  <!-- 行动生成器模板 -->
+  <template id="action-generator-template">
+    <div class="action-generator-component">
+      <div class="toolbar">
+        <button class="newActionBtn">新建行动</button>
+        <button class="importActionBtn">导入行动配置</button>
+        <input type="file" class="actionFileInput" accept=".json,application/json" style="display:none" />
+        <button class="exportAllBtn">导出全部配置</button>
+      </div>
+      
+      <!-- 行动配置编辑区 -->
+      <div class="action-editor" style="margin-top:12px;">
+        <!-- 行动表编辑区 -->
+        <div class="action-section" style="margin-bottom:16px;border:1px solid var(--muted);border-radius:6px;padding:12px;">
+          <h4 style="margin:0 0 12px 0;color:var(--accent);">行动表（Action）</h4>
+          <div class="action-form"></div>
+        </div>
+        
+        <!-- 消耗表编辑区 -->
+        <div class="consume-section" style="margin-bottom:16px;border:1px solid var(--muted);border-radius:6px;padding:12px;">
+          <h4 style="margin:0 0 12px 0;color:var(--accent);">消耗表（ConsumeTable）</h4>
+          <div class="consume-form"></div>
+        </div>
+        
+        <!-- 奖励表编辑区 -->
+        <div class="reward-section" style="margin-bottom:16px;border:1px solid var(--muted);border-radius:6px;padding:12px;">
+          <h4 style="margin:0 0 12px 0;color:var(--accent);">奖励表（RewardTable）</h4>
+          <div class="reward-form"></div>
+        </div>
+      </div>
+      
+      <!-- 导出状态提示 -->
+      <div class="export-status small" style="margin-top:8px;color:var(--muted);"></div>
+    </div>
+  </template>
+
   <script>
     (function(){
       // Paths
@@ -352,8 +388,9 @@
         {
           group: '实用工具',
           items: [
-            { title: '道具查询', type: 'tool', tool: 'items' },
-            { title: '道具生成器', type: 'tool', tool: 'generator' }
+            { title: '查询工具', type: 'tool', tool: 'items' },
+            { title: '道具生成器', type: 'tool', tool: 'generator' },
+            { title: '行动生成器', type: 'tool', tool: 'actionGenerator' }
           ]
         }
       ];
@@ -458,6 +495,8 @@
               if(li.dataset.type === 'tool'){
                 if(li.dataset.tool === 'items'){
                   mountItemsTool();
+                } else if(li.dataset.tool === 'actionGenerator'){
+                  mountActionGeneratorTool();
                 } else {
                   mountGeneratorTool();
                 }
@@ -606,19 +645,28 @@
           { key: 'itemId', label: 'ID', aliases: ['itemId', 'id'] },
           { key: 'itemName', label: '名称', aliases: ['itemName', 'name'] },
           { key: 'itemType', label: '类别', aliases: ['itemType', 'type'] },
-          { key: 'growthCoefficient', label: '生长系数', aliases: ['growthCoefficient', 'growth_coefficient'] },
-          { key: 'shopPrice', label: '商店价格', aliases: ['shopPrice', 'price'] },
+          { key: 'itemDescription', label: '简介', aliases: ['itemDescription', 'description'] },
           { key: 'iconUrl', label: '图标', aliases: ['iconUrl', 'icon'] },
-          { key: 'tradable', label: '可交易', aliases: ['tradable', 'isTradable', 'is_tradable'] },
-          { key: 'interactive', label: '可互动', aliases: ['interactive', 'isInteractive', 'is_interactive'] },
-          { key: 'decomposable', label: '可分解', aliases: ['decomposable', 'isDecomposable', 'is_decomposable'] }
+          { key: 'isTradable', label: '可交易', aliases: ['isTradable', 'tradable', 'is_tradable'] },
+          { key: 'isInteractive', label: '可互动', aliases: ['isInteractive', 'interactive', 'is_interactive'] },
+          { key: 'isDecomposable', label: '可分解', aliases: ['isDecomposable', 'decomposable', 'is_decomposable'] },
+          { key: 'shopPrice', label: '商店价格', aliases: ['shopPrice', 'price'] },
+          { key: 'growthCoefficient', label: '成长系数', aliases: ['growthCoefficient', 'growth_coefficient'] },
+          { key: 'useActionId', label: '使用动作ID', aliases: ['useActionId', 'use_action_id'] },
+          { key: 'sellActionId', label: '卖出动作ID', aliases: ['sellActionId', 'sell_action_id'] },
+          { key: 'decomposeActionId', label: '分解动作ID', aliases: ['decomposeActionId', 'decompose_action_id'] }
         ];
         const actionColumns = [
-          { key: 'actionId', label: '标识', aliases: ['actionId', 'id'] },
-          { key: 'actionName', label: '名称', aliases: ['actionName', 'name'] },
-          { key: 'professionType', label: '职业类型', aliases: ['professionType', 'profession'] },
-          { key: 'baseDuration', label: '基础时长', aliases: ['baseDuration', 'duration'] },
-          { key: 'baseExperience', label: '基础经验', aliases: ['baseExperience', 'baseExp', 'experience'] }
+          { key: 'actionId', label: '行动标识', aliases: ['actionId', 'id'] },
+          { key: 'actionName', label: '行动名称', aliases: ['actionName', 'name'] },
+          { key: 'actionType', label: '行动类型', aliases: ['actionType', 'type'] },
+          { key: 'subActionType', label: '子类型', aliases: ['subActionType'] },
+          { key: 'triggerType', label: '触发方式', aliases: ['triggerType'] },
+          { key: 'exposeApi', label: '暴露API', aliases: ['exposeApi'] },
+          { key: 'isNeedActor', label: '需要角色', aliases: ['isNeedActor'] },
+          { key: 'isNeedMap', label: '需要地图', aliases: ['isNeedMap'] },
+          { key: 'consumeTableId', label: '消耗表ID', aliases: ['consumeTableId'] },
+          { key: 'rewardTableId', label: '奖励表ID', aliases: ['rewardTableId'] }
         ];
 
         let currentDataset = datasetFilter.value;
@@ -656,9 +704,14 @@
             });
           }
           list.sort((a,b)=>{
-            const ai = a.itemId ?? a.id ?? a.actionId ?? 0;
-            const bi = b.itemId ?? b.id ?? b.actionId ?? 0;
-            return sortAsc ? ai - bi : bi - ai;
+            const ai = a.itemId ?? a.id ?? a.actionId ?? '';
+            const bi = b.itemId ?? b.id ?? b.actionId ?? '';
+            // 如果是数字则按数字排序，否则按字符串排序
+            if(typeof ai === 'number' && typeof bi === 'number'){
+              return sortAsc ? ai - bi : bi - ai;
+            } else {
+              return sortAsc ? String(ai).localeCompare(String(bi)) : String(bi).localeCompare(String(ai));
+            }
           });
 
           if(list.length === 0){
@@ -701,9 +754,25 @@
 
             const detailRow = document.createElement('tr'); detailRow.style.display = expanded[id] ? '' : 'none';
             const colspan = columns.length + 1;
-            const description = item.itemDescription ?? item.description ?? item.actionDescription ?? '';
-            const attrs = item.attributes ?? item.actionAttributes ?? [];
-            detailRow.innerHTML = `<td colspan="${colspan}"><div class="details"><strong>简介:</strong> ${escapeHTML(description)}${renderRequiredLevelsTable(item)}${renderAttributesTableFromList(attrs)}</div></td>`;
+            // 根据数据类型渲染不同的详情内容
+            let detailContent = '';
+            if(currentDataset === 'actions'){
+              // 行动详情：显示 extraParams
+              const extraParams = item.extraParams || {};
+              detailContent = `<div class="details">
+                <h4>行动详情</h4>
+                <p><strong>消耗表ID:</strong> ${escapeHTML(String(item.consumeTableId ?? '无'))}</p>
+                <p><strong>奖励表ID:</strong> ${escapeHTML(String(item.rewardTableId ?? '无'))}</p>
+                <h4>额外参数（extraParams）</h4>
+                <pre style="background:var(--bg);padding:8px;border-radius:4px;overflow:auto;white-space:pre-wrap;">${escapeHTML(JSON.stringify(extraParams, null, 2))}</pre>
+              </div>`;
+            } else {
+              // 道具详情：显示简介、需求等级和属性表
+              const description = item.itemDescription ?? item.description ?? '';
+              const attrs = item.attributes ?? [];
+              detailContent = `<div class="details"><strong>简介:</strong> ${escapeHTML(description)}${renderRequiredLevelsTable(item)}${renderAttributesTableFromList(attrs)}</div>`;
+            }
+            detailRow.innerHTML = `<td colspan="${colspan}">${detailContent}</td>`;
             itemsBody.appendChild(detailRow);
 
             copyBtn.addEventListener('click', async ()=>{
@@ -742,10 +811,46 @@
           }
         }
 
+        // 数据源切换时更新类型筛选器选项
+        const itemTypeOptions = [
+          { value: 'all', label: '全部' },
+          { value: 'currency', label: '货币（currency）' },
+          { value: 'map', label: '地图（map）' },
+          { value: 'compendium', label: '图鉴（compendium）' },
+          { value: 'equipment', label: '装备（equipment）' },
+          { value: 'pig', label: '小猪（pig）' },
+          { value: 'suit', label: '套装（suit）' },
+          { value: 'treasure', label: '宝箱（treasure）' },
+          { value: 'resource', label: '资源（resource）' },
+          { value: 'building', label: '建筑（building）' }
+        ];
+        const actionTypeOptions = [
+          { value: 'all', label: '全部' },
+          { value: 'PIG_CRAFT', label: '小猪技艺（PIG_CRAFT）' },
+          { value: 'ITEM_USE', label: '物品使用（ITEM_USE）' },
+          { value: 'SHOP_BUY', label: '商店购买（SHOP_BUY）' },
+          { value: 'MARKET_TRADE', label: '市场交易（MARKET_TRADE）' },
+          { value: 'TASK_FINISH', label: '任务完成（TASK_FINISH）' },
+          { value: 'PIG_RECLASS', label: '小猪转职（PIG_RECLASS）' },
+          { value: 'BUILD_DEPLOY', label: '建筑部署（BUILD_DEPLOY）' }
+        ];
+
+        function updateTypeFilter(){
+          const options = currentDataset === 'items' ? itemTypeOptions : actionTypeOptions;
+          typeFilter.innerHTML = '';
+          options.forEach(opt => {
+            const option = document.createElement('option');
+            option.value = opt.value;
+            option.textContent = opt.label;
+            typeFilter.appendChild(option);
+          });
+        }
+
         // data load & bind controls
         function init(){
           datasetFilter.addEventListener('change', ()=>{
             currentDataset = datasetFilter.value;
+            updateTypeFilter();
             loadDataAndRender();
           });
           typeFilter.addEventListener('change', ()=> render());
@@ -974,7 +1079,7 @@
         }
 
         function buildEditableTable(arr, type){
-          const itemCols = ['itemId','itemName','itemType','growthCoefficient','shopPrice','iconUrl','isTradable','isInteractive','isDecomposable','itemDescription','requiredLevels','attributes'];
+          const itemCols = ['itemId','itemName','itemType','itemDescription','iconUrl','isTradable','isInteractive','isDecomposable','shopPrice','growthCoefficient','requiredLevels','attributes','useActionId','sellActionId','decomposeActionId'];
           const actionCols = ['actionId','actionName','professionType','baseDuration','baseExperience'];
           const cols = type === 'actions' ? actionCols : itemCols;
           // 固定列顺序：仅使用预定义列，避免把任意对象字段并入表头（导致“字段总览”）
@@ -1020,7 +1125,10 @@
             requiredLevels: 'json',
             baseRewards: 'json',
             rareRewards: 'json',
-            iconUrl: 'text'
+            iconUrl: 'text',
+            useActionId: 'text',
+            sellActionId: 'text',
+            decomposeActionId: 'text'
           };
           // Full enum options and type prefixes
           const ENUM_OPTIONS = {
@@ -1482,11 +1590,353 @@
         area.innerHTML = ''; area.appendChild(buildEditableTable([], genType.value));
       }
 
+      // 行动生成器组件
+      function mountActionGeneratorTool(){
+        const container = document.getElementById('guideContentContainer');
+        container.innerHTML = '';
+        const tpl = document.getElementById('action-generator-template');
+        const node = tpl.content.cloneNode(true);
+        container.appendChild(node);
+        const root = container.querySelector('.action-generator-component');
+        const newBtn = root.querySelector('.newActionBtn');
+        const importBtn = root.querySelector('.importActionBtn');
+        const fileInput = root.querySelector('.actionFileInput');
+        const exportAllBtn = root.querySelector('.exportAllBtn');
+        const exportStatus = root.querySelector('.export-status');
+
+        // 表单区域
+        const actionForm = root.querySelector('.action-form');
+        const consumeForm = root.querySelector('.consume-form');
+        const rewardForm = root.querySelector('.reward-form');
+
+        // 枚举选项
+        const ACTION_TYPE_OPTIONS = ['PIG_CRAFT', 'ITEM_USE', 'SHOP_BUY', 'MARKET_TRADE', 'TASK_FINISH', 'PIG_RECLASS', 'BUILD_DEPLOY'];
+        const TRIGGER_TYPE_OPTIONS = ['EXTERNAL', 'INTERNAL'];
+        const CONSUME_TYPE_OPTIONS = ['item', 'resource', 'map_resource'];
+        const REWARD_SUBTYPE_OPTIONS = [
+          { value: 1, label: '1-物品' },
+          { value: 2, label: '2-经验' },
+          { value: 5, label: '5-地图创建' },
+          { value: 6, label: '6-地图资源奖励' }
+        ];
+
+        // 当前行动数据
+        let currentAction = {
+          action: {
+            actionId: '',
+            actionType: 'ITEM_USE',
+            subActionType: '',
+            actionName: '',
+            triggerType: 'EXTERNAL',
+            exposeApi: true,
+            isNeedActor: true,
+            isNeedMap: false,
+            consumeTableId: '',
+            rewardTableId: '',
+            extraParams: {}
+          },
+          consumeTable: {
+            consume_id: '',
+            consume_items: [],
+            trigger_condition: ''
+          },
+          rewardTable: {
+            reward_id: '',
+            trigger_type: 4,
+            trigger_related_id: '',
+            mutex_rewards: [],
+            independent_rewards: [],
+            trigger_condition: ''
+          }
+        };
+
+        // 设置状态提示
+        function setStatus(msg){
+          if(exportStatus) exportStatus.textContent = msg || '';
+        }
+
+        // 创建输入字段
+        function createField(label, type, value, options, onChange){
+          const div = document.createElement('div');
+          div.style.marginBottom = '8px';
+          div.style.display = 'flex';
+          div.style.alignItems = 'center';
+          div.style.gap = '8px';
+          
+          const labelEl = document.createElement('label');
+          labelEl.textContent = label;
+          labelEl.style.minWidth = '120px';
+          labelEl.style.fontWeight = '500';
+          
+          let input;
+          if(type === 'select'){
+            input = document.createElement('select');
+            input.style.flex = '1';
+            input.style.padding = '6px';
+            input.style.borderRadius = '4px';
+            input.style.border = '1px solid var(--muted)';
+            input.style.background = 'var(--card)';
+            input.style.color = 'var(--text)';
+            options.forEach(opt => {
+              const optEl = document.createElement('option');
+              if(typeof opt === 'object'){
+                optEl.value = opt.value;
+                optEl.textContent = opt.label;
+              } else {
+                optEl.value = opt;
+                optEl.textContent = opt;
+              }
+              if(String(value) === String(optEl.value)) optEl.selected = true;
+              input.appendChild(optEl);
+            });
+          } else if(type === 'boolean'){
+            input = document.createElement('input');
+            input.type = 'checkbox';
+            input.checked = Boolean(value);
+            input.style.width = 'auto';
+          } else if(type === 'json'){
+            input = document.createElement('textarea');
+            input.rows = 4;
+            input.style.flex = '1';
+            input.style.padding = '6px';
+            input.style.borderRadius = '4px';
+            input.style.border = '1px solid var(--muted)';
+            input.style.background = 'var(--card)';
+            input.style.color = 'var(--text)';
+            input.value = typeof value === 'object' ? JSON.stringify(value, null, 2) : (value || '{}');
+          } else if(type === 'array'){
+            input = document.createElement('textarea');
+            input.rows = 4;
+            input.style.flex = '1';
+            input.style.padding = '6px';
+            input.style.borderRadius = '4px';
+            input.style.border = '1px solid var(--muted)';
+            input.style.background = 'var(--card)';
+            input.style.color = 'var(--text)';
+            input.value = Array.isArray(value) ? JSON.stringify(value, null, 2) : (value || '[]');
+          } else {
+            input = document.createElement('input');
+            input.type = type || 'text';
+            input.value = value || '';
+            input.style.flex = '1';
+            input.style.padding = '6px';
+            input.style.borderRadius = '4px';
+            input.style.border = '1px solid var(--muted)';
+            input.style.background = 'var(--card)';
+            input.style.color = 'var(--text)';
+          }
+          
+          input.addEventListener('change', (e) => {
+            let newValue;
+            if(type === 'boolean'){
+              newValue = e.target.checked;
+            } else if(type === 'number'){
+              newValue = e.target.value ? Number(e.target.value) : null;
+            } else if(type === 'json' || type === 'array'){
+              try {
+                newValue = JSON.parse(e.target.value || (type === 'array' ? '[]' : '{}'));
+              } catch(err) {
+                newValue = e.target.value;
+              }
+            } else {
+              newValue = e.target.value;
+            }
+            if(onChange) onChange(newValue);
+          });
+          
+          div.appendChild(labelEl);
+          div.appendChild(input);
+          return div;
+        }
+
+        // 渲染行动表单
+        function renderActionForm(){
+          actionForm.innerHTML = '';
+          const action = currentAction.action;
+          
+          actionForm.appendChild(createField('行动标识:', 'text', action.actionId, null, v => action.actionId = v));
+          actionForm.appendChild(createField('行动名称:', 'text', action.actionName, null, v => action.actionName = v));
+          actionForm.appendChild(createField('行动类型:', 'select', action.actionType, ACTION_TYPE_OPTIONS, v => action.actionType = v));
+          actionForm.appendChild(createField('子类型:', 'text', action.subActionType, null, v => action.subActionType = v));
+          actionForm.appendChild(createField('触发方式:', 'select', action.triggerType, TRIGGER_TYPE_OPTIONS, v => action.triggerType = v));
+          actionForm.appendChild(createField('暴露API:', 'boolean', action.exposeApi, null, v => action.exposeApi = v));
+          actionForm.appendChild(createField('需要角色:', 'boolean', action.isNeedActor, null, v => action.isNeedActor = v));
+          actionForm.appendChild(createField('需要地图:', 'boolean', action.isNeedMap, null, v => action.isNeedMap = v));
+          actionForm.appendChild(createField('消耗表ID:', 'text', action.consumeTableId, null, v => {
+            action.consumeTableId = v;
+            // 自动同步消耗表和奖励表ID
+            currentAction.consumeTable.consume_id = v;
+            currentAction.rewardTable.reward_id = v;
+            currentAction.rewardTable.trigger_related_id = v;
+          }));
+          actionForm.appendChild(createField('奖励表ID:', 'text', action.rewardTableId, null, v => {
+            action.rewardTableId = v;
+          }));
+          actionForm.appendChild(createField('额外参数:', 'json', action.extraParams, null, v => action.extraParams = v));
+        }
+
+        // 渲染消耗表单
+        function renderConsumeForm(){
+          consumeForm.innerHTML = '';
+          const consume = currentAction.consumeTable;
+          
+          consumeForm.appendChild(createField('消耗表ID:', 'text', consume.consume_id, null, v => consume.consume_id = v));
+          consumeForm.appendChild(createField('消耗项列表:', 'array', consume.consume_items, null, v => consume.consume_items = v));
+          consumeForm.appendChild(createField('触发条件:', 'text', consume.trigger_condition, null, v => consume.trigger_condition = v));
+          
+          // 添加消耗项模板说明
+          const helpDiv = document.createElement('div');
+          helpDiv.style.marginTop = '8px';
+          helpDiv.style.padding = '8px';
+          helpDiv.style.background = 'var(--bg)';
+          helpDiv.style.borderRadius = '4px';
+          helpDiv.style.fontSize = '12px';
+          helpDiv.innerHTML = `<strong>消耗项格式示例：</strong><pre style="margin:4px 0;white-space:pre-wrap;">[
+  {
+    "consume_type": "item",
+    "target_id": 7001,
+    "amount": 1.0,
+    "chance": 1.0
+  }
+]</pre>`;
+          consumeForm.appendChild(helpDiv);
+        }
+
+        // 渲染奖励表单
+        function renderRewardForm(){
+          rewardForm.innerHTML = '';
+          const reward = currentAction.rewardTable;
+          
+          rewardForm.appendChild(createField('奖励表ID:', 'text', reward.reward_id, null, v => reward.reward_id = v));
+          rewardForm.appendChild(createField('触发类型:', 'number', reward.trigger_type, null, v => reward.trigger_type = v));
+          rewardForm.appendChild(createField('关联触发ID:', 'text', reward.trigger_related_id, null, v => reward.trigger_related_id = v));
+          rewardForm.appendChild(createField('互斥奖励池:', 'array', reward.mutex_rewards, null, v => reward.mutex_rewards = v));
+          rewardForm.appendChild(createField('独立奖励池:', 'array', reward.independent_rewards, null, v => reward.independent_rewards = v));
+          rewardForm.appendChild(createField('触发条件:', 'text', reward.trigger_condition, null, v => reward.trigger_condition = v));
+          
+          // 添加奖励项模板说明
+          const helpDiv = document.createElement('div');
+          helpDiv.style.marginTop = '8px';
+          helpDiv.style.padding = '8px';
+          helpDiv.style.background = 'var(--bg)';
+          helpDiv.style.borderRadius = '4px';
+          helpDiv.style.fontSize = '12px';
+          helpDiv.innerHTML = `<strong>奖励项格式示例：</strong><pre style="margin:4px 0;white-space:pre-wrap;">[
+  {
+    "reward_subtype": 1,
+    "target_id": 1000,
+    "amount_min": 100.0,
+    "amount_max": 500.0,
+    "chance": 1.0
+  }
+]</pre>`;
+          rewardForm.appendChild(helpDiv);
+        }
+
+        // 导出JSON文件
+        function downloadJSON(data, filename){
+          const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          a.click();
+          URL.revokeObjectURL(url);
+        }
+
+        // 初始化渲染
+        renderActionForm();
+        renderConsumeForm();
+        renderRewardForm();
+
+        // 新建行动
+        newBtn.addEventListener('click', () => {
+          currentAction = {
+            action: {
+              actionId: '',
+              actionType: 'ITEM_USE',
+              subActionType: '',
+              actionName: '',
+              triggerType: 'EXTERNAL',
+              exposeApi: true,
+              isNeedActor: true,
+              isNeedMap: false,
+              consumeTableId: '',
+              rewardTableId: '',
+              extraParams: {}
+            },
+            consumeTable: {
+              consume_id: '',
+              consume_items: [],
+              trigger_condition: ''
+            },
+            rewardTable: {
+              reward_id: '',
+              trigger_type: 4,
+              trigger_related_id: '',
+              mutex_rewards: [],
+              independent_rewards: [],
+              trigger_condition: ''
+            }
+          };
+          renderActionForm();
+          renderConsumeForm();
+          renderRewardForm();
+          setStatus('已重置为空白行动配置');
+        });
+
+        // 导入行动配置
+        importBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if(!file) return;
+          const reader = new FileReader();
+          reader.onload = function(){
+            try{
+              const data = JSON.parse(reader.result);
+              if(data.action) currentAction.action = data.action;
+              if(data.consumeTable) currentAction.consumeTable = data.consumeTable;
+              if(data.rewardTable) currentAction.rewardTable = data.rewardTable;
+              renderActionForm();
+              renderConsumeForm();
+              renderRewardForm();
+              setStatus('导入成功');
+            }catch(err){
+              alert('JSON解析失败：' + err.message);
+            }
+          };
+          reader.readAsText(file);
+        });
+
+        // 导出全部配置
+        exportAllBtn.addEventListener('click', () => {
+          // 导出行动表
+          downloadJSON(currentAction.action, 'action_' + (currentAction.action.actionId || 'export') + '.json');
+          
+          // 导出消耗表（如果有消耗项）
+          if(currentAction.consumeTable.consume_items && currentAction.consumeTable.consume_items.length > 0){
+            setTimeout(() => {
+              downloadJSON(currentAction.consumeTable, 'consumeTable_' + (currentAction.consumeTable.consume_id || 'export') + '.json');
+            }, 200);
+          }
+          
+          // 导出奖励表（如果有奖励项）
+          if(currentAction.rewardTable.independent_rewards && currentAction.rewardTable.independent_rewards.length > 0){
+            setTimeout(() => {
+              downloadJSON(currentAction.rewardTable, 'rewardTable_' + (currentAction.rewardTable.reward_id || 'export') + '.json');
+            }, 400);
+          }
+          
+          setStatus('已导出行动配置文件');
+        });
+      }
+
       // initial render
       // 将需要从片段内调用的函数暴露到全局，并添加 hash / 同页锚点处理（中文注释）
       window.loadGuidePage = loadGuidePage;
       window.mountItemsTool = mountItemsTool;
       window.mountGeneratorTool = mountGeneratorTool;
+      window.mountActionGeneratorTool = mountActionGeneratorTool;
 
       // 处理 hash（例如 #production-properties、#tool-items、#tool-generator）
       function handleHash(hash){
@@ -1496,6 +1946,7 @@
         if(key === 'home'){ loadGuidePage('home'); return; }
         if(key === 'tool-items'){ mountItemsTool(); return; }
         if(key === 'tool-generator'){ mountGeneratorTool(); return; }
+        if(key === 'tool-actionGenerator'){ mountActionGeneratorTool(); return; }
         // 默认将 hash 当作章节 slug 处理
         loadGuidePage(key);
       }

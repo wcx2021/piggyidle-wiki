@@ -11,6 +11,9 @@
     "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
     "shopPrice": null
   },
   {
@@ -25,6 +28,9 @@
     "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
     "shopPrice": null
   },
   {
@@ -39,6 +45,9 @@
     "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
     "shopPrice": null
   },
   {
@@ -46,14 +55,34 @@
     "itemName": "探索：初始之地",
     "itemType": "compendium",
     "itemDescription": "技艺手册————探索猪圈外的世界，这里看起来并不危险。",
-    "growthCoefficient": null,
-    "shopPrice": 1000,
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
     "attributes": [],
-    "requiredLevels": []
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "useActionId": "ITEM_USE_CRAFTBOOK_PCRAFT001",
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 1000
+  },
+  {
+    "itemId": 3002,
+    "itemName": "技艺之书：草原探索·寻找作物",
+    "itemType": "compendium",
+    "itemDescription": "在草原地形的地图上搜索作物，产出给地图资源点。",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "useActionId": "ITEM_USE_CRAFTBOOK_PCRAFT_MAP_GRASSLAND",
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 1000
   },
   {
     "itemId": 5001,
@@ -67,9 +96,11 @@
     "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
     "shopPrice": null
   },
-  
   {
     "itemId": 5002,
     "itemName": "侦查猪",
@@ -82,6 +113,9 @@
     "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
     "shopPrice": null
   },
   {
@@ -90,13 +124,16 @@
     "itemType": "suit",
     "itemDescription": "小猪初始套装，使用后可以让小猪转职成为小猪",
     "iconUrl": null,
-    "growthCoefficient": null,
-    "shopPrice": 10,
     "isTradable": true,
     "isInteractive": false,
     "isDecomposable": true,
     "attributes": [],
-    "requiredLevels": []
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 10
   },
   {
     "itemId": 7001,
@@ -104,27 +141,67 @@
     "itemType": "treasure",
     "itemDescription": "猪王的宝箱，打开可以获得好猪币和金币",
     "iconUrl": null,
-    "growthCoefficient": null,
-    "shopPrice": 10,
     "isTradable": false,
     "isInteractive": true,
     "isDecomposable": false,
     "attributes": [],
-    "requiredLevels": []
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "useActionId": "ITEM_USE_001",
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 10
   },
   {
     "itemId": 8001,
     "itemName": "地图碎片：初始之地",
     "itemType": "resource",
-    "growthCoefficient": null,
-    "shopPrice": 100,
+    "itemDescription": "侦查小猪搜索到的地图碎片，可以合成初始之地的地图。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "itemDescription": "侦查小猪搜索到的地图碎片，可以合成初始之地的地图。",
+    "attributes": [],
+    "growthCoefficient": null,
     "requiredLevels": [],
-    "attributes": []
+    "useActionId": "CRAFT_MAP_INITIAL_LAND",
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 100
+  },
+  {
+    "itemId": 8002,
+    "itemName": "猪草",
+    "itemType": "resource",
+    "itemDescription": "不知道什么草，因为是小猪爱吃所以就叫猪草",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 50
+  },
+  {
+    "itemId": 8003,
+    "itemName": "胡萝卜",
+    "itemType": "resource",
+    "itemDescription": "小猪最爱的胡萝卜",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 50
   },
   {
     "itemId": 9000,
@@ -135,9 +212,34 @@
     "isTradable": false,
     "isInteractive": false,
     "isDecomposable": false,
-    "attributes": [{ "name": "猪口上限", "value": 2 }],
+    "attributes": [
+      {
+        "name": "猪口上限",
+        "value": 2
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
     "shopPrice": null
+  },
+  {
+    "itemId": 5003,
+    "itemName": "初始之地地图",
+    "itemType": "map",
+    "itemDescription": "初始之地的地图模板，用于创建初始之地地图实例",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "useActionId": null,
+    "sellActionId": null,
+    "decomposeActionId": null,
+    "shopPrice": 100
   }
 ]

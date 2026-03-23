@@ -4,22 +4,63 @@
     "itemName": "名称",
     "itemType": "类型",
     "itemDescription": "简介",
-    "growthCoefficient": "生长系数",
+    "growthCoefficient": "成长系数",
     "requiredLevels": "需求等级",
     "shopPrice": "商店价格",
     "iconUrl": "图标",
-    "tradable": "可交易",
-    "interactive": "可互动",
-    "decomposable": "可分解",
-    "attributes": "属性"
+    "isTradable": "可交易",
+    "isInteractive": "可互动",
+    "isDecomposable": "可分解",
+    "attributes": "属性",
+    "useActionId": "使用动作ID",
+    "sellActionId": "卖出动作ID",
+    "decomposeActionId": "分解动作ID"
   },
   "Action": {
-    "actionId": "标识",
-    "professionType": "职业类型",
-    "baseDuration": "基础时长",
-    "actionName": "名称",
-    "baseRewards": "基础奖励",
-    "rareRewards": "稀有奖励",
-    "baseExperience": "基础经验"
+    "actionId": "行动标识",
+    "actionType": "行动类型",
+    "subActionType": "子类型",
+    "actionName": "行动名称",
+    "triggerType": "触发方式",
+    "exposeApi": "暴露API",
+    "isNeedActor": "需要角色",
+    "isNeedMap": "需要地图",
+    "consumeTableId": "消耗表ID",
+    "rewardTableId": "奖励表ID",
+    "extraParams": "额外参数"
+  },
+  "ConsumeTable": {
+    "consume_id": "消耗表ID",
+    "consume_items": "消耗项列表",
+    "trigger_condition": "触发条件"
+  },
+  "ConsumeItem": {
+    "consume_type": "消耗类型",
+    "target_id": "目标ID",
+    "amount": "数量",
+    "chance": "概率"
+  },
+  "RewardTable": {
+    "reward_id": "奖励表ID",
+    "trigger_type": "触发类型",
+    "trigger_related_id": "关联触发ID",
+    "mutex_rewards": "互斥奖励池",
+    "independent_rewards": "独立奖励池",
+    "trigger_condition": "触发条件"
+  },
+  "RewardItem": {
+    "reward_subtype": "奖励子类型",
+    "target_id": "目标ID",
+    "amount_min": "最小数量",
+    "amount_max": "最大数量",
+    "chance": "概率"
+  },
+  "Attribute": {
+    "name": "属性名",
+    "value": "属性值"
+  },
+  "RequiredLevel": {
+    "skillName": "技能名称",
+    "level": "等级要求"
   }
 }
