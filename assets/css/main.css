@@ -1,0 +1,371 @@
+/**
+ * Wiki 主样式文件
+ * 从 index.html 提取的样式
+ */
+
+:root {
+  --bg: #f7fafc;
+  --card: #ffffff;
+  --text: #0b1220;
+  --muted: #6b7280;
+  --accent: #0ea5e9;
+  --row-hover: rgba(0,0,0,0.04);
+  --btn-bg: transparent;
+  --btn-border: rgba(11,18,32,0.08);
+  --btn-hover-bg: rgba(11,18,32,0.04);
+  --btn-color: var(--text);
+}
+
+.dark {
+  --bg: #0b1020;
+  --card: #0f1724;
+  --text: #eaeaea;
+  --muted: #9ca3af;
+  --accent: #4cc9f0;
+  --row-hover: rgba(255,255,255,0.03);
+  --btn-bg: transparent;
+  --btn-border: rgba(255,255,255,0.06);
+  --btn-hover-bg: rgba(255,255,255,0.02);
+  --btn-color: var(--text);
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Arial;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.page {
+  padding: 18px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: none;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.layout {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+aside {
+  width: 300px;
+  min-width: 220px;
+  flex: 0 0 300px;
+  max-height: 80vh;
+  overflow: auto;
+  border: 1px solid var(--muted);
+  background: var(--card);
+  padding: 10px;
+  border-radius: 6px;
+}
+
+main {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 70vh;
+  border: 1px solid var(--muted);
+  background: var(--card);
+  padding: 14px;
+  border-radius: 6px;
+  overflow: auto;
+}
+
+.nav-group {
+  margin-bottom: 10px;
+}
+
+.nav-group > .group-title {
+  font-weight: 700;
+  padding: 6px 0;
+  font-size: 18px;
+  text-decoration: underline;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.nav-item {
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.nav-item:hover {
+  background: var(--row-hover);
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+select, button, input {
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  border: 1px solid var(--btn-border);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border: 1px solid var(--muted);
+}
+
+thead th {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid var(--muted);
+  font-weight: 600;
+  color: var(--text);
+}
+
+td {
+  padding: 8px;
+  border-bottom: 1px solid var(--muted);
+  vertical-align: top;
+}
+
+.row {
+  transition: background 0.2s;
+}
+
+.row:hover {
+  background: var(--row-hover);
+}
+
+.details {
+  padding: 12px;
+  background: var(--card);
+  border-left: 3px solid var(--muted);
+}
+
+.attr-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+.attr-table th, .attr-table td {
+  border: 1px solid var(--muted);
+  padding: 6px 8px;
+}
+
+.notice {
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.hidden {
+  display: none;
+}
+
+.icon-thumb {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+#guideContentContainer {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 移动端覆盖式侧栏 */
+@media (max-width: 720px) {
+  aside#leftNav {
+    display: none;
+    position: fixed;
+    z-index: 1200;
+    top: 0;
+    left: 0;
+    width: 85vw;
+    max-width: 320px;
+    height: 100vh;
+    padding: 12px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: 0 12px 40px rgba(2,6,23,0.36);
+    background: var(--card);
+    transform: translateX(-100%);
+    transition: transform 220ms ease;
+    overflow: auto;
+  }
+
+  aside#leftNav.show {
+    display: block;
+    transform: translateX(0);
+  }
+
+  body.show-overlay::before {
+    content: "";
+    position: fixed;
+    z-index: 1100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+  }
+
+  .layout {
+    gap: 8px;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  #menuToggle {
+    display: inline-block;
+  }
+}
+
+/* Ensure generator / items components fill the main area */
+.generator-component,
+.generatorArea,
+.items-component,
+.items-component > div,
+.items-component .toolbar,
+.generator-component .generatorArea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Make tables fill container and avoid overflow causing layout issues */
+.generator-component table,
+.items-component table,
+table.itemsTable,
+table {
+  width: 100%;
+  box-sizing: border-box;
+  table-layout: auto;
+}
+
+/* Allow horizontal scrolling inside the generator area instead of stretching the whole layout */
+.generatorArea {
+  overflow: auto;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 折叠分组样式 */
+.collapsible-group {
+  margin-bottom: 8px;
+}
+
+.group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 6px 6px;
+  font-weight: 500;
+  color: var(--text);
+  border-radius: 6px;
+  user-select: none;
+}
+
+.collapsible-group .group-title {
+  font-size: 18px;
+  text-decoration: underline;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+
+.group-toggle:hover {
+  background: var(--row-hover);
+}
+
+.group-arrow {
+  display: inline-block;
+  width: 14px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  transition: transform 0.18s ease;
+  transform: rotate(0deg);
+  margin-right: 6px;
+  line-height: 1;
+}
+
+.group-toggle[aria-expanded="true"] .group-arrow {
+  transform: rotate(90deg);
+  color: var(--accent);
+}
+
+.group-items {
+  display: none;
+  padding-left: 20px;
+  margin-top: 6px;
+}
+
+.group-items.expanded {
+  display: block;
+}
+
+.group-items .nav-item {
+  padding-left: 24px;
+  margin-left: 6px;
+  font-weight: 400;
+  border-radius: 4px;
+}
+
+.group-items .nav-item:hover {
+  background: var(--row-hover);
+}
+
+/* 首页样式 */
+.home-item {
+  padding: 10px 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(14,165,233,0.06), transparent);
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.home-item:hover {
+  background: linear-gradient(90deg, rgba(14,165,233,0.09), transparent);
+}
+
+.home-item.active {
+  box-shadow: 0 0 0 2px rgba(14,165,233,0.06) inset;
+}
+
+.home-item .home-sub {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 400;
+  margin-top: 2px;
+}

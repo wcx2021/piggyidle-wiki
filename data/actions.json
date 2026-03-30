@@ -107,5 +107,189 @@
       "craftId": "PCRAFT_MAP_GRASSLAND_HARVEST",
       "expPerBook": 500
     }
+  },
+  {
+    "actionId": "PIG_CRAFT_RESEARCH_001",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "research",
+    "actionName": "研究·初始之地",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "10008",
+    "rewardTableId": "20006",
+    "extraParams": {
+      "duration": 30,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "research"
+        }
+      ]
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_HARVEST_CARROT",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "harvest",
+    "actionName": "采摘·胡萝卜",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": "10009",
+    "rewardTableId": "20007",
+    "extraParams": {
+      "duration": 15,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "harvest_carrot"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "crop"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_HARVEST_PIGGRASS",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "harvest",
+    "actionName": "采摘·猪草",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": "10010",
+    "rewardTableId": "20008",
+    "extraParams": {
+      "duration": 10,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "harvest_piggrass"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "crop"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_FORGE_CARROTKNIFE",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "forge",
+    "actionName": "锻造·萝卜刀",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "10011",
+    "rewardTableId": "20009",
+    "extraParams": {
+      "duration": 20,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "forge_carrotknife"
+        }
+      ]
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_ROPE",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·草绳",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "10012",
+    "rewardTableId": "20010",
+    "extraParams": {
+      "duration": 15,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "weave_rope"
+        }
+      ]
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_GRASSPAPER",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "craft",
+    "actionName": "制造·草纸",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "10013",
+    "rewardTableId": "20011",
+    "extraParams": {
+      "duration": 12,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "craft_grasspaper"
+        }
+      ]
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_CARROTBRICK",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "craft",
+    "actionName": "制造·萝卜砖",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "10014",
+    "rewardTableId": "20012",
+    "extraParams": {
+      "duration": 18,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "craft_carrotbrick"
+        }
+      ]
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_PIGFEED",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "cook",
+    "actionName": "烹饪·猪饲料",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": "10015",
+    "rewardTableId": "20013",
+    "extraParams": {
+      "duration": 10,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "cook_pigfeed"
+        }
+      ]
+    }
   }
 ]

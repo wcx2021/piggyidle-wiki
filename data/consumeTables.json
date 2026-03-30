@@ -1,0 +1,100 @@
+[
+  {
+    "consume_id": 7001,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 4001, "amount": 1.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 8001,
+    "consume_items": [
+      { "consume_type": "resource", "target_id": 1, "amount": 1.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 3001,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 2001, "amount": 1.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 9001,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 3001, "amount": 5.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10001,
+    "consume_items": [
+      { "consume_type": "resource", "target_id": 1, "amount": 1.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 3002,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 2002, "amount": 1.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10008,
+    "consume_items": [
+      { "consume_type": "resource", "target_id": 1, "amount": 1.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10009,
+    "consume_items": [
+      { "consume_type": "map_resource", "target_id": 1, "amount": 10.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10010,
+    "consume_items": [
+      { "consume_type": "map_resource", "target_id": 1, "amount": 10.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10011,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 3003, "amount": 10.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10012,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 3002, "amount": 5.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10013,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 3002, "amount": 8.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10014,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 3003, "amount": 15.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10015,
+    "consume_items": [
+      { "consume_type": "item", "target_id": 3003, "amount": 5.0, "chance": 1.0 }
+    ],
+    "trigger_condition": ""
+  }
+]
