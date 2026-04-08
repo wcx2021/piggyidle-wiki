@@ -1,12 +1,61 @@
 <div class="guide-content">
-  <link rel="stylesheet" href="../../assets/css/guide.css">
-
   <h2>属性说明</h2>
   <p class="spaced">本章详细介绍小猪的各种属性类型及其作用。</p>
 
   <h3>核心属性</h3>
   <p class="spaced">核心属性决定小猪的基础能力和总等级，分为八个维度。每个维度拥有独立的经验值和等级值。</p>
-  <p class="spaced">八维属性包括：力量、耐力、敏捷、灵巧、智力、感知、意志、魅力。</p>
+  
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>属性</th>
+        <th>英文Key</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>力量</td>
+        <td>strength</td>
+        <td>影响物理攻击、负重能力</td>
+      </tr>
+      <tr>
+        <td>灵巧</td>
+        <td>dexterity</td>
+        <td>影响行动速度、闪避</td>
+      </tr>
+      <tr>
+        <td>敏捷</td>
+        <td>agility</td>
+        <td>影响制造效率、暴击</td>
+      </tr>
+      <tr>
+        <td>体质</td>
+        <td>constitution</td>
+        <td>影响生命值、耐力恢复</td>
+      </tr>
+      <tr>
+        <td>智力</td>
+        <td>intelligence</td>
+        <td>影响经验获取、技能效果</td>
+      </tr>
+      <tr>
+        <td>感知</td>
+        <td>perception</td>
+        <td>影响探索发现、采集效率</td>
+      </tr>
+      <tr>
+        <td>意志</td>
+        <td>will</td>
+        <td>影响成功率、抗性</td>
+      </tr>
+      <tr>
+        <td>魅力</td>
+        <td>charisma</td>
+        <td>影响交易、社交</td>
+      </tr>
+    </tbody>
+  </table>
 
   <h3>通用属性</h3>
   <p class="spaced">通用属性是小猪的基础生存属性，主要包括体重相关数值。</p>
@@ -23,6 +72,7 @@
 
   <h4>基础生活属性</h4>
   <ul class="spaced">
+    <li><strong>职业强度</strong>：核心计算属性，决定小猪在特定职业上的能力水平。计算公式：职业强度 = 各属性系数 × 对应属性等级之和。八维属性系数总和为100%，传奇等级系数固定为20。强度与技艺难度差决定生活属性加成，技艺设有难度需求，小猪强度达到需求后才能开始行动。</li>
     <li><strong>速度</strong>：影响完成单个活动所需的时间</li>
     <li><strong>效率</strong>：影响活动中获得的完成次数</li>
     <li><strong>经验</strong>：影响活动中获得的经验值</li>
