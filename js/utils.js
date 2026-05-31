@@ -9,11 +9,16 @@
   // 数据文件路径
   var PATH_ITEMS = 'data/items.json';
   var PATH_ACTIONS = 'data/actions.json';
+  var PATH_CONSUME_TABLES = 'data/consumeTables.json';
+  var PATH_REWARD_TABLES = 'data/rewardTables.json';
+  var PATH_PROFESSION_CONFIG = 'data/professionconfig.json';
 
-  // 简单的 fetch 缓存
   var fetchCache = {
     items: null,
-    actions: null
+    actions: null,
+    consumeTables: null,
+    rewardTables: null,
+    professionConfig: null
   };
 
   /**
@@ -37,35 +42,28 @@
    * @returns {Promise<Array>} 数据数组
    */
   function fetchDataset(name) {
-    if (name === 'items') {
-      if (fetchCache.items) return Promise.resolve(fetchCache.items);
-      return fetch(PATH_ITEMS)
-        .then(function(r) {
-          if (!r.ok) throw new Error('网络错误');
-          return r.json();
-        })
-        .then(function(j) {
-          fetchCache.items = j;
-          return j;
-        })
-        .catch(function() {
-          return [];
-        });
-    } else {
-      if (fetchCache.actions) return Promise.resolve(fetchCache.actions);
-      return fetch(PATH_ACTIONS)
-        .then(function(r) {
-          if (!r.ok) throw new Error('网络错误');
-          return r.json();
-        })
-        .then(function(j) {
-          fetchCache.actions = j;
-          return j;
-        })
-        .catch(function() {
-          return [];
-        });
-    }
+    var pathMap = {
+      items: PATH_ITEMS,
+      actions: PATH_ACTIONS,
+      consumeTables: PATH_CONSUME_TABLES,
+      rewardTables: PATH_REWARD_TABLES,
+      professionConfig: PATH_PROFESSION_CONFIG
+    };
+    var path = pathMap[name];
+    if (!path) return Promise.resolve([]);
+    if (fetchCache[name]) return Promise.resolve(fetchCache[name]);
+    return fetch(path)
+      .then(function(r) {
+        if (!r.ok) throw new Error('网络错误');
+        return r.json();
+      })
+      .then(function(j) {
+        fetchCache[name] = j;
+        return j;
+      })
+      .catch(function() {
+        return [];
+      });
   }
 
   /**

@@ -40,19 +40,26 @@
         <label>类别:
           <select class="typeFilter" aria-label="类别筛选">
             <option value="all">全部</option>
-            <option value="currency">货币（currency）</option>
-            <option value="map">地图（map）</option>
-            <option value="compendium">图鉴（compendium）</option>
-            <option value="equipment">装备（equipment）</option>
-            <option value="pig">小猪（pig）</option>
-            <option value="suit">套装（suit）</option>
-            <option value="treasure">宝箱（treasure）</option>
-            <option value="resource">资源（resource）</option>
-            <option value="building">建筑（building）</option>
+            <option value="currency">货币</option>
+            <option value="consumable">消耗品</option>
+            <option value="map">地图</option>
+            <option value="compendium">图鉴</option>
+            <option value="equipment">装备</option>
+            <option value="pig">小猪</option>
+            <option value="suit">套装</option>
+            <option value="treasure">宝箱</option>
+            <option value="resource">资源</option>
+            <option value="building">建筑</option>
           </select>
         </label>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="searchInput" placeholder="搜索名称/ID..." aria-label="搜索关键词" />
+        </div>
         <button class="toggleSortBtn" title="按 ID 升序/降序切换">排序: 升序</button>
-        <span class="notice small">(展开详情显示简介、需求等级和属性表)</span>
+      </div>
+      <div class="stats-bar">
+        <span class="stats-count"></span>
       </div>
       <div style="overflow:auto">
         <table class="itemsTable" aria-describedby="描述">
@@ -63,6 +70,8 @@
       </div>
     </div>
   </template>
+
+  <div id="toast-container"></div>
 
   <template id="generator-template">
     <div class="generator-component">
