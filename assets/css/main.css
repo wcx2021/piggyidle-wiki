@@ -29,6 +29,11 @@
   --btn-color: var(--text);
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, Arial;
@@ -42,6 +47,10 @@ body {
   box-sizing: border-box;
   max-width: none;
   margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 header {
@@ -50,6 +59,7 @@ header {
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 12px;
+  flex-shrink: 0;
 }
 
 h1 {
@@ -63,14 +73,16 @@ h1 {
   width: 100%;
   margin: 0;
   box-sizing: border-box;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }
 
 aside {
   width: 300px;
   min-width: 220px;
   flex: 0 0 300px;
-  max-height: 80vh;
-  overflow: auto;
+  overflow-y: auto;
   border: 1px solid var(--muted);
   background: var(--card);
   padding: 10px;
@@ -80,12 +92,11 @@ aside {
 main {
   flex: 1 1 auto;
   min-width: 0;
-  min-height: 70vh;
   border: 1px solid var(--muted);
   background: var(--card);
   padding: 14px;
   border-radius: 6px;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .nav-group {
@@ -237,6 +248,10 @@ td {
 
   main {
     padding: 10px;
+  }
+
+  aside#leftNav:not(.show) {
+    display: none;
   }
 
   #menuToggle {
