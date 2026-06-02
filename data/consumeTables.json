@@ -220,8 +220,14 @@
     "consume_items": [
       {
         "consume_type": "item",
+        "target_id": 3114,
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
         "target_id": 3101,
-        "amount": 5,
+        "amount": 2,
         "chance": 1
       }
     ],
@@ -232,7 +238,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 1401,
+        "target_id": 3200,
         "amount": 3,
         "chance": 1
       }
@@ -280,7 +286,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 1403,
+        "target_id": 3201,
         "amount": 3,
         "chance": 1
       },
@@ -460,7 +466,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2201,
+        "target_id": 2206,
         "amount": 1,
         "chance": 1
       }
@@ -472,7 +478,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2202,
+        "target_id": 2207,
         "amount": 1,
         "chance": 1
       }
@@ -484,7 +490,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2203,
+        "target_id": 2205,
         "amount": 1,
         "chance": 1
       }
@@ -508,7 +514,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2205,
+        "target_id": 2203,
         "amount": 1,
         "chance": 1
       }
@@ -532,7 +538,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2207,
+        "target_id": 2201,
         "amount": 1,
         "chance": 1
       }
@@ -556,7 +562,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2301,
+        "target_id": 2305,
         "amount": 1,
         "chance": 1
       }
@@ -568,7 +574,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2302,
+        "target_id": 2306,
         "amount": 1,
         "chance": 1
       }
@@ -580,7 +586,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2303,
+        "target_id": 2307,
         "amount": 1,
         "chance": 1
       }
@@ -592,7 +598,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2304,
+        "target_id": 2308,
         "amount": 1,
         "chance": 1
       }
@@ -604,7 +610,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2305,
+        "target_id": 2301,
         "amount": 1,
         "chance": 1
       }
@@ -628,7 +634,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2307,
+        "target_id": 2303,
         "amount": 1,
         "chance": 1
       }
@@ -640,7 +646,7 @@
     "consume_items": [
       {
         "consume_type": "item",
-        "target_id": 2308,
+        "target_id": 2301,
         "amount": 1,
         "chance": 1
       }
@@ -665,6 +671,378 @@
       {
         "consume_type": "item",
         "target_id": 2003,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10130,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3002,
+        "amount": 5,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10131,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3106,
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3002,
+        "amount": 2,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10132,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 2,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3002,
+        "amount": 3,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10133,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3112,
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10134,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3113,
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10135,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3113,
+        "amount": 2,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10136,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3008,
+        "amount": 5,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 2,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10137,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3008,
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10138,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3113,
+        "amount": 2,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3112,
+        "amount": 2,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10139,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3113,
+        "amount": 1,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3007,
+        "amount": 5,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10140,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3003,
+        "amount": 8,
+        "chance": 1
+      },
+      {
+        "consume_type": "item",
+        "target_id": 3006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 8002,
+    "consume_items": [
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10240,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2004,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10241,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2005,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10242,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2006,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10243,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2007,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10244,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2008,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10245,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2009,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10246,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2010,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10247,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2105,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10248,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2202,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10249,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2304,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10250,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2309,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10251,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2110,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10252,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2310,
         "amount": 1,
         "chance": 1
       }

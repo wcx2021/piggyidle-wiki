@@ -36,7 +36,12 @@
     "isTradable": false,
     "isInteractive": false,
     "isDecomposable": false,
-    "attributes": [{ "name": "饱食度", "value": 100 }],
+    "attributes": [
+      {
+        "name": "饱食度",
+        "value": 100
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": null
@@ -50,7 +55,12 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": false,
-    "attributes": [{ "name": "饱食度", "value": 150 }],
+    "attributes": [
+      {
+        "name": "饱食度",
+        "value": 150
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 200
@@ -64,7 +74,12 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": false,
-    "attributes": [{ "name": "饱食度", "value": 80 }],
+    "attributes": [
+      {
+        "name": "饱食度",
+        "value": 80
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 80
@@ -78,7 +93,12 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": false,
-    "attributes": [{ "name": "饱食度", "value": 120 }],
+    "attributes": [
+      {
+        "name": "饱食度",
+        "value": 120
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 150
@@ -92,35 +112,40 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": false,
-    "attributes": [{ "name": "饱食度", "value": 60 }],
+    "attributes": [
+      {
+        "name": "饱食度",
+        "value": 60
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 120
   },
   {
-    "itemId": 1401,
+    "itemId": 3200,
     "itemName": "铜锭",
-    "itemType": "consumable",
+    "itemType": "resource",
     "itemDescription": "粗加工半成品，锻造原料",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "attributes": [{ "name": "饱食度", "value": 0 }],
+    "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 100
   },
   {
-    "itemId": 1403,
+    "itemId": 3201,
     "itemName": "草药粉",
-    "itemType": "consumable",
+    "itemType": "resource",
     "itemDescription": "粗加工半成品，炼金原料",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "attributes": [{ "name": "饱食度", "value": 0 }],
+    "attributes": [],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 80
@@ -134,7 +159,12 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": false,
-    "attributes": [{ "name": "饱食度", "value": 200 }],
+    "attributes": [
+      {
+        "name": "饱食度",
+        "value": 200
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 500
@@ -156,7 +186,7 @@
   },
   {
     "itemId": 2002,
-    "itemName": "技艺之书.采集.草原作物",
+    "itemName": "技艺之书.探索.草原.采集",
     "itemType": "compendium",
     "itemDescription": "记载了在草原地形上搜索作物的方法，产出给地图资源点。",
     "growthCoefficient": null,
@@ -171,7 +201,7 @@
   },
   {
     "itemId": 2003,
-    "itemName": "技艺之书.研究.初始之地",
+    "itemName": "技艺之书.研究.初步.初始之地",
     "itemType": "compendium",
     "itemDescription": "记载了研究初始之地信息的方法，通过研究可产出更多技艺之书。",
     "growthCoefficient": null,
@@ -298,56 +328,76 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_LOGGING_GRASSLAND",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_LOGGING",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2102,
-    "itemName": "技艺之书.采矿.草原矿脉",
+    "itemName": "技艺之书.采矿.铜矿石",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了在初始之地草原上采矿的方法，可获得铜矿石等矿物。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_MINING_GRASSLAND",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_MINING",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2103,
-    "itemName": "技艺之书.采摘.草原花",
+    "itemName": "技艺之书.采摘.草原",
     "itemType": "compendium",
-    "itemDescription": "初步研究产出。记载了在初始之地草原上采摘的方法，可获得野花、蒲公英等草药。",
+    "itemDescription": "初步研究产出。记载了在初始之地草原上采摘的方法，可在草原上采摘多种草药。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_HARVESTING_GRASSLAND",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_HARVESTING",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2104,
-    "itemName": "技艺之书.狩猎.草原兽",
+    "itemName": "技艺之书.狩猎.草原",
     "itemType": "compendium",
-    "itemDescription": "初步研究产出。记载了在初始之地草原上狩猎的方法，可获得粗皮、兽肉等材料。",
+    "itemDescription": "初步研究产出。记载了在初始之地草原上狩猎的方法，可在草原上狩猎多种猎物。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_HUNTING_GRASSLAND",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_HUNTING",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2105,
@@ -359,10 +409,15 @@
     "isInteractive": true,
     "isDecomposable": true,
     "useActionId": "ITEM_USE_CRAFTBOOK_SMELT_COPPER",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2106,
@@ -373,11 +428,16 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_WEAVING_LEATHERARMOR",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_WEAVING",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2107,
@@ -388,11 +448,16 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_COOKING_MUSHROOMSOUP",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_COOKING",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2108,
@@ -404,10 +469,15 @@
     "isInteractive": true,
     "isDecomposable": true,
     "useActionId": "ITEM_USE_CRAFTBOOK_SURVEYING",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
   },
   {
     "itemId": 2109,
@@ -419,10 +489,35 @@
     "isInteractive": true,
     "isDecomposable": true,
     "useActionId": "ITEM_USE_CRAFTBOOK_ENEMY_HUNT",
-    "attributes": [{ "name": "经验值", "value": 500 }],
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 3000
+    "shopPrice": 2000
+  },
+  {
+    "itemId": 2110,
+    "itemName": "技艺之书.研究.深入.初始之地",
+    "itemType": "compendium",
+    "itemDescription": "深入研究产出。记载了深入研究初始之地信息的方法，可产出更多高阶技艺之书。",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "useActionId": "ITEM_USE_CRAFTBOOK_RESEARCH_ADVANCED",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 5000
   },
   {
     "itemId": 2201,
@@ -433,11 +528,16 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_BLACKSMITH_COPPERSWORD",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_BLACKSMITH_ADV",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2202,
@@ -449,10 +549,15 @@
     "isInteractive": true,
     "isDecomposable": true,
     "useActionId": "ITEM_USE_CRAFTBOOK_COOKING_HERBALTEA",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2203,
@@ -463,26 +568,36 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_ALCHEMY_HERBALPOWDER",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_ALCHEMY",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2204,
-    "itemName": "技艺之书.附魔.初级符文",
+    "itemName": "技艺之书.狩猎.猛兽",
     "itemType": "compendium",
-    "itemDescription": "深入研究产出。记载了刻制初级符文的方法，符文可注入装备赋予效果。",
+    "itemDescription": "深入研究产出。记载了狩猎猛兽的方法，猛兽产出高品质粗皮和兽骨。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_ENCHANTMENT_BASIC",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_HUNTING_ADV",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2205,
@@ -493,11 +608,16 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_HARVESTING_MINT",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_HARVESTING_ADV",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2206,
@@ -508,11 +628,16 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_LOGGING_HARDWOOD",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_LOGGING_ADV",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2207,
@@ -523,11 +648,16 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_MINING_DEEP",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_MINING_ADV",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2208,
@@ -538,146 +668,196 @@
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_WEAVING_GRASSLAND_CLOTH",
-    "attributes": [{ "name": "经验值", "value": 1500 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_WEAVING_ADV",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 1500
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 8000
+    "shopPrice": 5000
   },
   {
     "itemId": 2301,
     "itemName": "技艺之书.炼金.恢复药剂",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了炼制恢复药剂的方法，恢复药剂饱食度+200。",
+    "itemDescription": "系统研究产出。记载了炼制恢复药剂的方法，恢复药剂饱食度+200。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_ALCHEMY_RESTORE",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_ALCHEMY_RARE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
-  },
-  {
-    "itemId": 2302,
-    "itemName": "技艺之书.附魔.强化符文",
-    "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了刻制强化符文的方法，强化符文效果优于初级符文。",
-    "iconUrl": "",
-    "isTradable": true,
-    "isInteractive": true,
-    "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_ENCHANTMENT_ADVANCED",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
-    "growthCoefficient": null,
-    "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
   },
   {
     "itemId": 2303,
     "itemName": "技艺之书.锻造.精铜剑",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了锻造精铜剑的方法，精铜剑品质优于铜剑。",
+    "itemDescription": "系统研究产出。记载了锻造精铜剑的方法，精铜剑品质优于铜剑。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_BLACKSMITH_FINECOPPER",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_BLACKSMITH_RARE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
   },
   {
     "itemId": 2304,
     "itemName": "技艺之书.烹饪.高级饲料",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了配制高级猪饲料的方法，高级饲料饱食度+150。",
+    "itemDescription": "系统研究产出。记载了配制高级猪饲料的方法，高级饲料饱食度+150。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
     "useActionId": "ITEM_USE_CRAFTBOOK_COOKING_ADVFEED",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
   },
   {
     "itemId": 2305,
     "itemName": "技艺之书.伐木.古木材",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了在初始之地获取古木材的方法，古木材品质最高。",
+    "itemDescription": "系统研究产出。记载了在初始之地获取古木材的方法，古木材品质最高。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_LOGGING_ANCIENT",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_LOGGING_RARE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
   },
   {
     "itemId": 2306,
     "itemName": "技艺之书.采矿.秘银矿",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了在初始之地开采秘银矿的方法，秘银是稀有矿物。",
+    "itemDescription": "系统研究产出。记载了在初始之地开采秘银矿的方法，秘银是稀有矿物。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_MINING_MITHRIL",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_MINING_RARE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
   },
   {
     "itemId": 2307,
     "itemName": "技艺之书.采摘.灵草",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了采摘灵草的方法，灵草是初始之地最珍贵的草药。",
+    "itemDescription": "系统研究产出。记载了采摘灵草的方法，灵草是初始之地最珍贵的草药。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_HARVESTING_SPIRIT",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_HARVESTING_RARE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
   },
   {
     "itemId": 2308,
     "itemName": "技艺之书.狩猎.猛兽",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了狩猎猛兽的方法，猛兽产出高品质粗皮和兽骨。",
+    "itemDescription": "系统研究产出。记载了狩猎猛兽的方法，猛兽产出高品质粗皮和兽骨。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
-    "useActionId": "ITEM_USE_CRAFTBOOK_HUNTING_BEAST",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "useActionId": "ITEM_USE_CRAFTBOOK_HUNTING_RARE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
   },
   {
     "itemId": 2309,
     "itemName": "技艺之书.纺织.强化粗皮甲",
     "itemType": "compendium",
-    "itemDescription": "完整研究产出。记载了缝制强化粗皮甲的方法，品质优于普通粗皮甲。",
+    "itemDescription": "系统研究产出。记载了缝制强化粗皮甲的方法，品质优于普通粗皮甲。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
     "isDecomposable": true,
     "useActionId": "ITEM_USE_CRAFTBOOK_WEAVING_REINFORCED",
-    "attributes": [{ "name": "经验值", "value": 5000 }],
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
-    "shopPrice": 20000
+    "shopPrice": 12000
+  },
+  {
+    "itemId": 2310,
+    "itemName": "技艺之书.研究.系统.初始之地",
+    "itemType": "compendium",
+    "itemDescription": "系统研究产出。记载了系统研究初始之地信息的方法，可产出最完整的技艺之书。",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "useActionId": "ITEM_USE_CRAFTBOOK_RESEARCH_COMPLETE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 5000
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 15000
   },
   {
     "itemId": 3001,
@@ -738,7 +918,7 @@
     "attributes": []
   },
   {
-    "itemId": 3005,
+    "itemId": 5005,
     "itemName": "萝卜刀",
     "itemType": "equipment",
     "itemDescription": "用胡萝卜锻造的小刀，锋利且实用",
@@ -808,7 +988,7 @@
     "attributes": []
   },
   {
-    "itemId": 3010,
+    "itemId": 5010,
     "itemName": "铜剑",
     "itemType": "equipment",
     "itemDescription": "用铜锭锻造的短剑，锋利且实用",
@@ -822,7 +1002,7 @@
     "shopPrice": 300
   },
   {
-    "itemId": 3011,
+    "itemId": 5303,
     "itemName": "粗皮甲",
     "itemType": "equipment",
     "itemDescription": "用粗皮缝制的轻甲，灵活防护",
@@ -831,6 +1011,185 @@
     "isInteractive": true,
     "isDecomposable": true,
     "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 250
+  },
+  {
+    "itemId": 5100,
+    "itemName": "草鞭",
+    "itemType": "equipment",
+    "itemDescription": "用草绳编织的鞭子，挥动时轻快有力，可提升探索和采集效率",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "探索速度",
+        "value": 5
+      },
+      {
+        "name": "采集速度",
+        "value": 10
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 300
+  },
+  {
+    "itemId": 5300,
+    "itemName": "草布衣",
+    "itemType": "equipment",
+    "itemDescription": "用草布缝制的轻便衣物，穿着灵活，可提升探索效率",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "探索速度",
+        "value": 5
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 250
+  },
+  {
+    "itemId": 5301,
+    "itemName": "粗皮衣",
+    "itemType": "equipment",
+    "itemDescription": "用粗皮布缝制的坚韧衣物，保暖耐用，可提升探索和采集效率",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "探索速度",
+        "value": 8
+      },
+      {
+        "name": "采集速度",
+        "value": 5
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 500
+  },
+  {
+    "itemId": 5200,
+    "itemName": "皮帽",
+    "itemType": "equipment",
+    "itemDescription": "用粗皮布缝制的帽子，遮风挡雨，可提升采集效率",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "采集速度",
+        "value": 5
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 350
+  },
+  {
+    "itemId": 5302,
+    "itemName": "萝卜铠甲",
+    "itemType": "equipment",
+    "itemDescription": "用萝卜砖拼装的铠甲，坚固耐用，可减少饱食度消耗",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "饱食度消耗",
+        "value": -10
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 400
+  },
+  {
+    "itemId": 5201,
+    "itemName": "萝卜头盔",
+    "itemType": "equipment",
+    "itemDescription": "用萝卜砖打磨的头盔，结实可靠，可减少饱食度消耗",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "饱食度消耗",
+        "value": -5
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 300
+  },
+  {
+    "itemId": 5500,
+    "itemName": "草布袋",
+    "itemType": "equipment",
+    "itemDescription": "用粗皮布和草布缝制的背包，结实能装，可增加携带量",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "携带量",
+        "value": 10
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 400
+  },
+  {
+    "itemId": 5501,
+    "itemName": "笔记本",
+    "itemType": "equipment",
+    "itemDescription": "用粗皮布包裹草纸装订的笔记本，记录心得，可增加经验获取",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "经验加成",
+        "value": 10
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 600
+  },
+  {
+    "itemId": 5101,
+    "itemName": "萝卜镐",
+    "itemType": "equipment",
+    "itemDescription": "用胡萝卜雕刻的镐子，出人意料地好用，可提升采矿效率",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "采矿速度",
+        "value": 10
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 250
@@ -983,6 +1342,48 @@
     "itemDescription": "草原上的艾草，气味浓烈，可用于炼金",
     "growthCoefficient": null,
     "shopPrice": 70,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 3112,
+    "itemName": "草布",
+    "itemType": "resource",
+    "itemDescription": "用猪草纺织的布料，轻便透气，可用于制作衣物",
+    "growthCoefficient": null,
+    "shopPrice": 150,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 3113,
+    "itemName": "粗皮布",
+    "itemType": "resource",
+    "itemDescription": "用粗皮鞣制的布料，坚韧保暖，可用于制作衣物和护具",
+    "growthCoefficient": null,
+    "shopPrice": 300,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 3114,
+    "itemName": "铜矿石",
+    "itemType": "resource",
+    "itemDescription": "草原矿脉中开采的铜矿石，可粗加工为铜锭",
+    "growthCoefficient": null,
+    "shopPrice": 60,
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,

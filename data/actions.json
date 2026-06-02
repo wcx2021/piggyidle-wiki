@@ -8,21 +8,21 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "7001",
-    "rewardTableId": "7001",
+    "consumeTableId": 7001,
+    "rewardTableId": 7001,
     "extraParams": {}
   },
   {
     "actionId": "PCRAFT_001",
     "actionType": "PIG_CRAFT",
     "subActionType": "surveying",
-    "actionName": "探索初始之地",
+    "actionName": "探索.初始之地",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "8001",
-    "rewardTableId": "8001",
+    "consumeTableId": 8001,
+    "rewardTableId": 8001,
     "extraParams": {
       "duration": 6,
       "requirements": [
@@ -35,19 +35,20 @@
       "rareDrop": {
         "targetId": 4101,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 2
     }
   },
   {
     "actionId": "ITEM_USE_CRAFTBOOK_PCRAFT001",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：探索-初始之地",
+    "actionName": "使用技艺之书.探索.初始之地",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "3001",
+    "consumeTableId": 3001,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PCRAFT_001",
@@ -63,21 +64,21 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "9001",
-    "rewardTableId": "9001",
+    "consumeTableId": 9001,
+    "rewardTableId": 9001,
     "extraParams": {}
   },
   {
     "actionId": "PCRAFT_MAP_GRASSLAND_HARVEST",
     "actionType": "PIG_CRAFT",
     "subActionType": "exploration",
-    "actionName": "草原探索·采集作物",
+    "actionName": "探索.草原.采集",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": true,
-    "consumeTableId": "10001",
-    "rewardTableId": "10001",
+    "consumeTableId": 10001,
+    "rewardTableId": 10001,
     "extraParams": {
       "duration": 5,
       "requirements": [
@@ -102,12 +103,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_PCRAFT_MAP_GRASSLAND",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书.采集.草原作物",
+    "actionName": "使用技艺之书.探索.草原.采集",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "3002",
+    "consumeTableId": 3002,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PCRAFT_MAP_GRASSLAND_HARVEST",
@@ -123,8 +124,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": true,
-    "consumeTableId": "10009",
-    "rewardTableId": "20007",
+    "consumeTableId": 10009,
+    "rewardTableId": 20007,
     "extraParams": {
       "duration": 15,
       "requirements": [
@@ -143,7 +144,8 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -155,8 +157,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": true,
-    "consumeTableId": "10010",
-    "rewardTableId": "20008",
+    "consumeTableId": 10010,
+    "rewardTableId": 20008,
     "extraParams": {
       "duration": 10,
       "requirements": [
@@ -175,7 +177,8 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 2
     }
   },
   {
@@ -187,8 +190,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10011",
-    "rewardTableId": "20009",
+    "consumeTableId": 10011,
+    "rewardTableId": 20009,
     "extraParams": {
       "duration": 20,
       "requirements": [
@@ -201,7 +204,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 4
     }
   },
   {
@@ -213,8 +217,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10012",
-    "rewardTableId": "20010",
+    "consumeTableId": 10012,
+    "rewardTableId": 20010,
     "extraParams": {
       "duration": 15,
       "requirements": [
@@ -227,7 +231,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -239,8 +244,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10013",
-    "rewardTableId": "20011",
+    "consumeTableId": 10013,
+    "rewardTableId": 20011,
     "extraParams": {
       "duration": 12,
       "requirements": [
@@ -253,7 +258,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -265,8 +271,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10014",
-    "rewardTableId": "20012",
+    "consumeTableId": 10014,
+    "rewardTableId": 20012,
     "extraParams": {
       "duration": 18,
       "requirements": [
@@ -279,7 +285,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 4
     }
   },
   {
@@ -291,8 +298,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10015",
-    "rewardTableId": "20013",
+    "consumeTableId": 10015,
+    "rewardTableId": 20013,
     "extraParams": {
       "duration": 10,
       "requirements": [
@@ -305,20 +312,21 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 2
     }
   },
   {
     "actionId": "PIG_CRAFT_LOGGING_GRASSLAND",
     "actionType": "PIG_CRAFT",
     "subActionType": "logging",
-    "actionName": "伐木·草原",
+    "actionName": "伐木·草原牧草",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": true,
-    "consumeTableId": "10100",
-    "rewardTableId": "20100",
+    "consumeTableId": 10100,
+    "rewardTableId": 20100,
     "extraParams": {
       "duration": 15,
       "requirements": [
@@ -337,20 +345,21 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
     "actionId": "PIG_CRAFT_MINING_GRASSLAND",
     "actionType": "PIG_CRAFT",
     "subActionType": "mining",
-    "actionName": "采矿·草原",
+    "actionName": "采矿·铜矿石",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": true,
-    "consumeTableId": "10101",
-    "rewardTableId": "20101",
+    "consumeTableId": 10101,
+    "rewardTableId": 20101,
     "extraParams": {
       "duration": 15,
       "requirements": [
@@ -369,7 +378,8 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -381,8 +391,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": true,
-    "consumeTableId": "10102",
-    "rewardTableId": "20102",
+    "consumeTableId": 10102,
+    "rewardTableId": 20102,
     "extraParams": {
       "duration": 12,
       "requirements": [
@@ -401,7 +411,8 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -413,8 +424,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": true,
-    "consumeTableId": "10103",
-    "rewardTableId": "20103",
+    "consumeTableId": 10103,
+    "rewardTableId": 20103,
     "extraParams": {
       "duration": 20,
       "requirements": [
@@ -433,20 +444,21 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 4
     }
   },
   {
     "actionId": "PIG_CRAFT_SMELT_COPPER",
     "actionType": "PIG_CRAFT",
     "subActionType": "forge",
-    "actionName": "粗加工·铜锭",
+    "actionName": "锻造·铜锭",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10110",
-    "rewardTableId": "20110",
+    "consumeTableId": 10110,
+    "rewardTableId": 20110,
     "extraParams": {
       "duration": 15,
       "requirements": [
@@ -459,7 +471,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -471,8 +484,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10111",
-    "rewardTableId": "20111",
+    "consumeTableId": 10111,
+    "rewardTableId": 20111,
     "extraParams": {
       "duration": 25,
       "requirements": [
@@ -485,7 +498,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 5
     }
   },
   {
@@ -497,8 +511,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10112",
-    "rewardTableId": "20112",
+    "consumeTableId": 10112,
+    "rewardTableId": 20112,
     "extraParams": {
       "duration": 20,
       "requirements": [
@@ -511,7 +525,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 4
     }
   },
   {
@@ -523,8 +538,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10113",
-    "rewardTableId": "20113",
+    "consumeTableId": 10113,
+    "rewardTableId": 20113,
     "extraParams": {
       "duration": 15,
       "requirements": [
@@ -537,7 +552,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -549,8 +565,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10114",
-    "rewardTableId": "20114",
+    "consumeTableId": 10114,
+    "rewardTableId": 20114,
     "extraParams": {
       "duration": 12,
       "requirements": [
@@ -563,7 +579,8 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 3
     }
   },
   {
@@ -575,8 +592,8 @@
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10115",
-    "rewardTableId": "20115",
+    "consumeTableId": 10115,
+    "rewardTableId": 20115,
     "extraParams": {
       "duration": 30,
       "requirements": [
@@ -589,85 +606,89 @@
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      }
+      },
+      "consumeHunger": 6
     }
   },
   {
     "actionId": "PIG_CRAFT_RESEARCH_BASIC",
     "actionType": "PIG_CRAFT",
     "subActionType": "research",
-    "actionName": "初步研究",
+    "actionName": "研究.初步.初始之地",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10120",
-    "rewardTableId": "20120",
+    "consumeTableId": 10120,
+    "rewardTableId": 20120,
     "extraParams": {
-      "duration": 180,
+      "duration": 25,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
           "professionId": "research"
         }
-      ]
+      ],
+      "consumeHunger": 5
     }
   },
   {
     "actionId": "PIG_CRAFT_RESEARCH_ADVANCED",
     "actionType": "PIG_CRAFT",
     "subActionType": "research",
-    "actionName": "深入研究",
+    "actionName": "研究.深入.初始之地",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10121",
-    "rewardTableId": "20121",
+    "consumeTableId": 10121,
+    "rewardTableId": 20121,
     "extraParams": {
-      "duration": 300,
+      "duration": 40,
       "requirements": [
         {
           "type": "profession_strength",
-          "value": 40,
+          "value": 15,
           "professionId": "research"
         }
-      ]
+      ],
+      "consumeHunger": 8
     }
   },
   {
     "actionId": "PIG_CRAFT_RESEARCH_COMPLETE",
     "actionType": "PIG_CRAFT",
     "subActionType": "research",
-    "actionName": "完整研究",
+    "actionName": "研究.系统.初始之地",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
     "isNeedMap": false,
-    "consumeTableId": "10122",
-    "rewardTableId": "20122",
+    "consumeTableId": 10122,
+    "rewardTableId": 20122,
     "extraParams": {
-      "duration": 480,
+      "duration": 60,
       "requirements": [
         {
           "type": "profession_strength",
-          "value": 80,
+          "value": 30,
           "professionId": "research"
         }
-      ]
+      ],
+      "consumeHunger": 12
     }
   },
   {
     "actionId": "ITEM_USE_CRAFTBOOK_LOGGING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：伐木",
+    "actionName": "使用技艺之书.伐木.草原牧草",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10201",
+    "consumeTableId": 10201,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_LOGGING_GRASSLAND",
@@ -678,12 +699,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_MINING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：采矿",
+    "actionName": "使用技艺之书.采矿.铜矿石",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10202",
+    "consumeTableId": 10202,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_MINING_GRASSLAND",
@@ -694,12 +715,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_HARVESTING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书.采摘.草原花",
+    "actionName": "使用技艺之书.采摘.草原",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10203",
+    "consumeTableId": 10203,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_HARVESTING_GRASSLAND",
@@ -710,12 +731,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_HUNTING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：狩猎",
+    "actionName": "使用技艺之书.狩猎.草原",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10204",
+    "consumeTableId": 10204,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_HUNTING_GRASSLAND",
@@ -731,7 +752,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10205",
+    "consumeTableId": 10205,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_BLACKSMITH_COPPERSWORD",
@@ -742,12 +763,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_WEAVING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：纺织",
+    "actionName": "使用技艺之书.纺织.粗皮甲",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10206",
+    "consumeTableId": 10206,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_WEAVING_LEATHERARMOR",
@@ -758,12 +779,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_COOKING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：烹饪",
+    "actionName": "使用技艺之书.烹饪.蘑菇汤",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10207",
+    "consumeTableId": 10207,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_COOKING_MUSHROOMSOUP",
@@ -779,7 +800,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10208",
+    "consumeTableId": 10208,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PCRAFT_MAP_GRASSLAND_HARVEST",
@@ -790,12 +811,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_ENEMY_HUNT",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：寻敌",
+    "actionName": "使用技艺之书.寻敌.草原",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10209",
+    "consumeTableId": 10209,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_HUNTING_GRASSLAND",
@@ -811,7 +832,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10210",
+    "consumeTableId": 10210,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_LOGGING_GRASSLAND",
@@ -822,12 +843,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_MINING_ADV",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：采矿·进阶",
+    "actionName": "使用技艺之书.采矿.银矿石",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10211",
+    "consumeTableId": 10211,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_MINING_GRASSLAND",
@@ -843,7 +864,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10212",
+    "consumeTableId": 10212,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_HARVESTING_GRASSLAND",
@@ -859,7 +880,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10213",
+    "consumeTableId": 10213,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_HUNTING_GRASSLAND",
@@ -875,23 +896,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10214",
-    "rewardTableId": null,
-    "extraParams": {
-      "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
-      "expPerBook": 1500
-    }
-  },
-  {
-    "actionId": "ITEM_USE_CRAFTBOOK_ENCHANTMENT",
-    "actionType": "ITEM_USE",
-    "subActionType": "craft_book",
-    "actionName": "使用技艺之书.附魔.初级符文",
-    "triggerType": "EXTERNAL",
-    "exposeApi": true,
-    "isNeedActor": false,
-    "isNeedMap": false,
-    "consumeTableId": "10215",
+    "consumeTableId": 10214,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
@@ -907,7 +912,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10216",
+    "consumeTableId": 10216,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_BLACKSMITH_COPPERSWORD",
@@ -923,7 +928,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10217",
+    "consumeTableId": 10217,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_WEAVING_LEATHERARMOR",
@@ -934,12 +939,12 @@
     "actionId": "ITEM_USE_CRAFTBOOK_LOGGING_RARE",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书：伐木·精通",
+    "actionName": "使用技艺之书.伐木.精通",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10218",
+    "consumeTableId": 10218,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_LOGGING_GRASSLAND",
@@ -955,7 +960,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10219",
+    "consumeTableId": 10219,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_MINING_GRASSLAND",
@@ -971,7 +976,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10220",
+    "consumeTableId": 10220,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_HARVESTING_GRASSLAND",
@@ -987,7 +992,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10221",
+    "consumeTableId": 10221,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_HUNTING_GRASSLAND",
@@ -1003,23 +1008,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10222",
-    "rewardTableId": null,
-    "extraParams": {
-      "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
-      "expPerBook": 5000
-    }
-  },
-  {
-    "actionId": "ITEM_USE_CRAFTBOOK_ENCHANTMENT_RARE",
-    "actionType": "ITEM_USE",
-    "subActionType": "craft_book",
-    "actionName": "使用技艺之书.附魔.强化符文",
-    "triggerType": "EXTERNAL",
-    "exposeApi": true,
-    "isNeedActor": false,
-    "isNeedMap": false,
-    "consumeTableId": "10223",
+    "consumeTableId": 10222,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
@@ -1035,7 +1024,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10224",
+    "consumeTableId": 10224,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_BLACKSMITH_COPPERSWORD",
@@ -1051,23 +1040,7 @@
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10225",
-    "rewardTableId": null,
-    "extraParams": {
-      "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
-      "expPerBook": 5000
-    }
-  },
-  {
-    "actionId": "ITEM_USE_CRAFTBOOK_ENCHANTMENT_MASTER",
-    "actionType": "ITEM_USE",
-    "subActionType": "craft_book",
-    "actionName": "使用技艺之书.附魔.强化符文",
-    "triggerType": "EXTERNAL",
-    "exposeApi": true,
-    "isNeedActor": false,
-    "isNeedMap": false,
-    "consumeTableId": "10226",
+    "consumeTableId": 10225,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
@@ -1078,16 +1051,548 @@
     "actionId": "ITEM_USE_CRAFTBOOK_RESEARCH_INITIAL",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书.研究.初始之地",
+    "actionName": "使用技艺之书.研究.初步.初始之地",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
     "isNeedMap": false,
-    "consumeTableId": "10230",
+    "consumeTableId": 10230,
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_RESEARCH_BASIC",
       "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_GRASSCLOTH",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·草布",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10130,
+    "rewardTableId": 20130,
+    "extraParams": {
+      "duration": 12,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "weaving"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 3
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_COARSECLOTH",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·粗皮布",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10131,
+    "rewardTableId": 20131,
+    "extraParams": {
+      "duration": 18,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 1,
+          "professionId": "weaving"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 4
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_GRASSWHIP",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·草鞭",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10132,
+    "rewardTableId": 20132,
+    "extraParams": {
+      "duration": 20,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 5,
+          "professionId": "weaving"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 4
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_GRASSCLOTH_ARMOR",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·草布衣",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10133,
+    "rewardTableId": 20133,
+    "extraParams": {
+      "duration": 15,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 3,
+          "professionId": "weaving"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 3
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_LEATHER_ARMOR",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·粗皮衣",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10134,
+    "rewardTableId": 20134,
+    "extraParams": {
+      "duration": 25,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 8,
+          "professionId": "weaving"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 5
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_LEATHERHAT",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·皮帽",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10135,
+    "rewardTableId": 20135,
+    "extraParams": {
+      "duration": 15,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 5,
+          "professionId": "weaving"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 3
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_CRAFT_CARROTARMOR",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "craft",
+    "actionName": "制造·萝卜铠甲",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10136,
+    "rewardTableId": 20136,
+    "extraParams": {
+      "duration": 25,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 10,
+          "professionId": "craft_carrotbrick"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 5
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_CRAFT_CARROTHELMET",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "craft",
+    "actionName": "制造·萝卜头盔",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10137,
+    "rewardTableId": 20137,
+    "extraParams": {
+      "duration": 18,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 5,
+          "professionId": "craft_carrotbrick"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 4
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_CLOTHBAG",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·草布袋",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10138,
+    "rewardTableId": 20138,
+    "extraParams": {
+      "duration": 20,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 15,
+          "professionId": "weaving"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 4
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_CRAFT_NOTEBOOK",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "craft",
+    "actionName": "制造·笔记本",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10139,
+    "rewardTableId": 20139,
+    "extraParams": {
+      "duration": 30,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 20,
+          "professionId": "craft_grasspaper"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 6
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_FORGE_CARROTPICKAXE",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "forge",
+    "actionName": "锻造·萝卜镐",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10140,
+    "rewardTableId": 20140,
+    "extraParams": {
+      "duration": 20,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 8,
+          "professionId": "forge_carrotknife"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 4
+    }
+  },
+  {
+    "actionId": "PCRAFT_002",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "surveying",
+    "actionName": "深入.初始之地",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 8002,
+    "rewardTableId": 8002,
+    "extraParams": {
+      "duration": 15,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 15,
+          "professionId": "surveying"
+        }
+      ],
+      "rareDrop": {
+        "targetId": 4101,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      },
+      "consumeHunger": 3
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_HARVEST_CARROT",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.采摘.胡萝卜",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10240,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_HARVEST_CARROT",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_HARVEST_PIGGRASS",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.采摘.猪草",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10241,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_HARVEST_PIGGRASS",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_FORGE_CARROTKNIFE",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.锻造.萝卜刀",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10242,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_FORGE_CARROTKNIFE",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_WEAVE_ROPE",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.纺织.草绳",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10243,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_WEAVE_ROPE",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_GRASSPAPER",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.制造.草纸",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10244,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_GRASSPAPER",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_CARROTBRICK",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.制造.萝卜砖",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10245,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_CARROTBRICK",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_PIGFEED",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.烹饪.猪饲料",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10246,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_PIGFEED",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_SMELT_COPPER",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.锻造.铜锭",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10247,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_SMELT_COPPER",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_COOKING_HERBALTEA",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.烹饪.草药茶",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10248,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_COOKING_HERBALTEA",
+      "expPerBook": 1500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_COOKING_ADVFEED",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.烹饪.高级饲料",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10249,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_PIGFEED",
+      "expPerBook": 5000
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_WEAVING_REINFORCED",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.纺织.强化粗皮甲",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10250,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_WEAVING_LEATHERARMOR",
+      "expPerBook": 5000
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_RESEARCH_ADVANCED",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.研究.深入.初始之地",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10251,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_RESEARCH_ADVANCED",
+      "expPerBook": 1500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_RESEARCH_COMPLETE",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.研究.系统.初始之地",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10252,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_RESEARCH_COMPLETE",
+      "expPerBook": 5000
     }
   }
 ]
