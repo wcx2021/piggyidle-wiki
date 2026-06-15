@@ -1,0 +1,245 @@
+[
+  {
+    "id": "pig",
+    "name": "小猪",
+    "desc": "初始种族，无特殊加成",
+    "category": "race",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "none",
+    "expMultiplier": 0,
+    "expProfessions": [],
+    "prerequisites": [],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 0
+    },
+    "reclassConditions": {
+      "requiredJobs": []
+    }
+  },
+  {
+    "id": "dumb_pig",
+    "name": "笨猪",
+    "desc": "研究系基础职业，虽然笨但肯钻研",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 1.0,
+    "expProfessions": [],
+    "prerequisites": [],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 0
+    },
+    "reclassConditions": {
+      "requiredJobs": []
+    }
+  },
+  {
+    "id": "research_pig",
+    "name": "研究猪",
+    "desc": "研究系进阶职业，专注学术研究",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.8,
+    "expProfessions": [],
+    "prerequisites": ["dumb_pig"],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [{ "jobId": "dumb_pig", "minLevel": 5 }]
+    }
+  },
+  {
+    "id": "phd_pig",
+    "name": "读博猪",
+    "desc": "研究系高级职业，深造不止",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.6,
+    "expProfessions": [],
+    "prerequisites": ["research_pig"],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [{ "jobId": "research_pig", "minLevel": 5 }]
+    }
+  },
+  {
+    "id": "doctor_pig",
+    "name": "小猪医生",
+    "desc": "研究系终极职业，学有所成，悬壶济猪",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.4,
+    "expProfessions": [],
+    "prerequisites": ["phd_pig"],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [{ "jobId": "phd_pig", "minLevel": 5 }]
+    }
+  },
+  {
+    "id": "merchant_pig",
+    "name": "猪商",
+    "desc": "交易系基础职业，初入商海",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 1.0,
+    "expProfessions": [],
+    "prerequisites": [],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 0
+    },
+    "reclassConditions": {
+      "requiredJobs": []
+    }
+  },
+  {
+    "id": "reseller_pig",
+    "name": "倒卖猪",
+    "desc": "交易系进阶职业，低买高卖",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.8,
+    "expProfessions": [],
+    "prerequisites": ["merchant_pig"],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [{ "jobId": "merchant_pig", "minLevel": 5 }]
+    }
+  },
+  {
+    "id": "trader_pig",
+    "name": "交易猪",
+    "desc": "交易系高级职业，纵横市场",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.6,
+    "expProfessions": [],
+    "prerequisites": ["reseller_pig"],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [{ "jobId": "reseller_pig", "minLevel": 5 }]
+    }
+  },
+  {
+    "id": "tycoon_pig",
+    "name": "大猪本家",
+    "desc": "交易系终极职业，富可敌国",
+    "category": "production",
+    "iconItemId": null,
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.4,
+    "expProfessions": [],
+    "prerequisites": ["trader_pig"],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [{ "jobId": "trader_pig", "minLevel": 5 }]
+    }
+  }
+]

@@ -25,6 +25,8 @@
     "rewardTableId": 8001,
     "extraParams": {
       "duration": 6,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -35,8 +37,7 @@
       "rareDrop": {
         "targetId": 4101,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 2
+      }
     }
   },
   {
@@ -69,6 +70,19 @@
     "extraParams": {}
   },
   {
+    "actionId": "CRAFT_SKILLBOOK_INITIAL_LAND",
+    "actionType": "ITEM_USE",
+    "subActionType": "map_craft",
+    "actionName": "使用地图信息.初始之地",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 9002,
+    "rewardTableId": 9002,
+    "extraParams": {}
+  },
+  {
     "actionId": "PCRAFT_MAP_GRASSLAND_HARVEST",
     "actionType": "PIG_CRAFT",
     "subActionType": "exploration",
@@ -81,6 +95,8 @@
     "rewardTableId": 10001,
     "extraParams": {
       "duration": 5,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -128,11 +144,13 @@
     "rewardTableId": 20007,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
-          "professionId": "harvest_carrot"
+          "professionId": "harvesting"
         }
       ],
       "mapRequirements": {
@@ -144,8 +162,7 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -161,11 +178,13 @@
     "rewardTableId": 20008,
     "extraParams": {
       "duration": 10,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
-          "professionId": "harvest_piggrass"
+          "professionId": "harvesting"
         }
       ],
       "mapRequirements": {
@@ -177,8 +196,7 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 2
+      }
     }
   },
   {
@@ -194,18 +212,20 @@
     "rewardTableId": 20009,
     "extraParams": {
       "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
-          "professionId": "forge_carrotknife"
+          "professionId": "blacksmith"
         }
       ],
+      "materialTier": 1,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -221,18 +241,20 @@
     "rewardTableId": 20010,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
-          "professionId": "weave_rope"
+          "professionId": "weaving"
         }
       ],
+      "materialTier": 0,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -248,18 +270,20 @@
     "rewardTableId": 20011,
     "extraParams": {
       "duration": 12,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
-          "professionId": "craft_grasspaper"
+          "professionId": "crafting"
         }
       ],
+      "materialTier": 0,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -275,18 +299,19 @@
     "rewardTableId": 20012,
     "extraParams": {
       "duration": 18,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
-          "professionId": "craft_carrotbrick"
+          "professionId": "crafting"
         }
       ],
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -302,25 +327,27 @@
     "rewardTableId": 20013,
     "extraParams": {
       "duration": 10,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
-          "professionId": "cook_pigfeed"
+          "professionId": "cooking"
         }
       ],
+      "materialTier": 1,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 2
+      }
     }
   },
   {
     "actionId": "PIG_CRAFT_LOGGING_GRASSLAND",
     "actionType": "PIG_CRAFT",
     "subActionType": "logging",
-    "actionName": "伐木·草原牧草",
+    "actionName": "伐木·草原木",
     "triggerType": "INTERNAL",
     "exposeApi": false,
     "isNeedActor": true,
@@ -329,6 +356,8 @@
     "rewardTableId": 20100,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -345,8 +374,7 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -362,6 +390,8 @@
     "rewardTableId": 20101,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -378,8 +408,7 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -395,6 +424,8 @@
     "rewardTableId": 20102,
     "extraParams": {
       "duration": 12,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -411,8 +442,7 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -428,6 +458,8 @@
     "rewardTableId": 20103,
     "extraParams": {
       "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -444,8 +476,7 @@
       "rareDrop": {
         "targetId": 4102,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -461,6 +492,8 @@
     "rewardTableId": 20110,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -468,11 +501,11 @@
           "professionId": "blacksmith"
         }
       ],
+      "materialTier": 0,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -488,6 +521,8 @@
     "rewardTableId": 20111,
     "extraParams": {
       "duration": 25,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -495,11 +530,11 @@
           "professionId": "blacksmith"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 5
+      }
     }
   },
   {
@@ -515,6 +550,8 @@
     "rewardTableId": 20112,
     "extraParams": {
       "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -522,11 +559,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 1,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -542,6 +579,8 @@
     "rewardTableId": 20113,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -549,11 +588,11 @@
           "professionId": "cooking"
         }
       ],
+      "materialTier": 1,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -569,6 +608,8 @@
     "rewardTableId": 20114,
     "extraParams": {
       "duration": 12,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -576,11 +617,11 @@
           "professionId": "cooking"
         }
       ],
+      "materialTier": 1,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -596,6 +637,8 @@
     "rewardTableId": 20115,
     "extraParams": {
       "duration": 30,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -603,11 +646,11 @@
           "professionId": "alchemy"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 6
+      }
     }
   },
   {
@@ -623,14 +666,15 @@
     "rewardTableId": 20120,
     "extraParams": {
       "duration": 25,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 1,
           "professionId": "research"
         }
-      ],
-      "consumeHunger": 5
+      ]
     }
   },
   {
@@ -646,14 +690,15 @@
     "rewardTableId": 20121,
     "extraParams": {
       "duration": 40,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 15,
           "professionId": "research"
         }
-      ],
-      "consumeHunger": 8
+      ]
     }
   },
   {
@@ -669,21 +714,22 @@
     "rewardTableId": 20122,
     "extraParams": {
       "duration": 60,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 30,
           "professionId": "research"
         }
-      ],
-      "consumeHunger": 12
+      ]
     }
   },
   {
     "actionId": "ITEM_USE_CRAFTBOOK_LOGGING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
-    "actionName": "使用技艺之书.伐木.草原牧草",
+    "actionName": "使用技艺之书.伐木.草原木",
     "triggerType": "EXTERNAL",
     "exposeApi": true,
     "isNeedActor": false,
@@ -900,7 +946,7 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
-      "expPerBook": 1500
+      "expPerBook": 500
     }
   },
   {
@@ -1076,6 +1122,8 @@
     "rewardTableId": 20130,
     "extraParams": {
       "duration": 12,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1083,11 +1131,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 0,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -1103,6 +1151,8 @@
     "rewardTableId": 20131,
     "extraParams": {
       "duration": 18,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1110,11 +1160,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 0,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -1130,6 +1180,8 @@
     "rewardTableId": 20132,
     "extraParams": {
       "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1137,11 +1189,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -1157,6 +1209,8 @@
     "rewardTableId": 20133,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1164,11 +1218,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 1,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -1184,6 +1238,8 @@
     "rewardTableId": 20134,
     "extraParams": {
       "duration": 25,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1191,11 +1247,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 5
+      }
     }
   },
   {
@@ -1211,6 +1267,8 @@
     "rewardTableId": 20135,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1218,11 +1276,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 1,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -1238,18 +1296,20 @@
     "rewardTableId": 20136,
     "extraParams": {
       "duration": 25,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 10,
-          "professionId": "craft_carrotbrick"
+          "professionId": "crafting"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 5
+      }
     }
   },
   {
@@ -1265,18 +1325,20 @@
     "rewardTableId": 20137,
     "extraParams": {
       "duration": 18,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 5,
-          "professionId": "craft_carrotbrick"
+          "professionId": "crafting"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -1292,6 +1354,8 @@
     "rewardTableId": 20138,
     "extraParams": {
       "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1299,11 +1363,11 @@
           "professionId": "weaving"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -1319,18 +1383,20 @@
     "rewardTableId": 20139,
     "extraParams": {
       "duration": 30,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 20,
-          "professionId": "craft_grasspaper"
+          "professionId": "crafting"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 6
+      }
     }
   },
   {
@@ -1346,18 +1412,20 @@
     "rewardTableId": 20140,
     "extraParams": {
       "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
           "value": 8,
-          "professionId": "forge_carrotknife"
+          "professionId": "blacksmith"
         }
       ],
+      "materialTier": 2,
       "rareDrop": {
         "targetId": 4103,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 4
+      }
     }
   },
   {
@@ -1373,6 +1441,8 @@
     "rewardTableId": 8002,
     "extraParams": {
       "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
       "requirements": [
         {
           "type": "profession_strength",
@@ -1383,8 +1453,7 @@
       "rareDrop": {
         "targetId": 4101,
         "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
-      },
-      "consumeHunger": 3
+      }
     }
   },
   {
@@ -1528,7 +1597,7 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_COOKING_HERBALTEA",
-      "expPerBook": 1500
+      "expPerBook": 500
     }
   },
   {
@@ -1544,7 +1613,7 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_PIGFEED",
-      "expPerBook": 5000
+      "expPerBook": 1500
     }
   },
   {
@@ -1560,7 +1629,7 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_WEAVING_LEATHERARMOR",
-      "expPerBook": 5000
+      "expPerBook": 500
     }
   },
   {

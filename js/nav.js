@@ -15,9 +15,9 @@
         { title: '领地', slug: 'tags/territory' },
         { title: '仓库', slug: 'tags/warehouse' },
         { title: '神殿', slug: 'tags/temple' },
-        { title: '探查', slug: 'tags/exploration' },
-        { title: '采集', slug: 'tags/gathering' },
-        { title: '制造', slug: 'tags/manufacturing' },
+        { title: '探索', slug: 'tags/explorer' },
+        { title: '生产', slug: 'tags/production' },
+        { title: '制造', slug: 'tags/craft' },
         { title: '战斗', slug: 'tags/combat' },
         { title: '公会', slug: 'tags/guilds' },
         { title: '任务', slug: 'tags/quests' },
@@ -43,7 +43,7 @@
         { title: '等级和经验表', slug: 'design/experience' },
         { title: '货币和商店', slug: 'design/currency-shop' },
         { title: '装备', slug: 'design/equipment' },
-        { title: '收益曲线与成长曲线', slug: 'design/growth' }
+        { title: '星级与精炼', slug: 'design/star-level' }
       ]
     },
     {

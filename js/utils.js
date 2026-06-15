@@ -12,13 +12,15 @@
   var PATH_CONSUME_TABLES = 'data/consumeTables.json';
   var PATH_REWARD_TABLES = 'data/rewardTables.json';
   var PATH_PROFESSION_CONFIG = 'data/professionconfig.json';
+  var PATH_JOBS = 'data/jobs.json';
 
   var fetchCache = {
     items: null,
     actions: null,
     consumeTables: null,
     rewardTables: null,
-    professionConfig: null
+    professionConfig: null,
+    jobs: null
   };
 
   /**
@@ -47,7 +49,8 @@
       actions: PATH_ACTIONS,
       consumeTables: PATH_CONSUME_TABLES,
       rewardTables: PATH_REWARD_TABLES,
-      professionConfig: PATH_PROFESSION_CONFIG
+      professionConfig: PATH_PROFESSION_CONFIG,
+      jobs: PATH_JOBS
     };
     var path = pathMap[name];
     if (!path) return Promise.resolve([]);

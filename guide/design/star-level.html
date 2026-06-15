@@ -1,0 +1,260 @@
+<div class="guide-content">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <h2>星级与精炼</h2>
+  <p class="spaced">制造系统产出的装备和消耗品具有随机星级品质（0~5星），星级越高属性越强。星级在制造结算时随机决定，受精通等级和原料品质影响。</p>
+
+  <h3>一、星级概览</h3>
+  <p class="spaced">制造行动产出的物品可能带有星级，星级范围由精通等级和原料档位共同决定。并非所有物品都有星级——只有装备和消耗品类物品会触发星级判定。</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>星级</th>
+        <th>品质</th>
+        <th>属性乘数</th>
+        <th>相对0星</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0星</td>
+        <td>普通</td>
+        <td>1.0×</td>
+        <td>基准</td>
+      </tr>
+      <tr>
+        <td>1星</td>
+        <td>优秀</td>
+        <td>1.4×</td>
+        <td>+40%</td>
+      </tr>
+      <tr>
+        <td>2星</td>
+        <td>精良</td>
+        <td>1.8×</td>
+        <td>+80%</td>
+      </tr>
+      <tr>
+        <td>3星</td>
+        <td>稀有</td>
+        <td>2.2×</td>
+        <td>+120%</td>
+      </tr>
+      <tr>
+        <td>4星</td>
+        <td>史诗</td>
+        <td>2.6×</td>
+        <td>+160%</td>
+      </tr>
+      <tr>
+        <td>5星</td>
+        <td>传说</td>
+        <td>3.0×</td>
+        <td>+200%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>二、星级上限</h3>
+  <p class="spaced">星级上限由两个因素决定，取两者中较低的一个：</p>
+  <ul>
+    <li><strong>精通等级上限</strong>：精通等级越高，可达到的星级上限越高</li>
+    <li><strong>原料档位上限</strong>：使用的原料越稀有，可达到的星级上限越高</li>
+  </ul>
+
+  <h4>精通等级与星级上限</h4>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>精通等级</th>
+        <th>星级上限</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1~19</td>
+        <td>2星</td>
+      </tr>
+      <tr>
+        <td>20~39</td>
+        <td>3星</td>
+      </tr>
+      <tr>
+        <td>40~59</td>
+        <td>4星</td>
+      </tr>
+      <tr>
+        <td>60+</td>
+        <td>5星</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>原料档位与星级上限</h4>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>原料档位</th>
+        <th>星级上限</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>纯基础原料</td>
+        <td>2星</td>
+        <td>低端制造，量产为主</td>
+      </tr>
+      <tr>
+        <td>基础+进阶</td>
+        <td>3星</td>
+        <td>中端制造</td>
+      </tr>
+      <tr>
+        <td>进阶+稀有</td>
+        <td>4星</td>
+        <td>高端制造</td>
+      </tr>
+      <tr>
+        <td>稀有为主</td>
+        <td>5星</td>
+        <td>顶级制造</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>三、星级概率</h3>
+  <p class="spaced">星级通过概率随机决定，精通等级越高，获得高星级的概率越大。以下为不同精通等级下各星级的出现概率：</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>精通等级</th>
+        <th>星级上限</th>
+        <th>0星</th>
+        <th>1星</th>
+        <th>2星</th>
+        <th>3星</th>
+        <th>4星</th>
+        <th>5星</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>2星</td>
+        <td>80.2%</td>
+        <td>16.4%</td>
+        <td>3.4%</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>3星</td>
+        <td>77.4%</td>
+        <td>17.7%</td>
+        <td>4.1%</td>
+        <td>0.9%</td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td>4星</td>
+        <td>74.4%</td>
+        <td>19.3%</td>
+        <td>5.0%</td>
+        <td>1.3%</td>
+        <td>0.3%</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>60</td>
+        <td>5星</td>
+        <td>70.9%</td>
+        <td>20.9%</td>
+        <td>6.2%</td>
+        <td>1.8%</td>
+        <td>0.5%</td>
+        <td>0.2%</td>
+      </tr>
+      <tr>
+        <td>100</td>
+        <td>5星</td>
+        <td>63.6%</td>
+        <td>23.7%</td>
+        <td>8.8%</td>
+        <td>3.3%</td>
+        <td>1.2%</td>
+        <td>0.5%</td>
+      </tr>
+      <tr>
+        <td>200</td>
+        <td>5星</td>
+        <td>45.6%</td>
+        <td>25.8%</td>
+        <td>14.6%</td>
+        <td>8.2%</td>
+        <td>4.7%</td>
+        <td>2.6%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">注：实际概率受幸运值影响，不同职业的幸运值成长速率不同。</p>
+
+  <h3>四、星级属性加成</h3>
+  <p class="spaced">星级直接影响物品的属性数值。装备和消耗品的实际属性按星级乘数计算：</p>
+  <p class="spaced"><strong>实际属性 = 基础属性 × (1 + 0.4 × 星级)</strong></p>
+
+  <h4>示例</h4>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>物品</th>
+        <th>基础属性</th>
+        <th>0星</th>
+        <th>3星</th>
+        <th>5星</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>铜剑（攻击力10）</td>
+        <td>10</td>
+        <td>10</td>
+        <td>22</td>
+        <td>30</td>
+      </tr>
+      <tr>
+        <td>猪饲料（饱食度50）</td>
+        <td>50</td>
+        <td>50</td>
+        <td>110</td>
+        <td>150</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">注：属性值向下取整。星级加成仅对装备和消耗品生效，资源、地图等其他类型物品不受影响。</p>
+
+  <h3>五、精炼</h3>
+  <p class="spaced">精炼是专属于有星级装备的进阶系统。通过消耗同星级的装备作为材料，可以提升目标装备的精炼等级，每提升一次精炼，在该星级对应的基础属性上额外增加 10%。</p>
+
+  <h4>精炼规则</h4>
+  <ul>
+    <li>只有<strong>带星级的装备</strong>才能进行精炼</li>
+    <li>精炼需要消耗<strong>同星级</strong>的装备作为材料</li>
+    <li>每次精炼成功，在该星级基础属性上<strong>额外 +10%</strong></li>
+    <li>精炼有成功率，具体数值待定</li>
+  </ul>
+
+  <h4>精炼属性计算</h4>
+  <p class="spaced"><strong>精炼后属性 = 星级基础属性 × (1 + 0.1 × 精炼等级)</strong></p>
+
+  <p class="small">其中"星级基础属性"为该星级对应的属性值（即基础属性 × 星级乘数）。</p>
+
+</div>

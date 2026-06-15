@@ -2,7 +2,23 @@
   "Item": {
     "itemId": "标识",
     "itemName": "名称",
-    "itemType": "类型",
+    "itemType": {
+      "label": "类型",
+      "enum": {
+        "currency": "货币",
+        "consumable": "消耗品",
+        "compendium": "图鉴/技艺之书",
+        "resource": "资源/原料",
+        "equipment": "装备",
+        "treasure": "宝箱",
+        "suit": "套装",
+        "pig": "小猪",
+        "map": "地图",
+        "building": "建筑",
+        "chest": "箱子",
+        "skillbook": "技能书"
+      }
+    },
     "itemDescription": "简介",
     "growthCoefficient": "成长系数",
     "requiredLevels": "需求等级",
@@ -18,16 +34,50 @@
   },
   "Action": {
     "actionId": "行动标识",
-    "actionType": "行动类型",
+    "actionType": {
+      "label": "行动类型",
+      "enum": {
+        "PIG_CRAFT": "小猪技艺",
+        "ITEM_USE": "物品使用",
+        "SHOP_BUY": "商店购买",
+        "MARKET_TRADE": "市场交易",
+        "TASK_FINISH": "任务完成",
+        "PIG_RECLASS": "小猪转职",
+        "BUILD_DEPLOY": "建筑部署"
+      }
+    },
     "subActionType": "子类型",
     "actionName": "行动名称",
-    "triggerType": "触发方式",
+    "triggerType": {
+      "label": "触发方式",
+      "enum": {
+        "EXTERNAL": "手动触发",
+        "INTERNAL": "自动触发"
+      }
+    },
     "exposeApi": "暴露API",
     "isNeedActor": "需要角色",
     "isNeedMap": "需要地图",
     "consumeTableId": "消耗表ID",
     "rewardTableId": "奖励表ID",
-    "extraParams": "额外参数"
+    "extraParams": {
+      "label": "额外参数",
+      "fields": {
+        "duration": "执行时长（秒），PIG_CRAFT必填",
+        "minExecutionTimes": "最小执行次数，PIG_CRAFT必填，默认1",
+        "maxExecutionTimes": "最大执行次数，PIG_CRAFT必填，默认1",
+        "requirements": "职业强度需求 [{type, value, professionId}]",
+        "consumeHunger": "消耗饱食度",
+        "mapRequirements": "地图需求 {terrainTags[], resourcePointType}",
+        "baseYieldMin": "地图资源最小产出（rewardTarget=map_resource时必填）",
+        "baseYieldMax": "地图资源最大产出（rewardTarget=map_resource时必填）",
+        "rewardTarget": "奖励目标类型（map_resource=地图资源产出）",
+        "rareDrop": "稀有掉落 {targetId, dropRateFormula}",
+        "craftId": "关联的PIG_CRAFT行动ID（craft_book类型使用）",
+        "expPerBook": "每本技艺之书提供的经验值（craft_book类型使用）",
+        "materialTier": "原料档位（0~2，决定星级上限2~5）"
+      }
+    }
   },
   "ConsumeTable": {
     "consume_id": "消耗表ID",
@@ -35,29 +85,99 @@
     "trigger_condition": "触发条件"
   },
   "ConsumeItem": {
-    "consume_type": "消耗类型",
-    "target_id": "目标ID",
+    "consume_type": {
+      "label": "消耗类型",
+      "enum": {
+        "item": "物品（从背包扣除）",
+        "suit": "套装（从背包扣除）",
+        "build": "建筑（从领地扣除）",
+        "map": "地图（扣除地图实例）",
+        "resource": "身体资源（体重等，target_id=1为体重）",
+        "map_resource": "地图资源耐久（扣除地图资源点耐久）"
+      }
+    },
+    "target_id": "目标ID（consume_type=item时为itemId，resource时1=体重，resource_point时为资源点类型字符串如crop/wood/ore/herb/hunting_boar）",
     "amount": "数量",
-    "chance": "概率"
+    "chance": "概率（0~1，1=必消耗）"
   },
   "RewardTable": {
     "reward_id": "奖励表ID",
-    "trigger_type": "触发类型",
+    "trigger_type": {
+      "label": "触发类型",
+      "enum": {
+        "1": "打怪触发",
+        "2": "交互道具触发",
+        "3": "任务触发",
+        "4": "其他行动触发"
+      }
+    },
     "trigger_related_id": "关联触发ID",
-    "mutex_rewards": "互斥奖励池",
-    "independent_rewards": "独立奖励池",
+    "mutex_rewards": "互斥奖励池（权重随机选一）",
+    "independent_rewards": "独立奖励池（每个独立判定）",
     "trigger_condition": "触发条件"
   },
   "RewardItem": {
-    "reward_subtype": "奖励子类型",
-    "target_id": "目标ID",
+    "reward_subtype": {
+      "label": "奖励子类型",
+      "enum": {
+        "1": "物品（发放到背包，target_id为itemId）",
+        "2": "经验值（target_id=0，amount为经验值）",
+        "3": "权限（解锁功能，不自动发放物品）",
+        "4": "其他",
+        "5": "地图创建（创建地图实例）",
+        "6": "地图资源点（发放地图资源，target_id: 1=活力/2=资源/3=外交）"
+      }
+    },
+    "target_id": "目标ID（含义随reward_subtype变化）",
     "amount_min": "最小数量",
     "amount_max": "最大数量",
-    "chance": "概率"
+    "weight": "权重（仅互斥池）",
+    "chance": "概率（0~1，仅独立池，1=必出）"
   },
   "Attribute": {
     "name": "属性名",
     "value": "属性值"
+  },
+  "Job": {
+    "id": "职业标识",
+    "name": "名称",
+    "desc": "描述",
+    "category": {
+      "label": "分类",
+      "enum": {
+        "race": "种族（互斥，只能持有一个）",
+        "combat": "战斗系（可多持）",
+        "production": "生产系（可多持）"
+      }
+    },
+    "iconItemId": "外观物品ID（引用items.json）",
+    "baseEffect": "获得职业时的初始加成",
+    "levelEffect": "每级升级加成",
+    "expSource": {
+      "label": "经验获取方式",
+      "enum": {
+        "none": "不可升级",
+        "profession_exp": "跟随技艺经验",
+        "combat_exp": "战斗获取",
+        "craft_exp": "制造获取",
+        "explore_exp": "探索获取",
+        "all_action": "全行动获取"
+      }
+    },
+    "expMultiplier": "经验获取倍率（0=不可升级，1.0=标准速率，越小越慢）",
+    "expProfessions": "触发经验的技艺ID列表（空数组=所有技艺均触发，expSource=profession_exp时生效）",
+    "prerequisites": "前置职业ID列表（职业树展示用）",
+    "reclassCost": "转职消耗",
+    "reclassConditions": "转职条件"
+  },
+  "ReclassCost": {
+    "items": "消耗物品列表 [{itemId, amount}]",
+    "gold": "消耗金币",
+    "reclassPoints": "消耗转职次数"
+  },
+  "ReclassConditions": {
+    "requiredJobs": "前置职业等级要求 [{jobId, minLevel}]",
+    "requiredProfessions": "需达到的技艺等级 [{professionId, minLevel}]"
   },
   "RequiredLevel": {
     "skillName": "技能名称",

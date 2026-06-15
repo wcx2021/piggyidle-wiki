@@ -76,14 +76,30 @@
     "trigger_condition": ""
   },
   {
+    "reward_id": 9002,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 2003,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
     "reward_id": 10001,
     "trigger_type": 4,
     "trigger_related_id": 0,
     "mutex_rewards": [],
     "independent_rewards": [
       {
-        "reward_subtype": 3,
-        "target_id": 1,
+        "reward_subtype": 6,
+        "target_id": 2,
         "amount_min": 10,
         "amount_max": 30,
         "chance": 1

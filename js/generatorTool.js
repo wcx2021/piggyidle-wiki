@@ -31,7 +31,7 @@
   // 枚举选项
   var ENUM_OPTIONS = {
     itemType: ['currency', 'map', 'compendium', 'equipment', 'pig', 'suit', 'treasure', 'resource', 'building'],
-    professionType: ['explore', 'lumber', 'mining', 'fishing', 'forage', 'cooking', 'tailor', 'artisan', 'research', 'alchemy']
+    professionType: ['surveying', 'exploration', 'enemy_hunt', 'treasure_hunt', 'research', 'logging', 'mining', 'harvesting', 'hunting', 'blacksmith', 'weaving', 'cooking', 'alchemy', 'enchantment', 'crafting']
   };
 
   // 类型前缀映射

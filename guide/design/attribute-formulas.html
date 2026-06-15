@@ -2,10 +2,257 @@
   <link rel="stylesheet" href="../../assets/css/guide.css">
 
   <h2>属性公式</h2>
-  
+  <p class="spaced">本页汇总游戏中各类属性的计算方式，包括小猪能力值、战斗属性、体重属性、喂食转化、星级加成等。</p>
 
-  
-  
+  <h3>一、八大基础能力</h3>
+  <p class="spaced">每只小猪拥有八种基础能力，能力值由基础值、装备加成和职业加成三部分合并而成：</p>
+  <p class="spaced"><strong>最终能力 = 基础能力 + 装备加成 + 职业加成</strong></p>
 
-  
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>能力</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>力量</td>
+        <td>影响攻击力、负重能力</td>
+      </tr>
+      <tr>
+        <td>灵巧</td>
+        <td>影响制造效率、暴击</td>
+      </tr>
+      <tr>
+        <td>敏捷</td>
+        <td>影响行动速度、闪避</td>
+      </tr>
+      <tr>
+        <td>体质</td>
+        <td>影响生命值、耐力、体重上限</td>
+      </tr>
+      <tr>
+        <td>智力</td>
+        <td>影响经验获取、技能效果</td>
+      </tr>
+      <tr>
+        <td>感知</td>
+        <td>影响探索发现、采集效率</td>
+      </tr>
+      <tr>
+        <td>意志</td>
+        <td>影响成功率、抗性</td>
+      </tr>
+      <tr>
+        <td>魅力</td>
+        <td>影响交易、社交</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>职业加成计算</h4>
+  <p class="spaced">每个职业对八维能力有不同的加成系数，加成值随职业等级提升而增长：</p>
+  <p class="spaced"><strong>职业加成 = 基础职业加成 + 等级加成系数 × 职业等级</strong></p>
+  <p class="small">多职业同时激活时，各职业加成累加。</p>
+
+  <h3>二、战斗属性</h3>
+  <p class="spaced">战斗属性由八维能力通过模板公式计算得出：</p>
+  <p class="spaced"><strong>属性值 = 基础值 + 能力系数 × 对应能力值</strong></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>属性</th>
+        <th>基础值</th>
+        <th>公式</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>耐力</td>
+        <td>100</td>
+        <td>体质 × 4 + 意志 × 2</td>
+      </tr>
+      <tr>
+        <td>攻击</td>
+        <td>5</td>
+        <td>力量 × 0.4 + 体质 × 0.2</td>
+      </tr>
+      <tr>
+        <td>攻速</td>
+        <td>5</td>
+        <td>灵巧 × 0.05 + 敏捷 × 0.05</td>
+      </tr>
+      <tr>
+        <td>命中</td>
+        <td>5</td>
+        <td>敏捷 × 0.6 + 感知 × 0.4</td>
+      </tr>
+      <tr>
+        <td>闪避</td>
+        <td>3</td>
+        <td>灵巧 × 0.6</td>
+      </tr>
+      <tr>
+        <td>暴击率</td>
+        <td>0</td>
+        <td>敏捷 × 0.05 + 感知 × 0.03</td>
+      </tr>
+      <tr>
+        <td>移速</td>
+        <td>5</td>
+        <td>灵巧 × 0.1</td>
+      </tr>
+      <tr>
+        <td>暴击伤害</td>
+        <td>150</td>
+        <td>固定值</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">注：暴击率上限为 100%，暴击伤害最低为 100。不同职业可能有额外的属性覆盖或叠加。</p>
+
+  <h3>三、体重属性</h3>
+  <p class="spaced">体重属性同样由八维能力通过公式计算：</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>属性</th>
+        <th>基础值</th>
+        <th>公式</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>初始体重</td>
+        <td>100</td>
+        <td>体质 × 1</td>
+      </tr>
+      <tr>
+        <td>饱食体重</td>
+        <td>500</td>
+        <td>体质 × 4 + 力量 × 1</td>
+      </tr>
+      <tr>
+        <td>超载体重</td>
+        <td>700</td>
+        <td>体质 × 5 + 力量 × 1 + 意志 × 1</td>
+      </tr>
+      <tr>
+        <td>最大体重</td>
+        <td>1000</td>
+        <td>体质 × 6 + 力量 × 2 + 意志 × 2</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>四、喂食与体重转化</h3>
+  <p class="spaced">喂食小猪时，食物的饱食度会按比率转化为体重增长。不同体重区间使用不同的转化比率：</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>体重区间</th>
+        <th>转化比率</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>低于饱食体重</td>
+        <td>16</td>
+        <td>每16点饱食度增加1点体重</td>
+      </tr>
+      <tr>
+        <td>饱食体重 ~ 超载体重</td>
+        <td>24</td>
+        <td>每24点饱食度增加1点体重</td>
+      </tr>
+      <tr>
+        <td>超过超载体重</td>
+        <td>36</td>
+        <td>每36点饱食度增加1点体重</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">体重不会超过最大体重。饱食度有剩余但体重已满时，剩余饱食度保留。</p>
+
+  <h3>五、星级属性加成</h3>
+  <p class="spaced">带星级的装备和消耗品，其属性按星级乘数计算：</p>
+  <p class="spaced"><strong>实际属性 = 基础属性 × (1 + 0.4 × 星级)</strong></p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>星级</th>
+        <th>乘数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0星</td>
+        <td>1.0×</td>
+      </tr>
+      <tr>
+        <td>1星</td>
+        <td>1.4×</td>
+      </tr>
+      <tr>
+        <td>2星</td>
+        <td>1.8×</td>
+      </tr>
+      <tr>
+        <td>3星</td>
+        <td>2.2×</td>
+      </tr>
+      <tr>
+        <td>4星</td>
+        <td>2.6×</td>
+      </tr>
+      <tr>
+        <td>5星</td>
+        <td>3.0×</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">注：仅装备和消耗品生效。属性值向下取整。</p>
+
+  <h3>六、职业强度</h3>
+  <p class="spaced">职业强度由八维能力值和职业配置的能力系数共同决定，影响行动效率：</p>
+  <p class="spaced"><strong>职业强度 = 1.0 + Σ(能力系数 × 能力最终值 × 0.01)</strong></p>
+  <p class="small">职业强度最低为 1.0。不同职业的能力系数不同。</p>
+
+  <h3>七、行动加成</h3>
+  <p class="spaced">执行行动时，速度、效率和成功率受职业强度和技艺等级影响：</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>加成项</th>
+        <th>计算方式</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>速度</td>
+        <td>强度效果 × (职业强度 - 行动需求强度) + 等级效果 × 技艺等级</td>
+      </tr>
+      <tr>
+        <td>效率</td>
+        <td>强度效果 × (职业强度 - 行动需求强度) + 等级效果 × 技艺等级</td>
+      </tr>
+      <tr>
+        <td>成功率</td>
+        <td>强度效果 × (职业强度 - 行动需求强度) + 等级效果 × 技艺等级</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="small">注：效率和成功率并非所有行动都有，取决于行动配置。</p>
+
 </div>

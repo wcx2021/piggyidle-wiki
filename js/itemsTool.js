@@ -12,6 +12,7 @@
     { key: 'itemType', label: '类别', aliases: ['itemType', 'type'], isBadge: true },
     { key: 'itemDescription', label: '简介', aliases: ['itemDescription', 'description'] },
     { key: 'isTradable', label: '可交易', aliases: ['isTradable', 'tradable', 'is_tradable'], isBool: true },
+    { key: 'rarity', label: '有星级', aliases: ['rarity'], isTruthy: true },
     { key: 'isInteractive', label: '可互动', aliases: ['isInteractive', 'interactive', 'is_interactive'], isBool: true },
     { key: 'isDecomposable', label: '可分解', aliases: ['isDecomposable', 'decomposable', 'is_decomposable'], isBool: true },
     { key: 'shopPrice', label: '商店价格', aliases: ['shopPrice', 'price'] },
@@ -32,6 +33,12 @@
     { key: 'isNeedMap', label: '需要地图', aliases: ['isNeedMap'], isBool: true },
     { key: 'consumeTableId', label: '消耗表ID', aliases: ['consumeTableId'] },
     { key: 'rewardTableId', label: '奖励表ID', aliases: ['rewardTableId'] }
+  ];
+
+  var jobColumns = [
+    { key: 'id', label: '标识', aliases: ['id'] },
+    { key: 'name', label: '名称', aliases: ['name'] },
+    { key: 'category', label: '分类', aliases: ['category'], isBadge: true }
   ];
 
   var itemTypeOptions = [
@@ -59,6 +66,13 @@
     { value: 'BUILD_DEPLOY', label: '建筑部署' }
   ];
 
+  var jobCategoryOptions = [
+    { value: 'all', label: '全部' },
+    { value: 'race', label: '种族' },
+    { value: 'combat', label: '战斗系' },
+    { value: 'production', label: '生产系' }
+  ];
+
   var typeLabelMap = {
     currency: '货币',
     consumable: '消耗品',
@@ -76,7 +90,10 @@
     MARKET_TRADE: '市场交易',
     TASK_FINISH: '任务完成',
     PIG_RECLASS: '小猪转职',
-    BUILD_DEPLOY: '建筑部署'
+    BUILD_DEPLOY: '建筑部署',
+    race: '种族',
+    combat: '战斗系',
+    production: '生产系'
   };
 
   var subActionTypeLabels = {
@@ -106,8 +123,19 @@
     MANUAL: '手动触发'
   };
 
+  var jobExpSourceLabels = {
+    none: '不可升级',
+    profession_exp: '跟随技艺经验',
+    combat_exp: '战斗获取',
+    craft_exp: '制造获取',
+    explore_exp: '探索获取',
+    all_action: '全行动获取'
+  };
+
   var extraParamLabels = {
     duration: '耗时(秒)',
+    minExecutionTimes: '最小执行次数',
+    maxExecutionTimes: '最大执行次数',
     requirements: '前置条件',
     professionId: '技艺',
     profession_strength: '技艺强度',
@@ -115,7 +143,13 @@
     craftId: '关联行动',
     mapRequirements: '地图需求',
     terrainTags: '地形标签',
-    resourcePointType: '资源点类型'
+    resourcePointType: '资源点类型',
+    consumeHunger: '消耗体重（已迁移至消耗表）',
+    baseYieldMin: '最小产出',
+    baseYieldMax: '最大产出',
+    rewardTarget: '奖励目标',
+    rareDrop: '稀有掉落',
+    materialTier: '原料档位'
   };
 
   var resourcePointTypeLabels = {
@@ -126,6 +160,12 @@
     hunting_wolf: '狼',
     crop: '作物',
     fish: '鱼'
+  };
+
+  var mapResourceTypeLabels = {
+    1: '活力',
+    2: '资源',
+    3: '外交'
   };
 
   var typeColorMap = {
@@ -145,22 +185,28 @@
     MARKET_TRADE: '#10b981',
     TASK_FINISH: '#6366f1',
     PIG_RECLASS: '#ec4899',
-    BUILD_DEPLOY: '#64748b'
+    BUILD_DEPLOY: '#64748b',
+    race: '#a855f7',
+    combat: '#ef4444',
+    production: '#22c55e'
   };
 
   var consumeTypeLabels = {
     item: '物品',
-    resource: '资源',
-    currency: '货币',
-    attribute: '属性'
+    suit: '套装',
+    build: '建筑',
+    map: '地图',
+    resource: '身体资源',
+    map_resource: '地图资源'
   };
 
   var rewardSubtypeLabels = {
     1: '物品',
-    2: '经验',
-    3: '资源',
-    4: '货币',
-    5: '属性'
+    2: '经验值',
+    3: '权限',
+    4: '其他',
+    5: '地图创建',
+    6: '地图资源点'
   };
 
   function formatCell(v, col) {
@@ -254,7 +300,18 @@
 
     var rows = items.map(function(ci) {
       var typeLabel = consumeTypeLabels[ci.consume_type] || ci.consume_type;
-      var targetName = ci.consume_type === 'item' ? resolveItemName(ci.target_id, itemsData) : String(ci.target_id);
+      var targetName;
+      if (ci.consume_type === 'item') {
+        targetName = resolveItemName(ci.target_id, itemsData);
+      } else if (ci.consume_type === 'resource' && ci.target_id === 1) {
+        targetName = '体重';
+      } else if (ci.consume_type === 'map_resource') {
+        targetName = mapResourceTypeLabels[ci.target_id] || ('地图资源#' + ci.target_id);
+      } else if (ci.consume_type === 'resource_point') {
+        targetName = resourcePointTypeLabels[ci.target_id] || ('资源点#' + ci.target_id);
+      } else {
+        targetName = String(ci.target_id);
+      }
       var chanceStr = ci.chance !== undefined && ci.chance !== null && ci.chance < 1
         ? (ci.chance * 100) + '%'
         : '100%';
@@ -289,7 +346,16 @@
       html += '<p class="detail-sub-title">互斥奖励池（权重随机选一）</p>';
       var mutexRows = mutex.map(function(ri) {
         var subtypeLabel = rewardSubtypeLabels[ri.reward_subtype] || '类型' + ri.reward_subtype;
-        var targetName = ri.reward_subtype === 1 ? resolveItemName(ri.target_id, itemsData) : String(ri.target_id);
+        var targetName;
+        if (ri.reward_subtype === 1) {
+          targetName = resolveItemName(ri.target_id, itemsData);
+        } else if (ri.reward_subtype === 6) {
+          targetName = mapResourceTypeLabels[ri.target_id] || ('地图资源#' + ri.target_id);
+        } else if (ri.reward_subtype === 5) {
+          targetName = '地图创建';
+        } else {
+          targetName = String(ri.target_id);
+        }
         var amountStr = ri.amount_min === ri.amount_max
           ? String(ri.amount_min)
           : ri.amount_min + ' ~ ' + ri.amount_max;
@@ -313,7 +379,16 @@
       if (mutex.length > 0) html += '<p class="detail-sub-title">独立奖励池（每项独立判定）</p>';
       var indRows = independent.map(function(ri) {
         var subtypeLabel = rewardSubtypeLabels[ri.reward_subtype] || '类型' + ri.reward_subtype;
-        var targetName = ri.reward_subtype === 1 ? resolveItemName(ri.target_id, itemsData) : String(ri.target_id);
+        var targetName;
+        if (ri.reward_subtype === 1) {
+          targetName = resolveItemName(ri.target_id, itemsData);
+        } else if (ri.reward_subtype === 6) {
+          targetName = mapResourceTypeLabels[ri.target_id] || ('地图资源#' + ri.target_id);
+        } else if (ri.reward_subtype === 5) {
+          targetName = '地图创建';
+        } else {
+          targetName = String(ri.target_id);
+        }
         var amountStr = ri.amount_min === ri.amount_max
           ? String(ri.amount_min)
           : ri.amount_min + ' ~ ' + ri.amount_max;
@@ -384,6 +459,92 @@
     return '<table class="detail-table"><thead><tr><th>参数</th><th>值</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>';
   }
 
+  function renderJobEffects(job) {
+    var html = '<div class="detail-section"><h5>加成效果</h5>';
+    var baseEff = job.baseEffect || {};
+    var lvlEff = job.levelEffect || {};
+
+    // Abilities
+    var baseAb = baseEff.abilities || {};
+    var lvlAb = lvlEff.abilities || {};
+    var allAbilityKeys = Object.keys(Object.assign({}, baseAb, lvlAb));
+    if (allAbilityKeys.length > 0) {
+      html += '<p class="detail-sub-title">属性加成</p>';
+      html += '<table class="detail-table"><thead><tr><th>属性</th><th>初始</th><th>每级</th></tr></thead><tbody>';
+      allAbilityKeys.forEach(function(k) {
+        html += '<tr><td>' + window.escapeHTML(k) + '</td><td>' + (baseAb[k] || 0) + '</td><td>' + (lvlAb[k] || 0) + '</td></tr>';
+      });
+      html += '</tbody></table>';
+    }
+
+    // Professions
+    var baseProf = baseEff.professions || {};
+    var lvlProf = lvlEff.professions || {};
+    var allProfKeys = Object.keys(Object.assign({}, baseProf, lvlProf));
+    if (allProfKeys.length > 0) {
+      html += '<p class="detail-sub-title">技艺加成</p>';
+      html += '<table class="detail-table"><thead><tr><th>技艺</th><th>初始</th><th>每级</th></tr></thead><tbody>';
+      allProfKeys.forEach(function(k) {
+        var bProf = baseProf[k] || {};
+        var lProf = lvlProf[k] || {};
+        var bStr = (bProf.speed ? '速度+' + bProf.speed : '') + (bProf.efficiency ? ' 效率+' + bProf.efficiency : '') + (bProf.successRate ? ' 成功率+' + bProf.successRate : '') || '—';
+        var lStr = (lProf.speed ? '速度+' + lProf.speed : '') + (lProf.efficiency ? ' 效率+' + lProf.efficiency : '') + (lProf.successRate ? ' 成功率+' + lProf.successRate : '') || '—';
+        html += '<tr><td>' + window.escapeHTML(subActionTypeLabels[k] || k) + '</td><td>' + window.escapeHTML(bStr) + '</td><td>' + window.escapeHTML(lStr) + '</td></tr>';
+      });
+      html += '</tbody></table>';
+    }
+
+    if (allAbilityKeys.length === 0 && allProfKeys.length === 0) {
+      html += '<p class="detail-empty">无加成</p>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function renderJobReclassInfo(job) {
+    var html = '<div class="detail-section"><h5>转职信息</h5>';
+
+    // Prerequisites
+    var prereqs = job.prerequisites || [];
+    if (prereqs.length > 0) {
+      html += '<p><strong>前置职业：</strong>' + prereqs.map(function(p) { return window.escapeHTML(p); }).join('、') + '</p>';
+    }
+
+    // Reclass conditions
+    var conditions = job.reclassConditions || {};
+    var condParts = [];
+    if (conditions.requiredJobs && conditions.requiredJobs.length > 0) {
+      condParts.push(conditions.requiredJobs.map(function(rj) {
+        return rj.jobId + ' ≥ Lv.' + rj.minLevel;
+      }).join('；'));
+    }
+    if (conditions.requiredProfessions && conditions.requiredProfessions.length > 0) {
+      condParts.push(conditions.requiredProfessions.map(function(rp) {
+        return (subActionTypeLabels[rp.professionId] || rp.professionId) + ' ≥ ' + rp.minLevel;
+      }).join('；'));
+    }
+    html += '<p><strong>转职条件：</strong>' + (condParts.length > 0 ? condParts.join('；') : '无') + '</p>';
+
+    // Reclass cost
+    var cost = job.reclassCost || {};
+    var costParts = [];
+    if (cost.gold) costParts.push('金币 ×' + cost.gold);
+    if (cost.reclassPoints) costParts.push('转职次数 ×' + cost.reclassPoints);
+    if (cost.items && cost.items.length > 0) {
+      cost.items.forEach(function(ci) { costParts.push('物品#' + ci.itemId + ' ×' + ci.amount); });
+    }
+    html += '<p><strong>转职消耗：</strong>' + (costParts.length > 0 ? costParts.join('、') : '无') + '</p>';
+
+    // Exp info
+    html += '<p><strong>经验来源：</strong>' + (jobExpSourceLabels[job.expSource] || job.expSource) + '</p>';
+    html += '<p><strong>经验倍率：</strong>' + (job.expMultiplier !== undefined ? job.expMultiplier : '—') + '</p>';
+    var expProfs = job.expProfessions || [];
+    html += '<p><strong>触发技艺：</strong>' + (expProfs.length > 0 ? expProfs.join('、') : '全部技艺') + '</p>';
+
+    html += '</div>';
+    return html;
+  }
+
   function buildTableHeader(tableHead, columns) {
     tableHead.innerHTML = '';
     var tr = document.createElement('tr');
@@ -399,7 +560,7 @@
   }
 
   function updateTypeFilter(typeFilter, currentDataset) {
-    var options = currentDataset === 'items' ? itemTypeOptions : actionTypeOptions;
+    var options = currentDataset === 'items' ? itemTypeOptions : (currentDataset === 'jobs' ? jobCategoryOptions : actionTypeOptions);
     typeFilter.innerHTML = '';
     options.forEach(function(opt) {
       var option = document.createElement('option');
@@ -484,7 +645,7 @@
         emptyNotice.classList.add('hidden');
       }
 
-      var columns = currentDataset === 'items' ? itemColumns : actionColumns;
+      var columns = currentDataset === 'items' ? itemColumns : (currentDataset === 'jobs' ? jobColumns : actionColumns);
       buildTableHeader(tableHead, columns);
 
       list.forEach(function(item) {
@@ -507,6 +668,8 @@
             td.innerHTML = renderBadge(String(value), String(value));
           } else if (col.isBool) {
             td.innerHTML = renderBoolCell(value);
+          } else if (col.isTruthy) {
+            td.innerHTML = renderBoolCell(!!value);
           } else if (col.key === 'iconUrl' && typeof value === 'string' && (value.startsWith('http') || value.startsWith('/'))) {
             var img = document.createElement('img');
             img.className = 'icon-thumb';
@@ -525,6 +688,9 @@
           } else if (col.key === 'triggerType') {
             var trigLabel = triggerTypeLabels[value] || value;
             td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(trigLabel) + '</span>';
+          } else if (col.key === 'expSource') {
+            var expLabel = jobExpSourceLabels[value] || value;
+            td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(expLabel) + '</span>';
           } else {
             td.textContent = formatCell(value, col);
           }
@@ -564,6 +730,14 @@
               renderExtraParamsTable(extraParams) + '</div>';
           }
           detailContent += '</div>';
+        } else if (currentDataset === 'jobs') {
+          detailContent = '<div class="details">' +
+            '<div class="detail-section"><h5>描述</h5><p class="detail-desc">' + window.escapeHTML(item.desc || '') + '</p></div>' +
+            '<div class="detail-grid">' +
+            renderJobEffects(item) +
+            renderJobReclassInfo(item) +
+            '</div>' +
+            '</div>';
         } else {
           var description = item.itemDescription || item.description || '';
           detailContent = '<div class="details">' +

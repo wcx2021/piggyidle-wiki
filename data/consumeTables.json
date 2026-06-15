@@ -17,7 +17,7 @@
       {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 1,
+        "amount": 2,
         "chance": 1
       }
     ],
@@ -48,8 +48,26 @@
     "trigger_condition": ""
   },
   {
+    "consume_id": 9002,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3004,
+        "amount": 100,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
     "consume_id": 10001,
     "consume_items": [
+      {
+        "consume_type": "map_resource",
+        "target_id": 1,
+        "amount": 10,
+        "chance": 1
+      },
       {
         "consume_type": "resource",
         "target_id": 1,
@@ -87,9 +105,15 @@
     "consume_id": 10009,
     "consume_items": [
       {
-        "consume_type": "map_resource",
+        "consume_type": "resource_point",
+        "target_id": "crop",
+        "amount": 5,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
         "target_id": 1,
-        "amount": 10,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -99,9 +123,15 @@
     "consume_id": 10010,
     "consume_items": [
       {
-        "consume_type": "map_resource",
+        "consume_type": "resource_point",
+        "target_id": "crop",
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
         "target_id": 1,
-        "amount": 10,
+        "amount": 2,
         "chance": 1
       }
     ],
@@ -115,6 +145,12 @@
         "target_id": 3003,
         "amount": 10,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -126,6 +162,12 @@
         "consume_type": "item",
         "target_id": 3002,
         "amount": 5,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -139,6 +181,12 @@
         "target_id": 3002,
         "amount": 8,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 3,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -150,6 +198,12 @@
         "consume_type": "item",
         "target_id": 3003,
         "amount": 15,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
         "chance": 1
       }
     ],
@@ -163,6 +217,12 @@
         "target_id": 3003,
         "amount": 5,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 2,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -171,9 +231,15 @@
     "consume_id": 10100,
     "consume_items": [
       {
+        "consume_type": "resource_point",
+        "target_id": "wood",
+        "amount": 5,
+        "chance": 1
+      },
+      {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 1,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -183,9 +249,15 @@
     "consume_id": 10101,
     "consume_items": [
       {
+        "consume_type": "resource_point",
+        "target_id": "ore",
+        "amount": 5,
+        "chance": 1
+      },
+      {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 1,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -195,9 +267,15 @@
     "consume_id": 10102,
     "consume_items": [
       {
+        "consume_type": "resource_point",
+        "target_id": "herb",
+        "amount": 5,
+        "chance": 1
+      },
+      {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 1,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -207,9 +285,15 @@
     "consume_id": 10103,
     "consume_items": [
       {
+        "consume_type": "resource_point",
+        "target_id": "hunting_boar",
+        "amount": 5,
+        "chance": 1
+      },
+      {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 1,
+        "amount": 4,
         "chance": 1
       }
     ],
@@ -229,6 +313,12 @@
         "target_id": 3101,
         "amount": 2,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 3,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -240,6 +330,12 @@
         "consume_type": "item",
         "target_id": 3200,
         "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 5,
         "chance": 1
       }
     ],
@@ -253,6 +349,12 @@
         "target_id": 3106,
         "amount": 5,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -263,6 +365,12 @@
       {
         "consume_type": "item",
         "target_id": 3103,
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
         "amount": 3,
         "chance": 1
       }
@@ -276,6 +384,12 @@
         "consume_type": "item",
         "target_id": 3105,
         "amount": 2,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -295,6 +409,12 @@
         "target_id": 3102,
         "amount": 5,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 6,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -311,7 +431,7 @@
       {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 3,
+        "amount": 5,
         "chance": 1
       }
     ],
@@ -329,7 +449,7 @@
       {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 6,
+        "amount": 8,
         "chance": 1
       }
     ],
@@ -347,7 +467,7 @@
       {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 10,
+        "amount": 12,
         "chance": 1
       }
     ],
@@ -685,6 +805,12 @@
         "target_id": 3002,
         "amount": 5,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 3,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -702,6 +828,12 @@
         "consume_type": "item",
         "target_id": 3002,
         "amount": 2,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
         "chance": 1
       }
     ],
@@ -721,6 +853,12 @@
         "target_id": 3002,
         "amount": 3,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -738,6 +876,12 @@
         "consume_type": "item",
         "target_id": 3006,
         "amount": 1,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -757,6 +901,12 @@
         "target_id": 3006,
         "amount": 1,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 5,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -774,6 +924,12 @@
         "consume_type": "item",
         "target_id": 3006,
         "amount": 1,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 3,
         "chance": 1
       }
     ],
@@ -793,6 +949,12 @@
         "target_id": 3006,
         "amount": 2,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 5,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -810,6 +972,12 @@
         "consume_type": "item",
         "target_id": 3006,
         "amount": 1,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
         "chance": 1
       }
     ],
@@ -835,6 +1003,12 @@
         "target_id": 3006,
         "amount": 1,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -859,6 +1033,12 @@
         "target_id": 3006,
         "amount": 1,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 6,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -877,6 +1057,12 @@
         "target_id": 3006,
         "amount": 1,
         "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 4,
+        "chance": 1
       }
     ],
     "trigger_condition": ""
@@ -887,7 +1073,7 @@
       {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 1,
+        "amount": 3,
         "chance": 1
       }
     ],

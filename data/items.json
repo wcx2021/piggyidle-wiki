@@ -89,6 +89,7 @@
     "itemName": "蘑菇汤",
     "itemType": "consumable",
     "itemDescription": "用草原蘑菇熬制的浓汤，鲜香可口，饱食度+120",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
@@ -108,6 +109,7 @@
     "itemName": "草药茶",
     "itemType": "consumable",
     "itemDescription": "用薄荷泡制的清凉茶饮，饱食度+60",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
@@ -127,9 +129,10 @@
     "itemName": "铜锭",
     "itemType": "resource",
     "itemDescription": "粗加工半成品，锻造原料",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [],
     "growthCoefficient": null,
@@ -143,7 +146,7 @@
     "itemDescription": "粗加工半成品，炼金原料",
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [],
     "growthCoefficient": null,
@@ -155,6 +158,7 @@
     "itemName": "恢复药剂",
     "itemType": "consumable",
     "itemDescription": "炼金产出的浓缩药剂，饱食度+200",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
@@ -321,9 +325,9 @@
   },
   {
     "itemId": 2101,
-    "itemName": "技艺之书.伐木.草原牧草",
+    "itemName": "技艺之书.伐木.草原木",
     "itemType": "compendium",
-    "itemDescription": "初步研究产出。记载了在初始之地草原上伐木的方法，可获得草原牧草等木材。",
+    "itemDescription": "初步研究产出。记载了在初始之地草原上伐木的方法，可获得草原木等木材。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
@@ -512,7 +516,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -532,7 +536,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -552,7 +556,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -572,7 +576,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -592,7 +596,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -612,7 +616,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -623,7 +627,7 @@
     "itemId": 2206,
     "itemName": "技艺之书.伐木.硬木材",
     "itemType": "compendium",
-    "itemDescription": "深入研究产出。记载了在初始之地获取硬木材的方法，硬木材品质优于草原牧草。",
+    "itemDescription": "深入研究产出。记载了在初始之地获取硬木材的方法，硬木材品质优于草原木。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
@@ -632,7 +636,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -652,7 +656,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -663,7 +667,7 @@
     "itemId": 2208,
     "itemName": "技艺之书.纺织.草原布",
     "itemType": "compendium",
-    "itemDescription": "深入研究产出。记载了用草原牧草纺织布料的方法，草原布轻便保暖。",
+    "itemDescription": "深入研究产出。记载了用草原木纺织布料的方法，草原布轻便保暖。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
@@ -672,7 +676,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 1500
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -692,7 +696,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -712,7 +716,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -732,7 +736,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -752,7 +756,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -772,7 +776,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -792,7 +796,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -801,7 +805,7 @@
   },
   {
     "itemId": 2308,
-    "itemName": "技艺之书.狩猎.猛兽",
+    "itemName": "技艺之书.狩猎.巨兽",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了狩猎猛兽的方法，猛兽产出高品质粗皮和兽骨。",
     "iconUrl": "",
@@ -812,7 +816,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -832,7 +836,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -852,7 +856,7 @@
     "attributes": [
       {
         "name": "经验值",
-        "value": 5000
+        "value": 500
       }
     ],
     "growthCoefficient": null,
@@ -867,7 +871,7 @@
     "shopPrice": 100,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "itemDescription": "侦查小猪搜索到的地图碎片，可以合成初始之地的地图。",
     "useActionId": "CRAFT_MAP_INITIAL_LAND",
@@ -883,7 +887,7 @@
     "shopPrice": 50,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -897,7 +901,7 @@
     "shopPrice": 50,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -911,9 +915,9 @@
     "shopPrice": 50,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": false,
-    "useActionId": null,
+    "useActionId": "CRAFT_SKILLBOOK_INITIAL_LAND",
     "requiredLevels": [],
     "attributes": []
   },
@@ -921,12 +925,14 @@
     "itemId": 5005,
     "itemName": "萝卜刀",
     "itemType": "equipment",
+    "equipSlot": "mainHand",
     "itemDescription": "用胡萝卜锻造的小刀，锋利且实用",
+    "rarity": 1,
     "growthCoefficient": null,
     "shopPrice": 200,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -936,11 +942,12 @@
     "itemName": "草绳",
     "itemType": "resource",
     "itemDescription": "用猪草纺织的绳子，结实耐用",
+    "rarity": 1,
     "growthCoefficient": null,
     "shopPrice": 100,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -950,11 +957,12 @@
     "itemName": "草纸",
     "itemType": "resource",
     "itemDescription": "用猪草制造的纸张，粗糙但可用",
+    "rarity": 1,
     "growthCoefficient": null,
     "shopPrice": 80,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -964,11 +972,12 @@
     "itemName": "萝卜砖",
     "itemType": "resource",
     "itemDescription": "用胡萝卜制成的砖块，可以用来建造",
+    "rarity": 1,
     "growthCoefficient": null,
     "shopPrice": 150,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -982,7 +991,7 @@
     "shopPrice": 40,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -991,10 +1000,12 @@
     "itemId": 5010,
     "itemName": "铜剑",
     "itemType": "equipment",
+    "equipSlot": "mainHand",
     "itemDescription": "用铜锭锻造的短剑，锋利且实用",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [],
     "growthCoefficient": null,
@@ -1005,10 +1016,12 @@
     "itemId": 5303,
     "itemName": "粗皮甲",
     "itemType": "equipment",
+    "equipSlot": "body",
     "itemDescription": "用粗皮缝制的轻甲，灵活防护",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [],
     "growthCoefficient": null,
@@ -1019,10 +1032,12 @@
     "itemId": 5100,
     "itemName": "草鞭",
     "itemType": "equipment",
+    "equipSlot": "mainHand",
     "itemDescription": "用草绳编织的鞭子，挥动时轻快有力，可提升探索和采集效率",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1042,10 +1057,12 @@
     "itemId": 5300,
     "itemName": "草布衣",
     "itemType": "equipment",
+    "equipSlot": "body",
     "itemDescription": "用草布缝制的轻便衣物，穿着灵活，可提升探索效率",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1061,10 +1078,12 @@
     "itemId": 5301,
     "itemName": "粗皮衣",
     "itemType": "equipment",
+    "equipSlot": "body",
     "itemDescription": "用粗皮布缝制的坚韧衣物，保暖耐用，可提升探索和采集效率",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1084,10 +1103,12 @@
     "itemId": 5200,
     "itemName": "皮帽",
     "itemType": "equipment",
+    "equipSlot": "head",
     "itemDescription": "用粗皮布缝制的帽子，遮风挡雨，可提升采集效率",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1103,10 +1124,12 @@
     "itemId": 5302,
     "itemName": "萝卜铠甲",
     "itemType": "equipment",
+    "equipSlot": "body",
     "itemDescription": "用萝卜砖拼装的铠甲，坚固耐用，可减少饱食度消耗",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1122,10 +1145,12 @@
     "itemId": 5201,
     "itemName": "萝卜头盔",
     "itemType": "equipment",
+    "equipSlot": "head",
     "itemDescription": "用萝卜砖打磨的头盔，结实可靠，可减少饱食度消耗",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1141,10 +1166,13 @@
     "itemId": 5500,
     "itemName": "草布袋",
     "itemType": "equipment",
+    "equipSlot": "bag",
+    "extraPockets": 3,
     "itemDescription": "用粗皮布和草布缝制的背包，结实能装，可增加携带量",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1160,10 +1188,12 @@
     "itemId": 5501,
     "itemName": "笔记本",
     "itemType": "equipment",
+    "equipSlot": "offHand",
     "itemDescription": "用粗皮布包裹草纸装订的笔记本，记录心得，可增加经验获取",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1179,10 +1209,12 @@
     "itemId": 5101,
     "itemName": "萝卜镐",
     "itemType": "equipment",
+    "equipSlot": "offHand",
     "itemDescription": "用胡萝卜雕刻的镐子，出人意料地好用，可提升采矿效率",
+    "rarity": 1,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "attributes": [
       {
@@ -1196,14 +1228,14 @@
   },
   {
     "itemId": 3101,
-    "itemName": "草原牧草",
+    "itemName": "草原木",
     "itemType": "resource",
     "itemDescription": "草原上生长的牧草，可用于纺织和制造",
     "growthCoefficient": null,
     "shopPrice": 40,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1217,7 +1249,7 @@
     "shopPrice": 60,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1231,7 +1263,7 @@
     "shopPrice": 50,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1245,7 +1277,7 @@
     "shopPrice": 200,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1259,7 +1291,7 @@
     "shopPrice": 120,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1273,7 +1305,7 @@
     "shopPrice": 150,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1287,7 +1319,7 @@
     "shopPrice": 80,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": false,
     "useActionId": null,
     "requiredLevels": [],
@@ -1302,7 +1334,7 @@
     "shopPrice": 45,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1316,7 +1348,7 @@
     "shopPrice": 30,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1330,7 +1362,7 @@
     "shopPrice": 55,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1344,7 +1376,7 @@
     "shopPrice": 70,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1354,11 +1386,12 @@
     "itemName": "草布",
     "itemType": "resource",
     "itemDescription": "用猪草纺织的布料，轻便透气，可用于制作衣物",
+    "rarity": 1,
     "growthCoefficient": null,
     "shopPrice": 150,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1368,11 +1401,12 @@
     "itemName": "粗皮布",
     "itemType": "resource",
     "itemDescription": "用粗皮鞣制的布料，坚韧保暖，可用于制作衣物和护具",
+    "rarity": 1,
     "growthCoefficient": null,
     "shopPrice": 300,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1386,7 +1420,7 @@
     "shopPrice": 60,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1400,7 +1434,7 @@
     "shopPrice": 500,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1414,7 +1448,7 @@
     "shopPrice": 2000,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1428,7 +1462,7 @@
     "shopPrice": 10000,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
@@ -1527,9 +1561,112 @@
     "shopPrice": 100,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": true,
+    "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
+  },
+  {
+    "itemId": 7002,
+    "itemName": "草原地图",
+    "itemType": "map",
+    "itemDescription": "一片广阔的草原，适合放牧和种植",
+    "growthCoefficient": null,
+    "shopPrice": 100,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 7003,
+    "itemName": "森林地图",
+    "itemType": "map",
+    "itemDescription": "茂密的森林，资源丰富但充满危险",
+    "growthCoefficient": null,
+    "shopPrice": 150,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 7004,
+    "itemName": "沙漠地图",
+    "itemType": "map",
+    "itemDescription": "炎热的沙漠，资源稀缺但有独特的宝藏",
+    "growthCoefficient": null,
+    "shopPrice": 200,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 7005,
+    "itemName": "山地地图",
+    "itemType": "map",
+    "itemDescription": "高耸的山脉，矿产丰富但环境恶劣",
+    "growthCoefficient": null,
+    "shopPrice": 250,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 7006,
+    "itemName": "海洋地图",
+    "itemType": "map",
+    "itemDescription": "广阔的海洋，渔业资源丰富",
+    "growthCoefficient": null,
+    "shopPrice": 300,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 7007,
+    "itemName": "雪域地图",
+    "itemType": "map",
+    "itemDescription": "寒冷的雪域，资源有限但有特殊的冰原生物",
+    "growthCoefficient": null,
+    "shopPrice": 350,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "requiredLevels": [],
+    "attributes": []
+  },
+  {
+    "itemId": 8001,
+    "itemName": "初始小猪栏",
+    "itemType": "building",
+    "itemDescription": "新手领地的小猪栏，虽然小但是整洁，可以住两只小猪",
+    "iconUrl": null,
+    "isTradable": false,
+    "isInteractive": false,
+    "isDecomposable": false,
+    "attributes": [
+      {
+        "name": "猪口上限",
+        "value": 2
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": null
   }
 ]
