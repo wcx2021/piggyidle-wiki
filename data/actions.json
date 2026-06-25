@@ -790,22 +790,6 @@
     }
   },
   {
-    "actionId": "ITEM_USE_CRAFTBOOK_BLACKSMITH",
-    "actionType": "ITEM_USE",
-    "subActionType": "craft_book",
-    "actionName": "使用技艺之书.锻造.铜锭",
-    "triggerType": "EXTERNAL",
-    "exposeApi": true,
-    "isNeedActor": false,
-    "isNeedMap": false,
-    "consumeTableId": 10205,
-    "rewardTableId": null,
-    "extraParams": {
-      "craftId": "PIG_CRAFT_BLACKSMITH_COPPERSWORD",
-      "expPerBook": 500
-    }
-  },
-  {
     "actionId": "ITEM_USE_CRAFTBOOK_WEAVING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
@@ -849,7 +833,7 @@
     "consumeTableId": 10208,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PCRAFT_MAP_GRASSLAND_HARVEST",
+      "craftId": "PCRAFT_002",
       "expPerBook": 500
     }
   },
@@ -865,7 +849,7 @@
     "consumeTableId": 10209,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_HUNTING_GRASSLAND",
+      "craftId": "PIG_CRAFT_HUNTING_MONSTER",
       "expPerBook": 500
     }
   },
@@ -881,8 +865,8 @@
     "consumeTableId": 10210,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_LOGGING_GRASSLAND",
-      "expPerBook": 1500
+      "craftId": "PIG_CRAFT_LOGGING_HARDWOOD",
+      "expPerBook": 500
     }
   },
   {
@@ -897,8 +881,8 @@
     "consumeTableId": 10211,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_MINING_GRASSLAND",
-      "expPerBook": 1500
+      "craftId": "PIG_CRAFT_MINING_DEEPMINE",
+      "expPerBook": 500
     }
   },
   {
@@ -913,8 +897,8 @@
     "consumeTableId": 10212,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_HARVESTING_GRASSLAND",
-      "expPerBook": 1500
+      "craftId": "PIG_CRAFT_HARVEST_ADV",
+      "expPerBook": 500
     }
   },
   {
@@ -929,8 +913,8 @@
     "consumeTableId": 10213,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_HUNTING_GRASSLAND",
-      "expPerBook": 1500
+      "craftId": "PIG_CRAFT_HUNTING_BEAST",
+      "expPerBook": 500
     }
   },
   {
@@ -962,7 +946,7 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_BLACKSMITH_COPPERSWORD",
-      "expPerBook": 1500
+      "expPerBook": 500
     }
   },
   {
@@ -977,8 +961,8 @@
     "consumeTableId": 10217,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_WEAVING_LEATHERARMOR",
-      "expPerBook": 1500
+      "craftId": "PIG_CRAFT_WEAVE_GRASSCLOTH",
+      "expPerBook": 500
     }
   },
   {
@@ -993,8 +977,8 @@
     "consumeTableId": 10218,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_LOGGING_GRASSLAND",
-      "expPerBook": 5000
+      "craftId": "PIG_CRAFT_LOGGING_ANCIENT",
+      "expPerBook": 500
     }
   },
   {
@@ -1009,8 +993,8 @@
     "consumeTableId": 10219,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_MINING_GRASSLAND",
-      "expPerBook": 5000
+      "craftId": "PIG_CRAFT_MINING_MITHRIL",
+      "expPerBook": 500
     }
   },
   {
@@ -1025,8 +1009,8 @@
     "consumeTableId": 10220,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_HARVESTING_GRASSLAND",
-      "expPerBook": 5000
+      "craftId": "PIG_CRAFT_HARVEST_HERB",
+      "expPerBook": 500
     }
   },
   {
@@ -1041,8 +1025,8 @@
     "consumeTableId": 10221,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_HUNTING_GRASSLAND",
-      "expPerBook": 5000
+      "craftId": "PIG_CRAFT_HUNTING_MONSTER",
+      "expPerBook": 500
     }
   },
   {
@@ -1057,8 +1041,8 @@
     "consumeTableId": 10222,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
-      "expPerBook": 5000
+      "craftId": "PIG_CRAFT_ALCHEMY_POTION",
+      "expPerBook": 500
     }
   },
   {
@@ -1073,24 +1057,8 @@
     "consumeTableId": 10224,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_BLACKSMITH_COPPERSWORD",
-      "expPerBook": 5000
-    }
-  },
-  {
-    "actionId": "ITEM_USE_CRAFTBOOK_ALCHEMY_MASTER",
-    "actionType": "ITEM_USE",
-    "subActionType": "craft_book",
-    "actionName": "使用技艺之书.炼金.恢复药剂",
-    "triggerType": "EXTERNAL",
-    "exposeApi": true,
-    "isNeedActor": false,
-    "isNeedMap": false,
-    "consumeTableId": 10225,
-    "rewardTableId": null,
-    "extraParams": {
-      "craftId": "PIG_CRAFT_ALCHEMY_RESTOREPOTION",
-      "expPerBook": 5000
+      "craftId": "PIG_CRAFT_BLACKSMITH_REFINED",
+      "expPerBook": 500
     }
   },
   {
@@ -1613,7 +1581,7 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_PIGFEED",
-      "expPerBook": 1500
+      "expPerBook": 500
     }
   },
   {
@@ -1628,7 +1596,7 @@
     "consumeTableId": 10250,
     "rewardTableId": null,
     "extraParams": {
-      "craftId": "PIG_CRAFT_WEAVING_LEATHERARMOR",
+      "craftId": "PIG_CRAFT_WEAVE_COARSECLOTH",
       "expPerBook": 500
     }
   },
@@ -1645,7 +1613,7 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_RESEARCH_ADVANCED",
-      "expPerBook": 1500
+      "expPerBook": 500
     }
   },
   {
@@ -1661,7 +1629,350 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_RESEARCH_COMPLETE",
-      "expPerBook": 5000
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_LOGGING_HARDWOOD",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "logging",
+    "actionName": "伐木·硬木",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10100,
+    "rewardTableId": 20150,
+    "extraParams": {
+      "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 15,
+          "professionId": "logging"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "wood"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_LOGGING_ANCIENT",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "logging",
+    "actionName": "伐木·古木",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10100,
+    "rewardTableId": 20151,
+    "extraParams": {
+      "duration": 30,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 30,
+          "professionId": "logging"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "wood"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_MINING_DEEPMINE",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "mining",
+    "actionName": "采矿·深层矿",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10101,
+    "rewardTableId": 20152,
+    "extraParams": {
+      "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 15,
+          "professionId": "mining"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "ore"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_MINING_MITHRIL",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "mining",
+    "actionName": "采矿·秘银矿",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10101,
+    "rewardTableId": 20153,
+    "extraParams": {
+      "duration": 30,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 30,
+          "professionId": "mining"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "ore"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_HARVEST_ADV",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "harvesting",
+    "actionName": "采摘·薄荷",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10102,
+    "rewardTableId": 20154,
+    "extraParams": {
+      "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 10,
+          "professionId": "harvesting"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "herb"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_HARVEST_HERB",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "harvesting",
+    "actionName": "采摘·灵草",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10102,
+    "rewardTableId": 20155,
+    "extraParams": {
+      "duration": 25,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 25,
+          "professionId": "harvesting"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "herb"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_HUNTING_BEAST",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "hunting",
+    "actionName": "狩猎·猛兽",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10103,
+    "rewardTableId": 20156,
+    "extraParams": {
+      "duration": 25,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 15,
+          "professionId": "hunting"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "hunting_boar"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_HUNTING_MONSTER",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "hunting",
+    "actionName": "狩猎·巨兽",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": true,
+    "consumeTableId": 10103,
+    "rewardTableId": 20157,
+    "extraParams": {
+      "duration": 35,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 30,
+          "professionId": "hunting"
+        }
+      ],
+      "mapRequirements": {
+        "terrainTags": ["grassland"],
+        "resourcePointType": "hunting_boar"
+      },
+      "rareDrop": {
+        "targetId": 4102,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_BLACKSMITH_REFINED",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "forge",
+    "actionName": "锻造·精铜剑",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10111,
+    "rewardTableId": 20160,
+    "extraParams": {
+      "duration": 35,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 25,
+          "professionId": "blacksmith"
+        }
+      ],
+      "materialTier": 2,
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_WEAVE_BROCADE",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "weave",
+    "actionName": "纺织·锦缎",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10130,
+    "rewardTableId": 20159,
+    "extraParams": {
+      "duration": 20,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 25,
+          "professionId": "weaving"
+        }
+      ],
+      "materialTier": 2,
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
+    }
+  },
+  {
+    "actionId": "PIG_CRAFT_ALCHEMY_POTION",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "alchemy",
+    "actionName": "炼金·恢复药剂",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10115,
+    "rewardTableId": 20115,
+    "extraParams": {
+      "duration": 30,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 25,
+          "professionId": "alchemy"
+        }
+      ],
+      "materialTier": 2,
+      "rareDrop": {
+        "targetId": 4103,
+        "dropRateFormula": "0.01% * (1 + strength * 0.035) * (duration / 15)"
+      }
     }
   }
 ]

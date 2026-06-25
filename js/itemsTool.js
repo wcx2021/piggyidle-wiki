@@ -36,9 +36,10 @@
   ];
 
   var jobColumns = [
-    { key: 'id', label: '标识', aliases: ['id'] },
     { key: 'name', label: '名称', aliases: ['name'] },
-    { key: 'category', label: '分类', aliases: ['category'], isBadge: true }
+    { key: 'path', label: '职系', aliases: ['path'] },
+    { key: 'tier', label: '阶位', aliases: ['tier'] },
+    { key: 'isExclusive', label: '互斥', aliases: ['isExclusive'], isBool: true }
   ];
 
   var itemTypeOptions = [
@@ -66,11 +67,13 @@
     { value: 'BUILD_DEPLOY', label: '建筑部署' }
   ];
 
-  var jobCategoryOptions = [
+  var jobPathOptions = [
     { value: 'all', label: '全部' },
-    { value: 'race', label: '种族' },
-    { value: 'combat', label: '战斗系' },
-    { value: 'production', label: '生产系' }
+    { value: 'origin', label: '起源' },
+    { value: 'meat', label: '肉猪系' },
+    { value: 'knight', label: '骑士系' },
+    { value: 'dumb', label: '笨猪系' },
+    { value: 'smart', label: '聪明系' }
   ];
 
   var typeLabelMap = {
@@ -207,6 +210,63 @@
     4: '其他',
     5: '地图创建',
     6: '地图资源点'
+  };
+
+  var skillTypeLabels = {
+    passive: '被动',
+    active: '主动',
+    combat_active: '战斗主动',
+    combat_support: '战斗辅助',
+    domain: '领域'
+  };
+
+  var skillEffectLabels = {
+    attribute: '属性加成',
+    exp_bonus: '经验加成',
+    proficiency: '熟练加成',
+    resource_bonus: '资源加成',
+    item_gain: '获得道具',
+    global_buff: '全局增益',
+    resource_gain: '获得资源',
+    instant_heal: '立即恢复',
+    special: '特殊效果',
+    damage: '伤害',
+    heal: '治疗',
+    self_buff: '自身增益',
+    enemy_debuff: '敌方减益',
+    buff: '友方增益',
+    debuff: '敌方减益',
+    shield: '护盾',
+    position_bonus: '位置强化',
+    formation_bonus: '阵型强化',
+    condition_trigger: '条件触发'
+  };
+
+  var skillScopeLabels = {
+    both: '通用',
+    combat: '战斗',
+    life: '生活'
+  };
+
+  var skillTriggerLabels = {
+    always: '常驻',
+    on_attack: '攻击时',
+    on_hit: '受击时',
+    on_crit: '暴击时',
+    hp_below_30: '血量<30%',
+    on_kill: '击杀时',
+    on_enter_combat: '进入战斗',
+    position_front: '前排位置',
+    position_middle: '中排位置',
+    position_back: '后排位置'
+  };
+
+  var jobPathLabels = {
+    origin: '起源',
+    meat: '肉猪系',
+    knight: '骑士系',
+    dumb: '笨猪系',
+    smart: '聪明系'
   };
 
   function formatCell(v, col) {
@@ -545,6 +605,118 @@
     return html;
   }
 
+  var skillRangeLabels = {
+    melee: '近战',
+    ranged: '远程',
+    adjacent: '相邻',
+    column: '整列',
+    row: '整行',
+    area: '区域',
+    all: '全场',
+    self: '自身',
+    single: '单体',
+    aoe: '范围',
+    all_allies: '全体友方',
+    all_enemies: '全体敌人',
+    same_column: '同列',
+    same_row: '同行'
+  };
+
+  function renderJobSkills(job, skillsData) {
+    var skillIds = job.skills || [];
+    if (skillIds.length === 0) {
+      return '<div class="detail-section"><h5>技能列表</h5><p class="detail-empty">暂无技能</p></div>';
+    }
+
+    var html = '<div class="detail-section"><h5>技能列表</h5>';
+    html += '<table class="detail-table"><thead><tr><th>名称</th><th>类型</th><th>范围</th><th>描述/效果</th><th>能量/冷却</th><th>最高等级</th></tr></thead><tbody>';
+
+    skillIds.forEach(function(skillId) {
+      var skill = null;
+      for (var i = 0; i < skillsData.length; i++) {
+        if (skillsData[i].id === skillId) { skill = skillsData[i]; break; }
+      }
+
+      var typeLabel = skill ? (skillTypeLabels[skill.type] || skill.type || '—') : '—';
+      var effectLabel = skill ? (skillEffectLabels[skill.effect] || skill.effect || '—') : '—';
+      var triggerLabel = skill ? (skill.triggerCondition ? (skillTriggerLabels[skill.triggerCondition] || skill.triggerCondition) : '—') : '—';
+      var skillName = skill ? (skill.name || skill.id || skillId) : skillId;
+      var skillDesc = skill ? (skill.desc || '') : '';
+      var maxLevel = skill && skill.maxLevel ? skill.maxLevel : '—';
+
+      // scope/range unified display
+      var rangeParts = [];
+      if (skill && skill.scope) {
+        rangeParts.push(skillScopeLabels[skill.scope] || skill.scope);
+      }
+      if (skill && skill.range) {
+        rangeParts.push(skillRangeLabels[skill.range] || skill.range);
+      }
+      if (skill && skill.target && skill.target !== 'self' && skill.target !== 'single') {
+        rangeParts.push(skillRangeLabels[skill.target] || skill.target);
+      }
+      var rangeDisplay = rangeParts.length > 0 ? rangeParts.join(' / ') : '—';
+
+      // description with effect fields
+      var descParts = [];
+      if (skillDesc) descParts.push(skillDesc);
+      if (skill && skill.effect && skill.effect !== 'attribute') {
+        descParts.push('[' + effectLabel + ']');
+      }
+      if (skill && skill.damageType) {
+        descParts.push('伤害类型: ' + skill.damageType);
+      }
+      if (skill && skill.damageFormula) {
+        descParts.push('公式: ' + skill.damageFormula);
+      }
+      if (skill && skill.triggerCondition && skill.triggerCondition !== 'always') {
+        descParts.push('触发: ' + triggerLabel);
+      }
+      if (skill && skill.duration) {
+        descParts.push('持续: ' + skill.duration + '回合');
+      }
+      if (skill && skill.isDebuff) {
+        descParts.push('[debuff]');
+      }
+      if (skill && skill.passiveBonus) {
+        var pbEffect = skillEffectLabels[skill.passiveBonus.effect] || skill.passiveBonus.effect;
+        descParts.push('被动附加: ' + pbEffect);
+      }
+      var displayDesc = descParts.length > 0 ? descParts.join('；') : '—';
+
+      // energy / cooldown display (energy for active, cooldown for combat_active)
+      var energyCdParts = [];
+      if (skill && skill.type === 'active') {
+        var energyCost = skill.energyCostFormula || (skill.energyCost !== undefined ? String(skill.energyCost) : '—');
+        var energyMax = skill.energyMaxFormula || (skill.energyMax !== undefined ? String(skill.energyMax) : '—');
+        var regenRate = skill.regenRateFormula || (skill.regenRate !== undefined ? String(skill.regenRate) : '—');
+        energyCdParts.push(energyCost + '/' + energyMax + ' 能量');
+        energyCdParts.push('+' + regenRate + '/h');
+        if (skill.cooldown && skill.cooldown > 0) energyCdParts.push(skill.cooldown + '秒');
+      } else if (skill && skill.type === 'combat_active') {
+        energyCdParts.push(skill.cooldown + '回合');
+        if (skill.duration) energyCdParts.push('持续 ' + skill.duration + '回合');
+      } else if (skill && skill.type === 'combat_support' || skill && skill.type === 'domain') {
+        if (skill.cooldown) energyCdParts.push(skill.cooldown + '回合');
+        if (skill.duration) energyCdParts.push('持续 ' + skill.duration + '回合');
+      }
+      var energyCdDisplay = energyCdParts.length > 0 ? energyCdParts.join(' / ') : '—';
+
+      html += '<tr>' +
+        '<td><strong>' + window.escapeHTML(skillName) + '</strong>' +
+        '<span class="ref-id">#' + window.escapeHTML(skillId) + '</span></td>' +
+        '<td>' + window.escapeHTML(typeLabel) + '</td>' +
+        '<td>' + window.escapeHTML(rangeDisplay) + '</td>' +
+        '<td>' + window.escapeHTML(displayDesc) + '</td>' +
+        '<td>' + window.escapeHTML(energyCdDisplay) + '</td>' +
+        '<td>' + window.escapeHTML(String(maxLevel)) + '</td>' +
+        '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+    return html;
+  }
+
   function buildTableHeader(tableHead, columns) {
     tableHead.innerHTML = '';
     var tr = document.createElement('tr');
@@ -560,7 +732,7 @@
   }
 
   function updateTypeFilter(typeFilter, currentDataset) {
-    var options = currentDataset === 'items' ? itemTypeOptions : (currentDataset === 'jobs' ? jobCategoryOptions : actionTypeOptions);
+    var options = currentDataset === 'items' ? itemTypeOptions : (currentDataset === 'jobs' ? jobPathOptions : actionTypeOptions);
     typeFilter.innerHTML = '';
     options.forEach(function(opt) {
       var option = document.createElement('option');
@@ -594,6 +766,7 @@
     var consumeTables = [];
     var rewardTables = [];
     var itemsData = [];
+    var skillsData = [];
 
     function updateStats(total, filtered) {
       if (total === filtered) {
@@ -611,7 +784,7 @@
 
       if (typeVal !== 'all') {
         list = list.filter(function(it) {
-          var t = it.itemType || it.type || it.actionType || '';
+          var t = it.itemType || it.type || it.actionType || it.path || '';
           return t === typeVal;
         });
       }
@@ -691,6 +864,11 @@
           } else if (col.key === 'expSource') {
             var expLabel = jobExpSourceLabels[value] || value;
             td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(expLabel) + '</span>';
+          } else if (col.key === 'path') {
+            var pathLabel = jobPathLabels[value] || value;
+            td.innerHTML = '<span class="type-badge" style="background:#8b5cf61a;color:#8b5cf6;border:1px solid #8b5cf633;">' + window.escapeHTML(pathLabel) + '</span>';
+          } else if (col.key === 'tier') {
+            td.innerHTML = 'T' + window.escapeHTML(String(value));
           } else {
             td.textContent = formatCell(value, col);
           }
@@ -737,6 +915,7 @@
             renderJobEffects(item) +
             renderJobReclassInfo(item) +
             '</div>' +
+            renderJobSkills(item, skillsData) +
             '</div>';
         } else {
           var description = item.itemDescription || item.description || '';
@@ -776,6 +955,9 @@
         fetches.push(window.fetchDataset('rewardTables'));
         fetches.push(window.fetchDataset('items'));
       }
+      if (currentDataset === 'jobs') {
+        fetches.push(window.fetchDataset('skills'));
+      }
 
       Promise.all(fetches).then(function(results) {
         data = Array.isArray(results[0]) ? results[0] : [];
@@ -783,6 +965,8 @@
           consumeTables = Array.isArray(results[1]) ? results[1] : [];
           rewardTables = Array.isArray(results[2]) ? results[2] : [];
           itemsData = Array.isArray(results[3]) ? results[3] : [];
+        } else if (currentDataset === 'jobs') {
+          skillsData = Array.isArray(results[1]) ? results[1] : [];
         } else {
           itemsData = data;
         }

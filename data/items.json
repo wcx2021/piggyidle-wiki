@@ -935,7 +935,12 @@
     "isInteractive": false,
     "isDecomposable": true,
     "requiredLevels": [],
-    "attributes": []
+    "attributes": [
+      {
+        "name": "攻击力",
+        "value": 3
+      }
+    ]
   },
   {
     "itemId": 3006,
@@ -1007,7 +1012,12 @@
     "isTradable": true,
     "isInteractive": false,
     "isDecomposable": true,
-    "attributes": [],
+    "attributes": [
+      {
+        "name": "攻击力",
+        "value": 8
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 300
@@ -1023,7 +1033,12 @@
     "isTradable": true,
     "isInteractive": false,
     "isDecomposable": true,
-    "attributes": [],
+    "attributes": [
+      {
+        "name": "护甲",
+        "value": 5
+      }
+    ],
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 250
@@ -1466,6 +1481,132 @@
     "isDecomposable": true,
     "requiredLevels": [],
     "attributes": []
+  },
+  {
+    "itemId": 3115,
+    "itemName": "硬木",
+    "itemType": "resource",
+    "itemDescription": "伐木进阶产出，质地坚硬的木材，可用于高级制造和锻造",
+    "rarity": 1,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 120
+  },
+  {
+    "itemId": 3116,
+    "itemName": "古木",
+    "itemType": "resource",
+    "itemDescription": "伐木稀有产出，年代久远的古木，蕴含丰沛的自然能量",
+    "rarity": 2,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 300
+  },
+  {
+    "itemId": 3117,
+    "itemName": "深层矿石",
+    "itemType": "resource",
+    "itemDescription": "采矿进阶产出，深层矿脉采出的矿石，富含稀有金属",
+    "rarity": 1,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 150
+  },
+  {
+    "itemId": 3118,
+    "itemName": "秘银矿",
+    "itemType": "resource",
+    "itemDescription": "采矿稀有产出，稀有的秘银矿石，质地轻盈却坚韧无比",
+    "rarity": 2,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 500
+  },
+  {
+    "itemId": 3119,
+    "itemName": "灵草",
+    "itemType": "resource",
+    "itemDescription": "采摘稀有产出，吸收了大地灵气的草药，可用于高级炼金",
+    "rarity": 2,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 250
+  },
+  {
+    "itemId": 3123,
+    "itemName": "巨兽皮",
+    "itemType": "resource",
+    "itemDescription": "狩猎稀有产出，从巨型野兽身上剥下的毛皮，厚实坚韧",
+    "rarity": 2,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 350
+  },
+  {
+    "itemId": 3124,
+    "itemName": "锦缎",
+    "itemType": "resource",
+    "itemDescription": "纺织稀有产出，用精选纤维织成的华丽锦缎，轻软柔韧",
+    "rarity": 2,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 400
+  },
+  {
+    "itemId": 5011,
+    "itemName": "精铜剑",
+    "itemType": "equipment",
+    "equipSlot": "mainHand",
+    "itemDescription": "用精炼铜锻造的短剑，品质优于普通铜剑",
+    "rarity": 2,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": false,
+    "isDecomposable": true,
+    "attributes": [
+      {
+        "name": "攻击力",
+        "value": 15
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 800
   },
   {
     "itemId": 4001,

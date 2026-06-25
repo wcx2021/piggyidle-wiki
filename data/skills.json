@@ -1,0 +1,175 @@
+[
+  {
+    "id": "template_passive",
+    "name": "模板被动技能",
+    "desc": "被动技能模板，常驻生效。scope 决定生效场景",
+    "type": "passive",
+    "scope": "both",
+    "maxLevel": 40,
+    "effect": "attribute",
+    "params": {
+      "skillLevelCoeff": 0,
+      "jobLevelCoeff": 0,
+      "attribute": "constitution"
+    },
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator", "JobDetail"],
+      "scope": ["skill.service"],
+      "effect": ["skillCalculator", "combatEngine"],
+      "params": ["skillCalculator"]
+    },
+    "_comment": "effect 可选: attribute / exp_bonus / proficiency / resource_bonus。scope 可选: life / combat / both"
+  },
+  {
+    "id": "template_active",
+    "name": "模板主动技能",
+    "desc": "主动技能模板，战斗外手动使用，带能量消耗系统",
+    "type": "active",
+    "scope": "life",
+    "maxLevel": 40,
+    "cooldown": 300,
+    "energyFormula": "100",
+    "energyMaxFormula": "100 + $level * 5",
+    "energyCostFormula": "max(10, 30 - $level)",
+    "regenRateFormula": "10",
+    "effect": "item_gain",
+    "params": {
+      "skillLevelCoeff": 0,
+      "jobLevelCoeff": 0,
+      "itemId": "",
+      "itemCount": 1
+    },
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator", "JobDetail"],
+      "cooldown": ["skill.service"],
+      "energyFormula": ["skill.service", "skillCalculator"],
+      "energyMaxFormula": ["skill.service", "skillCalculator"],
+      "energyCostFormula": ["skill.service", "skillCalculator"],
+      "regenRateFormula": ["skill.service", "skillCalculator"],
+      "effect": ["skill.service"],
+      "params": ["skillCalculator"]
+    },
+    "_comment": "scope 固定 life。effect 可选: item_gain / global_buff / resource_gain / instant_heal / special。能量相关数值统一使用公式字段，固定值也是公式字符串"
+  },
+  {
+    "id": "template_combat_active",
+    "name": "模板战斗主动",
+    "desc": "战斗主动技能模板，战斗中释放",
+    "type": "combat_active",
+    "scope": "combat",
+    "maxLevel": 40,
+    "cooldown": 3,
+    "duration": null,
+    "target": "single",
+    "range": "melee",
+    "effect": "damage",
+    "damageType": "物理",
+    "damageFormula": "10 + $level * 5 + $attack * 1.0 - $defense * 0.3",
+    "params": {},
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
+      "cooldown": ["combatEngine"],
+      "target": ["combatEngine"],
+      "range": ["combatEngine"],
+      "effect": ["combatEngine", "skillCalculator"],
+      "damageType": ["combatEngine"],
+      "damageFormula": ["skillCalculator", "combatEngine"]
+    },
+    "_comment": "scope 固定 combat。target 可选: self/single/aoe/all_allies/all_enemies。damageType 可选: 冲撞/物理/魔法/灼烧/毒素。damageFormula 使用 $level/$attack/$defense/$hp/$eightDim 等变量"
+  },
+  {
+    "id": "template_combat_support",
+    "name": "模板战斗辅助",
+    "desc": "战斗辅助技能模板，buff/debuff/护盾",
+    "type": "combat_support",
+    "scope": "combat",
+    "maxLevel": 40,
+    "target": "all_allies",
+    "range": "adjacent",
+    "duration": 3,
+    "effect": "buff",
+    "damageFormula": "5 + $level * 2",
+    "params": {
+      "attribute": "attack"
+    },
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
+      "target": ["combatEngine"],
+      "range": ["combatEngine"],
+      "duration": ["combatEngine"],
+      "effect": ["combatEngine", "skillCalculator"],
+      "damageFormula": ["skillCalculator"]
+    },
+    "_comment": "scope 固定 combat。effect 可选: buff/debuff/shield。range 可选: melee/ranged/adjacent/column/row/area/all"
+  },
+  {
+    "id": "template_domain",
+    "name": "模板领域技能",
+    "desc": "领域技能模板，位置/条件触发的强化",
+    "type": "domain",
+    "scope": "combat",
+    "maxLevel": 40,
+    "target": "self",
+    "range": "melee",
+    "triggerCondition": "position_front",
+    "positionBonus": 1.0,
+    "duration": null,
+    "effect": "position_bonus",
+    "damageFormula": "$attack * 1.5 * positionBonus",
+    "params": {},
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
+      "target": ["combatEngine"],
+      "range": ["combatEngine"],
+      "triggerCondition": ["combatEngine"],
+      "positionBonus": ["combatEngine"],
+      "effect": ["combatEngine", "skillCalculator"],
+      "damageFormula": ["skillCalculator"]
+    },
+    "_comment": "scope 固定 combat。triggerCondition 可选: position_front/middle/back / hp_below_30 / on_kill / always"
+  },
+  {
+    "id": "pig_basic_attack",
+    "name": "拱",
+    "desc": "普通攻击，近战冲撞伤害",
+    "type": "combat_active",
+    "scope": "combat",
+    "maxLevel": 1,
+    "cooldown": 0,
+    "duration": null,
+    "target": "single",
+    "range": "melee",
+    "effect": "damage",
+    "damageType": "冲撞",
+    "damageFormula": "10 + $level * 0 + $attack * 0.8 - $defense * 0.3",
+    "params": {},
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator", "combatEngine"],
+      "cooldown": ["combatEngine"],
+      "target": ["combatEngine"],
+      "range": ["combatEngine"],
+      "effect": ["combatEngine", "skillCalculator"],
+      "damageType": ["combatEngine"],
+      "damageFormula": ["skillCalculator", "combatEngine"]
+    }
+  },
+  {
+    "id": "dumb_learn_1",
+    "name": "好学1",
+    "desc": "被动技能，增加经验获取",
+    "type": "passive",
+    "scope": "both",
+    "maxLevel": 20,
+    "effect": "exp_bonus",
+    "params": {
+      "skillLevelCoeff": 0.01,
+      "jobLevelCoeff": 0
+    },
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator"],
+      "scope": ["skill.service"],
+      "effect": ["skillCalculator"],
+      "params": ["skillCalculator"]
+    }
+  }
+]

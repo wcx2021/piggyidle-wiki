@@ -30,6 +30,7 @@
         { title: '生活说明', slug: 'guidebook/life-description' },
         { title: '战斗说明', slug: 'guidebook/combat-description' },
         { title: '属性说明', slug: 'guidebook/properties' },
+        { title: '职业与技能', slug: 'guidebook/jobs-and-skills' },
         { title: '战斗设置说明', slug: 'guidebook/combat-settings' },
         { title: '交易说明', slug: 'guidebook/trading-description' }
       ]

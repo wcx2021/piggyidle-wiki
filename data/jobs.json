@@ -2,244 +2,649 @@
   {
     "id": "pig",
     "name": "小猪",
-    "desc": "初始种族，无特殊加成",
-    "category": "race",
+    "desc": "初始起源，无特殊加成",
+    "path": "origin",
+    "tier": 0,
+    "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
     "expSource": "none",
     "expMultiplier": 0,
     "expProfessions": [],
+    "skills": ["pig_basic_attack"],
     "prerequisites": [],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 0
-    },
-    "reclassConditions": {
-      "requiredJobs": []
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
+    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "meat_pig",
+    "name": "肥猪",
+    "desc": "肉猪系基础职业，体质×制作，体格健壮适合体力劳动",
+    "path": "meat",
+    "tier": 1,
+    "isExclusive": false,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 1.0,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": [],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
+    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "bartender_pig",
+    "name": "酒保猪",
+    "desc": "肉猪系进阶职业，调酒烹饪样样精通",
+    "path": "meat",
+    "tier": 2,
+    "isExclusive": false,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.8,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["meat_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "meat_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "security_pig",
+    "name": "安保猪",
+    "desc": "肉猪系互斥分支，专职安保，力大无穷",
+    "path": "meat",
+    "tier": 3,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.6,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["bartender_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "bartender_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "mercenary_pig",
+    "name": "佣兵猪",
+    "desc": "肉猪系高级职业，身经百战的雇佣战士",
+    "path": "meat",
+    "tier": 4,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.5,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["security_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "security_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "guard_pig",
+    "name": "猪卫兵",
+    "desc": "肉猪系进阶高级职业，忠心护主的精锐卫士",
+    "path": "meat",
+    "tier": 5,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.4,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["mercenary_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "mercenary_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "royal_guard_pig",
+    "name": "猪王近卫",
+    "desc": "肉猪系终极职业，猪王麾下最强护卫",
+    "path": "meat",
+    "tier": 6,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.3,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["guard_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "guard_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "runner_pig",
+    "name": "跑猪",
+    "desc": "骑士系基础职业，敏捷×探索，跑得快看得远",
+    "path": "knight",
+    "tier": 1,
+    "isExclusive": false,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 1.0,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": [],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
+    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "scout_pig",
+    "name": "侦查猪",
+    "desc": "骑士系互斥分支，专职侦查，敏锐洞察",
+    "path": "knight",
+    "tier": 2,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.8,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["runner_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "runner_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "fang_pig",
+    "name": "利齿猪",
+    "desc": "骑士系高级职业，牙尖嘴利，攻击凌厉",
+    "path": "knight",
+    "tier": 3,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.6,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["scout_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "scout_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "knight_pig",
+    "name": "猪骑士",
+    "desc": "骑士系进阶高级职业，驰骋战场的骑士",
+    "path": "knight",
+    "tier": 4,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.5,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["fang_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "fang_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "iron_knight_pig",
+    "name": "猪铁骑",
+    "desc": "骑士系精锐职业，铁甲冲锋所向披靡",
+    "path": "knight",
+    "tier": 5,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.4,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["knight_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "knight_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "war_chariot_pig",
+    "name": "猪猪战车",
+    "desc": "骑士系终极职业，化身战车碾压一切",
+    "path": "knight",
+    "tier": 6,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.3,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["iron_knight_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "iron_knight_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
     }
   },
   {
     "id": "dumb_pig",
     "name": "笨猪",
-    "desc": "研究系基础职业，虽然笨但肯钻研",
-    "category": "production",
+    "desc": "笨猪系/聪明系共通基础职业，意志×探索/智力×研究，虽然笨但肯钻研",
+    "path": "dumb",
+    "tier": 1,
+    "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
     "expSource": "profession_exp",
     "expMultiplier": 1.0,
     "expProfessions": [],
+    "skills": ["dumb_learn_1"],
     "prerequisites": [],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 0
-    },
-    "reclassConditions": {
-      "requiredJobs": []
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
+    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "big_smart_pig",
+    "name": "大聪明猪",
+    "desc": "笨猪系进阶职业，大智若愚",
+    "path": "dumb",
+    "tier": 2,
+    "isExclusive": false,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.8,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["dumb_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "dumb_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "dumb_origin_pig",
+    "name": "笨猪源头",
+    "desc": "笨猪系互斥分支，回归本源，领悟笨之真谛",
+    "path": "dumb",
+    "tier": 3,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.6,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["big_smart_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "big_smart_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "prophet_pig",
+    "name": "预言猪",
+    "desc": "笨猪系高级职业，洞察未来的预言者",
+    "path": "dumb",
+    "tier": 4,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.5,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["dumb_origin_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "dumb_origin_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "oracle_pig",
+    "name": "先知猪",
+    "desc": "笨猪系进阶高级职业，通晓天命的先知",
+    "path": "dumb",
+    "tier": 5,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.4,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["prophet_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "prophet_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "pink_evil_pig",
+    "name": "粉色邪恶",
+    "desc": "笨猪系终极职业，粉色外表下隐藏着不可名状的力量",
+    "path": "dumb",
+    "tier": 6,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.3,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["oracle_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "oracle_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
     }
   },
   {
     "id": "research_pig",
     "name": "研究猪",
-    "desc": "研究系进阶职业，专注学术研究",
-    "category": "production",
+    "desc": "聪明系进阶职业，专注学术研究",
+    "path": "smart",
+    "tier": 2,
+    "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
     "expSource": "profession_exp",
     "expMultiplier": 0.8,
     "expProfessions": [],
+    "skills": [],
     "prerequisites": ["dumb_pig"],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 1
-    },
-    "reclassConditions": {
-      "requiredJobs": [{ "jobId": "dumb_pig", "minLevel": 5 }]
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "dumb_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "pharmacist_pig",
+    "name": "药师猪",
+    "desc": "聪明系互斥分支，精通药理，悬壶济猪",
+    "path": "smart",
+    "tier": 3,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.6,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["research_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "research_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
+    }
+  },
+  {
+    "id": "smart_pig",
+    "name": "聪明猪",
+    "desc": "聪明系高级职业，学贯古今",
+    "path": "smart",
+    "tier": 4,
+    "isExclusive": true,
+    "iconItemId": null,
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
+    "expSource": "profession_exp",
+    "expMultiplier": 0.5,
+    "expProfessions": [],
+    "skills": [],
+    "prerequisites": ["pharmacist_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "pharmacist_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
     }
   },
   {
     "id": "phd_pig",
     "name": "读博猪",
-    "desc": "研究系高级职业，深造不止",
-    "category": "production",
+    "desc": "聪明系进阶高级职业，深造不止",
+    "path": "smart",
+    "tier": 5,
+    "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
     "expSource": "profession_exp",
-    "expMultiplier": 0.6,
+    "expMultiplier": 0.4,
     "expProfessions": [],
-    "prerequisites": ["research_pig"],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 1
-    },
-    "reclassConditions": {
-      "requiredJobs": [{ "jobId": "research_pig", "minLevel": 5 }]
+    "skills": [],
+    "prerequisites": ["smart_pig"],
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "smart_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
     }
   },
   {
     "id": "doctor_pig",
     "name": "小猪医生",
-    "desc": "研究系终极职业，学有所成，悬壶济猪",
-    "category": "production",
+    "desc": "聪明系终极职业，学有所成，悬壶济猪",
+    "path": "smart",
+    "tier": 6,
+    "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
+    "baseEffect": { "abilities": {}, "professions": {} },
+    "levelEffect": { "abilities": {}, "professions": {} },
     "expSource": "profession_exp",
-    "expMultiplier": 0.4,
+    "expMultiplier": 0.3,
     "expProfessions": [],
+    "skills": [],
     "prerequisites": ["phd_pig"],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 1
-    },
-    "reclassConditions": {
-      "requiredJobs": [{ "jobId": "phd_pig", "minLevel": 5 }]
-    }
-  },
-  {
-    "id": "merchant_pig",
-    "name": "猪商",
-    "desc": "交易系基础职业，初入商海",
-    "category": "production",
-    "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "expSource": "profession_exp",
-    "expMultiplier": 1.0,
-    "expProfessions": [],
-    "prerequisites": [],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 0
-    },
-    "reclassConditions": {
-      "requiredJobs": []
-    }
-  },
-  {
-    "id": "reseller_pig",
-    "name": "倒卖猪",
-    "desc": "交易系进阶职业，低买高卖",
-    "category": "production",
-    "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "expSource": "profession_exp",
-    "expMultiplier": 0.8,
-    "expProfessions": [],
-    "prerequisites": ["merchant_pig"],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 1
-    },
-    "reclassConditions": {
-      "requiredJobs": [{ "jobId": "merchant_pig", "minLevel": 5 }]
-    }
-  },
-  {
-    "id": "trader_pig",
-    "name": "交易猪",
-    "desc": "交易系高级职业，纵横市场",
-    "category": "production",
-    "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "expSource": "profession_exp",
-    "expMultiplier": 0.6,
-    "expProfessions": [],
-    "prerequisites": ["reseller_pig"],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 1
-    },
-    "reclassConditions": {
-      "requiredJobs": [{ "jobId": "reseller_pig", "minLevel": 5 }]
-    }
-  },
-  {
-    "id": "tycoon_pig",
-    "name": "大猪本家",
-    "desc": "交易系终极职业，富可敌国",
-    "category": "production",
-    "iconItemId": null,
-    "baseEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "levelEffect": {
-      "abilities": {},
-      "professions": {}
-    },
-    "expSource": "profession_exp",
-    "expMultiplier": 0.4,
-    "expProfessions": [],
-    "prerequisites": ["trader_pig"],
-    "reclassCost": {
-      "items": [],
-      "gold": 0,
-      "reclassPoints": 1
-    },
-    "reclassConditions": {
-      "requiredJobs": [{ "jobId": "trader_pig", "minLevel": 5 }]
+    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
+    "reclassConditions": { "requiredJobs": [{ "jobId": "phd_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "exclusiveWith": [],
+    "_consumers": {
+      "id": ["job.service", "pigsSlice", "JobDetail"],
+      "path": ["job.service", "JobPathTree"],
+      "tier": ["job.service", "JobPathTree"],
+      "isExclusive": ["job.service", "reclassValidator"],
+      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "exclusiveWith": []
     }
   }
 ]

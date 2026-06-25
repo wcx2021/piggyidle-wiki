@@ -2,30 +2,184 @@
   <link rel="stylesheet" href="../../assets/css/guide.css">
 
   <h2>猪栏</h2>
-  <p class="spaced">猪栏是小猪称霸世界的初始之地，是管理小猪的核心场所。</p>
+  <p class="spaced">猪栏是小猪称霸世界的初始之地，是管理小猪的核心场所。在猪栏中，你可以查看每只小猪的详细信息、装备管理、操作指令等。</p>
 
-  <h3>小猪概述</h3>
-  <p class="lead spaced"><strong class="important">自古就流传着要珍惜小猪的传说</strong>，每一只小猪都能给领主带来可观的收益，为了领地建设添砖加瓦。</p>
-  <p class="spaced">每一只小猪都拥有基础信息、装备信息、生活属性、战斗属性等条目。</p>
-  <p class="spaced">小猪是你永远的朋友<span class="muted reveal-on-hover" >(<span class="underline">nuli</span>）</span>，所以你可以任意修改小猪的相关设定。</p>
-  <p class="spaced">玩家可以通过转职或者行动来锻炼小猪以提升能力。小猪的能力属性（生活属性、战斗属性）由其职业（包括职业和装备）和技能等级共同决定。</p>
+  <!-- ==================== 小猪信息面板 ==================== -->
+  <h3>小猪信息面板</h3>
+  <p class="lead spaced">每只小猪都拥有一套完整的属性面板，涵盖基础信息、战斗属性和生活属性。</p>
 
+  <h4>基础信息</h4>
+  <table class="data-table">
+    <thead>
+      <tr><th style="width:100px">字段</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>名称</td><td>小猪的昵称，可在猪栏中自定义</td></tr>
+      <tr><td>头像</td><td>随职业变化，不同职业拥有不同头像</td></tr>
+      <tr><td>总等级</td><td>八维属性等级，决定基础能力值</td></tr>
+      <tr><td>职业与阶位</td><td>当前激活的职业及所在阶位（Tier 0~6）</td></tr>
+      <tr><td>技能</td><td>当前职业解锁的主动/被动技能列表</td></tr>
+      <tr><td>体重</td><td>当前体重 / 吃饱体重（详见体重系统）</td></tr>
+      <tr><td>行动状态</td><td>空闲、行动中、昏迷等</td></tr>
+      <tr><td>猪口上限</td><td>领地等级决定最多能拥有多少只小猪</td></tr>
+    </tbody>
+  </table>
+
+  <h4>属性系统</h4>
+  <p class="spaced">小猪的属性由职业、装备、技能等级共同决定，分为以下三大类：</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th style="width:120px">属性类型</th><th style="width:140px">包含属性</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>八维属性</strong></td>
+        <td>体质、敏捷、力量、智力、意志、感知、魅力、幸运</td>
+        <td>基础成长属性，决定小猪的基础能力。升级/转生可提升。是职业强度、技能效果和战斗计算的核心参数</td>
+      </tr>
+      <tr>
+        <td><strong>生活属性</strong></td>
+        <td>体重、料肉比</td>
+        <td>体重视作体力与生命值，行动消耗体重，饲料补充体重。料肉比决定饲料转化效率</td>
+      </tr>
+      <tr>
+        <td><strong>战斗属性</strong></td>
+        <td>攻击、防御、速度、暴击、闪避等</td>
+        <td>由职业基础值、装备加成和八维属性共同推导，决定战斗表现</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>装备栏</h4>
+  <p class="spaced">小猪可穿戴装备来提升属性。装备有对应的装备槽位和等级限制，转生后可继承。</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>槽位</th><th>可装备类型</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>主手</td><td>剑、刀、法杖等</td><td>主要武器，决定攻击方式</td></tr>
+      <tr><td>副手</td><td>盾牌、副手武器</td><td>副武器或防御装备</td></tr>
+      <tr><td>头盔</td><td>头盔、帽子</td><td>头部防具</td></tr>
+      <tr><td>衣服</td><td>铠甲、布衣</td><td>身体防具，核心防御部位</td></tr>
+      <tr><td>裤子</td><td>护腿、裤子</td><td>腿部防具</td></tr>
+      <tr><td>鞋子</td><td>靴子、鞋子</td><td>足部防具，影响速度</td></tr>
+      <tr><td>项链</td><td>项链、挂坠</td><td>饰品，提供特殊加成</td></tr>
+      <tr><td>戒指</td><td>戒指</td><td>饰品，提供特殊加成</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 体重系统 ==================== -->
+  <h3>体重系统</h3>
+  <p class="lead spaced"><strong class="important">体重是小猪的核心资源</strong>，同时扮演着体力条和生命值的双重角色。</p>
+
+  <h4>体重参数</h4>
+  <table class="data-table">
+    <thead>
+      <tr><th style="width:120px">参数</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>当前体重</td><td>小猪当前的体重值，决定能否行动和战斗</td></tr>
+      <tr><td>初始体重</td><td>转职/升级后的基础体重，当前体重低于此值时小猪陷入昏迷</td></tr>
+      <tr><td>吃饱体重</td><td>正常喂食能高效达到的体重上限</td></tr>
+      <tr><td>最大体重</td><td>体重可达到的上限，超过吃饱体重后料肉比增加（需要更多饲料）</td></tr>
+      <tr><td>料肉比</td><td>每份饲料转化为体重的效率系数，随职业/等级变化</td></tr>
+    </tbody>
+  </table>
+
+  <h4>体重消耗与恢复</h4>
+  <table class="data-table">
+    <thead>
+      <tr><th>情况</th><th>效果</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>生活行动</td><td>进行采集、制造等生活行动会消耗体重</td></tr>
+      <tr><td>战斗</td><td>发动攻击消耗体重，受伤减少体重</td></tr>
+      <tr><td>喂食</td><td>消耗仓库中的饲料恢复体重</td></tr>
+      <tr><td>转职升级</td><td>重置当前体重为初始体重，同时改变体重上限和料肉比</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>昏迷机制：</strong>当前体重低于初始体重时，小猪会强制退出当前行动或战斗，进入昏迷状态。昏迷期间无法执行任何操作，需要喂食恢复体重后方可继续行动。
+  </div>
+
+  <h4>喂食机制</h4>
+  <p class="spaced">喂食消耗仓库中的猪饲料，根据消耗的饲料数量和小猪的料肉比来增加体重。达到吃饱体重后继续喂食效率降低（料肉比增加），但体重可以继续上涨直至最大体重。</p>
+
+  <!-- ==================== 小猪管理 ==================== -->
   <h3>小猪管理</h3>
-  <p class="spaced">在猪栏中，玩家可以对小猪进行招募、查看和管理等操作。</p>
 
   <h4>小猪招募</h4>
-  <p class="spaced">招募小猪需要满足<span class="text-blue">（猪口上限 - 当前小猪 > 1）</span> 的条件；一次只能招募一只小猪。招募后会有 <strong>8 小时</strong> 的冷却时间，冷却期间招募功能将被禁用。</p>
-  <p class="spaced">招募完成后，玩家需要为小猪取名，小猪的初始职业称为"小猪"。</p>
+  <ul class="spaced">
+    <li>招募需要满足 <span class="text-blue">猪口上限 - 当前小猪 &gt; 0</span></li>
+    <li>一次只能招募一只小猪，招募后进入 <strong>8小时冷却</strong></li>
+    <li>招募后可自定义小猪的名称，初始职业为"小猪"</li>
+  </ul>
 
-  <h4>小猪基础信息</h4>
-  <p class="spaced">小猪的基础信息包括昵称、头像、总等级、体重、行动状态等。</p>
-  <p class="spaced">玩家可以在基础属性栏对小猪改名，确认小猪的行动状态。</p>
+  <h4>基础操作</h4>
+  <table class="data-table">
+    <thead>
+      <tr><th style="width:100px">操作</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>改名</td><td>修改小猪的昵称</td></tr>
+      <tr><td>喂食</td><td>消耗饲料为小猪补充体重</td></tr>
+      <tr><td>装备管理</td><td>为小猪穿戴/更换装备</td></tr>
+      <tr><td>分配行动</td><td>指派小猪进行采集、制造、探索等生活行动</td></tr>
+      <tr><td>转职</td><td>前往神殿进行转职，获得新职业与技能</td></tr>
+    </tbody>
+  </table>
 
-  <h4>小猪体重</h4>
-  <p class="spaced">体重是小猪很重要的基础属性，同时扮演着体力条和生命值的角色。体重会影响小猪的行动持久度和战斗能力，小猪进行生活职业行动会消耗体重，在战斗中会消耗体重攻击，受伤会减少体重。</p>
-  <p class="spaced">转职和升级会改变小猪的初始体重、吃饱体重、最大体重和料肉比，并且重置小猪的当前体重为初始体重。</p>
-  <p class="spaced">小猪的当前体重大于初始体重才可以进行行动。当小猪的当前体重低于初始体重时，小猪会强制退出当前的战斗或者生活行动，进入昏迷状态。</p>
-  <p class="spaced">玩家可以在基础属性栏对小猪喂食，喂食消耗仓库的猪饲料，喂食后根据消耗的饲料数量和小猪的料肉比来增加小猪体重。</p>
-  <p class="spaced">小猪可以喂到超越吃饱体重的重量，但是需要消耗更多的饲料，在达到吃饱体重后，小猪的料肉比会增加。</p>
+  <!-- ==================== 升级与成长 ==================== -->
+  <h3>升级与成长</h3>
+  <p class="spaced">小猪通过行动和战斗积累经验，提升等级和职业等级。随着等级提升，八维属性增长，能够胜任更高强度的职业和技艺。</p>
+
+  <h4>等级体系</h4>
+  <table class="data-table">
+    <thead>
+      <tr><th>等级类型</th><th>提升方式</th><th>效果</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>八维等级</td><td>行动、战斗获取经验</td><td>提升基础属性，影响职业强度和技能效果</td></tr>
+      <tr><td>职业等级</td><td>使用该职业行动积累经验</td><td>提升职业技能效果，解锁更高阶职业</td></tr>
+      <tr><td>技能等级</td><td>随职业使用随机成长</td><td>提升技能的具体数值效果（如伤害、加成倍率）</td></tr>
+      <tr><td>传奇等级</td><td>转生后获得</td><td>将传奇等级按比例转化为额外八维等级</td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">技能升级是随机的，同一职业的技能可能以不同速度成长。转生后技能等级和职业等级保留但不生效，重新转职即可激活。</p>
+
+  <!-- ==================== 状态与行动 ==================== -->
+  <h3>状态与行动</h3>
+  <p class="spaced">小猪会处于不同的状态，影响可执行的操作。</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th style="width:100px">状态</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>空闲</td><td>可自由分配行动或任务</td></tr>
+      <tr><td>行动中</td><td>正在进行生活行动（采集/制造/探索等），行动完成后自动进入空闲</td></tr>
+      <tr><td>战斗中</td><td>正在参与战斗，结束后恢复空闲</td></tr>
+      <tr><td>昏迷</td><td>当前体重低于初始体重，无法行动，需要喂食恢复</td></tr>
+      <tr><td>休息中</td><td>正在休息恢复，暂时不可操作</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ==================== 相关链接 ==================== -->
+  <hr class="divider">
+
+  <p class="spaced">
+    <span class="text-shadow">了解更多：</span>
+    <a href="#" onclick="window.loadGuidePage('tags/temple');return false;" class="text-blue">神殿 · 转职与转生</a>
+    &nbsp;·&nbsp;
+    <a href="#" onclick="window.loadGuidePage('tags/territory');return false;" class="text-blue">领地</a>
+    &nbsp;·&nbsp;
+    <a href="#" onclick="window.loadGuidePage('guidebook/jobs-and-skills');return false;" class="text-blue">职业与技能</a>
+    &nbsp;·&nbsp;
+    <a href="#" onclick="window.loadGuidePage('guidebook/properties');return false;" class="text-blue">属性说明</a>
+  </p>
 
 </div>

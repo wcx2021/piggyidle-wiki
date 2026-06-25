@@ -1450,5 +1450,349 @@
       }
     ],
     "trigger_condition": ""
+  },
+  {
+    "reward_id": 20150,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3115,
+        "amount_min": 2,
+        "amount_max": 6,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 25,
+        "amount_max": 25,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 5.75e-05
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20151,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3116,
+        "amount_min": 1,
+        "amount_max": 4,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 35,
+        "amount_max": 35,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 0.0001
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20152,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3117,
+        "amount_min": 1,
+        "amount_max": 3,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 25,
+        "amount_max": 25,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 5.75e-05
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20153,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3118,
+        "amount_min": 1,
+        "amount_max": 2,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 40,
+        "amount_max": 40,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 0.0001
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20154,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3105,
+        "amount_min": 1,
+        "amount_max": 3,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 3111,
+        "amount_min": 1,
+        "amount_max": 2,
+        "chance": 0.5
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 18,
+        "amount_max": 18,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 5.75e-05
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20155,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3119,
+        "amount_min": 1,
+        "amount_max": 2,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 3105,
+        "amount_min": 1,
+        "amount_max": 3,
+        "chance": 0.4
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 30,
+        "amount_max": 30,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 0.0001
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20156,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3106,
+        "amount_min": 2,
+        "amount_max": 5,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 25,
+        "amount_max": 25,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 5.75e-05
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20157,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3123,
+        "amount_min": 1,
+        "amount_max": 3,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 40,
+        "amount_max": 40,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4102,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 0.0001
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20158,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3112,
+        "amount_min": 1,
+        "amount_max": 2,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 25,
+        "amount_max": 25,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4103,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 5.75e-05
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20159,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 3124,
+        "amount_min": 1,
+        "amount_max": 2,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 40,
+        "amount_max": 40,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4103,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 0.0001
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "reward_id": 20160,
+    "trigger_type": 4,
+    "trigger_related_id": 0,
+    "mutex_rewards": [],
+    "independent_rewards": [
+      {
+        "reward_subtype": 1,
+        "target_id": 5011,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 2,
+        "target_id": 0,
+        "amount_min": 30,
+        "amount_max": 30,
+        "chance": 1
+      },
+      {
+        "reward_subtype": 1,
+        "target_id": 4103,
+        "amount_min": 1,
+        "amount_max": 1,
+        "chance": 5.75e-05
+      }
+    ],
+    "trigger_condition": ""
   }
 ]

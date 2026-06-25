@@ -1,0 +1,254 @@
+<div class="guide-content">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <h2>职业与技能</h2>
+  <p class="spaced">职业决定小猪的发展方向，每个职业拥有独特的技能体系。技能效果由技能等级、职业等级、属性和八维等级共同驱动。</p>
+
+  <h3>职业体系</h3>
+  <p class="lead spaced">职业按<strong class="important">职系</strong>组织，每条职系从起源到终极形成完整的成长链。</p>
+
+  <h4>职系与阶位</h4>
+  <p class="spaced">每条职系包含7个阶位：</p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>阶位</th>
+        <th>名称</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Tier 0</td>
+        <td>起源职业</td>
+        <td>初始身份（如"小猪"），互斥，只能持有一个</td>
+      </tr>
+      <tr>
+        <td>Tier 1</td>
+        <td>基础职业</td>
+        <td>入门职业，可多持</td>
+      </tr>
+      <tr>
+        <td>Tier 2</td>
+        <td>进阶职业</td>
+        <td>进阶方向，可多持</td>
+      </tr>
+      <tr>
+        <td>Tier 3</td>
+        <td>分支点</td>
+        <td>分支起点，此后职业锁定方向</td>
+      </tr>
+      <tr>
+        <td>Tier 4</td>
+        <td>高级职业</td>
+        <td>延续分支方向</td>
+      </tr>
+      <tr>
+        <td>Tier 5</td>
+        <td>进阶高级职业</td>
+        <td>继续深入分支路线</td>
+      </tr>
+      <tr>
+        <td>Tier 6</td>
+        <td>终极职业</td>
+        <td>职系顶端</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>互斥规则（isExclusive 布尔机制）</h4>
+  <ul class="spaced">
+    <li>所有 <code>isExclusive: true</code> 的职业属于<strong>同一个互斥组</strong></li>
+    <li>已持有任意 exclusive 职业时，无法再持有<strong>其他职系</strong>的 exclusive 职业</li>
+    <li>同职系内 exclusive 职业不互斥，通过 <code>prerequisites</code> 前置链自然串成升级链</li>
+    <li>新增职系只需在分支点及之后标记 <code>isExclusive: true</code>，自动加入互斥组</li>
+  </ul>
+  <p class="note">tier 0-2 的职业 <code>isExclusive: false</code>，可多持，不冲突。</p>
+
+  <h3>技能系统</h3>
+  <p class="lead spaced"><strong class="important">转职即获得该职业的全部技能</strong>，技能初始1级，职业激活时所有技能同时生效。</p>
+
+  <h4>技能类型</h4>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>类型</th>
+        <th>生效场景</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>被动技能</td>
+        <td>永久</td>
+        <td>永久生效，提供属性加成、经验加成等常驻效果，scope 可选 life/combat/both</td>
+      </tr>
+      <tr>
+        <td>主动技能</td>
+        <td>战斗外</td>
+        <td>战斗外手动使用，消耗能量，有冷却时间。效果包括获得道具、全局增益等</td>
+      </tr>
+      <tr>
+        <td>战斗主动</td>
+        <td>战斗中</td>
+        <td>战斗中自动或按策略释放，有冷却回合。包含普通攻击和技能攻击，使用 damageFormula 计算伤害</td>
+      </tr>
+      <tr>
+        <td>战斗辅助</td>
+        <td>战斗中</td>
+        <td>战斗中生效，提供 buff/debuff/护盾 等辅助效果，可影响范围内友方或敌方</td>
+      </tr>
+      <tr>
+        <td>领域技能</td>
+        <td>战斗中</td>
+        <td>按位置或条件触发的强化效果，同名领域前三名起效，效果递减（100%/60%/30%）</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>技能升级</h4>
+  <p class="spaced">技能等级独立于职业等级，成长规则如下：</p>
+  <ul class="spaced">
+    <li>转职获得职业时，所有技能初始为 <strong>1级</strong></li>
+    <li>技能最高 <strong>40级</strong></li>
+    <li>职业等级每提升 <strong>20级</strong>，随机 <span class="text-blue">1个技能提升1级</span></li>
+  </ul>
+  <p class="note">技能升级是随机的，同一职业的技能可能以不同速度成长。小猪转生后技能等级不会重置。</p>
+
+  <h4>技能效果系数</h4>
+  <p class="spaced">技能效果由多个维度共同决定：</p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th>说明</th>
+        <th>来源</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>技能等级</td>
+        <td>技能独立等级，1-40</td>
+        <td>职业每20级随机+1</td>
+      </tr>
+      <tr>
+        <td>职业等级</td>
+        <td>职业等级</td>
+        <td>职业经验积累</td>
+      </tr>
+      <tr>
+        <td>属性</td>
+        <td>八维属性值</td>
+        <td>力量/耐力/敏捷/灵巧/智力/感知/意志/魅力</td>
+      </tr>
+      <tr>
+        <td>八维等级</td>
+        <td>八维属性等级</td>
+        <td>八维经验积累</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="spaced">不同技能使用不同的系数公式，具体效果由技能配置决定。</p>
+
+  <h4>领域技能排名</h4>
+  <p class="spaced">同名领域技能在战斗中按效果排名递减，排名由技能等级决定：</p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>排名</th>
+        <th>效果比例</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>第1名</td>
+        <td>100%</td>
+      </tr>
+      <tr>
+        <td>第2名</td>
+        <td>60%</td>
+      </tr>
+      <tr>
+        <td>第3名</td>
+        <td>30%</td>
+      </tr>
+      <tr>
+        <td>第4名及以后</td>
+        <td>不起效</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="spaced">领域技能通常带有 <code>triggerCondition</code> 触发条件（如位置前/中/后排、hp低于30%、击杀触发等），满足条件时才生效。</p>
+
+  <h4>能量系统</h4>
+  <p class="spaced">主动技能（战斗外使用）消耗能量，能量系统包含以下公式化字段：</p>
+  <ul class="spaced">
+    <li><code>energyFormula</code>：当前能量值（基础）</li>
+    <li><code>energyMaxFormula</code>：能量上限</li>
+    <li><code>energyCostFormula</code>：单次使用消耗</li>
+    <li><code>regenRateFormula</code>：每小时恢复量</li>
+  </ul>
+  <p class="spaced">所有能量数值均以公式字符串存储，支持变量 <code>$level</code> / <code>$jobLevel</code> / <code>$attribute</code> 等。固定值也是公式（如 <code>"100"</code>）。未来可接入季节/天气/节律等外部变量。</p>
+  <p class="note">能量每小时固定恢复，升级可能提升上限或减小消耗。</p>
+
+  <h4>战斗范围与目标</h4>
+  <p class="spaced">所有战斗类型技能（战斗主动、战斗辅助、领域）共用统一的 <code>target</code> 和 <code>range</code> 字段：</p>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>字段</th>
+        <th>取值</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="4">target<br>（目标选择）</td>
+        <td>self</td>
+        <td>只影响自己</td>
+      </tr>
+      <tr>
+        <td>single</td>
+        <td>单体目标</td>
+      </tr>
+      <tr>
+        <td>aoe</td>
+        <td>范围群体</td>
+      </tr>
+      <tr>
+        <td>all_allies / all_enemies</td>
+        <td>全体友方 / 全体敌方</td>
+      </tr>
+      <tr>
+        <td rowspan="5">range<br>（作用距离）</td>
+        <td>melee</td>
+        <td>近战（贴身）</td>
+      </tr>
+      <tr>
+        <td>ranged</td>
+        <td>远程</td>
+      </tr>
+      <tr>
+        <td>adjacent</td>
+        <td>周围（邻格）</td>
+      </tr>
+      <tr>
+        <td>column / row</td>
+        <td>同列 / 同排</td>
+      </tr>
+      <tr>
+        <td>all</td>
+        <td>全场</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>转生与职业</h3>
+  <p class="spaced">转生时职业和技能的处理：</p>
+  <ul class="spaced">
+    <li>职业等级和技能等级<strong>保留</strong>，但职业变为<strong>不激活</strong>状态（不生效）</li>
+    <li>重新转职已拥有的休眠职业即可<strong>激活</strong>，职业等级和技能等级恢复生效，无需重新升级</li>
+    <li>起源职业重置为"小猪"</li>
+  </ul>
+
+</div>
