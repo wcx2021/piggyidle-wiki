@@ -17,42 +17,42 @@
       <tr>
         <td>力量</td>
         <td>strength</td>
-        <td>影响物理攻击、负重能力</td>
+        <td>影响攻击力、护甲、负重能力</td>
       </tr>
       <tr>
         <td>灵巧</td>
         <td>dexterity</td>
-        <td>影响行动速度、闪避</td>
+        <td>影响闪避、充能速度、移动速度</td>
       </tr>
       <tr>
         <td>敏捷</td>
         <td>agility</td>
-        <td>影响制造效率、暴击</td>
+        <td>影响命中、闪避、充能速度</td>
       </tr>
       <tr>
         <td>体质</td>
         <td>constitution</td>
-        <td>影响生命值、耐力恢复</td>
+        <td>影响耐力、护甲、抗性、体重上限</td>
       </tr>
       <tr>
         <td>智力</td>
         <td>intelligence</td>
-        <td>影响经验获取、技能效果</td>
+        <td>影响魔抗、经验获取、技能效果</td>
       </tr>
       <tr>
         <td>感知</td>
         <td>perception</td>
-        <td>影响探索发现、采集效率</td>
+        <td>影响命中、暴击伤害、探索发现</td>
       </tr>
       <tr>
         <td>意志</td>
         <td>will</td>
-        <td>影响成功率、抗性</td>
+        <td>影响耐力、魔抗、抗性</td>
       </tr>
       <tr>
         <td>魅力</td>
         <td>charisma</td>
-        <td>影响交易、社交</td>
+        <td>影响交易、社交、光环强度</td>
       </tr>
     </tbody>
   </table>
@@ -65,7 +65,9 @@
   <p class="spaced"><span class="text-blue">初始重量</span>：小猪出生后的基础体重。当前重量低于初始重量时，小猪会自动退出战斗。</p>
   <p class="spaced"><span class="text-blue">吃饱体重</span>：小猪吃饱后的体重。当前重量超过此值后，料肉比会提升。</p>
   <p class="spaced"><span class="text-blue">过载体重</span>：小猪吃撑后的体重上限。</p>
-  <p class="spaced"><span class="text-blue">料肉比</span>：每消耗1份猪饲料可增长的体重数值。分为两个数值，分别对应吃饱前后的转化效率。</p>
+  <p class="spaced"><span class="text-blue">料肉比</span>：每消耗1份猪饲料可增长的体重数值。分为三个数值，分别对应吃饱前、吃饱至过载、过载至上限的转化效率。</p>
+  <p class="spaced"><span class="text-blue">饱和度</span>：当前喂食的饱和度，达到上限后无法继续喂食。每整点自然消耗600点。</p>
+  <p class="spaced"><span class="text-blue">饱和度上限</span>：耐力属性越高，一次能喂的饲料越多。</p>
 
   <h3>生活属性</h3>
   <p class="spaced">生活属性影响小猪在非战斗场景中的表现，主要作用于生产、采集等活动。</p>
@@ -86,34 +88,29 @@
   </ul>
 
   <h3>战斗属性</h3>
-  <p class="spaced">战斗属性决定小猪在战斗中的表现，分为一级属性和二级属性。</p>
+  <p class="spaced">战斗属性由八维能力计算得出，分为两个系统：<strong>管道A（命中判定）</strong>和<strong>管道B（伤害计算）</strong>。</p>
 
-  <h4>攻击属性</h4>
-  <p class="spaced"><span class="text-blue">攻击力</span>：基础攻击力，决定物理攻击时每点体重造成的伤害。</p>
-  <p class="spaced"><span class="text-blue">护甲穿透</span>：物理攻击时忽略目标护甲的数值，影响最终伤害。</p>
-  <p class="spaced"><span class="text-blue">攻击距离</span>：普通攻击的距离，影响命中率。</p>
-  <p class="spaced"><span class="text-blue">暴击率</span>：攻击时触发暴击的概率。</p>
-  <p class="spaced"><span class="text-blue">暴击伤害</span>：暴击时额外造成的伤害。</p>
-  <p class="spaced"><span class="text-blue">连击</span>：普通攻击后继续攻击的概率。每次连击后，下次连击概率降低30%。</p>
+  <h4>命中判定（管道A）</h4>
+  <p class="spaced">攻击是否命中取决于攻击方和防御方的命中/闪避计算，经 Sigmoid 压缩后判定档位：完美闪避 / 普通闪避 / 擦伤 / 命中 / 暴击。</p>
+  <p class="spaced"><span class="text-blue">命中</span>：提高攻击的命中率。作为通用修正值加入 Sigmoid 攻击方总值。</p>
+  <p class="spaced"><span class="text-blue">闪避</span>：提高躲避攻击的概率。作为通用修正值加入 Sigmoid 防御方总值。</p>
+  <p class="spaced"><span class="text-blue">暴击伤害</span>：暴击时造成的额外伤害倍率，默认为 150%。</p>
 
-  <h4>防御属性</h4>
-  <p class="spaced"><span class="text-blue">耐力</span>：决定每点体重能承受的伤害值。</p>
-  <p class="spaced"><span class="text-blue">护甲</span>：用于抵抗物理伤害。</p>
-  <p class="spaced"><span class="text-blue">命中</span>：增加攻击命中目标的概率。</p>
-  <p class="spaced"><span class="text-blue">闪避</span>：增加躲避攻击的概率。</p>
+  <h4>伤害计算（管道B）</h4>
+  <p class="spaced">每个技能自行定义伤害计算公式，经护甲减免后扣除耐力。不满 1 重量的伤害零头会累计到独立伤害池中。</p>
+  <p class="spaced"><span class="text-blue">攻击力</span>：基础攻击力，作为技能伤害公式的底数之一（可选，部分技能不使用）。</p>
+  <p class="spaced"><span class="text-blue">耐力</span>：小猪的生命值池，受到伤害时优先扣除。耐力归零则单位阵亡退出战斗。</p>
+  <p class="spaced"><span class="text-blue">护甲</span>：用于抵抗物理伤害。减伤率 = <strong>护甲 / (护甲 + 100)</strong>，100护甲约等于50%减伤。</p>
+  <p class="spaced"><span class="text-blue">魔抗</span>：用于抵抗魔法伤害。减伤率 = <strong>魔抗 / (魔抗 + 100)</strong>。</p>
 
   <h4>行动属性</h4>
-  <p class="spaced"><span class="text-blue">移动速度</span>：小猪赶到待战区的速度。</p> 
-  <p class="spaced"><span class="text-blue">充能值</span>：小猪行动前需要充能，充能进度条填满后才能行动。</p>
-  <p class="spaced"><span class="text-blue">蓄力比例</span>：充能完成后若无目标，小猪开始蓄力。蓄力条按比例转化为进度条，蓄力满后行动可能有特殊效果。</p>
-  <p class="spaced"><span class="text-blue">当前充能值</span>：战斗中当前的能量值。</p>
-
-  <h4>恢复属性</h4>
-  <p class="spaced"><span class="text-blue">吞噬</span>：造成伤害后，按比例恢复临时重量。</p>
-  <p class="spaced"><span class="text-blue">再生</span>：战斗中每隔一段时间，按比例恢复临时重量。</p>
+  <p class="spaced"><span class="text-blue">充能速度</span>：决定小猪在战斗中的行动频率。每帧充能值 = 100 × (100% + 灵巧×0.5% + 敏捷×0.3%)。充能达到3000即可行动。</p>
+  <p class="spaced"><span class="text-blue">移动速度</span>：决定小猪行军到达待战区的速度。</p>
+  <p class="spaced"><span class="text-blue">抗性</span>：提高对控制效果和减益效果的抵抗能力。</p>
 
   <h4>战斗重量</h4>
   <p class="spaced"><span class="text-blue">临时重量</span>：战斗中优先于当前重量承受伤害的护盾值，不可用于释放技能。</p>
   <p class="spaced"><span class="text-blue">最大临时重量</span>：加入战斗时固定为当前重量的数值。</p>
+  <p class="spaced"><span class="text-blue">退出条件</span>：当前重量低于初始重量时，小猪自动退出战斗（与生活职业低于初始体重退出机制一致）。</p>
 
 </div>

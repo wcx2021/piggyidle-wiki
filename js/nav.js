@@ -28,10 +28,9 @@
       group: '游戏玩法指引',
       items: [
         { title: '生活说明', slug: 'guidebook/life-description' },
-        { title: '战斗说明', slug: 'guidebook/combat-description' },
+        { title: '战斗流程与设置', slug: 'guidebook/combat-flow-settings' },
         { title: '属性说明', slug: 'guidebook/properties' },
         { title: '职业与技能', slug: 'guidebook/jobs-and-skills' },
-        { title: '战斗设置说明', slug: 'guidebook/combat-settings' },
         { title: '交易说明', slug: 'guidebook/trading-description' }
       ]
     },
@@ -44,15 +43,20 @@
         { title: '等级和经验表', slug: 'design/experience' },
         { title: '货币和商店', slug: 'design/currency-shop' },
         { title: '装备', slug: 'design/equipment' },
-        { title: '星级与精炼', slug: 'design/star-level' }
+        { title: '星级与精炼', slug: 'design/star-level' },
+        { title: '战斗数据', slug: 'design/battle-data' }
       ]
     },
     {
       group: '实用工具',
       items: [
-        { title: '查询工具', type: 'tool', tool: 'items' },
-        { title: '道具生成器', type: 'tool', tool: 'generator' },
-        { title: '行动生成器', type: 'tool', tool: 'actionGenerator' }
+        { title: '道具查询', type: 'tool', tool: 'items' },
+        { title: '行动查询', type: 'tool', tool: 'actions' },
+        { title: '职业查询', type: 'tool', tool: 'jobs' },
+        { title: '技能查询', type: 'tool', tool: 'skills' },
+        { title: '等级表', type: 'tool', tool: 'level' },
+        { title: '地图地块', type: 'tool', tool: 'map' },
+        { title: '战斗数据', type: 'tool', tool: 'battle' }
       ]
     }
   ];
@@ -233,8 +237,6 @@
   function callToolFunction(toolName) {
     var fnName = 'mount' + toolName.charAt(0).toUpperCase() + toolName.slice(1) + 'Tool';
     if (toolName === 'items') fnName = 'mountItemsTool';
-    if (toolName === 'generator') fnName = 'mountGeneratorTool';
-    if (toolName === 'actionGenerator') fnName = 'mountActionGeneratorTool';
 
     if (window[fnName]) {
       window[fnName]();

@@ -18,35 +18,35 @@
     <tbody>
       <tr>
         <td>力量</td>
-        <td>影响攻击力、负重能力</td>
+        <td>影响攻击力、护甲、负重能力</td>
       </tr>
       <tr>
         <td>灵巧</td>
-        <td>影响制造效率、暴击</td>
+        <td>影响闪避、充能速度、移动速度</td>
       </tr>
       <tr>
         <td>敏捷</td>
-        <td>影响行动速度、闪避</td>
+        <td>影响命中、闪避、充能速度</td>
       </tr>
       <tr>
         <td>体质</td>
-        <td>影响生命值、耐力、体重上限</td>
+        <td>影响耐力、护甲、抗性、体重上限</td>
       </tr>
       <tr>
         <td>智力</td>
-        <td>影响经验获取、技能效果</td>
+        <td>影响魔抗、经验获取、技能效果</td>
       </tr>
       <tr>
         <td>感知</td>
-        <td>影响探索发现、采集效率</td>
+        <td>影响命中、暴击伤害、探索发现</td>
       </tr>
       <tr>
         <td>意志</td>
-        <td>影响成功率、抗性</td>
+        <td>影响耐力、魔抗、抗性</td>
       </tr>
       <tr>
         <td>魅力</td>
-        <td>影响交易、社交</td>
+        <td>影响交易、社交、光环强度</td>
       </tr>
     </tbody>
   </table>
@@ -57,7 +57,7 @@
   <p class="small">多职业同时激活时，各职业加成累加。</p>
 
   <h3>二、战斗属性</h3>
-  <p class="spaced">战斗属性由八维能力通过模板公式计算得出：</p>
+  <p class="spaced">战斗属性由八维能力通过模板公式计算得出，分为<strong>管道A（命中判定）</strong>和<strong>管道B（伤害计算）</strong>两个系统：</p>
   <p class="spaced"><strong>属性值 = 基础值 + 能力系数 × 对应能力值</strong></p>
 
   <table class="data-table">
@@ -66,53 +66,102 @@
         <th>属性</th>
         <th>基础值</th>
         <th>公式</th>
+        <th>用途</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>耐力</td>
-        <td>100</td>
-        <td>体质 × 4 + 意志 × 2</td>
-      </tr>
-      <tr>
-        <td>攻击</td>
-        <td>5</td>
-        <td>力量 × 0.4 + 体质 × 0.2</td>
-      </tr>
-      <tr>
-        <td>攻速</td>
-        <td>5</td>
-        <td>灵巧 × 0.05 + 敏捷 × 0.05</td>
-      </tr>
-      <tr>
         <td>命中</td>
         <td>5</td>
         <td>敏捷 × 0.6 + 感知 × 0.4</td>
+        <td>管道A·攻击方命中修正</td>
       </tr>
       <tr>
         <td>闪避</td>
         <td>3</td>
-        <td>灵巧 × 0.6</td>
+        <td>灵巧 × 0.5 + 敏捷 × 0.3</td>
+        <td>管道A·防御方闪避修正</td>
       </tr>
       <tr>
-        <td>暴击率</td>
-        <td>0</td>
-        <td>敏捷 × 0.05 + 感知 × 0.03</td>
-      </tr>
-      <tr>
-        <td>移速</td>
+        <td>攻击力</td>
         <td>5</td>
-        <td>灵巧 × 0.1</td>
+        <td>力量 × 0.4 + 体质 × 0.2</td>
+        <td>管道B·技能伤害公式(可选)</td>
+      </tr>
+      <tr>
+        <td>耐力</td>
+        <td>100</td>
+        <td>体质 × 6 + 意志 × 2</td>
+        <td>管道B·HP池</td>
+      </tr>
+      <tr>
+        <td>护甲</td>
+        <td>0</td>
+        <td>体质 × 0.5 + 力量 × 0.3</td>
+        <td>管道B·物理减伤率</td>
+      </tr>
+      <tr>
+        <td>魔抗</td>
+        <td>0</td>
+        <td>意志 × 0.5 + 智力 × 0.3</td>
+        <td>管道B·魔法减伤率</td>
       </tr>
       <tr>
         <td>暴击伤害</td>
-        <td>150</td>
+        <td>150%</td>
         <td>固定值</td>
+        <td>管道A·暴击档倍率</td>
+      </tr>
+      <tr>
+        <td>充能速度</td>
+        <td>100%</td>
+        <td>100% + 灵巧 × 0.5% + 敏捷 × 0.3%</td>
+        <td>行动·每帧充能值</td>
+      </tr>
+      <tr>
+        <td>移动速度</td>
+        <td>5</td>
+        <td>灵巧 × 0.1</td>
+        <td>行动·行军用时</td>
+      </tr>
+      <tr>
+        <td>抗性</td>
+        <td>0</td>
+        <td>意志 × 0.5 + 体质 × 0.3</td>
+        <td>行动·控制/减益抵抗</td>
       </tr>
     </tbody>
   </table>
 
-  <p class="small">注：暴击率上限为 100%，暴击伤害最低为 100。不同职业可能有额外的属性覆盖或叠加。</p>
+  <h4>管道A：命中判定（Sigmoid + 五档）</h4>
+  <p class="spaced">攻击方总值 H 与防御方总值 E 的差值经 Sigmoid 压缩后，结合随机值得出最终分数，按区间判定档位：</p>
+  <p class="spaced"><strong>H = 伤害类型基准值 + 命中修正（敏捷×0.6 + 感知×0.4）</strong></p>
+  <p class="spaced"><strong>E = 伤害类型基准值 + 闪避修正（灵巧×0.5 + 敏捷×0.3）</strong></p>
+  <p class="spaced"><strong>CompressedΔ = 100 / (1 + e<sup>-(H-E)/30</sup>) - 50</strong></p>
+  <p class="spaced"><strong>FinalScore = CompressedΔ + Luck(1~100)</strong></p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>档位</th><th>条件</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>完美闪避</td><td>≤ -20</td><td>完全规避伤害</td></tr>
+      <tr><td>普通闪避</td><td>-19 ~ 0</td><td>规避部分伤害</td></tr>
+      <tr><td>擦伤</td><td>1 ~ 90</td><td>伤害倍率 0.3~0.9 浮动</td></tr>
+      <tr><td>命中</td><td>91 ~ 130</td><td>全额伤害</td></tr>
+      <tr><td>暴击</td><td>≥ 131</td><td>暴击伤害倍率（默认150%）</td></tr>
+    </tbody>
+  </table>
+
+  <h4>管道B：伤害计算</h4>
+  <p class="spaced">每个技能自行定义伤害公式（可使用攻击力、八维值、体重、技能等级等），经护甲减免后扣除生命值：</p>
+  <p class="spaced"><strong>物理减伤率 = 护甲 / (护甲 + 100)</strong>　<strong>魔法减伤率 = 魔抗 / (魔抗 + 100)</strong></p>
+  <p class="spaced">实际伤害优先扣除护盾值，剩余穿透到生命值。不满 1 重量的零头累计到独立伤害池，累计 ≥ 1 时扣除 1 重量。</p>
+
+  <h4>充能行动系统</h4>
+  <p class="spaced">战斗以 10fps 游戏帧运行，行动阈值固定 3000。每帧充能值由充能速度决定：</p>
+  <p class="spaced"><strong>每帧充能值 = 100 × 充能速度%</strong></p>
+  <p class="spaced">充能满后选择技能释放，溢出部分保留不归零。</p>
 
   <h3>三、体重属性</h3>
   <p class="spaced">体重属性同样由八维能力通过公式计算：</p>

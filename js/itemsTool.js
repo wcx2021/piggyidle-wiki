@@ -1,6 +1,6 @@
 /**
  * Wiki Items 查询工具模块
- * 提供道具/行动数据查询功能
+ * 提供道具数据查询功能
  */
 
 (function() {
@@ -17,29 +17,6 @@
     { key: 'isDecomposable', label: '可分解', aliases: ['isDecomposable', 'decomposable', 'is_decomposable'], isBool: true },
     { key: 'shopPrice', label: '商店价格', aliases: ['shopPrice', 'price'] },
     { key: 'growthCoefficient', label: '成长系数', aliases: ['growthCoefficient', 'growth_coefficient'] },
-    { key: 'useActionId', label: '使用动作', aliases: ['useActionId', 'use_action_id'] },
-    { key: 'sellActionId', label: '卖出动作', aliases: ['sellActionId', 'sell_action_id'] },
-    { key: 'decomposeActionId', label: '分解动作', aliases: ['decomposeActionId', 'decompose_action_id'] }
-  ];
-
-  var actionColumns = [
-    { key: 'actionId', label: '行动标识', aliases: ['actionId', 'id'] },
-    { key: 'actionName', label: '行动名称', aliases: ['actionName', 'name'] },
-    { key: 'actionType', label: '行动类型', aliases: ['actionType', 'type'], isBadge: true },
-    { key: 'subActionType', label: '子类型', aliases: ['subActionType'] },
-    { key: 'triggerType', label: '触发方式', aliases: ['triggerType'] },
-    { key: 'exposeApi', label: '暴露API', aliases: ['exposeApi'], isBool: true },
-    { key: 'isNeedActor', label: '需要角色', aliases: ['isNeedActor'], isBool: true },
-    { key: 'isNeedMap', label: '需要地图', aliases: ['isNeedMap'], isBool: true },
-    { key: 'consumeTableId', label: '消耗表ID', aliases: ['consumeTableId'] },
-    { key: 'rewardTableId', label: '奖励表ID', aliases: ['rewardTableId'] }
-  ];
-
-  var jobColumns = [
-    { key: 'name', label: '名称', aliases: ['name'] },
-    { key: 'path', label: '职系', aliases: ['path'] },
-    { key: 'tier', label: '阶位', aliases: ['tier'] },
-    { key: 'isExclusive', label: '互斥', aliases: ['isExclusive'], isBool: true }
   ];
 
   var itemTypeOptions = [
@@ -56,26 +33,6 @@
     { value: 'building', label: '建筑' }
   ];
 
-  var actionTypeOptions = [
-    { value: 'all', label: '全部' },
-    { value: 'PIG_CRAFT', label: '小猪技艺' },
-    { value: 'ITEM_USE', label: '物品使用' },
-    { value: 'SHOP_BUY', label: '商店购买' },
-    { value: 'MARKET_TRADE', label: '市场交易' },
-    { value: 'TASK_FINISH', label: '任务完成' },
-    { value: 'PIG_RECLASS', label: '小猪转职' },
-    { value: 'BUILD_DEPLOY', label: '建筑部署' }
-  ];
-
-  var jobPathOptions = [
-    { value: 'all', label: '全部' },
-    { value: 'origin', label: '起源' },
-    { value: 'meat', label: '肉猪系' },
-    { value: 'knight', label: '骑士系' },
-    { value: 'dumb', label: '笨猪系' },
-    { value: 'smart', label: '聪明系' }
-  ];
-
   var typeLabelMap = {
     currency: '货币',
     consumable: '消耗品',
@@ -86,89 +43,7 @@
     suit: '套装',
     treasure: '宝箱',
     resource: '资源',
-    building: '建筑',
-    PIG_CRAFT: '小猪技艺',
-    ITEM_USE: '物品使用',
-    SHOP_BUY: '商店购买',
-    MARKET_TRADE: '市场交易',
-    TASK_FINISH: '任务完成',
-    PIG_RECLASS: '小猪转职',
-    BUILD_DEPLOY: '建筑部署',
-    race: '种族',
-    combat: '战斗系',
-    production: '生产系'
-  };
-
-  var subActionTypeLabels = {
-    surveying: '测绘',
-    exploration: '探索',
-    enemy_hunt: '寻敌',
-    treasure_hunt: '寻宝',
-    research: '研究',
-    logging: '伐木',
-    mining: '采矿',
-    harvesting: '采摘',
-    hunting: '狩猎',
-    forge: '锻造',
-    weave: '纺织',
-    cook: '烹饪',
-    alchemy: '炼金',
-    enchant: '附魔',
-    craft_book: '技艺之书',
-    harvest: '采摘',
-    craft: '制造'
-  };
-
-  var triggerTypeLabels = {
-    INTERNAL: '自动触发',
-    EXTERNAL: '手动触发',
-    AUTO: '自动触发',
-    MANUAL: '手动触发'
-  };
-
-  var jobExpSourceLabels = {
-    none: '不可升级',
-    profession_exp: '跟随技艺经验',
-    combat_exp: '战斗获取',
-    craft_exp: '制造获取',
-    explore_exp: '探索获取',
-    all_action: '全行动获取'
-  };
-
-  var extraParamLabels = {
-    duration: '耗时(秒)',
-    minExecutionTimes: '最小执行次数',
-    maxExecutionTimes: '最大执行次数',
-    requirements: '前置条件',
-    professionId: '技艺',
-    profession_strength: '技艺强度',
-    expPerBook: '提供经验',
-    craftId: '关联行动',
-    mapRequirements: '地图需求',
-    terrainTags: '地形标签',
-    resourcePointType: '资源点类型',
-    consumeHunger: '消耗体重（已迁移至消耗表）',
-    baseYieldMin: '最小产出',
-    baseYieldMax: '最大产出',
-    rewardTarget: '奖励目标',
-    rareDrop: '稀有掉落',
-    materialTier: '原料档位'
-  };
-
-  var resourcePointTypeLabels = {
-    wood: '木材',
-    ore: '矿石',
-    herb: '草药',
-    hunting_boar: '野猪',
-    hunting_wolf: '狼',
-    crop: '作物',
-    fish: '鱼'
-  };
-
-  var mapResourceTypeLabels = {
-    1: '活力',
-    2: '资源',
-    3: '外交'
+    building: '建筑'
   };
 
   var typeColorMap = {
@@ -181,92 +56,7 @@
     suit: '#14b8a6',
     treasure: '#f97316',
     resource: '#84cc16',
-    building: '#64748b',
-    PIG_CRAFT: '#8b5cf6',
-    ITEM_USE: '#3b82f6',
-    SHOP_BUY: '#f59e0b',
-    MARKET_TRADE: '#10b981',
-    TASK_FINISH: '#6366f1',
-    PIG_RECLASS: '#ec4899',
-    BUILD_DEPLOY: '#64748b',
-    race: '#a855f7',
-    combat: '#ef4444',
-    production: '#22c55e'
-  };
-
-  var consumeTypeLabels = {
-    item: '物品',
-    suit: '套装',
-    build: '建筑',
-    map: '地图',
-    resource: '身体资源',
-    map_resource: '地图资源'
-  };
-
-  var rewardSubtypeLabels = {
-    1: '物品',
-    2: '经验值',
-    3: '权限',
-    4: '其他',
-    5: '地图创建',
-    6: '地图资源点'
-  };
-
-  var skillTypeLabels = {
-    passive: '被动',
-    active: '主动',
-    combat_active: '战斗主动',
-    combat_support: '战斗辅助',
-    domain: '领域'
-  };
-
-  var skillEffectLabels = {
-    attribute: '属性加成',
-    exp_bonus: '经验加成',
-    proficiency: '熟练加成',
-    resource_bonus: '资源加成',
-    item_gain: '获得道具',
-    global_buff: '全局增益',
-    resource_gain: '获得资源',
-    instant_heal: '立即恢复',
-    special: '特殊效果',
-    damage: '伤害',
-    heal: '治疗',
-    self_buff: '自身增益',
-    enemy_debuff: '敌方减益',
-    buff: '友方增益',
-    debuff: '敌方减益',
-    shield: '护盾',
-    position_bonus: '位置强化',
-    formation_bonus: '阵型强化',
-    condition_trigger: '条件触发'
-  };
-
-  var skillScopeLabels = {
-    both: '通用',
-    combat: '战斗',
-    life: '生活'
-  };
-
-  var skillTriggerLabels = {
-    always: '常驻',
-    on_attack: '攻击时',
-    on_hit: '受击时',
-    on_crit: '暴击时',
-    hp_below_30: '血量<30%',
-    on_kill: '击杀时',
-    on_enter_combat: '进入战斗',
-    position_front: '前排位置',
-    position_middle: '中排位置',
-    position_back: '后排位置'
-  };
-
-  var jobPathLabels = {
-    origin: '起源',
-    meat: '肉猪系',
-    knight: '骑士系',
-    dumb: '笨猪系',
-    smart: '聪明系'
+    building: '#64748b'
   };
 
   function formatCell(v, col) {
@@ -344,379 +134,6 @@
     return String(itemId);
   }
 
-  function renderConsumeTable(consumeTableId, consumeTables, itemsData) {
-    if (!consumeTableId) return '<p class="detail-empty">无消耗表</p>';
-    var table = null;
-    for (var i = 0; i < (consumeTables || []).length; i++) {
-      if (String(consumeTables[i].consume_id) === String(consumeTableId)) {
-        table = consumeTables[i];
-        break;
-      }
-    }
-    if (!table) return '<p class="detail-empty">消耗表 #' + window.escapeHTML(String(consumeTableId)) + ' 未找到</p>';
-
-    var items = table.consume_items || [];
-    if (items.length === 0) return '<p class="detail-empty">消耗表 #' + window.escapeHTML(String(consumeTableId)) + '（空）</p>';
-
-    var rows = items.map(function(ci) {
-      var typeLabel = consumeTypeLabels[ci.consume_type] || ci.consume_type;
-      var targetName;
-      if (ci.consume_type === 'item') {
-        targetName = resolveItemName(ci.target_id, itemsData);
-      } else if (ci.consume_type === 'resource' && ci.target_id === 1) {
-        targetName = '体重';
-      } else if (ci.consume_type === 'map_resource') {
-        targetName = mapResourceTypeLabels[ci.target_id] || ('地图资源#' + ci.target_id);
-      } else if (ci.consume_type === 'resource_point') {
-        targetName = resourcePointTypeLabels[ci.target_id] || ('资源点#' + ci.target_id);
-      } else {
-        targetName = String(ci.target_id);
-      }
-      var chanceStr = ci.chance !== undefined && ci.chance !== null && ci.chance < 1
-        ? (ci.chance * 100) + '%'
-        : '100%';
-      return '<tr>' +
-        '<td>' + window.escapeHTML(typeLabel) + '</td>' +
-        '<td>' + window.escapeHTML(targetName) + (ci.consume_type === 'item' ? ' <span class="ref-id">#' + window.escapeHTML(String(ci.target_id)) + '</span>' : '') + '</td>' +
-        '<td>' + window.escapeHTML(String(ci.amount)) + '</td>' +
-        '<td>' + chanceStr + '</td>' +
-        '</tr>';
-    }).join('');
-
-    return '<div class="detail-section"><h5>消耗表 #' + window.escapeHTML(String(consumeTableId)) + '</h5>' +
-      '<table class="detail-table"><thead><tr><th>类型</th><th>目标</th><th>数量</th><th>概率</th></tr></thead><tbody>' +
-      rows + '</tbody></table></div>';
-  }
-
-  function renderRewardTable(rewardTableId, rewardTables, itemsData) {
-    if (!rewardTableId) return '<p class="detail-empty">无奖励表</p>';
-    var table = null;
-    for (var i = 0; i < (rewardTables || []).length; i++) {
-      if (String(rewardTables[i].reward_id) === String(rewardTableId)) {
-        table = rewardTables[i];
-        break;
-      }
-    }
-    if (!table) return '<p class="detail-empty">奖励表 #' + window.escapeHTML(String(rewardTableId)) + ' 未找到</p>';
-
-    var html = '<div class="detail-section"><h5>奖励表 #' + window.escapeHTML(String(rewardTableId)) + '</h5>';
-
-    var mutex = table.mutex_rewards || [];
-    if (mutex.length > 0) {
-      html += '<p class="detail-sub-title">互斥奖励池（权重随机选一）</p>';
-      var mutexRows = mutex.map(function(ri) {
-        var subtypeLabel = rewardSubtypeLabels[ri.reward_subtype] || '类型' + ri.reward_subtype;
-        var targetName;
-        if (ri.reward_subtype === 1) {
-          targetName = resolveItemName(ri.target_id, itemsData);
-        } else if (ri.reward_subtype === 6) {
-          targetName = mapResourceTypeLabels[ri.target_id] || ('地图资源#' + ri.target_id);
-        } else if (ri.reward_subtype === 5) {
-          targetName = '地图创建';
-        } else {
-          targetName = String(ri.target_id);
-        }
-        var amountStr = ri.amount_min === ri.amount_max
-          ? String(ri.amount_min)
-          : ri.amount_min + ' ~ ' + ri.amount_max;
-        var chanceStr = ri.chance !== undefined && ri.chance !== null && ri.chance < 1
-          ? (ri.chance * 100) + '%'
-          : '100%';
-        var weightStr = ri.weight !== undefined ? String(ri.weight) : '—';
-        return '<tr>' +
-          '<td>' + window.escapeHTML(subtypeLabel) + '</td>' +
-          '<td>' + window.escapeHTML(targetName) + (ri.reward_subtype === 1 ? ' <span class="ref-id">#' + window.escapeHTML(String(ri.target_id)) + '</span>' : '') + '</td>' +
-          '<td>' + amountStr + '</td>' +
-          '<td>' + chanceStr + '</td>' +
-          '<td>' + weightStr + '</td>' +
-          '</tr>';
-      }).join('');
-      html += '<table class="detail-table"><thead><tr><th>类型</th><th>目标</th><th>数量</th><th>概率</th><th>权重</th></tr></thead><tbody>' + mutexRows + '</tbody></table>';
-    }
-
-    var independent = table.independent_rewards || [];
-    if (independent.length > 0) {
-      if (mutex.length > 0) html += '<p class="detail-sub-title">独立奖励池（每项独立判定）</p>';
-      var indRows = independent.map(function(ri) {
-        var subtypeLabel = rewardSubtypeLabels[ri.reward_subtype] || '类型' + ri.reward_subtype;
-        var targetName;
-        if (ri.reward_subtype === 1) {
-          targetName = resolveItemName(ri.target_id, itemsData);
-        } else if (ri.reward_subtype === 6) {
-          targetName = mapResourceTypeLabels[ri.target_id] || ('地图资源#' + ri.target_id);
-        } else if (ri.reward_subtype === 5) {
-          targetName = '地图创建';
-        } else {
-          targetName = String(ri.target_id);
-        }
-        var amountStr = ri.amount_min === ri.amount_max
-          ? String(ri.amount_min)
-          : ri.amount_min + ' ~ ' + ri.amount_max;
-        var chanceStr = ri.chance !== undefined && ri.chance !== null && ri.chance < 1
-          ? (ri.chance * 100) + '%'
-          : '100%';
-        return '<tr>' +
-          '<td>' + window.escapeHTML(subtypeLabel) + '</td>' +
-          '<td>' + window.escapeHTML(targetName) + (ri.reward_subtype === 1 ? ' <span class="ref-id">#' + window.escapeHTML(String(ri.target_id)) + '</span>' : '') + '</td>' +
-          '<td>' + amountStr + '</td>' +
-          '<td>' + chanceStr + '</td>' +
-          '</tr>';
-      }).join('');
-      html += '<table class="detail-table"><thead><tr><th>类型</th><th>目标</th><th>数量</th><th>概率</th></tr></thead><tbody>' + indRows + '</tbody></table>';
-    }
-
-    if (mutex.length === 0 && independent.length === 0) {
-      html += '<p class="detail-empty">奖励表为空</p>';
-    }
-
-    html += '</div>';
-    return html;
-  }
-
-  function renderExtraParamsTable(params) {
-    var rows = [];
-    Object.keys(params).forEach(function(key) {
-      var label = extraParamLabels[key] || key;
-      var val = params[key];
-      var displayVal = '';
-
-      if (key === 'duration') {
-        displayVal = val >= 60 ? (val / 60).toFixed(1) + ' 分钟' : val + ' 秒';
-      } else if (key === 'requirements' && Array.isArray(val)) {
-        displayVal = val.map(function(req) {
-          var parts = [];
-          if (req.type === 'profession_strength') {
-            parts.push('技艺「' + (subActionTypeLabels[req.professionId] || req.professionId) + '」强度 ≥ ' + req.value);
-          } else {
-            parts.push((req.type || '') + ' ≥ ' + (req.value || ''));
-          }
-          return parts.join('，');
-        }).join('；');
-      } else if (key === 'professionId') {
-        displayVal = subActionTypeLabels[val] || val;
-      } else if (key === 'expPerBook') {
-        displayVal = val === 0 ? '—' : val + ' 经验';
-      } else if (key === 'mapRequirements' && typeof val === 'object') {
-        var mapParts = [];
-        if (val.terrainTags) {
-          mapParts.push('地形: ' + val.terrainTags.join(', '));
-        }
-        if (val.resourcePointType) {
-          mapParts.push('资源点: ' + (resourcePointTypeLabels[val.resourcePointType] || val.resourcePointType));
-        }
-        displayVal = mapParts.join('；') || JSON.stringify(val);
-      } else if (key === 'resourcePointType') {
-        displayVal = resourcePointTypeLabels[val] || val;
-      } else if (typeof val === 'object') {
-        displayVal = JSON.stringify(val);
-      } else {
-        displayVal = val === 0 ? '—' : String(val);
-      }
-
-      rows.push('<tr><td>' + window.escapeHTML(label) + '</td><td>' + window.escapeHTML(displayVal) + '</td></tr>');
-    });
-
-    return '<table class="detail-table"><thead><tr><th>参数</th><th>值</th></tr></thead><tbody>' + rows.join('') + '</tbody></table>';
-  }
-
-  function renderJobEffects(job) {
-    var html = '<div class="detail-section"><h5>加成效果</h5>';
-    var baseEff = job.baseEffect || {};
-    var lvlEff = job.levelEffect || {};
-
-    // Abilities
-    var baseAb = baseEff.abilities || {};
-    var lvlAb = lvlEff.abilities || {};
-    var allAbilityKeys = Object.keys(Object.assign({}, baseAb, lvlAb));
-    if (allAbilityKeys.length > 0) {
-      html += '<p class="detail-sub-title">属性加成</p>';
-      html += '<table class="detail-table"><thead><tr><th>属性</th><th>初始</th><th>每级</th></tr></thead><tbody>';
-      allAbilityKeys.forEach(function(k) {
-        html += '<tr><td>' + window.escapeHTML(k) + '</td><td>' + (baseAb[k] || 0) + '</td><td>' + (lvlAb[k] || 0) + '</td></tr>';
-      });
-      html += '</tbody></table>';
-    }
-
-    // Professions
-    var baseProf = baseEff.professions || {};
-    var lvlProf = lvlEff.professions || {};
-    var allProfKeys = Object.keys(Object.assign({}, baseProf, lvlProf));
-    if (allProfKeys.length > 0) {
-      html += '<p class="detail-sub-title">技艺加成</p>';
-      html += '<table class="detail-table"><thead><tr><th>技艺</th><th>初始</th><th>每级</th></tr></thead><tbody>';
-      allProfKeys.forEach(function(k) {
-        var bProf = baseProf[k] || {};
-        var lProf = lvlProf[k] || {};
-        var bStr = (bProf.speed ? '速度+' + bProf.speed : '') + (bProf.efficiency ? ' 效率+' + bProf.efficiency : '') + (bProf.successRate ? ' 成功率+' + bProf.successRate : '') || '—';
-        var lStr = (lProf.speed ? '速度+' + lProf.speed : '') + (lProf.efficiency ? ' 效率+' + lProf.efficiency : '') + (lProf.successRate ? ' 成功率+' + lProf.successRate : '') || '—';
-        html += '<tr><td>' + window.escapeHTML(subActionTypeLabels[k] || k) + '</td><td>' + window.escapeHTML(bStr) + '</td><td>' + window.escapeHTML(lStr) + '</td></tr>';
-      });
-      html += '</tbody></table>';
-    }
-
-    if (allAbilityKeys.length === 0 && allProfKeys.length === 0) {
-      html += '<p class="detail-empty">无加成</p>';
-    }
-    html += '</div>';
-    return html;
-  }
-
-  function renderJobReclassInfo(job) {
-    var html = '<div class="detail-section"><h5>转职信息</h5>';
-
-    // Prerequisites
-    var prereqs = job.prerequisites || [];
-    if (prereqs.length > 0) {
-      html += '<p><strong>前置职业：</strong>' + prereqs.map(function(p) { return window.escapeHTML(p); }).join('、') + '</p>';
-    }
-
-    // Reclass conditions
-    var conditions = job.reclassConditions || {};
-    var condParts = [];
-    if (conditions.requiredJobs && conditions.requiredJobs.length > 0) {
-      condParts.push(conditions.requiredJobs.map(function(rj) {
-        return rj.jobId + ' ≥ Lv.' + rj.minLevel;
-      }).join('；'));
-    }
-    if (conditions.requiredProfessions && conditions.requiredProfessions.length > 0) {
-      condParts.push(conditions.requiredProfessions.map(function(rp) {
-        return (subActionTypeLabels[rp.professionId] || rp.professionId) + ' ≥ ' + rp.minLevel;
-      }).join('；'));
-    }
-    html += '<p><strong>转职条件：</strong>' + (condParts.length > 0 ? condParts.join('；') : '无') + '</p>';
-
-    // Reclass cost
-    var cost = job.reclassCost || {};
-    var costParts = [];
-    if (cost.gold) costParts.push('金币 ×' + cost.gold);
-    if (cost.reclassPoints) costParts.push('转职次数 ×' + cost.reclassPoints);
-    if (cost.items && cost.items.length > 0) {
-      cost.items.forEach(function(ci) { costParts.push('物品#' + ci.itemId + ' ×' + ci.amount); });
-    }
-    html += '<p><strong>转职消耗：</strong>' + (costParts.length > 0 ? costParts.join('、') : '无') + '</p>';
-
-    // Exp info
-    html += '<p><strong>经验来源：</strong>' + (jobExpSourceLabels[job.expSource] || job.expSource) + '</p>';
-    html += '<p><strong>经验倍率：</strong>' + (job.expMultiplier !== undefined ? job.expMultiplier : '—') + '</p>';
-    var expProfs = job.expProfessions || [];
-    html += '<p><strong>触发技艺：</strong>' + (expProfs.length > 0 ? expProfs.join('、') : '全部技艺') + '</p>';
-
-    html += '</div>';
-    return html;
-  }
-
-  var skillRangeLabels = {
-    melee: '近战',
-    ranged: '远程',
-    adjacent: '相邻',
-    column: '整列',
-    row: '整行',
-    area: '区域',
-    all: '全场',
-    self: '自身',
-    single: '单体',
-    aoe: '范围',
-    all_allies: '全体友方',
-    all_enemies: '全体敌人',
-    same_column: '同列',
-    same_row: '同行'
-  };
-
-  function renderJobSkills(job, skillsData) {
-    var skillIds = job.skills || [];
-    if (skillIds.length === 0) {
-      return '<div class="detail-section"><h5>技能列表</h5><p class="detail-empty">暂无技能</p></div>';
-    }
-
-    var html = '<div class="detail-section"><h5>技能列表</h5>';
-    html += '<table class="detail-table"><thead><tr><th>名称</th><th>类型</th><th>范围</th><th>描述/效果</th><th>能量/冷却</th><th>最高等级</th></tr></thead><tbody>';
-
-    skillIds.forEach(function(skillId) {
-      var skill = null;
-      for (var i = 0; i < skillsData.length; i++) {
-        if (skillsData[i].id === skillId) { skill = skillsData[i]; break; }
-      }
-
-      var typeLabel = skill ? (skillTypeLabels[skill.type] || skill.type || '—') : '—';
-      var effectLabel = skill ? (skillEffectLabels[skill.effect] || skill.effect || '—') : '—';
-      var triggerLabel = skill ? (skill.triggerCondition ? (skillTriggerLabels[skill.triggerCondition] || skill.triggerCondition) : '—') : '—';
-      var skillName = skill ? (skill.name || skill.id || skillId) : skillId;
-      var skillDesc = skill ? (skill.desc || '') : '';
-      var maxLevel = skill && skill.maxLevel ? skill.maxLevel : '—';
-
-      // scope/range unified display
-      var rangeParts = [];
-      if (skill && skill.scope) {
-        rangeParts.push(skillScopeLabels[skill.scope] || skill.scope);
-      }
-      if (skill && skill.range) {
-        rangeParts.push(skillRangeLabels[skill.range] || skill.range);
-      }
-      if (skill && skill.target && skill.target !== 'self' && skill.target !== 'single') {
-        rangeParts.push(skillRangeLabels[skill.target] || skill.target);
-      }
-      var rangeDisplay = rangeParts.length > 0 ? rangeParts.join(' / ') : '—';
-
-      // description with effect fields
-      var descParts = [];
-      if (skillDesc) descParts.push(skillDesc);
-      if (skill && skill.effect && skill.effect !== 'attribute') {
-        descParts.push('[' + effectLabel + ']');
-      }
-      if (skill && skill.damageType) {
-        descParts.push('伤害类型: ' + skill.damageType);
-      }
-      if (skill && skill.damageFormula) {
-        descParts.push('公式: ' + skill.damageFormula);
-      }
-      if (skill && skill.triggerCondition && skill.triggerCondition !== 'always') {
-        descParts.push('触发: ' + triggerLabel);
-      }
-      if (skill && skill.duration) {
-        descParts.push('持续: ' + skill.duration + '回合');
-      }
-      if (skill && skill.isDebuff) {
-        descParts.push('[debuff]');
-      }
-      if (skill && skill.passiveBonus) {
-        var pbEffect = skillEffectLabels[skill.passiveBonus.effect] || skill.passiveBonus.effect;
-        descParts.push('被动附加: ' + pbEffect);
-      }
-      var displayDesc = descParts.length > 0 ? descParts.join('；') : '—';
-
-      // energy / cooldown display (energy for active, cooldown for combat_active)
-      var energyCdParts = [];
-      if (skill && skill.type === 'active') {
-        var energyCost = skill.energyCostFormula || (skill.energyCost !== undefined ? String(skill.energyCost) : '—');
-        var energyMax = skill.energyMaxFormula || (skill.energyMax !== undefined ? String(skill.energyMax) : '—');
-        var regenRate = skill.regenRateFormula || (skill.regenRate !== undefined ? String(skill.regenRate) : '—');
-        energyCdParts.push(energyCost + '/' + energyMax + ' 能量');
-        energyCdParts.push('+' + regenRate + '/h');
-        if (skill.cooldown && skill.cooldown > 0) energyCdParts.push(skill.cooldown + '秒');
-      } else if (skill && skill.type === 'combat_active') {
-        energyCdParts.push(skill.cooldown + '回合');
-        if (skill.duration) energyCdParts.push('持续 ' + skill.duration + '回合');
-      } else if (skill && skill.type === 'combat_support' || skill && skill.type === 'domain') {
-        if (skill.cooldown) energyCdParts.push(skill.cooldown + '回合');
-        if (skill.duration) energyCdParts.push('持续 ' + skill.duration + '回合');
-      }
-      var energyCdDisplay = energyCdParts.length > 0 ? energyCdParts.join(' / ') : '—';
-
-      html += '<tr>' +
-        '<td><strong>' + window.escapeHTML(skillName) + '</strong>' +
-        '<span class="ref-id">#' + window.escapeHTML(skillId) + '</span></td>' +
-        '<td>' + window.escapeHTML(typeLabel) + '</td>' +
-        '<td>' + window.escapeHTML(rangeDisplay) + '</td>' +
-        '<td>' + window.escapeHTML(displayDesc) + '</td>' +
-        '<td>' + window.escapeHTML(energyCdDisplay) + '</td>' +
-        '<td>' + window.escapeHTML(String(maxLevel)) + '</td>' +
-        '</tr>';
-    });
-
-    html += '</tbody></table></div>';
-    return html;
-  }
-
   function buildTableHeader(tableHead, columns) {
     tableHead.innerHTML = '';
     var tr = document.createElement('tr');
@@ -731,17 +148,6 @@
     tableHead.appendChild(tr);
   }
 
-  function updateTypeFilter(typeFilter, currentDataset) {
-    var options = currentDataset === 'items' ? itemTypeOptions : (currentDataset === 'jobs' ? jobPathOptions : actionTypeOptions);
-    typeFilter.innerHTML = '';
-    options.forEach(function(opt) {
-      var option = document.createElement('option');
-      option.value = opt.value;
-      option.textContent = opt.label;
-      typeFilter.appendChild(option);
-    });
-  }
-
   function mountItemsTool() {
     var container = document.getElementById('guideContentContainer');
     container.innerHTML = '';
@@ -750,7 +156,6 @@
     container.appendChild(node);
 
     var root = container.querySelector('.items-component');
-    var datasetFilter = root.querySelector('.datasetFilter');
     var typeFilter = root.querySelector('.typeFilter');
     var searchInput = root.querySelector('.searchInput');
     var toggleSortBtn = root.querySelector('.toggleSortBtn');
@@ -759,14 +164,9 @@
     var itemsBody = root.querySelector('.itemsBody');
     var emptyNotice = root.querySelector('.empty');
 
-    var currentDataset = datasetFilter.value;
     var data = [];
     var expanded = {};
     var sortAsc = true;
-    var consumeTables = [];
-    var rewardTables = [];
-    var itemsData = [];
-    var skillsData = [];
 
     function updateStats(total, filtered) {
       if (total === filtered) {
@@ -784,23 +184,23 @@
 
       if (typeVal !== 'all') {
         list = list.filter(function(it) {
-          var t = it.itemType || it.type || it.actionType || it.path || '';
+          var t = it.itemType || '';
           return t === typeVal;
         });
       }
 
       if (keyword) {
         list = list.filter(function(it) {
-          var id = String(it.itemId !== undefined ? it.itemId : (it.id !== undefined ? it.id : it.actionId)).toLowerCase();
-          var name = String(it.itemName || it.actionName || it.name || '').toLowerCase();
-          var desc = String(it.itemDescription || it.description || '').toLowerCase();
+          var id = String(it.itemId !== undefined ? it.itemId : '').toLowerCase();
+          var name = String(it.itemName || '').toLowerCase();
+          var desc = String(it.itemDescription || '').toLowerCase();
           return id.indexOf(keyword) >= 0 || name.indexOf(keyword) >= 0 || desc.indexOf(keyword) >= 0;
         });
       }
 
       list.sort(function(a, b) {
-        var ai = a.itemId !== undefined ? a.itemId : (a.id !== undefined ? a.id : a.actionId);
-        var bi = b.itemId !== undefined ? b.itemId : (b.id !== undefined ? b.id : b.actionId);
+        var ai = a.itemId;
+        var bi = b.itemId;
         if (typeof ai === 'number' && typeof bi === 'number') {
           return sortAsc ? ai - bi : bi - ai;
         } else {
@@ -818,11 +218,11 @@
         emptyNotice.classList.add('hidden');
       }
 
-      var columns = currentDataset === 'items' ? itemColumns : (currentDataset === 'jobs' ? jobColumns : actionColumns);
+      var columns = itemColumns;
       buildTableHeader(tableHead, columns);
 
       list.forEach(function(item) {
-        var id = item.itemId !== undefined ? item.itemId : (item.id !== undefined ? item.id : item.actionId);
+        var id = item.itemId;
         var tr = document.createElement('tr');
         tr.className = 'row';
 
@@ -849,26 +249,6 @@
             img.src = value;
             img.alt = 'icon';
             td.appendChild(img);
-          } else if (col.key === 'actionId') {
-            var shortId = String(value)
-              .replace(/^PIG_CRAFT_/, '')
-              .replace(/^ITEM_USE_CRAFTBOOK_/, '书·')
-              .replace(/^ITEM_USE_/, '使用·');
-            td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(shortId) + '</span>';
-          } else if (col.key === 'subActionType') {
-            var subLabel = subActionTypeLabels[value] || value;
-            td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(subLabel) + '</span>';
-          } else if (col.key === 'triggerType') {
-            var trigLabel = triggerTypeLabels[value] || value;
-            td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(trigLabel) + '</span>';
-          } else if (col.key === 'expSource') {
-            var expLabel = jobExpSourceLabels[value] || value;
-            td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(expLabel) + '</span>';
-          } else if (col.key === 'path') {
-            var pathLabel = jobPathLabels[value] || value;
-            td.innerHTML = '<span class="type-badge" style="background:#8b5cf61a;color:#8b5cf6;border:1px solid #8b5cf633;">' + window.escapeHTML(pathLabel) + '</span>';
-          } else if (col.key === 'tier') {
-            td.innerHTML = 'T' + window.escapeHTML(String(value));
           } else {
             td.textContent = formatCell(value, col);
           }
@@ -893,38 +273,18 @@
         detailRow.className = 'detail-row';
         detailRow.style.display = expanded[id] ? '' : 'none';
         var colspan = columns.length + 1;
-        var detailContent = '';
-
-        if (currentDataset === 'actions') {
-          detailContent = '<div class="details">' +
-            '<div class="detail-grid">' +
-            renderConsumeTable(item.consumeTableId, consumeTables, itemsData) +
-            renderRewardTable(item.rewardTableId, rewardTables, itemsData) +
-            '</div>';
-
-          var extraParams = item.extraParams || {};
-          if (Object.keys(extraParams).length > 0) {
-            detailContent += '<div class="detail-section"><h5>额外参数</h5>' +
-              renderExtraParamsTable(extraParams) + '</div>';
-          }
-          detailContent += '</div>';
-        } else if (currentDataset === 'jobs') {
-          detailContent = '<div class="details">' +
-            '<div class="detail-section"><h5>描述</h5><p class="detail-desc">' + window.escapeHTML(item.desc || '') + '</p></div>' +
-            '<div class="detail-grid">' +
-            renderJobEffects(item) +
-            renderJobReclassInfo(item) +
-            '</div>' +
-            renderJobSkills(item, skillsData) +
-            '</div>';
-        } else {
-          var description = item.itemDescription || item.description || '';
-          detailContent = '<div class="details">' +
-            '<div class="detail-section"><h5>简介</h5><p class="detail-desc">' + window.escapeHTML(description) + '</p></div>' +
-            renderRequiredLevelsTable(item) +
-            renderAttributesTable(item.attributes || []) +
-            '</div>';
-        }
+        var description = item.itemDescription || item.description || '';
+        var hasActions = item.useActionId || item.sellActionId || item.decomposeActionId;
+        var detailContent = '<div class="details">' +
+          '<div class="detail-section"><h5>简介</h5><p class="detail-desc">' + window.escapeHTML(description) + '</p></div>' +
+          renderRequiredLevelsTable(item) +
+          renderAttributesTable(item.attributes || []) +
+          (hasActions ? '<div class="detail-section"><h5>动作ID</h5><table class="detail-table"><thead><tr><th>字段</th><th>值</th></tr></thead><tbody>' +
+            (item.useActionId ? '<tr><td>使用动作</td><td>' + window.escapeHTML(String(item.useActionId)) + '</td></tr>' : '') +
+            (item.sellActionId ? '<tr><td>卖出动作</td><td>' + window.escapeHTML(String(item.sellActionId)) + '</td></tr>' : '') +
+            (item.decomposeActionId ? '<tr><td>分解动作</td><td>' + window.escapeHTML(String(item.decomposeActionId)) + '</td></tr>' : '') +
+            '</tbody></table></div>' : '') +
+          '</div>';
 
         detailRow.innerHTML = '<td colspan="' + colspan + '">' + detailContent + '</td>';
         itemsBody.appendChild(detailRow);
@@ -947,42 +307,14 @@
     }
 
     function loadDataAndRender() {
-      var fetches = [
-        window.fetchDataset(currentDataset)
-      ];
-      if (currentDataset === 'actions') {
-        fetches.push(window.fetchDataset('consumeTables'));
-        fetches.push(window.fetchDataset('rewardTables'));
-        fetches.push(window.fetchDataset('items'));
-      }
-      if (currentDataset === 'jobs') {
-        fetches.push(window.fetchDataset('skills'));
-      }
-
-      Promise.all(fetches).then(function(results) {
-        data = Array.isArray(results[0]) ? results[0] : [];
-        if (currentDataset === 'actions') {
-          consumeTables = Array.isArray(results[1]) ? results[1] : [];
-          rewardTables = Array.isArray(results[2]) ? results[2] : [];
-          itemsData = Array.isArray(results[3]) ? results[3] : [];
-        } else if (currentDataset === 'jobs') {
-          skillsData = Array.isArray(results[1]) ? results[1] : [];
-        } else {
-          itemsData = data;
-        }
+      window.fetchDataset('items').then(function(result) {
+        data = Array.isArray(result) ? result : [];
         expanded = {};
         render();
       });
     }
 
     function init() {
-      datasetFilter.addEventListener('change', function() {
-        currentDataset = datasetFilter.value;
-        updateTypeFilter(typeFilter, currentDataset);
-        searchInput.value = '';
-        loadDataAndRender();
-      });
-
       typeFilter.addEventListener('change', function() {
         render();
       });

@@ -22,12 +22,28 @@
       if (window.mountItemsTool) window.mountItemsTool();
       return;
     }
-    if (key === 'tool-generator') {
-      if (window.mountGeneratorTool) window.mountGeneratorTool();
+    if (key === 'tool-actions') {
+      if (window.mountActionsTool) window.mountActionsTool();
       return;
     }
-    if (key === 'tool-actionGenerator') {
-      if (window.mountActionGeneratorTool) window.mountActionGeneratorTool();
+    if (key === 'tool-jobs') {
+      if (window.mountJobsTool) window.mountJobsTool();
+      return;
+    }
+    if (key === 'tool-skills') {
+      if (window.mountSkillsTool) window.mountSkillsTool();
+      return;
+    }
+    if (key === 'tool-level') {
+      if (window.mountLevelTool) window.mountLevelTool();
+      return;
+    }
+    if (key === 'tool-map') {
+      if (window.mountMapTool) window.mountMapTool();
+      return;
+    }
+    if (key === 'tool-battle') {
+      if (window.mountBattleTool) window.mountBattleTool();
       return;
     }
 

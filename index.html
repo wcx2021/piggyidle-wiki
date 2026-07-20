@@ -30,14 +30,8 @@
   <!-- Templates for components -->
   <template id="items-template">
     <div class="items-component">
+      <h3>物品查询器</h3>
       <div class="toolbar">
-        <label>数据源:
-          <select class="datasetFilter" aria-label="数据源切换">
-            <option value="items" selected>道具/物品</option>
-            <option value="actions">行动</option>
-            <option value="jobs">职业</option>
-          </select>
-        </label>
         <label>类别:
           <select class="typeFilter" aria-label="类别筛选">
             <option value="all">全部</option>
@@ -71,71 +65,188 @@
     </div>
   </template>
 
-  <div id="toast-container"></div>
-
-  <template id="generator-template">
-    <div class="generator-component">
+  <template id="actions-template">
+    <div class="actions-component">
+      <h3>行动查询器</h3>
       <div class="toolbar">
-        <button class="importJsonBtn">导入 JSON</button>
-        <input type="file" class="jsonFileInput" accept=".json,application/json" style="display:none" />
-        <button class="pasteJsonBtn">粘贴 JSON</button>
-        <button class="panelToggleBtn">导入/导出面板</button>
-        <button class="newEmptyTableBtn">新建空表</button>
-        <select class="generatorTypeSelect" style="padding:6px;border-radius:6px;">
-          <option value="items" selected>items</option>
-          <option value="actions">actions</option>
-        </select>
-        <button class="exportJsonBtn">导出 JSON</button>
+        <label>行动类型:
+          <select class="actionTypeFilter" aria-label="行动类型筛选">
+            <option value="all">全部</option>
+          </select>
+        </label>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="searchInput" placeholder="搜索ID/名称..." aria-label="搜索关键词" />
+        </div>
+        <button class="toggleSortBtn" title="按 ID 升序/降序切换">排序: 升序</button>
       </div>
+      <div class="stats-bar">
+        <span class="stats-count"></span>
+      </div>
+      <div style="overflow:auto">
+        <table class="itemsTable" aria-describedby="行动数据">
+          <thead class="tableHead"></thead>
+          <tbody class="itemsBody"></tbody>
+        </table>
+        <div class="empty notice hidden">无数据</div>
+      </div>
+    </div>
+  </template>
 
-      <div class="importExportPanel hidden" style="margin-top:8px;border:1px solid var(--muted);padding:8px;border-radius:6px;background:var(--card);">
-        <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px;">
-          <strong>导入 / 导出 面板</strong>
-          <div style="margin-left:auto;display:flex;gap:6px;">
-            <button class="iex-parse-btn">解析并导入</button>
-            <button class="iex-export-btn">把当前表写入面板</button>
-            <button class="iex-download-btn">下载 JSON</button>
-            <button class="iex-copy-btn">复制到剪贴板</button>
-            <button class="iex-clear-btn">清空</button>
+  <template id="jobs-template">
+    <div class="jobs-component">
+      <h3>职业查询器</h3>
+      <div class="toolbar">
+        <label>职系:
+          <select class="pathFilter" aria-label="职系筛选">
+            <option value="all">全部</option>
+            <option value="origin">起源</option>
+            <option value="meat">肉猪系</option>
+            <option value="knight">骑士系</option>
+            <option value="dumb">笨猪系</option>
+            <option value="smart">聪明系</option>
+          </select>
+        </label>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="searchInput" placeholder="搜索名称/描述..." aria-label="搜索关键词" />
+        </div>
+        <button class="toggleSortBtn" title="按阶位升序/降序切换">排序: 升序</button>
+      </div>
+      <div class="stats-bar">
+        <span class="stats-count"></span>
+      </div>
+      <div style="overflow:auto">
+        <table class="itemsTable" aria-describedby="职业数据">
+          <thead class="tableHead"></thead>
+          <tbody class="itemsBody"></tbody>
+        </table>
+        <div class="empty notice hidden">无数据</div>
+      </div>
+    </div>
+  </template>
+
+  <template id="skills-template">
+    <div class="skills-component">
+      <h3>技能查询器</h3>
+      <div class="toolbar">
+        <label>类型:
+          <select class="skillTypeFilter" aria-label="技能类型筛选">
+            <option value="all">全部</option>
+            <option value="passive">被动</option>
+            <option value="active">主动</option>
+            <option value="combat_active">战斗主动</option>
+            <option value="combat_support">战斗辅助</option>
+            <option value="domain">领域</option>
+          </select>
+        </label>
+        <label>范围:
+          <select class="skillRangeFilter" aria-label="范围筛选">
+            <option value="all">全部</option>
+            <option value="melee">近战</option>
+            <option value="ranged">远程</option>
+            <option value="single">单体</option>
+            <option value="aoe">范围</option>
+            <option value="self">自身</option>
+            <option value="all_allies">全体友方</option>
+            <option value="all_enemies">全体敌人</option>
+          </select>
+        </label>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="searchInput" placeholder="搜索ID/名称/描述..." aria-label="搜索关键词" />
+        </div>
+        <button class="toggleSortBtn" title="排序切换">排序: 升序</button>
+      </div>
+      <div class="stats-bar">
+        <span class="stats-count"></span>
+      </div>
+      <div style="overflow:auto">
+        <table class="itemsTable" aria-describedby="技能数据">
+          <thead class="tableHead"></thead>
+          <tbody class="itemsBody"></tbody>
+        </table>
+        <div class="empty notice hidden">无数据</div>
+      </div>
+    </div>
+  </template>
+
+  <template id="level-template">
+    <div class="level-component">
+      <h3>等级经验对照表</h3>
+      <div class="toolbar">
+        <div class="level-controls" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span>等级范围：</span>
+          <button class="range-btn" data-from="1" data-to="50">1-50</button>
+          <button class="range-btn" data-from="51" data-to="100">51-100</button>
+          <button class="range-btn" data-from="101" data-to="150">101-150</button>
+          <button class="range-btn" data-from="151" data-to="200">151-200</button>
+          <input type="number" class="rangeFrom" value="1" min="1" max="200" style="width:60px;padding:4px;border-radius:4px;border:1px solid var(--muted);" />
+          <span>—</span>
+          <input type="number" class="rangeTo" value="200" min="1" max="200" style="width:60px;padding:4px;border-radius:4px;border:1px solid var(--muted);" />
+          <button class="applyRangeBtn">跳转</button>
+          <button class="toggleSortBtn">排序: 升序</button>
+        </div>
+      </div>
+      <div class="stats-bar">
+        <span class="stats-count"></span>
+        <span class="page-info" style="margin-left:16px;"></span>
+        <span class="stats-count2" style="margin-left:16px;"></span>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <button class="prevPageBtn">上一页</button>
+        <button class="nextPageBtn">下一页</button>
+      </div>
+      <div style="overflow:auto">
+        <table class="data-table" aria-describedby="等级经验表">
+          <thead><tr><th>等级</th><th>累计经验</th><th>升级所需</th></tr></thead>
+          <tbody class="levelBody"></tbody>
+        </table>
+      </div>
+      <h4 style="margin-top:24px;">等级计算器</h4>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <div class="calc-card" style="flex:1;min-width:260px;border:1px solid var(--border-color, #ddd);border-radius:8px;padding:16px;background:var(--card-bg, transparent);">
+          <h5 style="margin:0 0 12px 0;font-size:14px;">等级段 → 所需经验</h5>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <label>从</label>
+            <input type="number" class="calcFromLevel" min="1" max="200" value="1" style="width:64px;padding:4px;border-radius:4px;border:1px solid var(--muted);" />
+            <label>级到</label>
+            <input type="number" class="calcToLevel" min="1" max="200" value="100" style="width:64px;padding:4px;border-radius:4px;border:1px solid var(--muted);" />
+            <button class="calcRangeBtn" style="padding:4px 12px;border-radius:4px;border:1px solid var(--muted);cursor:pointer;">计算</button>
           </div>
+          <div class="calcRangeResult" style="margin-top:8px;font-weight:bold;font-size:14px;"></div>
         </div>
-        <textarea class="iex-textarea" rows="8" style="width:100%;box-sizing:border-box;padding:8px;border:1px solid var(--muted);border-radius:4px;" placeholder="将 JSON 粘贴到这里，点击"解析并导入"。"></textarea>
-        <div class="iex-status small" style="margin-top:6px;color:var(--muted);white-space:pre-wrap;"></div>
+        <div class="calc-card" style="flex:1;min-width:260px;border:1px solid var(--border-color, #ddd);border-radius:8px;padding:16px;background:var(--card-bg, transparent);">
+          <h5 style="margin:0 0 12px 0;font-size:14px;">总经验 → 等级</h5>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <label>总经验</label>
+            <input type="number" class="calcXpInput" min="0" value="0" style="width:120px;padding:4px;border-radius:4px;border:1px solid var(--muted);" />
+            <button class="calcXpBtn" style="padding:4px 12px;border-radius:4px;border:1px solid var(--muted);cursor:pointer;">计算</button>
+          </div>
+          <div class="calcXpResult" style="margin-top:8px;font-weight:bold;font-size:14px;"></div>
+        </div>
       </div>
-
-      <div class="generatorArea" style="border:1px dashed var(--muted); padding:8px; border-radius:6px;">导入或新建表格后在此编辑</div>
     </div>
   </template>
 
-  <template id="action-generator-template">
-    <div class="action-generator-component">
+  <template id="map-template">
+    <div class="map-component">
+      <h3>地图地块查询</h3>
       <div class="toolbar">
-        <button class="newActionBtn">新建行动</button>
-        <button class="importActionBtn">导入行动配置</button>
-        <input type="file" class="actionFileInput" accept=".json,application/json" style="display:none" />
-        <button class="exportAllBtn">导出全部配置</button>
+        <label>分类:
+          <select class="map-category-select" aria-label="分类选择">
+            <option value="info">地图信息</option>
+            <option value="upgrade">升级消耗</option>
+            <option value="plots">地块池</option>
+            <option value="items">地图道具</option>
+          </select>
+        </label>
       </div>
-      
-      <div class="action-editor" style="margin-top:12px;">
-        <div class="action-section" style="margin-bottom:16px;border:1px solid var(--muted);border-radius:6px;padding:12px;">
-          <h4 style="margin:0 0 12px 0;color:var(--accent);">行动表（Action）</h4>
-          <div class="action-form"></div>
-        </div>
-        
-        <div class="consume-section" style="margin-bottom:16px;border:1px solid var(--muted);border-radius:6px;padding:12px;">
-          <h4 style="margin:0 0 12px 0;color:var(--accent);">消耗表（ConsumeTable）</h4>
-          <div class="consume-form"></div>
-        </div>
-        
-        <div class="reward-section" style="margin-bottom:16px;border:1px solid var(--muted);border-radius:6px;padding:12px;">
-          <h4 style="margin:0 0 12px 0;color:var(--accent);">奖励表（RewardTable）</h4>
-          <div class="reward-form"></div>
-        </div>
-      </div>
-      
-      <div class="export-status small" style="margin-top:8px;color:var(--muted);"></div>
+      <div class="map-content"></div>
     </div>
   </template>
+
+  <div id="toast-container"></div>
 
   <!-- 首屏必需的 JS 模块（同步加载） -->
   <script src="js/utils.js"></script>
