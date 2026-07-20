@@ -1,0 +1,27 @@
+---
+title: "角色属性模板配置表"
+change-id: "wiki-data-character-templates"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+consumers:
+  character-templates.json:
+    baseTemplate: ["templateCalculateService", "battle.service"]
+    baseTemplate.attributes.combat: ["templateCalculateService", "skillCalculator"]
+    baseTemplate.attributes.combat.endurance: ["unit.service"]
+    baseTemplate.attributes.combat.attack: ["unit.service", "skillCalculator"]
+    baseTemplate.attributes.combat.attackSpeed: ["unit.service"]
+    baseTemplate.attributes.combat.hit: ["unit.service"]
+    baseTemplate.attributes.combat.dodge: ["unit.service"]
+    baseTemplate.attributes.combat.critRate: ["unit.service"]
+    baseTemplate.attributes.life: ["unit.service"]
+    baseTemplate.attributes.core: ["unit.service"]
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 角色属性模板公式定义"
+    trigger: "init:sync-to-wiki"
+    synced-to-server: true
+---

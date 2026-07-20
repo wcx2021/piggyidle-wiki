@@ -1,0 +1,165 @@
+<div class="guide-content">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <h2>战斗流程与设置</h2>
+  <p class="spaced">战斗是放置系统的一部分——把你的小猪派遣出去，它会自动读条备战、行军进入战场、自动战斗。你只需要在战前做好设置，剩下的交给它。</p>
+
+  <h3>战斗流程</h3>
+
+  <h4>① 派遣与备战</h4>
+  <p class="spaced">从队列中派遣小猪参加战斗后，小猪会进入<strong>备战读条</strong>状态。读条结束后，小猪正式进入战场，出现在<strong>出生点</strong>。</p>
+  <ul class="spaced">
+    <li>备战读条的逻辑与生活职业完全一致</li>
+    <li>战斗任务在队列中<strong>常驻不清除</strong>，可以随时操作</li>
+  </ul>
+
+  <h4>② 行军入场</h4>
+  <p class="spaced">从出生点出发后，小猪需要经过一段<strong>行军</strong>才能到达待战区。行军需要一定时间，行军速度受小猪属性影响。</p>
+  <p>行军完成后，小猪进入<strong>待战区</strong>等待上场机会。</p>
+
+  <h4>③ 自动进入战斗</h4>
+  <p class="spaced">待战区的小猪会自动观察战场上的格子情况。当它想要站的位置空出来时，就会<strong>自动补位</strong>进入战斗。</p>
+  <ul class="spaced">
+    <li>待战区容量无限，不用担心排队问题</li>
+    <li>补位是自动的，不需要玩家手动操作</li>
+  </ul>
+
+  <h4>④ 持续战斗</h4>
+  <p class="spaced">进入战斗格后，小猪会自动与敌人交战。战斗过程完全自动进行，包括选择目标、释放技能等。</p>
+
+  <h4>⑤ 撤退离场</h4>
+  <p class="spaced">如果你想结束战斗，可以使用<strong>撤退指令</strong>（相当于生活职业中的"停止工作"）。</p>
+  <ul class="spaced">
+    <li>可以从<strong>队列列表</strong>或<strong>战场界面</strong>发起撤退</li>
+    <li>撤退后，你的本战场所有单位全部离场</li>
+    <li>如果你在本战场没有其他单位了，你本场战斗就算结束了</li>
+    <li>战场本身不一定会结束——其他玩家或单位的战斗可能继续</li>
+  </ul>
+
+  <h3>战场结构</h3>
+
+  <h4>布局</h4>
+  <p class="spaced">战场线在中间，红蓝双方左右对称，<strong>前排面向战场线</strong>：</p>
+  <div class="battlefield-diagram" style="text-align:center;padding:16px;background:var(--muted);border-radius:8px;margin:12px 0;font-family: monospace;line-height:1.8;">
+    敌方：后排 | 中排 | 前排 &nbsp;—&nbsp; 战场线 &nbsp;—&nbsp; 前排 | 中排 | 后排 ：我方
+  </div>
+
+  <p>每个位置称为一个<strong>战斗格</strong>，每个战斗格只能站一只小猪。</p>
+
+  <h4>战场规模</h4>
+  <p class="spaced">战场按<strong>路数</strong>分为不同规模：</p>
+  <table class="data-table">
+    <thead><tr><th>规模</th><th>配置</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>小型</td><td>1×3 vs 1×3</td><td>1路，每路前/中/后3格</td></tr>
+      <tr><td>中型</td><td>2×3 vs 2×3</td><td>2路，每路前/中/后3格</td></tr>
+      <tr><td>大型</td><td>3×3 vs 3×3</td><td>3路，每路前/中/后3格</td></tr>
+    </tbody>
+  </table>
+
+  <h4>战场组成</h4>
+  <p class="spaced">每个方向的战场由以下区域组成：</p>
+  <div style="text-align:center;padding:16px;background:var(--muted);border-radius:8px;margin:12px 0;font-family: monospace;line-height:1.8;">
+    出生点 → 行军通道 → 待战区 → 战斗格（后排 / 中排 / 前排）
+  </div>
+
+  <h3>战斗规则</h3>
+
+  <h4>前排保护</h4>
+  <p class="spaced">敌人的大部分攻击<strong>不能越过前排</strong>攻击后排。想要打到后排的敌人，通常需要先突破前排的防线。</p>
+
+  <h4>距离与命中</h4>
+  <p class="spaced">攻击者和目标之间的距离会影响命中率。距离越远，命中率越低。远程单位在这方面更有优势。</p>
+  <ul class="spaced">
+    <li><strong>同路攻击</strong>：距离最短，命中最高</li>
+    <li><strong>跨路攻击</strong>：可以打到其他路的敌人，但有命中修正</li>
+  </ul>
+
+  <h4>行动周期</h4>
+  <p class="spaced">战斗以<strong>10帧/秒</strong>的游戏帧率运行，每只小猪都有一个独立的<strong>充能值</strong>。充能值达到阈值即可选择技能行动。</p>
+  <ul class="spaced">
+    <li>行动阈值：<strong>3000</strong></li>
+    <li>基础充能速度：<strong>100/帧</strong>（即约3秒行动一次）</li>
+    <li>充能速度受属性影响：灵巧×0.5% + 敏捷×0.3% 的局外加成</li>
+    <li>充能满后从可用技能中选一个释放，溢出保留<strong>不归零</strong></li>
+    <li>所有技能都有独立CD，全部CD中则等待</li>
+  </ul>
+
+  <h4>战斗结束</h4>
+  <p class="spaced">当一方在<strong>行军中 + 战场上的单位</strong>全部消失时，该方战败，战斗结束。</p>
+  <p>待战区中的单位不计入判定——毕竟它们还没真正进入战场。</p>
+
+  <h3>战斗设置</h3>
+  <p class="spaced">每个小猪可以拥有<strong>多套命名配置</strong>（如"肉盾配置"、"输出配置"），编队时会同时记录每只猪使用哪套配置出战。以下设置都是针对单套配置的。</p>
+
+  <h4>入场排位</h4>
+  <p class="spaced">设置小猪允许进入的<strong>排</strong>。战场分前/中/后三排，每只小猪可独立配置：</p>
+  <table class="data-table">
+    <thead><tr><th>排位</th><th>说明</th><th>适合</th></tr></thead>
+    <tbody>
+      <tr><td>前排</td><td>直面敌人，距离最近</td><td>近战、肉盾型小猪</td></tr>
+      <tr><td>中排</td><td>介于前后排之间</td><td>均衡型小猪</td></tr>
+      <tr><td>后排</td><td>最安全的位置，距离最远</td><td>远程、脆皮输出型小猪</td></tr>
+    </tbody>
+  </table>
+  <p class="spaced">注：不同地图可能有不同的路数（如1路小型、2路中型、3路大型），但排位总是前/中/后三排，与地图布局无关。</p>
+
+  <h3>寻敌设置</h3>
+  <p class="spaced">设置小猪的攻击目标选择策略，每只小猪可以从以下四种策略中选择一种：</p>
+
+  <table class="data-table">
+    <thead><tr><th>策略</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>欺负弱小</td><td>自动选择重量最少的敌人</td></tr>
+      <tr><td>排除威胁</td><td>自动选择攻击力最高的敌人</td></tr>
+      <tr><td>跟随行动</td><td>攻击上一个行动的队友所攻击的目标</td></tr>
+      <tr><td>优先后排</td><td>自动选择后排敌人</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>优先度判定</strong>：当出现多个同等优先度的目标时（如多个敌人重量相同），按序号从前往后、从上往下依次攻击。</p>
+
+  <h3>技能释放设置</h3>
+  <p class="spaced">自动战斗中，小猪会按照你设定的规则释放技能。有三个设置项：</p>
+
+  <table class="data-table">
+    <thead><tr><th>设置项</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>技能优先级</td><td>多个技能同时可用时优先释放哪个，支持拖拽排序</td></tr>
+      <tr><td>释放条件</td><td>技能满足什么条件才释放。可以设置多个条件（全部满足才释放），如"敌方前排数量 > 2"时才放AOE技能</td></tr>
+      <tr><td>目标偏好</td><td>该技能优先选择什么类型的目标</td></tr>
+    </tbody>
+  </table>
+
+  <h4>释放条件说明</h4>
+  <p class="spaced">每个技能可以配置 0-N 个释放条件。条件由三部分组成：</p>
+  <ul class="spaced">
+    <li><strong>条件指标</strong>：支持敌方数量/重量、己方血量百分比、自身血量/重量等多种指标</li>
+    <li><strong>运算符</strong>：大于/小于/大于等于/小于等于</li>
+    <li><strong>阈值</strong>：具体的数值</li>
+  </ul>
+  <p class="spaced">不配置任何条件 = 只要冷却好就放。配置多个条件 = 全部满足才放。</p>
+
+  <h4>撤退技能</h4>
+  <p class="spaced">撤退被当作一个特殊的"技能"来处理：</p>
+  <ul class="spaced">
+    <li>在技能队列中添加<strong>撤退</strong>条目，并配置触发条件（如"自身血量低于30%"）</li>
+    <li>条件满足时自动撤退离场</li>
+    <li>技能队列中没有撤退条目 → 战至终章（永不自动撤退）</li>
+  </ul>
+  <p class="spaced">示例：血量低于30%时撤退 + 血量低于50%时使用回血技能 + 其余时候普通攻击。</p>
+
+  <h3>群攻寻敌设置</h3>
+  <p class="spaced">群体攻击技能同时攻击多个目标时的选择规则：</p>
+
+  <table class="data-table">
+    <thead><tr><th>设置项</th><th>选项</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>主目标</td><td>—</td><td>按普通寻敌设置选取（4选1）</td></tr>
+      <tr><td rowspan="3">副目标</td><td><strong>按序号</strong></td><td>按格子序号从小到大选取（前排→中排→后排，同排左到右）</td></tr>
+      <tr><td><strong>血量最低</strong></td><td>优先选取攻击范围内血量最低的单位</td></tr>
+      <tr><td><strong>随机</strong></td><td>在攻击范围内随机选取</td></tr>
+    </tbody>
+  </table>
+
+</div>

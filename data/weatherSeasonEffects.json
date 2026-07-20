@@ -1,0 +1,66 @@
+{
+  "weatherEffects": {
+    "sunny": {
+      "resourceCollectionBonus": 0.2,
+      "diplomacyBonus": 0.1,
+      "vitalityConsumption": 0.9,
+      "experienceBonus": 0.15
+    },
+    "cloudy": {
+      "resourceCollectionBonus": 0.05,
+      "diplomacyBonus": 0.05,
+      "vitalityConsumption": 1.0,
+      "experienceBonus": 0.05
+    },
+    "rainy": {
+      "resourceCollectionBonus": -0.1,
+      "diplomacyBonus": -0.05,
+      "vitalityConsumption": 1.2,
+      "experienceBonus": 0.1
+    },
+    "snowy": {
+      "resourceCollectionBonus": -0.2,
+      "diplomacyBonus": -0.1,
+      "vitalityConsumption": 1.3,
+      "experienceBonus": 0.2
+    },
+    "windy": {
+      "resourceCollectionBonus": -0.05,
+      "diplomacyBonus": 0.0,
+      "vitalityConsumption": 1.1,
+      "experienceBonus": 0.08
+    },
+    "foggy": {
+      "resourceCollectionBonus": -0.15,
+      "diplomacyBonus": -0.08,
+      "vitalityConsumption": 1.15,
+      "experienceBonus": 0.12
+    }
+  },
+  "seasonEffects": {
+    "spring": {
+      "resourceCollectionBonus": 0.15,
+      "diplomacyBonus": 0.1,
+      "vitalityRecovery": 0.1,
+      "experienceBonus": 0.1
+    },
+    "summer": {
+      "resourceCollectionBonus": 0.2,
+      "diplomacyBonus": 0.05,
+      "vitalityRecovery": 0.05,
+      "experienceBonus": 0.15
+    },
+    "autumn": {
+      "resourceCollectionBonus": 0.1,
+      "diplomacyBonus": 0.15,
+      "vitalityRecovery": 0.12,
+      "experienceBonus": 0.08
+    },
+    "winter": {
+      "resourceCollectionBonus": -0.1,
+      "diplomacyBonus": 0.0,
+      "vitalityRecovery": 0.08,
+      "experienceBonus": 0.12
+    }
+  }
+}

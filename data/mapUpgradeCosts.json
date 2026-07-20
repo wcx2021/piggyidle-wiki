@@ -1,0 +1,161 @@
+{
+  "mapUpgradeCosts": {
+    "1": {
+      "level": 1,
+      "nextLevel": 2,
+      "costs": [
+        {
+          "itemType": "item",
+          "itemId": 3001,
+          "itemName": "地图碎片：初始之地",
+          "amount": 1000
+        },
+        {
+          "itemType": "item",
+          "itemId": 1000,
+          "itemName": "金币",
+          "amount": 500
+        }
+      ],
+      "effects": {
+        "resourceCapacity": 300000,
+        "maxPigs": 3
+      }
+    },
+    "2": {
+      "level": 2,
+      "nextLevel": 3,
+      "costs": [
+        {
+          "itemType": "item",
+          "itemId": 3001,
+          "itemName": "地图碎片：初始之地",
+          "amount": 3000
+        },
+        {
+          "itemType": "item",
+          "itemId": 1000,
+          "itemName": "金币",
+          "amount": 1500
+        }
+      ],
+      "effects": {
+        "resourceCapacity": 600000,
+        "maxPigs": 3,
+        "maxBuildings": 1
+      }
+    },
+    "3": {
+      "level": 3,
+      "nextLevel": 4,
+      "costs": [
+        {
+          "itemType": "item",
+          "itemId": 3001,
+          "itemName": "地图碎片：初始之地",
+          "amount": 8000
+        },
+        {
+          "itemType": "item",
+          "itemId": 1000,
+          "itemName": "金币",
+          "amount": 4000
+        }
+      ],
+      "effects": {
+        "resourceCapacity": 1000000,
+        "maxPigs": 3
+      }
+    },
+    "4": {
+      "level": 4,
+      "nextLevel": 5,
+      "costs": [
+        {
+          "itemType": "item",
+          "itemId": 3001,
+          "itemName": "地图碎片：初始之地",
+          "amount": 15000
+        },
+        {
+          "itemType": "item",
+          "itemId": 1000,
+          "itemName": "金币",
+          "amount": 7500
+        }
+      ],
+      "effects": {
+        "resourceCapacity": 1500000,
+        "maxPigs": 4
+      }
+    },
+    "5": {
+      "level": 5,
+      "nextLevel": 6,
+      "costs": [
+        {
+          "itemType": "item",
+          "itemId": 3001,
+          "itemName": "地图碎片：初始之地",
+          "amount": 60000
+        },
+        {
+          "itemType": "item",
+          "itemId": 1000,
+          "itemName": "金币",
+          "amount": 30000
+        }
+      ],
+      "effects": {
+        "resourceCapacity": 2100000,
+        "maxPigs": 4,
+        "maxBuildings": 2
+      }
+    },
+    "6": {
+      "level": 6,
+      "nextLevel": 7,
+      "costs": [
+        {
+          "itemType": "item",
+          "itemId": 3001,
+          "itemName": "地图碎片：初始之地",
+          "amount": 100000
+        },
+        {
+          "itemType": "item",
+          "itemId": 1000,
+          "itemName": "金币",
+          "amount": 50000
+        }
+      ],
+      "effects": {
+        "resourceCapacity": 2800000,
+        "maxPigs": 5
+      }
+    },
+    "7": {
+      "level": 7,
+      "nextLevel": 8,
+      "costs": [
+        {
+          "itemType": "item",
+          "itemId": 3001,
+          "itemName": "地图碎片：初始之地",
+          "amount": 200000
+        },
+        {
+          "itemType": "item",
+          "itemId": 1000,
+          "itemName": "金币",
+          "amount": 100000
+        }
+      ],
+      "effects": {
+        "resourceCapacity": 3600000,
+        "maxPigs": 6,
+        "maxBuildings": 3
+      }
+    }
+  }
+}

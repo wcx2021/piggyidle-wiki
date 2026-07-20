@@ -1,0 +1,79 @@
+{
+  "territoryTypes": {
+    "base": {
+      "name": "基地",
+      "nameZh": "基地",
+      "description": "玩家的主基地，拥有神殿、图书馆、公会、交易所等独特建筑，是转职、研究、公会和交易功能的核心。",
+      "maxCount": 1,
+      "maxCountByReputation": null,
+      "initialBuildings": [
+        { "buildingType": "hall", "level": 1 }
+      ],
+      "availableBuildingCategories": ["common", "base_special"]
+    },
+    "territory": {
+      "name": "普通领地",
+      "nameZh": "普通领地",
+      "description": "提供资源产出和职业加成的领地。每座领地可以建造一座特殊建筑（工厂、码头、灯塔或农场）。",
+      "maxCount": null,
+      "maxCountByReputation": [
+        { "minReputation": 0, "maxCount": 0 },
+        { "minReputation": 20, "maxCount": 1 },
+        { "minReputation": 40, "maxCount": 2 },
+        { "minReputation": 60, "maxCount": 3 },
+        { "minReputation": 80, "maxCount": 4 },
+        { "minReputation": 100, "maxCount": 5 }
+      ],
+      "initialBuildings": [
+        { "buildingType": "hall", "level": 1 }
+      ],
+      "availableBuildingCategories": ["common", "territory_special"],
+      "specialBuildingLimit": 1
+    },
+    "hunting_ground": {
+      "name": "猎场",
+      "nameZh": "猎场",
+      "description": "专为狩猎设计的领地，可以开启战场进行战斗。猎场拥有独特的补给站建筑。",
+      "maxCount": null,
+      "maxCountByReputation": [
+        { "minReputation": 0, "maxCount": 0 },
+        { "minReputation": 50, "maxCount": 1 },
+        { "minReputation": 100, "maxCount": 2 },
+        { "minReputation": 150, "maxCount": 3 },
+        { "minReputation": 200, "maxCount": 4 }
+      ],
+      "initialBuildings": [
+        { "buildingType": "hall", "level": 1 }
+      ],
+      "availableBuildingCategories": ["common", "hunting_special"]
+    }
+  },
+  "buildingCategories": {
+    "common": {
+      "name": "通用建筑",
+      "nameZh": "通用建筑",
+      "description": "所有领地都可建造的建筑"
+    },
+    "base_special": {
+      "name": "基地特殊建筑",
+      "nameZh": "基地特殊建筑",
+      "description": "仅在基地可建造的独特建筑"
+    },
+    "territory_special": {
+      "name": "领地特殊建筑",
+      "nameZh": "领地特殊建筑",
+      "description": "普通领地可建造的特殊建筑，每座领地只能建造一座"
+    },
+    "hunting_special": {
+      "name": "猎场特殊建筑",
+      "nameZh": "猎场特殊建筑",
+      "description": "仅在猎场可建造的独特建筑"
+    }
+  },
+  "defaultSettings": {
+    "relocationDuration": 86400000,
+    "relocationDurationHours": 24,
+    "maxBuildingLevel": 10,
+    "buildingIdStart": 8000
+  }
+}

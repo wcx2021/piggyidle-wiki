@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "地图默认配置文件，支持多板块设计",
+    "note": "此文件是合法的配置数据源，regions 字段用于板块区分，default 为默认板块"
+  },
+  "regions": {
+    "default": {
+      "name": "默认板块",
+      "description": "初始板块",
+      "defaultLevel": 1,
+      "defaultTerrainTags": ["grassland"],
+      "defaultSeason": "spring",
+      "defaultWeather": "sunny",
+      "defaultResourcePoints": 0,
+      "defaultVitalityPoints": 100000,
+      "defaultMaxVitalityPoints": 100000,
+      "defaultDiplomacyPoints": 0,
+      "defaultMaxDiplomacyPoints": 100000,
+      "defaultResourceCapacity": 100000,
+      "defaultActiveWorkers": 0,
+      "defaultMaxWorkers": 1
+    }
+  }
+}

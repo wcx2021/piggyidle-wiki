@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "小猪默认配置文件，支持多种族设计",
+    "note": "此文件是合法的配置数据源，species 字段用于种族区分，default 为默认种族"
+  },
+  "species": {
+    "default": {
+      "name": "小猪",
+      "description": "默认种族",
+      "defaultItemId": 6001,
+      "defaultWeight": 300,
+      "defaultState": "idle",
+      "nicknameMinLength": 2,
+      "nicknameMaxLength": 20,
+      "initialAttributeLevel": 1,
+      "initialAttributeExp": 0,
+      "equipmentSlots": [
+        { "slot": "head" },
+        { "slot": "mainHand" },
+        { "slot": "offHand" },
+        { "slot": "body" },
+        { "slot": "feet" },
+        { "slot": "bag" },
+        { "slot": "pocket", "pocketIndex": 0 },
+        { "slot": "pocket", "pocketIndex": 1 }
+      ]
+    }
+  },
+  "job": {
+    "defaultLevel": 1,
+    "defaultExp": 0,
+    "defaultIsActive": false
+  }
+}

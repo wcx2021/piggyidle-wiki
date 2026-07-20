@@ -1,0 +1,22 @@
+---
+title: "地图默认配置表"
+change-id: "wiki-data-map-defaults"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+consumers:
+  map-defaults.json:
+    regions: ["map.service", "ui.map"]
+    regions[].defaultLevel: ["map.service"]
+    regions[].defaultTerrainTags: ["map.service", "ui.map"]
+    regions[].defaultSeason: ["map.service"]
+    regions[].defaultWeather: ["map.service"]
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 地图默认配置"
+    trigger: "init:sync-to-wiki"
+    synced-to-server: true
+---

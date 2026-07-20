@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "队列默认配置文件",
+    "note": "此文件是合法的配置数据源"
+  },
+  "queue": {
+    "idleSleepMs": 50,
+    "batchSize": 200,
+    "maxListCount": 200
+  },
+  "level": {
+    "maxLevel": 200,
+    "initialLevel": 1
+  }
+}

@@ -1,0 +1,22 @@
+---
+title: "小猪默认配置表"
+change-id: "wiki-data-pig-defaults"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+consumers:
+  pig-defaults.json:
+    species: ["pig.service", "pigsSlice"]
+    species[].defaultItemId: ["pig.service"]
+    species[].defaultWeight: ["pig.service"]
+    species[].equipmentSlots: ["equipment.service"]
+    job: ["job.service"]
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 小猪默认种族配置"
+    trigger: "init:sync-to-wiki"
+    synced-to-server: true
+---

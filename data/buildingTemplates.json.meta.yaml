@@ -1,0 +1,24 @@
+---
+title: "建筑模板配置表"
+change-id: "wiki-data-building-templates"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+consumers:
+  buildingTemplates.json:
+    buildingType: ["building.service", "ui.building"]
+    buildingName: ["ui.building"]
+    maxLevel: ["building.service", "ui.building"]
+    effects: ["building.service", "ui.building"]
+    upgradeCosts: ["building.service", "ui.building"]
+    availableIn: ["territory.service"]
+    unlocks: ["building.service"]
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 建筑模板配置"
+    trigger: "init:sync-to-wiki"
+    synced-to-server: true
+---

@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "version": "1.0",
+    "description": "角色模板配置，基础模板定义完整属性，转职模板仅记录差异"
+  },
+  "baseTemplate": {
+    "id": "base_pig",
+    "name": "基础小猪",
+    "description": "未转职的基础小猪模板",
+    "attributes": {
+      "combat": {
+        "endurance": {
+          "base": 100,
+          "formula": {
+            "constitution": 4,
+            "will": 2
+          }
+        },
+        "attack": {
+          "base": 5,
+          "formula": {
+            "strength": 0.4,
+            "constitution": 0.2
+          }
+        },
+        "attackSpeed": {
+          "base": 5,
+          "formula": {
+            "dexterity": 0.05,
+            "agility": 0.05
+          }
+        },
+        "hit": {
+          "base": 5,
+          "formula": {
+            "agility": 0.6,
+            "perception": 0.4
+          }
+        },
+        "dodge": {
+          "base": 3,
+          "formula": {
+            "dexterity": 0.6
+          }
+        },
+        "critRate": {
+          "base": 0,
+          "formula": {
+            "agility": 0.05,
+            "perception": 0.03
+          }
+        },
+        "moveSpeed": {
+          "base": 5,
+          "formula": {
+            "dexterity": 0.1
+          }
+        },
+        "chargeValue": {
+          "base": 5,
+          "growth": 0
+        },
+        "attackRange": {
+          "base": 1,
+          "growth": 0
+        },
+        "critDamage": {
+          "base": 150,
+          "growth": 0
+        },
+        "armorPenetration": {
+          "base": 0,
+          "growth": 0
+        },
+        "armor": {
+          "base": 0,
+          "growth": 0
+        },
+        "devour": {
+          "base": 0,
+          "growth": 0
+        },
+        "regeneration": {
+          "base": 0,
+          "growth": 0
+        },
+        "combo": {
+          "base": 0,
+          "growth": 0
+        }
+      },
+      "life": {
+        "speed": {
+          "base": 0,
+          "growth": 0
+        },
+        "efficiency": {
+          "base": 0,
+          "growth": 0
+        },
+        "experience": {
+          "base": 0,
+          "growth": 0
+        },
+        "successRateBonus": {
+          "base": 0,
+          "growth": 0
+        },
+        "luck": {
+          "base": 0,
+          "growth": 0
+        }
+      },
+      "weight": {
+        "initialWeight": {
+          "base": 100,
+          "formula": {
+            "constitution": 1
+          }
+        },
+        "fullWeight": {
+          "base": 500,
+          "formula": {
+            "constitution": 4,
+            "strength": 1
+          }
+        },
+        "overloadWeight": {
+          "base": 700,
+          "formula": {
+            "constitution": 5,
+            "strength": 1,
+            "will": 1
+          }
+        },
+        "maxWeight": {
+          "base": 1000,
+          "formula": {
+            "constitution": 6,
+            "strength": 2,
+            "will": 2
+          }
+        },
+        "feedRatios": {
+          "underFull": 160,
+          "overFull": 240,
+          "overload": 360
+        }
+      }
+    }
+  },
+  "jobTemplates": []
+}

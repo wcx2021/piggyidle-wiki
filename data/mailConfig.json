@@ -1,0 +1,9 @@
+{
+  "_comment": "邮件系统全局配置。announcementEnabled 控制全服公告开关，关闭时 publishAnnouncement 拒绝新公告。",
+  "announcementEnabled": true,
+  "mailRetentionDays": 7,
+  "softDeleteRetentionDays": 7,
+  "orphanReceiptRetentionDays": 14,
+  "maxMailsPerUser": 50,
+  "batchClaimLimit": 20
+}

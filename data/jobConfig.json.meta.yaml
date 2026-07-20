@@ -1,0 +1,25 @@
+---
+title: "职业配置表"
+change-id: "wiki-data-job-config"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+consumers:
+  jobConfig.json:
+    id: ["job.service", "pigsSlice"]
+    name: ["ui.job"]
+    path: ["job.service"]
+    tier: ["job.service"]
+    skills: ["skill.service", "pigsSlice"]
+    prerequisites: ["job.service"]
+    reclassCost: ["job.service", "ui.job"]
+    reclassConditions: ["job.service"]
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 职业配置"
+    trigger: "init:sync-to-wiki"
+    synced-to-server: true
+---

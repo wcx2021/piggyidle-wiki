@@ -1,0 +1,22 @@
+---
+title: "领地类型配置表"
+change-id: "wiki-data-territory-defaults"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+consumers:
+  territoryDefaults.json:
+    territoryTypes: ["territory.service", "ui.territory"]
+    territoryTypes[].maxCount: ["territory.service"]
+    territoryTypes[].initialBuildings: ["territory.service"]
+    territoryTypes[].availableBuildingCategories: ["territory.service", "building.service"]
+    territoryTypes[].maxCountByReputation: ["territory.service"]
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 领地类型配置"
+    trigger: "init:sync-to-wiki"
+    synced-to-server: true
+---

@@ -1,0 +1,24 @@
+---
+title: "天气季节效果配置表"
+change-id: "wiki-data-weather-season-effects"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+consumers:
+  weatherSeasonEffects.json:
+    weatherEffects: ["weather.service", "territory.service"]
+    weatherEffects[].resourceCollectionBonus: ["territory.service", "ui.weather"]
+    weatherEffects[].vitalityConsumption: ["territory.service"]
+    weatherEffects[].experienceBonus: ["territory.service"]
+    seasonEffects: ["weather.service", "territory.service"]
+    seasonEffects[].resourceCollectionBonus: ["territory.service"]
+    seasonEffects[].vitalityRecovery: ["territory.service"]
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 天气季节效果配置"
+    trigger: "init:sync-to-wiki"
+    synced-to-server: true
+---

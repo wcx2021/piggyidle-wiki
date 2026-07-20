@@ -1,0 +1,158 @@
+<div class="guide-content">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <h2>战斗数据设计</h2>
+  <p class="spaced">本章节汇总战场系统的数据设计，包含敌人模板、敌人阵容、战场模板和副本配置四类数据。</p>
+
+  <div class="note">
+    <strong>快速查询：</strong>使用 <a href="#tool-battle" class="text-blue">战斗数据查询器</a> 在线浏览所有战斗数据。
+  </div>
+
+  <h3>数据关系总览</h3>
+  <p class="spaced">战斗数据的设计遵循以下依赖关系：</p>
+  <pre><code>敌人模板 (enemies.json)          ← 八维属性 + 技能 + AI + 奖励配置
+     ↓ 引用 enemyId
+敌人阵容 (enemy-groups.json)     ← 敌人 + 阵型位置 + 可选覆盖
+     ↓ 引用 groupId
+战场模板 (battle-templates.json) ← 布局规模 + 可选驻守敌人
+副本配置 (dungeon-templates.json)← 关联地图/敌人组/队列时长/奖励包
+     ↓ deployBattle
+战斗引擎                         ← 生成 BattleUnit 执行战斗</code></pre>
+
+  <h3>数据文件索引</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>文件</th>
+        <th>内容</th>
+        <th>设计文档</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>enemies.json</code></td>
+        <td>敌人模板定义：八维属性（唯一属性来源）+ AI 配置 + 奖励配置</td>
+        <td><a href="https://github.com/your/project/blob/main/.trae/workspace/design/%E6%88%98%E5%9C%BA%E7%B3%BB%E7%BB%9F-%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E5%AE%9A%E7%A8%BF.md#79">战场系统设计 §7.9</a></td>
+      </tr>
+      <tr>
+        <td><code>enemy-groups.json</code></td>
+        <td>敌人阵容配置：引用敌人模板 + 阵型位置 + 可选 overrides</td>
+        <td><a href="https://github.com/your/project/blob/main/.trae/workspace/design/%E6%88%98%E5%9C%BA%E7%B3%BB%E7%BB%9F-%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E5%AE%9A%E7%A8%BF.md#79">战场系统设计 §7.9</a></td>
+      </tr>
+      <tr>
+        <td><code>battle-templates.json</code></td>
+        <td>战场模板定义：布局规模、规则、敌人组引用</td>
+        <td><a href="https://github.com/your/project/blob/main/.trae/workspace/design/%E6%88%98%E5%9C%BA%E7%B3%BB%E7%BB%9F-%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E5%AE%9A%E7%A8%BF.md#71">战场系统设计 §7.1</a></td>
+      </tr>
+      <tr>
+        <td><code>dungeon-templates.json</code></td>
+        <td>副本入口配置：关联地图/敌人组/队列时长/奖励包</td>
+        <td><a href="https://github.com/your/project/blob/main/.trae/workspace/design/dungeon/%E5%89%AF%E6%9C%AC%E7%B3%BB%E7%BB%9F-%E7%89%88%E6%9C%AC%E8%AE%BE%E8%AE%A1%E5%AE%9A%E7%A8%BF.md#4">副本系统设计 §4</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>敌人模板（Enemy）</h3>
+  <p class="spaced">敌人模板定义了一个战斗单位的完整属性。核心设计原则：</p>
+  <ul>
+    <li><strong>敌我同源</strong>：敌人与玩家的底层数据结构一致，阵营只是标签</li>
+    <li><strong>八维驱动</strong>：attributes（八维）是唯一属性来源，combatStats 由 character-templates.json 模板公式派生</li>
+    <li><strong>总等级</strong> = 八维属性等级之和（如全5 = 40级）</li>
+    <li><strong>奖励分离</strong>：expReward 为经验池总额，rewardTableId 引用 rewardTables.json 中 trigger_type:5 的奖励表</li>
+    <li><strong>起始体重</strong>内部分组单位 0.01kg=1，小猪默认 800=8kg</li>
+    <li><strong>属性补正</strong>：modifiers 提供外部属性补正（abilityBonus/combatBonus），弥补敌人无装备系统的缺失</li>
+  </ul>
+
+  <h4>敌人属性表</h4>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>字段</th>
+        <th>类型</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>enemyId</code></td>
+        <td>string</td>
+        <td>敌人模板ID（e_开头）</td>
+      </tr>
+      <tr>
+        <td><code>name</code></td>
+        <td>string</td>
+        <td>敌人名称</td>
+      </tr>
+      <tr>
+        <td><code>description</code></td>
+        <td>string</td>
+        <td>敌人描述</td>
+      </tr>
+      <tr>
+        <td><code>attributes</code></td>
+        <td>object</td>
+        <td>八维属性（力量/体质/敏捷/灵巧/智力/感知/意志/魅力）</td>
+      </tr>
+      <tr>
+        <td><code>startingWeight</code></td>
+        <td>number</td>
+        <td>起始体重（0.01kg=1）</td>
+      </tr>
+      <tr>
+        <td><code>skills</code></td>
+        <td>array</td>
+        <td>技能列表 [{skillId, level}]</td>
+      </tr>
+      <tr>
+        <td><code>ai</code></td>
+        <td>object</td>
+        <td>AI 行为配置（targetRule/skillPriority/aoeTargetRule）</td>
+      </tr>
+      <tr>
+        <td><code>expReward</code></td>
+        <td>number</td>
+        <td>经验池总额</td>
+      </tr>
+      <tr>
+        <td><code>rewardTableId</code></td>
+        <td>number</td>
+        <td>掉落表ID（引用 trigger_type:5）</td>
+      </tr>
+      <tr>
+        <td><code>modifiers</code></td>
+        <td>object</td>
+        <td>外部属性补正：abilityBonus（八维加成，模板公式前）+ combatBonus（派生属性 flat 加成，模板公式后）+ startingWeight 补正</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>敌人阵容（EnemyGroup）</h3>
+  <p class="spaced">敌人阵容定义一场战斗中敌方单位的布局。核心概念：</p>
+  <ul>
+    <li><strong>阵型位置</strong>：每个敌人指定 lane（路，从1开始）和 rank（排：front/mid/rear）</li>
+    <li><strong>战场布局</strong>：2×3 表示 2 路 × 3 排，最多容纳 6 个敌人</li>
+    <li><strong>Overrides</strong>：可选字段，可覆盖敌人模板的 attributes/startingWeight/skills/modifiers 等，用于 boss/精英</li>
+    <li><strong>groupId</strong>：被 battle-templates.json 和 dungeon-templates.json 引用</li>
+  </ul>
+
+  <h3>战场模板（BattleTemplate）</h3>
+  <p class="spaced">战场模板定义了战斗的规则空间：</p>
+  <ul>
+    <li><strong>布局</strong>：lanes(1/2/3) × ranks(固定3)，决定战场网格</li>
+    <li><strong>enemyGroupId</strong>：可选，无驻守时为 null（副本模式在创建时指定）</li>
+    <li><strong>marchThreshold</strong>：行军阈值，行军进度达到此值后进入待战区</li>
+    <li>战场独立于地图数据，通过引用关系关联</li>
+  </ul>
+
+  <h3>副本配置（DungeonTemplate）</h3>
+  <p class="spaced">副本入口配置，将地图/敌人/奖励串联为一个可挑战的关卡：</p>
+  <ul>
+    <li><strong>dungeonType</strong>：normal（普通）/ rare（稀有），决定消耗次数类型</li>
+    <li><strong>dailyAttempts</strong>：每日重置次数限制</li>
+    <li><strong>queueDuration</strong>：战斗队列倒计时（秒）</li>
+    <li><strong>rewardPackId</strong>：通关奖励包，引用 rewardTables.json</li>
+    <li>副本创建时通过 enemyGroupId 引用对应敌人阵容</li>
+  </ul>
+
+</div>
