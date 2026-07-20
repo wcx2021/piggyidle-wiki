@@ -15,6 +15,7 @@
     {
       "configId": "c_enemy_basic",
       "name": "基础敌人配置",
+      "preferredRanks": [1],
       "targetRule": "weakest",
       "aoeTargetRule": "sequential",
       "skillQueue": [
@@ -23,6 +24,7 @@
       "_consumers": {
         "configId": ["enemies.json.defaultConfigId", "enemy-groups.json.enemies[].configId", "battle.service"],
         "name": ["ui.wiki"],
+        "preferredRanks": ["battle.service", "battle.engine"],
         "targetRule": ["battle.service", "battle.engine"],
         "aoeTargetRule": ["battle.service", "battle.engine"],
         "skillQueue": ["battle.service", "battle.engine"]

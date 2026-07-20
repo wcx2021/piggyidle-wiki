@@ -21,7 +21,7 @@
     chargeSpeed: '充能速度', critDamage: '暴击伤害', resistance: '抗性'
   };
 
-  var RANK_LABELS = { front: '前排', mid: '中排', rear: '后排' };
+  var RANK_LABELS = { front: '前排', mid: '中排', rear: '后排', 1: '前排', 2: '中排', 3: '后排' };
 
   var TARGET_RULE_LABELS = {
     weakest: '欺负弱小', threat: '排除威胁', follow: '跟随行动', rear: '优先后排'
@@ -88,6 +88,12 @@
 
   var configColumns = [
     { key: 'name', label: '配置名' },
+    { key: 'preferredRanks', label: '可入排位', compute: function(c) {
+      return formatPreferredRanks(c.preferredRanks);
+    }},
+    { key: 'stanceCondition', label: '条件入场', compute: function(c) {
+      return formatStanceCondition(c.stanceCondition);
+    }},
     { key: 'targetRule', label: '寻敌策略', compute: function(c) {
       return TARGET_RULE_LABELS[c.targetRule] || c.targetRule || '—';
     }},
@@ -239,6 +245,31 @@
     return String(v);
   }
 
+  function formatPreferredRanks(preferredRanks) {
+    if (!preferredRanks || !Array.isArray(preferredRanks) || preferredRanks.length === 0) return '—';
+    return preferredRanks.map(function(r) { return RANK_LABELS[r] || r; }).join(', ');
+  }
+
+  function formatStanceCondition(cond) {
+    if (!cond) return '—';
+    var rankLabel = RANK_LABELS[cond.rank] || cond.rank;
+    if (cond.type === 'ally_in_lane_rank') {
+      return '同路该排有友军(' + rankLabel + '≥' + (cond.minCount || 1) + '人)';
+    }
+    if (cond.type === 'ally_in_rank') {
+      return '该排有友军(' + rankLabel + '≥' + (cond.minCount || 1) + '人)';
+    }
+    return window.escapeHTML(cond.type || JSON.stringify(cond));
+  }
+
+  function findConfigById(configId, configsData) {
+    if (!configId || !configsData) return null;
+    for (var i = 0; i < configsData.length; i++) {
+      if (configsData[i].configId === configId) return configsData[i];
+    }
+    return null;
+  }
+
   /* ========== 详情渲染 ========== */
 
   function renderEnemyDetail(enemy, enemiesData, groupsData, itemsData, rewardTablesData, configsData) {
@@ -309,21 +340,24 @@
       sections.push('<div class="detail-section"><h5>技能</h5>' + skillHtml + '</div>');
     }
 
-    // AI 配置（从 enemy-battle-configs.json 读取，仅显示配置名）
+    // AI 配置（从 enemy-battle-configs.json 读取，显示配置名 + preferredRanks + stanceCondition）
     var configId = enemy.defaultConfigId;
     var configName = '使用默认配置';
+    var matchedConfig = null;
     if (configId && configsData) {
-      for (var ci = 0; ci < configsData.length; ci++) {
-        if (configsData[ci].configId === configId) {
-          configName = window.escapeHTML(configsData[ci].name || configId);
-          break;
-        }
+      matchedConfig = findConfigById(configId, configsData);
+      if (matchedConfig) {
+        configName = window.escapeHTML(matchedConfig.name || configId);
+      } else {
+        configName = '<span class="ref-id">#' + window.escapeHTML(configId) + '</span>（未找到）';
       }
-    } else if (configId) {
-      configName = '<span class="ref-id">#' + window.escapeHTML(configId) + '</span>（未找到）';
     }
+    var preferredRanksDisplay = matchedConfig ? formatPreferredRanks(matchedConfig.preferredRanks) : '—';
+    var stanceConditionDisplay = matchedConfig ? formatStanceCondition(matchedConfig.stanceCondition) : '—';
     var configHtml = '<table class="detail-table"><thead><tr><th>字段</th><th>值</th></tr></thead><tbody>' +
       '<tr><td>AI 配置</td><td>' + configName + '</td></tr>' +
+      '<tr><td>可入排位</td><td>' + window.escapeHTML(preferredRanksDisplay) + '</td></tr>' +
+      '<tr><td>条件入场</td><td>' + (stanceConditionDisplay === '—' ? '—' : stanceConditionDisplay) + '</td></tr>' +
       '</tbody></table>';
     sections.push('<div class="detail-section"><h5>AI 配置</h5>' + configHtml + '</div>');
 
@@ -378,18 +412,19 @@
             }
           }
         }
-        var pos = 'Lane ' + m.lane + ' · ' + (RANK_LABELS[m.rank] || m.rank);
-        // 实际生效的配置：阵容 configId 覆盖 → 模板 defaultConfigId
+        // 位置：Lane X，加上从配置读取的可入排位
+        var pos = 'Lane ' + m.lane;
         var effectiveConfigId = m.configId || enemyDefaultConfigId;
+        var effectiveConfig = findConfigById(effectiveConfigId, configsData);
+        if (effectiveConfig && effectiveConfig.preferredRanks && effectiveConfig.preferredRanks.length > 0) {
+          pos += ' (' + formatPreferredRanks(effectiveConfig.preferredRanks) + ')';
+        }
+        // 实际生效的配置：阵容 configId 覆盖 → 模板 defaultConfigId
         var configDisplay = '—';
         if (effectiveConfigId && configsData) {
-          for (var ci = 0; ci < configsData.length; ci++) {
-            if (configsData[ci].configId === effectiveConfigId) {
-              configDisplay = window.escapeHTML(configsData[ci].name || effectiveConfigId);
-              break;
-            }
-          }
-          if (configDisplay === '—') {
+          if (effectiveConfig) {
+            configDisplay = window.escapeHTML(effectiveConfig.name || effectiveConfigId);
+          } else {
             configDisplay = '<span class="ref-id">#' + window.escapeHTML(effectiveConfigId) + '</span>（未找到）';
           }
         }
@@ -471,9 +506,14 @@
   function renderConfigDetail(config) {
     var sections = [];
 
+    var preferredRanksDisplay = formatPreferredRanks(config.preferredRanks);
+    var stanceConditionDisplay = formatStanceCondition(config.stanceCondition);
+
     var basicHtml = '<table class="detail-table"><thead><tr><th>字段</th><th>值</th></tr></thead><tbody>' +
       '<tr><td>配置ID</td><td><span class="ref-id">#' + window.escapeHTML(config.configId) + '</span></td></tr>' +
       '<tr><td>配置名</td><td>' + window.escapeHTML(config.name || '—') + '</td></tr>' +
+      '<tr><td>可入排位</td><td>' + window.escapeHTML(preferredRanksDisplay) + '</td></tr>' +
+      '<tr><td>条件入场</td><td>' + (stanceConditionDisplay === '—' ? '—' : stanceConditionDisplay) + '</td></tr>' +
       '<tr><td>寻敌策略</td><td>' + window.escapeHTML(TARGET_RULE_LABELS[config.targetRule] || config.targetRule || '—') + '</td></tr>' +
       '<tr><td>群攻规则</td><td>' + window.escapeHTML(AOE_TARGET_LABELS[config.aoeTargetRule] || config.aoeTargetRule || '—') + '</td></tr>' +
       '</tbody></table>';
