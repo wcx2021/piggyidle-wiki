@@ -108,12 +108,14 @@
         "1": "打怪触发",
         "2": "交互道具触发",
         "3": "任务触发",
-        "4": "其他行动触发"
+        "4": "其他行动触发",
+        "5": "战斗击杀触发（PVE敌人倒下时触发，trigger_related_id=敌人itemId，需后端扩展enum）"
       }
     },
-    "trigger_related_id": "关联触发ID",
+    "trigger_related_id": "关联触发ID（trigger_type=5时为敌人单位itemId，引用 enemies.json）",
     "mutex_rewards": "互斥奖励池（权重随机选一）",
     "independent_rewards": "独立奖励池（每个独立判定）",
+    "expReward": "经验池总额（trigger_type:5 PVE固化经验，设计 5.2；与 enemies.json 的 expReward 保持一致）",
     "trigger_condition": "触发条件"
   },
   "RewardItem": {
@@ -182,5 +184,241 @@
   "RequiredLevel": {
     "skillName": "技能名称",
     "level": "等级要求"
+  },
+  "BattleTemplate": {
+    "_meta": "文件级元信息（description/consumers/notes），非数据字段",
+    "templateId": "战场模板ID（bt_开头）",
+    "name": "模板名称",
+    "description": "模板描述",
+    "battleType": {
+      "label": "战场类型",
+      "enum": {
+        "pve": "PVE（玩家对敌人）",
+        "pvp": "PVP（玩家对玩家，预留）"
+      }
+    },
+    "layout": "战场布局 {lanes, ranks}（引用 BattleLayout）",
+    "maxUnitsPerSide": "单方最大单位数",
+    "enemyGroupId": "驻守敌人组ID（引用 enemy-groups.json 的 groupId，无驻守时为 null）",
+    "marchThreshold": "行军阈值（设计 2.2，行军进度达到此值后进入待战区）"
+  },
+  "BattleLayout": {
+    "lanes": "路数（1/2/3，对应 1×3/2×3/3×3 战场）",
+    "ranks": "排数（固定 3：front/mid/rear）"
+  },
+  "Enemy": {
+    "enemyId": "敌人模板ID（e_开头）",
+    "name": "敌人名称",
+    "description": "敌人描述",
+    "level": "敌人等级（影响经验/属性展示）",
+    "attributes": "八维属性（对应设计定稿'八维'字段；仅供技能公式 $strength 等引用，不影响 combatStats）",
+    "combatStats": "冻住的战斗属性（直接写死不派生，引用 CombatStats）",
+    "initialWeight": "初始重量（进入战场时的重量，也是退出阈值基准：当前重量<初始重量→逃跑）",
+    "skills": "技能列表（引用 EnemySkillRef[]，skillId 引用 skills.json）",
+    "ai": "AI 行为配置（引用 EnemyAi，字段与玩家战斗设置一致）",
+    "expReward": "经验池总额（PVE 固化，设计 5.2；与 rewardTable.expReward 保持一致）",
+    "rewardTableId": "掉落表ID（引用 rewardTables.json 中 trigger_type:5 的 reward_id）",
+    "startingWeight": "起始体重（内部单位 0.01kg=1，小猪默认 800=8kg）",
+    "modifiers": "外部属性补正：abilityBonus（八维加成）+ combatBonus（派生属性 flat 加成）"
+  },
+  "EnemyAttributes": {
+    "strength": "力量",
+    "constitution": "体质",
+    "agility": "敏捷",
+    "dexterity": "灵巧",
+    "intelligence": "智力",
+    "perception": "感知",
+    "will": "意志",
+    "charisma": "魅力"
+  },
+  "CombatStats": {
+    "attack": "攻击力",
+    "endurance": "耐力/血量上限",
+    "hit": "命中",
+    "dodge": "闪避",
+    "armor": "护甲（物理减伤）",
+    "magicResist": "魔法抗性",
+    "moveSpeed": "移动速度（行军速度=5+灵巧×0.1，设计 2.2）",
+    "chargeSpeed": "充能速度（每帧充能基础值，设计 2.12 默认100）",
+    "critDamage": "暴击伤害（百分比，默认150）",
+    "resistance": "抗性"
+  },
+  "EnemySkillRef": {
+    "skillId": "技能ID（引用 skills.json 的 id，如 pig_basic_attack）",
+    "level": "技能等级（控制技能等级倍率）"
+  },
+  "EnemyAi": {
+    "targetRule": {
+      "label": "寻敌策略",
+      "enum": {
+        "weakest": "欺负弱小（选重量最少）",
+        "threat": "排除威胁（选攻击力最高）",
+        "follow": "跟随行动（攻击上一个行动队友的目标）",
+        "rear": "优先后排（选后排敌人）"
+      }
+    },
+    "skillPriority": "技能释放优先级（skillId 有序列表）",
+    "aoeTargetRule": {
+      "label": "群攻副目标规则",
+      "enum": {
+        "sequential": "按序号（行优先从前到后）",
+        "lowestHp": "血量最低",
+        "random": "随机"
+      }
+    }
+  },
+  "EnemyGroup": {
+    "groupId": "敌人组ID（eg_开头，被 battle-templates.json 引用）",
+    "name": "组名称",
+    "description": "组描述",
+    "enemies": "敌人成员列表（引用 EnemyGroupMember[]）"
+  },
+  "EnemyGroupMember": {
+    "enemyId": "敌人模板ID（引用 enemies.json 的 enemyId）",
+    "lane": "路（从1开始）",
+    "rank": {
+      "label": "排",
+      "enum": {
+        "front": "前排",
+        "mid": "中排",
+        "rear": "后排"
+      }
+    },
+    "overrides": "可选，覆盖敌人模板字段（用于 boss/精英，设计 7.9）。可覆盖 level/combatStats/skills/expReward 等"
+  },
+  "DungeonTemplate": {
+    "dungeonId": "副本ID（dn_开头）",
+    "mapId": "关联地图场景ID",
+    "difficulty": "难度分级（1/2/3，对应难度Ⅰ/Ⅱ/Ⅲ）",
+    "dungeonType": {
+      "label": "副本类型",
+      "enum": {
+        "normal": "普通副本",
+        "rare": "稀有副本"
+      }
+    },
+    "enemyGroupId": "敌人阵容ID（引用 enemy-groups.json 的 groupId）",
+    "queueDuration": "队列时长（秒，战斗队列倒计时）",
+    "rewardPackId": "通关奖励包ID（引用 rewardTables.json 的 reward_id）",
+    "dailyAttempts": "每日次数限制（引用 DungeonDailyAttempts）",
+    "order": "排序序号"
+  },
+  "DungeonDailyAttempts": {
+    "normal": "普通副本每日次数",
+    "rare": "稀有副本每日次数"
+  },
+  "BuildingTemplate": {
+    "buildingType": "建筑类型标识（hall/altar/temple/library/guild/exchange/workshop/woodshop/stoneworks/farm/windmill）",
+    "buildingName": "建筑名称（英文）",
+    "buildingNameZh": "建筑名称（中文）",
+    "category": {
+      "label": "建筑分类",
+      "enum": {
+        "common": "通用建筑（所有领地类型可用）",
+        "base_special": "基地专属建筑",
+        "territory_special": "领地专属建筑",
+        "hunting_special": "猎场专属建筑"
+      }
+    },
+    "description": "建筑效果描述",
+    "maxLevel": "最大等级（大厅10级，其他10级）",
+    "effects": "等级效果列表 [{type, valuePerLevel, unit}]",
+    "upgradeCosts": "升级消耗列表 [{level, items}]",
+    "availableIn": "可用领地类型列表",
+    "unlocks": "解锁功能列表"
+  },
+  "CharacterTemplate": {
+    "baseTemplate": "基础角色模板（所有单位共用）",
+    "baseTemplate.attributes": "属性分类（combat/life/core 三大类）",
+    "baseTemplate.attributes.combat": "战斗属性（endurance/attack/attackSpeed/hit/dodge/critRate）",
+    "baseTemplate.attributes.life": "生命属性（maxHp/hpRegen）",
+    "baseTemplate.attributes.core": "核心属性（weight/moveSpeed/chargeSpeed/critDamage/resistance）"
+  },
+  "CombatAttributeFormula": {
+    "endurance": "耐力（体质×4+意志×2）",
+    "attack": "攻击（力量×0.4+体质×0.2）",
+    "attackSpeed": "攻速（灵巧×0.05+敏捷×0.05）",
+    "hit": "命中（敏捷×0.6+感知×0.4）",
+    "dodge": "闪避（灵巧×0.6）",
+    "critRate": "暴击率（敏捷×0.05+感知×0.03）"
+  },
+  "JobConfig": {
+    "id": "职业ID（pig=初始起源）",
+    "name": "职业名称",
+    "desc": "职业描述",
+    "path": {
+      "label": "职业路径",
+      "enum": {
+        "origin": "初始起源",
+        "combat": "战斗系",
+        "production": "生产系"
+      }
+    },
+    "tier": "阶位（0=起源，1/2/3=进阶）",
+    "isExclusive": "是否互斥",
+    "skills": "职业自带技能列表",
+    "prerequisites": "前置职业条件",
+    "reclassCost": "转职消耗",
+    "reclassConditions": "转职条件"
+  },
+  "MailConfig": {
+    "announcementEnabled": "全服公告开关",
+    "mailRetentionDays": "邮件保留天数（过期自动软删除）",
+    "softDeleteRetentionDays": "软删除保留天数",
+    "orphanReceiptRetentionDays": "无主回执保留天数",
+    "maxMailsPerUser": "每玩家最大邮件数",
+    "batchClaimLimit": "批量领取上限"
+  },
+  "MapDefaults": {
+    "regions": "板块配置（key=板块ID）",
+    "regions[].defaultLevel": "默认等级",
+    "regions[].defaultTerrainTags": "默认地形标签",
+    "regions[].defaultSeason": "默认季节",
+    "regions[].defaultWeather": "默认天气",
+    "regions[].defaultVitalityPoints": "默认活力值",
+    "regions[].defaultResourceCapacity": "默认资源容量"
+  },
+  "MapFragmentMapping": {
+    "mapFragments": "地图碎片映射（key=碎片标识）",
+    "mapFragments[].name": "碎片名称",
+    "mapFragments[].staticItemId": "关联静态物品ID",
+    "mapFragments[].terrainTags": "地形标签列表",
+    "mapFragments[].description": "碎片描述"
+  },
+  "MapUpgradeCost": {
+    "level": "当前等级",
+    "nextLevel": "下一等级",
+    "costs": "升级消耗列表 [{itemType, itemId, itemName, amount}]",
+    "effects": "升级效果（resourceCapacity/maxPigs/maxBuildings）"
+  },
+  "PigDefaults": {
+    "species": "种族配置（key=种族ID）",
+    "species[].defaultWeight": "默认体重（0.01kg=1）",
+    "species[].equipmentSlots": "装备槽位列表 [{slot, pocketIndex?}]",
+    "job": "职业默认配置（defaultLevel/defaultExp/defaultIsActive）"
+  },
+  "QueueDefaults": {
+    "queue.idleSleepMs": "队列空闲休眠毫秒数",
+    "queue.batchSize": "队列批处理大小",
+    "queue.maxListCount": "队列最大列表数",
+    "level.maxLevel": "最大等级限制",
+    "level.initialLevel": "初始等级"
+  },
+  "TerritoryDefaults": {
+    "territoryTypes": "领地类型配置（base/territory/hunting_ground）",
+    "territoryTypes[].maxCount": "最大拥有数量（null=由声望决定）",
+    "territoryTypes[].maxCountByReputation": "声望对应数量限制",
+    "territoryTypes[].initialBuildings": "初始建筑列表",
+    "territoryTypes[].availableBuildingCategories": "可建造建筑分类",
+    "territoryTypes[].specialBuildingLimit": "特殊建筑上限"
+  },
+  "WeatherSeasonEffects": {
+    "weatherEffects": "天气效果配置（sunny/cloudy/rainy/snowy/windy/foggy）",
+    "weatherEffects[].resourceCollectionBonus": "资源采集加成（百分比）",
+    "weatherEffects[].vitalityConsumption": "体力消耗倍率（>1=增加消耗）",
+    "weatherEffects[].experienceBonus": "经验加成（百分比）",
+    "seasonEffects": "季节效果配置（spring/summer/autumn/winter）",
+    "seasonEffects[].resourceCollectionBonus": "资源采集加成（百分比）",
+    "seasonEffects[].vitalityRecovery": "体力恢复加成（百分比）"
   }
 }

@@ -14,6 +14,24 @@
   var PATH_PROFESSION_CONFIG = 'data/professionconfig.json';
   var PATH_JOBS = 'data/jobs.json';
   var PATH_SKILLS = 'data/skills.json';
+  var PATH_ENEMIES = 'data/enemies.json';
+  var PATH_ENEMY_GROUPS = 'data/enemy-groups.json';
+  var PATH_ENEMY_BATTLE_CONFIGS = 'data/enemy-battle-configs.json';
+  var PATH_BATTLE_TEMPLATES = 'data/battle-templates.json';
+  var PATH_DUNGEON_TEMPLATES = 'data/dungeon-templates.json';
+
+  // 新增：server/data/ 同步到 wiki 的数据文件
+  var PATH_BUILDING_TEMPLATES = 'data/buildingTemplates.json';
+  var PATH_CHARACTER_TEMPLATES = 'data/character-templates.json';
+  var PATH_JOB_CONFIG = 'data/jobConfig.json';
+  var PATH_MAIL_CONFIG = 'data/mailConfig.json';
+  var PATH_MAP_DEFAULTS = 'data/map-defaults.json';
+  var PATH_MAP_FRAGMENT_MAPPING = 'data/mapFragmentMapping.json';
+  var PATH_MAP_UPGRADE_COSTS = 'data/mapUpgradeCosts.json';
+  var PATH_PIG_DEFAULTS = 'data/pig-defaults.json';
+  var PATH_QUEUE_DEFAULTS = 'data/queue-defaults.json';
+  var PATH_TERRITORY_DEFAULTS = 'data/territoryDefaults.json';
+  var PATH_WEATHER_SEASON_EFFECTS = 'data/weatherSeasonEffects.json';
 
   var fetchCache = {
     items: null,
@@ -21,7 +39,24 @@
     consumeTables: null,
     rewardTables: null,
     professionConfig: null,
-    jobs: null
+    jobs: null,
+    skills: null,
+    enemies: null,
+    enemyGroups: null,
+    enemyBattleConfigs: null,
+    battleTemplates: null,
+    dungeonTemplates: null,
+    buildingTemplates: null,
+    characterTemplates: null,
+    jobConfig: null,
+    mailConfig: null,
+    mapDefaults: null,
+    mapFragmentMapping: null,
+    mapUpgradeCosts: null,
+    pigDefaults: null,
+    queueDefaults: null,
+    territoryDefaults: null,
+    weatherSeasonEffects: null
   };
 
   /**
@@ -52,7 +87,23 @@
       rewardTables: PATH_REWARD_TABLES,
       professionConfig: PATH_PROFESSION_CONFIG,
       jobs: PATH_JOBS,
-      skills: PATH_SKILLS
+      skills: PATH_SKILLS,
+      enemies: PATH_ENEMIES,
+      enemyGroups: PATH_ENEMY_GROUPS,
+      enemyBattleConfigs: PATH_ENEMY_BATTLE_CONFIGS,
+      battleTemplates: PATH_BATTLE_TEMPLATES,
+      dungeonTemplates: PATH_DUNGEON_TEMPLATES,
+      buildingTemplates: PATH_BUILDING_TEMPLATES,
+      characterTemplates: PATH_CHARACTER_TEMPLATES,
+      jobConfig: PATH_JOB_CONFIG,
+      mailConfig: PATH_MAIL_CONFIG,
+      mapDefaults: PATH_MAP_DEFAULTS,
+      mapFragmentMapping: PATH_MAP_FRAGMENT_MAPPING,
+      mapUpgradeCosts: PATH_MAP_UPGRADE_COSTS,
+      pigDefaults: PATH_PIG_DEFAULTS,
+      queueDefaults: PATH_QUEUE_DEFAULTS,
+      territoryDefaults: PATH_TERRITORY_DEFAULTS,
+      weatherSeasonEffects: PATH_WEATHER_SEASON_EFFECTS
     };
     var path = pathMap[name];
     if (!path) return Promise.resolve([]);

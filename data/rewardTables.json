@@ -1794,5 +1794,43 @@
       }
     ],
     "trigger_condition": ""
+  },
+  {
+    "reward_id": 30001,
+    "trigger_type": 5,
+    "trigger_related_id": "e_training_basic",
+    "mutex_rewards": [],
+    "expReward": 5,
+    "independent_rewards": [
+      { "reward_subtype": 1, "target_id": 1000, "amount_min": 5, "amount_max": 15, "chance": 1 }
+    ],
+    "trigger_condition": "",
+    "_comment": "试炼小猪·初级（e_training_basic）击杀掉落。trigger_type:5=战斗击杀，trigger_related_id=敌人 enemyId。必掉金币 5-15（expReward 为固定经验 5）。",
+    "_consumers": {
+      "reward_id": ["loot.service", "staticResourcesService"],
+      "trigger_type": ["loot.service"],
+      "trigger_related_id": ["loot.service"],
+      "expReward": ["loot.service", "experience.service"],
+      "independent_rewards": ["loot.service"]
+    }
+  },
+  {
+    "reward_id": 30002,
+    "trigger_type": 5,
+    "trigger_related_id": "e_training_advanced",
+    "mutex_rewards": [],
+    "expReward": 15,
+    "independent_rewards": [
+      { "reward_subtype": 1, "target_id": 1000, "amount_min": 15, "amount_max": 30, "chance": 1 }
+    ],
+    "trigger_condition": "",
+    "_comment": "试炼小猪·进阶（e_training_advanced）击杀掉落。trigger_type:5=战斗击杀，trigger_related_id=敌人 enemyId。必掉金币 15-30（expReward 为固定经验 15）。",
+    "_consumers": {
+      "reward_id": ["loot.service", "staticResourcesService"],
+      "trigger_type": ["loot.service"],
+      "trigger_related_id": ["loot.service"],
+      "expReward": ["loot.service", "experience.service"],
+      "independent_rewards": ["loot.service"]
+    }
   }
 ]

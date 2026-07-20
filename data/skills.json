@@ -64,7 +64,7 @@
     "range": "melee",
     "effect": "damage",
     "damageType": "物理",
-    "damageFormula": "10 + $level * 5 + $attack * 1.0 - $defense * 0.3",
+    "damageFormula": "10 + $level * 5 + $attack * 1.0",
     "params": {},
     "_consumers": {
       "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
@@ -75,7 +75,7 @@
       "damageType": ["combatEngine"],
       "damageFormula": ["skillCalculator", "combatEngine"]
     },
-    "_comment": "scope 固定 combat。target 可选: self/single/aoe/all_allies/all_enemies。damageType 可选: 冲撞/物理/魔法/灼烧/毒素。damageFormula 使用 $level/$attack/$defense/$hp/$eightDim 等变量"
+    "_comment": "scope 固定 combat。target 可选: self/single/aoe/all_allies/all_enemies。damageType 可选: 冲撞/物理/魔法/灼烧/毒素。damageFormula 使用 $attack/$weight(当前重量)/$strength/$skillLevel/$maxHp 等变量（伤害已走完Sigmoid判定，此公式仅计算管道B纯伤害）"
   },
   {
     "id": "template_combat_support",
@@ -141,7 +141,7 @@
     "range": "melee",
     "effect": "damage",
     "damageType": "冲撞",
-    "damageFormula": "10 + $level * 0 + $attack * 0.8 - $defense * 0.3",
+    "damageFormula": "$weight * $attack * (0.03 + $skillLevel * 0.01)",
     "params": {},
     "_consumers": {
       "id": ["skill.service", "skillCalculator", "combatEngine"],

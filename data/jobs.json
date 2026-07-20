@@ -7,24 +7,58 @@
     "tier": 0,
     "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "none",
     "expMultiplier": 0,
     "expProfessions": [],
-    "skills": ["pig_basic_attack"],
+    "skills": [
+      "pig_basic_attack"
+    ],
     "prerequisites": [],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
-    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 0
+    },
+    "reclassConditions": {
+      "requiredJobs": [],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "race"
   },
   {
     "id": "meat_pig",
@@ -34,24 +68,56 @@
     "tier": 1,
     "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
-    "expMultiplier": 1.0,
+    "expMultiplier": 1,
     "expProfessions": [],
     "skills": [],
     "prerequisites": [],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
-    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 0
+    },
+    "reclassConditions": {
+      "requiredJobs": [],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "production"
   },
   {
     "id": "bartender_pig",
@@ -61,24 +127,63 @@
     "tier": 2,
     "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.8,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["meat_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "meat_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "meat_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "meat_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "production"
   },
   {
     "id": "security_pig",
@@ -88,24 +193,63 @@
     "tier": 3,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.6,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["bartender_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "bartender_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "bartender_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "bartender_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "mercenary_pig",
@@ -115,24 +259,63 @@
     "tier": 4,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.5,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["security_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "security_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "security_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "security_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "guard_pig",
@@ -142,24 +325,63 @@
     "tier": 5,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.4,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["mercenary_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "mercenary_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "mercenary_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "mercenary_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "royal_guard_pig",
@@ -169,24 +391,63 @@
     "tier": 6,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.3,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["guard_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "guard_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "guard_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "guard_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "runner_pig",
@@ -196,24 +457,56 @@
     "tier": 1,
     "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
-    "expMultiplier": 1.0,
+    "expMultiplier": 1,
     "expProfessions": [],
     "skills": [],
     "prerequisites": [],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
-    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 0
+    },
+    "reclassConditions": {
+      "requiredJobs": [],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "scout_pig",
@@ -223,24 +516,63 @@
     "tier": 2,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.8,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["runner_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "runner_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "runner_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "runner_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "fang_pig",
@@ -250,24 +582,63 @@
     "tier": 3,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.6,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["scout_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "scout_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "scout_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "scout_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "knight_pig",
@@ -277,24 +648,63 @@
     "tier": 4,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.5,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["fang_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "fang_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "fang_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "fang_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "iron_knight_pig",
@@ -304,24 +714,63 @@
     "tier": 5,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.4,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["knight_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "knight_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "knight_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "knight_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "war_chariot_pig",
@@ -331,24 +780,63 @@
     "tier": 6,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.3,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["iron_knight_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "iron_knight_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "iron_knight_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "iron_knight_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "dumb_pig",
@@ -358,24 +846,58 @@
     "tier": 1,
     "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
-    "expMultiplier": 1.0,
+    "expMultiplier": 1,
     "expProfessions": [],
-    "skills": ["dumb_learn_1"],
+    "skills": [
+      "dumb_learn_1"
+    ],
     "prerequisites": [],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 0 },
-    "reclassConditions": { "requiredJobs": [], "requiredLevel": 1, "requiredItems": [] },
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 0
+    },
+    "reclassConditions": {
+      "requiredJobs": [],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "big_smart_pig",
@@ -385,24 +907,63 @@
     "tier": 2,
     "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.8,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["dumb_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "dumb_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "dumb_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "dumb_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "dumb_origin_pig",
@@ -412,24 +973,63 @@
     "tier": 3,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.6,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["big_smart_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "big_smart_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "big_smart_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "big_smart_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "prophet_pig",
@@ -439,24 +1039,63 @@
     "tier": 4,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.5,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["dumb_origin_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "dumb_origin_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "dumb_origin_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "dumb_origin_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "oracle_pig",
@@ -466,24 +1105,63 @@
     "tier": 5,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.4,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["prophet_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "prophet_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "prophet_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "prophet_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "pink_evil_pig",
@@ -493,24 +1171,63 @@
     "tier": 6,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.3,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["oracle_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "oracle_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "oracle_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "oracle_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "combat"
   },
   {
     "id": "research_pig",
@@ -520,24 +1237,63 @@
     "tier": 2,
     "isExclusive": false,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.8,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["dumb_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "dumb_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "dumb_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "dumb_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "production"
   },
   {
     "id": "pharmacist_pig",
@@ -547,24 +1303,63 @@
     "tier": 3,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.6,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["research_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "research_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "research_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "research_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "production"
   },
   {
     "id": "smart_pig",
@@ -574,24 +1369,63 @@
     "tier": 4,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.5,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["pharmacist_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "pharmacist_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "pharmacist_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "pharmacist_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "production"
   },
   {
     "id": "phd_pig",
@@ -601,24 +1435,63 @@
     "tier": 5,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.4,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["smart_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "smart_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "smart_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "smart_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "production"
   },
   {
     "id": "doctor_pig",
@@ -628,23 +1501,62 @@
     "tier": 6,
     "isExclusive": true,
     "iconItemId": null,
-    "baseEffect": { "abilities": {}, "professions": {} },
-    "levelEffect": { "abilities": {}, "professions": {} },
+    "baseEffect": {
+      "abilities": {},
+      "professions": {}
+    },
+    "levelEffect": {
+      "abilities": {},
+      "professions": {}
+    },
     "expSource": "profession_exp",
     "expMultiplier": 0.3,
     "expProfessions": [],
     "skills": [],
-    "prerequisites": ["phd_pig"],
-    "reclassCost": { "items": [], "gold": 0, "reclassPoints": 1 },
-    "reclassConditions": { "requiredJobs": [{ "jobId": "phd_pig", "minLevel": 5 }], "requiredLevel": 1, "requiredItems": [] },
+    "prerequisites": [
+      "phd_pig"
+    ],
+    "reclassCost": {
+      "items": [],
+      "gold": 0,
+      "reclassPoints": 1
+    },
+    "reclassConditions": {
+      "requiredJobs": [
+        {
+          "jobId": "phd_pig",
+          "minLevel": 5
+        }
+      ],
+      "requiredLevel": 1,
+      "requiredItems": []
+    },
     "exclusiveWith": [],
     "_consumers": {
-      "id": ["job.service", "pigsSlice", "JobDetail"],
-      "path": ["job.service", "JobPathTree"],
-      "tier": ["job.service", "JobPathTree"],
-      "isExclusive": ["job.service", "reclassValidator"],
-      "skills": ["skill.service", "skillCalculator", "JobDetail"],
+      "id": [
+        "job.service",
+        "pigsSlice",
+        "JobDetail"
+      ],
+      "path": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "tier": [
+        "job.service",
+        "JobPathTree"
+      ],
+      "isExclusive": [
+        "job.service",
+        "reclassValidator"
+      ],
+      "skills": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
       "exclusiveWith": []
-    }
+    },
+    "category": "production"
   }
 ]
