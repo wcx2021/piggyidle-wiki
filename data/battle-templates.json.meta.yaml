@@ -1,0 +1,30 @@
+---
+title: "战场模板配置表"
+change-id: "wiki-data-battle-templates"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+
+# 版本信息
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+
+# 影响分析（字段级消费者）
+consumers:
+  battle-templates.json:
+    templateId: ["battle.service", "battle.engine"]
+    name: ["battle.service", "ui.battle"]
+    battleType: ["battle.service", "battle.engine"]
+    layout: ["battle.engine", "battle.snapshot"]
+    maxUnitsPerSide: ["battle.engine"]
+    enemyGroupId: ["battle.service"]
+    marchThreshold: ["battle.engine.marching"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 战场模板定义"
+    trigger: "spec:battle-system"
+    synced-to-server: true
+---

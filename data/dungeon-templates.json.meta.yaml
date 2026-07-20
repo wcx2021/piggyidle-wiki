@@ -1,0 +1,32 @@
+---
+title: "副本模板配置表"
+change-id: "wiki-data-dungeon-templates"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+
+# 版本信息
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+
+# 影响分析（字段级消费者）
+consumers:
+  dungeon-templates.json:
+    dungeonId: ["dungeonController.getDetail", "dungeonController.start", "dungeonAttempt.service"]
+    mapId: ["dungeonController.getDetail", "ui.dungeon"]
+    difficulty: ["ui.dungeon"]
+    dungeonType: ["dungeonController.start", "dungeonAttempt.service", "ui.dungeon"]
+    enemyGroupId: ["dungeonController.getDetail", "battle.service.deployBattle"]
+    queueDuration: ["battleQueueService", "ui.dungeon"]
+    rewardPackId: ["dungeonController.getDetail", "loot.service", "ui.dungeon"]
+    dailyAttempts: ["dungeonAttempt.service"]
+    order: ["dungeonController.list", "ui.dungeon"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 副本模板定义"
+    trigger: "spec:dungeon-system"
+    synced-to-server: true
+---

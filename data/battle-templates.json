@@ -1,0 +1,35 @@
+{
+  "_meta": {
+    "description": "战场模板定义 - 布局规模、规则、敌人组引用。基于战场系统设计定稿 7.1。",
+    "designDoc": ".trae/workspace/design/战场系统-版本设计定稿.md#7.1",
+    "consumers": ["battle.service", "battle.engine"],
+    "notes": [
+      "战场基于模板创建，模板独立于地图数据（设计 6.1：地图←引用→战场模板←可选→敌人组）",
+      "layout.lanes=路数(1/2/3)，layout.ranks=排数(固定3)",
+      "enemyGroupId 引用 enemy-groups.json 的 groupId，无驻守时为 null（副本模式在创建时指定）",
+      "marchThreshold=行军阈值（设计 2.2），行军进度达到此值后自动进入待战区"
+    ]
+  },
+  "templates": [
+    {
+      "templateId": "bt_training_arena",
+      "name": "试炼竞技场",
+      "description": "2路3排对称PVE训练战场，通用配置，副本创建时指定难度对应敌人阵容",
+      "battleType": "pve",
+      "layout": { "lanes": 2, "ranks": 3 },
+      "maxUnitsPerSide": 12,
+      "enemyGroupId": null,
+      "marchThreshold": 100,
+      "_consumers": {
+        "templateId": ["battle.service", "battle.engine"],
+        "name": ["battle.service", "ui.battle"],
+        "battleType": ["battle.service", "battle.engine"],
+        "layout": ["battle.engine", "battle.snapshot"],
+        "maxUnitsPerSide": ["battle.engine"],
+        "enemyGroupId": ["battle.service"],
+        "marchThreshold": ["battle.engine.marching"]
+      },
+      "_comment": "通用 2×3 PVE 训练场，enemyGroupId=null 表示副本创建时按难度选取敌人。阵型编号（设计 7.2 行优先，lane=1 前排/lane=2 后排）：前排(11,12,13) | 后排(21,22,23)"
+    }
+  ]
+}

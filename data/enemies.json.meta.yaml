@@ -1,0 +1,32 @@
+---
+title: "敌人模板配置表"
+change-id: "wiki-data-enemies"
+status: "synced"
+server-status: "current"
+last-modified: "2026-07-13"
+
+# 版本信息
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+
+# 影响分析（字段级消费者）
+consumers:
+  enemies.json:
+    enemyId: ["battle.service", "enemy-group.loader", "loot.service"]
+    name: ["battle.snapshot", "ui.battle"]
+    description: ["ui.battle"]
+    attributes: ["battle.service", "skillCalculator", "templateCalculateService"]
+    startingWeight: ["battle.service", "battle.snapshot"]
+    skills: ["battle.engine", "skillCalculator"]
+    ai: ["battle.engine.ai"]
+    expReward: ["loot.service", "experience.service"]
+    rewardTableId: ["loot.service"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-07-13"
+    summary: "初始版本 - 战场系统敌人模板定义"
+    trigger: "spec:battle-system"
+    synced-to-server: true
+---

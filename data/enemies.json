@@ -1,0 +1,98 @@
+{
+  "_meta": {
+    "description": "敌人模板定义 - 八维属性（唯一属性来源）+ AI 配置 + 奖励配置。敌我同源，都通过 character-templates.json 模板派生战斗属性。",
+    "designDoc": ".trae/workspace/design/战场系统-版本设计定稿.md#7.9",
+    "consumers": ["battle.service", "battle.engine", "loot.service", "experience.service", "skillCalculator"],
+    "_cacheVersion": 1,
+    "notes": [
+      "敌人 = 角色模板实例（八维属性驱动）+ 奖励表，敌我同源，底层数据结构无区别，阵营只是标签",
+      "attributes（八维）是唯一属性来源，combatStats 由 character-templates.json 模板公式派生，不再写死",
+      "总等级 = 八维属性等级之和（如全5 = 40级），不再单独填写 level 字段",
+      "startingWeight = 战斗起始体重（内部单位 0.01kg=1），物种相关固定值（小猪=800=8kg）",
+      "exitThreshold（离场阈值）由模板 initialWeight 公式派生（base:100 + constitution×1），不在 enemies.json 中配置",
+      "modifiers = 外部属性补正（仅敌人生效，玩家用装备系统）。abilityBonus=八维属性额外加成（应用模板公式前），combatBonus=派生战斗属性flat加成（应用模板公式后），startingWeight补正也放在abilityBonus中",
+      "expReward = 该敌人的经验池总额（设计 5.2 PVE 固化），与 rewardTable 中的 expReward 应保持一致",
+      "rewardTableId 引用 rewardTables.json 中 trigger_type:5（战斗击杀）的奖励表",
+      "生成 BattleUnit 时 enemy-group 的 overrides 可覆盖 attributes/startingWeight 等字段",
+      "EnemyModifiers schema: { abilityBonus?: { strength?, constitution?, agility?, dexterity?, intelligence?, perception?, will?, charisma?, startingWeight? }, combatBonus?: { attack?, endurance?, hit?, dodge?, armor?, magicResist?, moveSpeed?, chargeSpeed?, critDamage?, resistance? } }"
+    ]
+  },
+  "enemies": [
+    {
+      "enemyId": "e_training_basic",
+      "name": "试炼小猪·初级",
+      "description": "基础战斗试炼的对手，一只刚入门的试炼小猪",
+      "attributes": {
+        "strength": 3,
+        "constitution": 3,
+        "agility": 2,
+        "dexterity": 2,
+        "intelligence": 1,
+        "perception": 2,
+        "will": 2,
+        "charisma": 1
+      },
+      "startingWeight": 800,
+      "skills": [
+        { "skillId": "pig_basic_attack", "level": 1 }
+      ],
+      "defaultConfigId": "c_enemy_basic",
+      "expReward": 5,
+      "rewardTableId": 30001,
+      "modifiers": {},
+      "_consumers": {
+        "enemyId": ["battle.service", "enemy-group.loader", "loot.service"],
+        "name": ["battle.snapshot", "ui.battle"],
+        "description": ["ui.battle"],
+        "attributes": ["battle.service", "skillCalculator", "templateCalculateService"],
+        "startingWeight": ["battle.service", "battle.snapshot"],
+        "skills": ["battle.engine", "skillCalculator"],
+        "defaultConfigId": ["battle.service", "enemy-battle-configs.reference"],
+        "expReward": ["loot.service", "experience.service"],
+        "rewardTableId": ["loot.service"],
+        "modifiers": ["battle.service"]
+      },
+      "_comment": "试炼小猪·初级。八维总和=16级。startingWeight=800(8kg)。combatStats由模板派生：attack=5+3*0.4+3*0.2=6.8≈7, endurance=100+3*4+3*2=118, exitThreshold=100+3=103(1.03kg)。expReward=5, rewardTable=30001 | 使用配置 c_enemy_basic"
+    },
+    {
+      "enemyId": "e_training_advanced",
+      "name": "试炼小猪·进阶",
+      "description": "进阶战斗试炼的对手，已经过一定训练的小猪",
+      "attributes": {
+        "strength": 6,
+        "constitution": 7,
+        "agility": 4,
+        "dexterity": 3,
+        "intelligence": 2,
+        "perception": 3,
+        "will": 4,
+        "charisma": 1
+      },
+      "startingWeight": 1000,
+      "skills": [
+        { "skillId": "pig_basic_attack", "level": 1 }
+      ],
+      "defaultConfigId": "c_enemy_basic",
+      "expReward": 15,
+      "rewardTableId": 30002,
+      "modifiers": {
+        "combatBonus": {
+          "attack": 2
+        }
+      },
+      "_consumers": {
+        "enemyId": ["battle.service", "enemy-group.loader", "loot.service"],
+        "name": ["battle.snapshot", "ui.battle"],
+        "description": ["ui.battle"],
+        "attributes": ["battle.service", "skillCalculator", "templateCalculateService"],
+        "startingWeight": ["battle.service", "battle.snapshot"],
+        "skills": ["battle.engine", "skillCalculator"],
+        "defaultConfigId": ["battle.service", "enemy-battle-configs.reference"],
+        "expReward": ["loot.service", "experience.service"],
+        "rewardTableId": ["loot.service"],
+        "modifiers": ["battle.service"]
+      },
+      "_comment": "试炼小猪·进阶。八维总和=30级。startingWeight=1000(10kg)。combatStats由模板派生：attack=5+6*0.4+7*0.2=8.8≈9, endurance=100+7*4+4*2=136, exitThreshold=100+7=107(1.07kg)。expReward=15, rewardTable=30002 | modifiers.combatBonus.attack=+2 | 使用配置 c_enemy_advanced"
+    }
+  ]
+}

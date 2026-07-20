@@ -1,0 +1,32 @@
+{
+  "_meta": {
+    "description": "敌人 AI 配置定义 - 独立配置表，与玩家方 PigBattleConfig 对齐（v4.1.0）。敌人通过 defaultConfigId 引用，阵容通过 configId 覆盖。",
+    "designDoc": ".trae/workspace/design/战斗系统-版本设计定稿.md#3.2",
+    "consumers": ["battle.service", "battleTool"],
+    "notes": [
+      "每条配置定义敌人的寻敌策略、群攻规则和技能队列",
+      "技能队列结构 = [{skillId, conditions[{metric, operator, value}]}]，与玩家方 SkillQueueEntry 一致",
+      "conditions 为空数组时技能无条件释放（按队列顺序优先）",
+      "skillQueue 为空时引擎回退到 pig_basic_attack",
+      "configId 命名格式：c_enemy_{描述名}，全局唯一"
+    ]
+  },
+  "configs": [
+    {
+      "configId": "c_enemy_basic",
+      "name": "基础敌人配置",
+      "targetRule": "weakest",
+      "aoeTargetRule": "sequential",
+      "skillQueue": [
+        { "skillId": "pig_basic_attack", "conditions": [] }
+      ],
+      "_consumers": {
+        "configId": ["enemies.json.defaultConfigId", "enemy-groups.json.enemies[].configId", "battle.service"],
+        "name": ["ui.wiki"],
+        "targetRule": ["battle.service", "battle.engine"],
+        "aoeTargetRule": ["battle.service", "battle.engine"],
+        "skillQueue": ["battle.service", "battle.engine"]
+      }
+    }
+  ]
+}

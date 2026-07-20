@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "description": "副本模板定义 - 副本入口配置，关联地图/敌人组/队列时长/奖励包。基于副本系统设计定稿 §4。",
+    "designDoc": ".trae/workspace/design/dungeon/副本系统-版本设计定稿.md#4",
+    "consumers": ["dungeonController", "dungeonAttempt.service", "battleQueueService"],
+    "notes": [
+      "dungeonId 为副本唯一标识，前端详情页据此请求 /api/dungeon/:id",
+      "enemyGroupId 引用 enemy-groups.json 的 groupId",
+      "rewardPackId 引用 rewardTables.json 的 reward_id（字符串形式），作为通关奖励包",
+      "dungeonType=normal 时挑战消耗 normalRemaining；=rare 时消耗 rareRemaining",
+      "dailyAttempts.normal/rare 为每日重置上限，0 表示该类型不可用",
+      "queueDuration 单位为秒，统一战斗队列据此倒计时",
+      "mapId 为字符串标识，关联地图场景（Map.mapId 为 number，此处用语义化字符串占位）",
+      "difficulty 为难度分级字符串（'1'/'2'/'3'），对应前端显示难度Ⅰ/Ⅱ/Ⅲ"
+    ]
+  },
+  "templates": [
+    {
+      "dungeonId": "dn_trial_normal",
+      "mapId": "map_trial_arena",
+      "difficulty": "1",
+      "dungeonType": "normal",
+      "enemyGroupId": "eg_training_basic",
+      "queueDuration": 6,
+      "rewardPackId": "30001",
+      "dailyAttempts": { "normal": 4, "rare": 0 },
+      "order": 1,
+      "_consumers": {
+        "dungeonId": ["dungeonController.getDetail", "dungeonController.start", "dungeonAttempt.service"],
+        "mapId": ["dungeonController.getDetail", "ui.dungeon"],
+        "difficulty": ["ui.dungeon"],
+        "dungeonType": ["dungeonController.start", "dungeonAttempt.service", "ui.dungeon"],
+        "enemyGroupId": ["dungeonController.getDetail", "battle.service.deployBattle"],
+        "queueDuration": ["battleQueueService", "ui.dungeon"],
+        "rewardPackId": ["dungeonController.getDetail", "loot.service", "ui.dungeon"],
+        "dailyAttempts": ["dungeonAttempt.service"],
+        "dailyAttempts.normal": ["dungeonAttempt.service"],
+        "dailyAttempts.rare": ["dungeonAttempt.service"],
+        "order": ["dungeonController.list", "ui.dungeon"]
+      },
+      "_comment": "试炼场·普通。1只初级试炼小猪，难度Ⅰ，普通副本每日4次。rewardPackId=30001（初级试炼击杀掉落表）"
+    },
+    {
+      "dungeonId": "dn_trial_rare",
+      "mapId": "map_trial_arena",
+      "difficulty": "3",
+      "dungeonType": "rare",
+      "enemyGroupId": "eg_training_ultimate",
+      "queueDuration": 60,
+      "rewardPackId": "30002",
+      "dailyAttempts": { "normal": 0, "rare": 2 },
+      "order": 2,
+      "_consumers": {
+        "dungeonId": ["dungeonController.getDetail", "dungeonController.start", "dungeonAttempt.service"],
+        "mapId": ["dungeonController.getDetail", "ui.dungeon"],
+        "difficulty": ["ui.dungeon"],
+        "dungeonType": ["dungeonController.start", "dungeonAttempt.service", "ui.dungeon"],
+        "enemyGroupId": ["dungeonController.getDetail", "battle.service.deployBattle"],
+        "queueDuration": ["battleQueueService", "ui.dungeon"],
+        "rewardPackId": ["dungeonController.getDetail", "loot.service", "ui.dungeon"],
+        "dailyAttempts": ["dungeonAttempt.service"],
+        "dailyAttempts.normal": ["dungeonAttempt.service"],
+        "dailyAttempts.rare": ["dungeonAttempt.service"],
+        "order": ["dungeonController.list", "ui.dungeon"]
+      },
+      "_comment": "试炼场·稀有。初级+进阶两只试炼小猪，难度Ⅲ，稀有副本每日2次。rewardPackId=30002（进阶试炼击杀掉落表）"
+    },
+    {
+      "dungeonId": "dn_mistforest_normal",
+      "mapId": "map_mist_forest",
+      "difficulty": "2",
+      "dungeonType": "normal",
+      "enemyGroupId": "eg_training_advanced",
+      "queueDuration": 6,
+      "rewardPackId": "30001",
+      "dailyAttempts": { "normal": 4, "rare": 0 },
+      "order": 3,
+      "_consumers": {
+        "dungeonId": ["dungeonController.getDetail", "dungeonController.start", "dungeonAttempt.service"],
+        "mapId": ["dungeonController.getDetail", "ui.dungeon"],
+        "difficulty": ["ui.dungeon"],
+        "dungeonType": ["dungeonController.start", "dungeonAttempt.service", "ui.dungeon"],
+        "enemyGroupId": ["dungeonController.getDetail", "battle.service.deployBattle"],
+        "queueDuration": ["battleQueueService", "ui.dungeon"],
+        "rewardPackId": ["dungeonController.getDetail", "loot.service", "ui.dungeon"],
+        "dailyAttempts": ["dungeonAttempt.service"],
+        "dailyAttempts.normal": ["dungeonAttempt.service"],
+        "dailyAttempts.rare": ["dungeonAttempt.service"],
+        "order": ["dungeonController.list", "ui.dungeon"]
+      },
+      "_comment": "迷雾森林·普通。1只进阶试炼小猪，难度Ⅱ，普通副本每日4次。rewardPackId=30001（初级试炼击杀掉落表）"
+    }
+  ]
+}
