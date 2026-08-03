@@ -608,3 +608,66 @@ table {
   opacity: 0;
   transform: translateY(8px);
 }
+
+/* Buff 详情可视化样式 */
+.buff-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--btn-hover-bg);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.buff-detail-id {
+  font-family: 'SF Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.detail-card {
+  background: var(--btn-hover-bg);
+  border: 1px solid var(--btn-border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-card-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-card-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.detail-card-value.muted {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--accent);
+  color: #fff;
+}

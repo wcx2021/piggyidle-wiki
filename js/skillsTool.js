@@ -29,13 +29,30 @@
     on_crit: '暴击时', hp_below_30: '血量<30%', on_kill: '击杀时',
     on_enter_combat: '进入战斗', position_front: '前排位置', position_middle: '中排位置', position_back: '后排位置' };
 
+  function formatCooldown(value, scope, type) {
+    if (value === null || value === undefined || value === '') return '—';
+    if (type === 'passive') return '—';
+    // combat 场景：单位是帧，1帧 = 0.1s，保留一位小数
+    if (scope === 'combat') {
+      var seconds = value * 0.1;
+      if (seconds === 0) return '0s';
+      return seconds.toFixed(1) + 's';
+    }
+    // life 场景：单位是秒，显示整数
+    if (scope === 'life') {
+      return Math.floor(value) + 's';
+    }
+    // both 或其他：按整数秒显示
+    return Math.floor(value) + 's';
+  }
+
   var skillColumns = [
     { key: 'name', label: '名称' },
     { key: 'type', label: '类型', isBadge: true },
     { key: 'effect', label: '效果', isEffect: true },
-    { key: 'target', label: '目标' },
-    { key: 'range', label: '范围' },
-    { key: 'cooldown', label: '冷却' },
+    { key: 'target', label: '目标', isRangeLabel: true },
+    { key: 'range', label: '范围', isRangeLabel: true },
+    { key: 'cooldown', label: '冷却', isCooldown: true },
     { key: 'maxLevel', label: '最高等级' }
   ];
 
@@ -97,6 +114,32 @@
     return typeColorMap[type] || '#6b7280';
   }
 
+  function renderExtraEffects(extraEffects) {
+    var labels = {
+      greatSuccess: '大成功',
+      success: '成功',
+      normal: '普通',
+      failure: '失败',
+      greatFailure: '大失败'
+    };
+    var groups = extraEffects || {};
+    var rows = [];
+    Object.keys(labels).forEach(function(key) {
+      var effects = Array.isArray(groups[key]) ? groups[key] : [];
+      if (effects.length === 0) return;
+      var value = effects.map(function(item) {
+        if (!item || typeof item !== 'object') return String(item);
+        var effect = getEffectLabel(item.effect);
+        var params = item.params ? ' ' + JSON.stringify(item.params) : '';
+        var formula = item.formula ? ' 公式: ' + item.formula : '';
+        return effect + params + formula;
+      }).join('；');
+      rows.push('<tr><td>' + window.escapeHTML(labels[key]) + '</td><td>' + window.escapeHTML(value) + '</td></tr>');
+    });
+    if (rows.length === 0) return '';
+    return '<div class="detail-section"><h5>额外效果</h5><table class="detail-table"><thead><tr><th>判定结果</th><th>效果</th></tr></thead><tbody>' + rows.join('') + '</tbody></table></div>';
+  }
+
   function renderDetailContent(skill, jobsData) {
     var sections = [];
 
@@ -106,9 +149,11 @@
       { label: '类型', value: skillTypeLabels[skill.type] || skill.type },
       { label: '效果', value: skillEffectLabels[skill.effect] || skill.effect },
       { label: '目标', value: skillRangeLabels[skill.target] || skill.target || '—' },
+      { label: '目标数量', value: skill.targetCount !== undefined && skill.targetCount !== null ? skill.targetCount : '—' },
       { label: '范围', value: skillRangeLabels[skill.range] || skill.range || '—' },
+      { label: '需求武器', value: Array.isArray(skill.requiredWeaponTypes) && skill.requiredWeaponTypes.length > 0 ? skill.requiredWeaponTypes.join('、') : '无限制' },
       { label: '作用域', value: skillScopeLabels[skill.scope] || skill.scope || '—' },
-      { label: '冷却', value: skill.cooldown !== null && skill.cooldown !== undefined && skill.type !== 'active' ? skill.cooldown + '秒' : '—' },
+      { label: '冷却', value: formatCooldown(skill.cooldown, skill.scope, skill.type) },
       { label: '最高等级', value: skill.maxLevel || '—' },
       { label: '持续回合', value: skill.duration !== null && skill.duration !== undefined ? skill.duration + '回合' : '—' }
     ];
@@ -131,6 +176,9 @@
 
     // Description
     sections.push('<div class="detail-section"><h5>描述</h5><p class="detail-desc">' + window.escapeHTML(skill.desc || '—') + '</p></div>');
+
+    var extraEffectsHtml = renderExtraEffects(skill.extraEffects);
+    if (extraEffectsHtml) sections.push(extraEffectsHtml);
 
     // Energy data (for active skills)
     if (skill.type === 'active') {
@@ -278,6 +326,10 @@
             td.innerHTML = renderBadge(String(value), getTypeColor(String(value)));
           } else if (col.isEffect && value) {
             td.innerHTML = renderBadge(getEffectLabel(value), getTypeColor(skill.type));
+          } else if (col.isRangeLabel && value) {
+            td.textContent = skillRangeLabels[value] || value;
+          } else if (col.isCooldown) {
+            td.textContent = formatCooldown(value, skill.scope, skill.type);
           } else {
             td.textContent = formatCell(value, col);
           }

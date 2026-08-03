@@ -246,6 +246,37 @@
     </div>
   </template>
 
+  <template id="buffs-template">
+    <div class="buffs-component">
+      <h3>Buff 查询器</h3>
+      <div class="toolbar">
+        <label>类型:
+          <select class="typeFilter" aria-label="类型筛选">
+            <option value="all">全部</option>
+            <option value="buff">增益</option>
+            <option value="debuff">减益</option>
+            <option value="control">控制</option>
+          </select>
+        </label>
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="searchInput" placeholder="搜索 buffId..." aria-label="搜索关键词" />
+        </div>
+        <button class="toggleSortBtn" title="按 buffId 升序/降序切换">排序: 升序</button>
+      </div>
+      <div class="stats-bar">
+        <span class="stats-count"></span>
+      </div>
+      <div style="overflow:auto">
+        <table class="itemsTable" aria-describedby="Buff 配置数据">
+          <thead class="tableHead"></thead>
+          <tbody class="itemsBody"></tbody>
+        </table>
+        <div class="empty notice hidden">无数据</div>
+      </div>
+    </div>
+  </template>
+
   <div id="toast-container"></div>
 
   <!-- 首屏必需的 JS 模块（同步加载） -->
@@ -253,6 +284,7 @@
   <script src="js/theme.js"></script>
   <script src="js/nav.js"></script>
   <script src="js/guideLoader.js"></script>
+  <script src="js/buffsTool.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

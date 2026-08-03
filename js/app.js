@@ -46,6 +46,10 @@
       if (window.mountBattleTool) window.mountBattleTool();
       return;
     }
+    if (key === 'tool-buffs') {
+      if (window.mountBuffsTool) window.mountBuffsTool();
+      return;
+    }
 
     // 默认将 hash 当作章节 slug 处理
     if (window.loadGuidePage) window.loadGuidePage(key);

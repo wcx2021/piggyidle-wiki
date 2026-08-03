@@ -6,11 +6,23 @@
 (function() {
   'use strict';
 
+  var equipSlotLabelMap = {
+    mainHand: '主手',
+    offHand: '副手',
+    body: '身体',
+    head: '头部',
+    feet: '脚部',
+    bag: '包裹',
+    pocket: '口袋',
+  };
+
   var itemColumns = [
     { key: 'itemId', label: 'ID', aliases: ['itemId', 'id'] },
     { key: 'itemName', label: '名称', aliases: ['itemName', 'name'] },
     { key: 'itemType', label: '类别', aliases: ['itemType', 'type'], isBadge: true },
+    { key: 'equipType', label: '装备类型', aliases: ['equipType', 'equip_type', 'type'] },
     { key: 'itemDescription', label: '简介', aliases: ['itemDescription', 'description'] },
+    { key: 'equipSlot', label: '装备位置', aliases: ['equipSlot', 'slot', 'equip_slot'], isEquipSlot: true },
     { key: 'isTradable', label: '可交易', aliases: ['isTradable', 'tradable', 'is_tradable'], isBool: true },
     { key: 'rarity', label: '有星级', aliases: ['rarity'], isTruthy: true },
     { key: 'isInteractive', label: '可互动', aliases: ['isInteractive', 'interactive', 'is_interactive'], isBool: true },
@@ -239,6 +251,9 @@
 
           if (col.isBadge && value) {
             td.innerHTML = renderBadge(String(value), String(value));
+          } else if (col.isEquipSlot && value) {
+            var slotLabel = equipSlotLabelMap[String(value)] || String(value);
+            td.textContent = slotLabel;
           } else if (col.isBool) {
             td.innerHTML = renderBoolCell(value);
           } else if (col.isTruthy) {

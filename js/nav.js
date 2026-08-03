@@ -56,7 +56,8 @@
         { title: '技能查询', type: 'tool', tool: 'skills' },
         { title: '等级表', type: 'tool', tool: 'level' },
         { title: '地图地块', type: 'tool', tool: 'map' },
-        { title: '战斗数据', type: 'tool', tool: 'battle' }
+        { title: '战斗数据', type: 'tool', tool: 'battle' },
+        { title: 'Buff查询', type: 'tool', tool: 'buffs' }
       ]
     }
   ];

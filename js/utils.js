@@ -32,6 +32,7 @@
   var PATH_QUEUE_DEFAULTS = 'data/queue-defaults.json';
   var PATH_TERRITORY_DEFAULTS = 'data/territoryDefaults.json';
   var PATH_WEATHER_SEASON_EFFECTS = 'data/weatherSeasonEffects.json';
+  var PATH_BUFFS = 'data/buffs.json';
 
   var fetchCache = {
     items: null,
@@ -56,7 +57,8 @@
     pigDefaults: null,
     queueDefaults: null,
     territoryDefaults: null,
-    weatherSeasonEffects: null
+    weatherSeasonEffects: null,
+    buffs: null
   };
 
   /**
@@ -103,7 +105,8 @@
       pigDefaults: PATH_PIG_DEFAULTS,
       queueDefaults: PATH_QUEUE_DEFAULTS,
       territoryDefaults: PATH_TERRITORY_DEFAULTS,
-      weatherSeasonEffects: PATH_WEATHER_SEASON_EFFECTS
+      weatherSeasonEffects: PATH_WEATHER_SEASON_EFFECTS,
+      buffs: PATH_BUFFS
     };
     var path = pathMap[name];
     if (!path) return Promise.resolve([]);
