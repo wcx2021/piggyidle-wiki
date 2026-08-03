@@ -420,5 +420,30 @@
     "seasonEffects": "季节效果配置（spring/summer/autumn/winter）",
     "seasonEffects[].resourceCollectionBonus": "资源采集加成（百分比）",
     "seasonEffects[].vitalityRecovery": "体力恢复加成（百分比）"
+  },
+  "BuffConfig": {
+    "buffId": "Buff 唯一标识",
+    "name_cn": "Buff 中文名称",
+    "type": {
+      "label": "Buff 类型",
+      "enum": {
+        "buff": "增益",
+        "debuff": "减益",
+        "control": "控制"
+      }
+    },
+    "targetAttribute": "目标属性（如 attack/armor/chargeSpeed，null=纯行为限制）",
+    "modifyMode": {
+      "label": "修正模式",
+      "enum": {
+        "flat": "固定数值增减",
+        "percent": "百分比增减"
+      }
+    },
+    "stackable": "可叠加（true=叠加强度, false=覆盖）",
+    "defaultValue": "默认数值（技能效果可通过 value 覆盖）",
+    "variable": "可变输入字段列表（如 ['duration'] 或 ['value','duration']）",
+    "tag": "特殊标记（如 silence=沉默，可扩展）",
+    "periodicEffect": "周期性效果配置（DOT/HOT 用）"
   }
 }

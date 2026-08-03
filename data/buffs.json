@@ -1,0 +1,154 @@
+{
+  "_meta": {
+    "description": "Buff 静态配置定义表。v2.0 简化设计：只修改属性，沉默用 tag 标记。",
+    "designDoc": ".trae/workspace/design/combat/Buff与状态效果系统-版本设计定稿.md",
+    "consumers": ["shared-battle-engine.buff", "battle.service", "ui.battle"],
+    "notes": [
+      "buffId 命名规则：{type}_{effect}，如 buff_atk_up / control_stun / debuff_slow",
+      "type 可选：buff(增益)/debuff(减益)/control(控制)",
+      "targetAttribute 可选：attack/endurance/hit/dodge/armor/magicResist/moveSpeed/chargeSpeed/critDamage/resistance",
+      "targetAttribute=null 表示不修改属性，仅用于周期性效果（DOT）或纯 tag 标记",
+      "modifyMode: percent=百分比乘算（value=-1.0=归零, value=0.2=+20%）, flat=固定数值加减",
+      "defaultValue 为该 buff 的默认强度值，技能效果可通过 value 覆盖",
+      "stackable: true=可叠加强度（value 累加）, false=覆盖（新替旧）",
+      "tag: 特殊标记，如 silence=沉默（禁止释放技能，可普攻），可扩展",
+      "variable: 可变输入字段列表，如 ['duration'] 表示 duration 由技能提供，['value','duration'] 表示两者都由技能提供",
+      "periodicEffect 可选，仅 DOT/HOT 类型需要；tickDamage = baseValue + buff.value（累加值）"
+    ]
+  },
+  "_attributeLabels": {
+    "type": {
+      "buff": "增益",
+      "debuff": "减益",
+      "control": "控制"
+    },
+    "targetAttribute": {
+      "attack": "攻击力",
+      "endurance": "耐力",
+      "hit": "命中",
+      "dodge": "闪避",
+      "armor": "护甲",
+      "magicResist": "魔抗",
+      "moveSpeed": "移动速度",
+      "chargeSpeed": "充能速度",
+      "critDamage": "暴击伤害",
+      "resistance": "韧性"
+    },
+    "modifyMode": {
+      "flat": "固定数值",
+      "percent": "百分比"
+    },
+    "damageType": {
+      "physical": "物理",
+      "magic": "魔法",
+      "pure": "真实"
+    },
+    "variable": {
+      "value": "强度",
+      "duration": "持续时间"
+    }
+  },
+  "buffs": {
+    "buff_atk_up": {
+      "name_cn": "攻击力提升",
+      "type": "buff",
+      "targetAttribute": "attack",
+      "modifyMode": "percent",
+      "defaultValue": 0.2,
+      "stackable": true,
+      "variable": ["duration"]
+    },
+    "buff_def_up": {
+      "name_cn": "护甲提升",
+      "type": "buff",
+      "targetAttribute": "armor",
+      "modifyMode": "percent",
+      "defaultValue": 0.2,
+      "stackable": true,
+      "variable": ["duration"]
+    },
+    "buff_spd_up": {
+      "name_cn": "充能速度提升",
+      "type": "buff",
+      "targetAttribute": "chargeSpeed",
+      "modifyMode": "percent",
+      "defaultValue": 0.2,
+      "stackable": true,
+      "variable": ["duration"]
+    },
+    "debuff_atk_down": {
+      "name_cn": "攻击力降低",
+      "type": "debuff",
+      "targetAttribute": "attack",
+      "modifyMode": "percent",
+      "defaultValue": -0.2,
+      "stackable": false,
+      "variable": ["duration"]
+    },
+    "debuff_armor_down": {
+      "name_cn": "护甲降低",
+      "type": "debuff",
+      "targetAttribute": "armor",
+      "modifyMode": "percent",
+      "defaultValue": -0.2,
+      "stackable": false,
+      "variable": ["duration"]
+    },
+    "debuff_burning": {
+      "name_cn": "灼烧",
+      "type": "debuff",
+      "targetAttribute": null,
+      "modifyMode": "percent",
+      "defaultValue": 3,
+      "stackable": true,
+      "variable": ["duration"],
+      "periodicEffect": {
+        "interval": 10,
+        "baseValue": 5,
+        "damageType": "magic"
+      }
+    },
+    "debuff_poison": {
+      "name_cn": "中毒",
+      "type": "debuff",
+      "targetAttribute": null,
+      "modifyMode": "percent",
+      "defaultValue": 2,
+      "stackable": true,
+      "variable": ["duration"],
+      "periodicEffect": {
+        "interval": 5,
+        "baseValue": 3,
+        "damageType": "physical"
+      }
+    },
+    "control_stun": {
+      "name_cn": "眩晕",
+      "type": "control",
+      "targetAttribute": "chargeSpeed",
+      "modifyMode": "percent",
+      "defaultValue": -1.0,
+      "stackable": false,
+      "variable": ["duration"]
+    },
+    "control_silence": {
+      "name_cn": "沉默",
+      "type": "control",
+      "targetAttribute": null,
+      "modifyMode": "percent",
+      "defaultValue": 0,
+      "stackable": false,
+      "variable": ["duration"],
+      "tag": "silence"
+    },
+    "debuff_slow": {
+      "name_cn": "迟缓",
+      "type": "debuff",
+      "targetAttribute": "chargeSpeed",
+      "modifyMode": "percent",
+      "defaultValue": -0.3,
+      "stackable": true,
+      "variable": ["value", "duration"]
+    }
+  }
+}

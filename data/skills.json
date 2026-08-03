@@ -70,7 +70,10 @@
       "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
       "cooldown": ["combatEngine"],
       "target": ["combatEngine"],
+      "targetCount": ["skill.service", "combatEngine", "JobDetail"],
       "range": ["combatEngine"],
+      "requiredWeaponTypes": ["skill.service", "combatEngine", "JobDetail"],
+      "extraEffects": ["skill.service", "JobDetail"],
       "effect": ["combatEngine", "skillCalculator"],
       "damageType": ["combatEngine"],
       "damageFormula": ["skillCalculator", "combatEngine"]
@@ -138,16 +141,27 @@
     "cooldown": 0,
     "duration": null,
     "target": "single",
+    "targetCount": 1,
     "range": "melee",
+    "requiredWeaponTypes": [],
+    "extraEffects": {
+      "greatSuccess": ["击倒目标"],
+      "success": [],
+      "normal": [],
+      "failure": []
+    },
     "effect": "damage",
     "damageType": "冲撞",
-    "damageFormula": "$weight * $attack * (0.03 + $skillLevel * 0.01)",
+    "damageFormula": "$weight * $attack * (0.5 + $skillLevel * 0.01)",
     "params": {},
     "_consumers": {
       "id": ["skill.service", "skillCalculator", "combatEngine"],
       "cooldown": ["combatEngine"],
       "target": ["combatEngine"],
+      "targetCount": ["combatEngine"],
       "range": ["combatEngine"],
+      "requiredWeaponTypes": ["combatEngine"],
+      "extraEffects": ["skill.service"],
       "effect": ["combatEngine", "skillCalculator"],
       "damageType": ["combatEngine"],
       "damageFormula": ["skillCalculator", "combatEngine"]
@@ -171,5 +185,36 @@
       "effect": ["skillCalculator"],
       "params": ["skillCalculator"]
     }
+  },
+  {
+    "id": "pig_retreat",
+    "name": "撤退",
+    "desc": "主动撤离战场，保留当前体重。战斗引擎特殊处理，不执行常规伤害结算",
+    "type": "combat_active",
+    "scope": "combat",
+    "maxLevel": 1,
+    "cooldown": 0,
+    "duration": null,
+    "target": "self",
+    "targetCount": 1,
+    "range": "melee",
+    "requiredWeaponTypes": [],
+    "extraEffects": {
+      "greatSuccess": ["撤离战场"],
+      "success": ["撤离战场，体重减少5%"],
+      "normal": ["撤离战场，体重减少10%"],
+      "failure": ["撤退失败，不撤离"],
+      "greatFailure": ["撤退失败，不撤离，体重减少5%"]
+    },
+    "effect": "special",
+    "params": {},
+    "_consumers": {
+      "id": ["skill.service", "skillCalculator", "combatEngine"],
+      "cooldown": ["combatEngine"],
+      "target": ["combatEngine"],
+      "extraEffects": ["skill.service"],
+      "effect": ["combatEngine", "skillCalculator"]
+    },
+    "_comment": "effect=special，引擎不执行伤害计算，直接触发单位退出战场。skillQueue 中此技能由引擎 sentinel 值匹配，AI 条件满足时自动触发撤退。extraEffects 定义各档位效果：大成功=撤离战场，成功=撤离战场-5%体重，普通=撤离战场-10%体重，失败=不撤离，大失败=不撤离-5%体重"
   }
 ]

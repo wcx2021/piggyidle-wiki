@@ -1,0 +1,37 @@
+---
+title: "Buff 配置表"
+change-id: "wiki-data-buffs"
+status: "synced"
+server-status: "current"
+last-modified: "2026-08-02"
+
+# 版本信息
+wiki-version: "2.0.0"
+server-version: "2.0.0"
+
+# 影响分析（字段级消费者）
+consumers:
+  buffs.json:
+    name_cn: ["wiki-ui.buffs-tool"]
+    type: ["shared-battle-engine.buff"]
+    targetAttribute: ["shared-battle-engine.buff"]
+    modifyMode: ["shared-battle-engine.buff"]
+    defaultValue: ["shared-battle-engine.buff"]
+    stackable: ["shared-battle-engine.buff"]
+    variable: ["shared-battle-engine.buff"]
+    tag: ["shared-battle-engine.buff"]
+    periodicEffect: ["shared-battle-engine.buff"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-08-02"
+    summary: "初始版本 - Buff 配置定义（10 种 buff：3 增益+3 减益+2 DOT+3 控制）"
+    trigger: "design:buff-system"
+    synced-to-server: true
+  - version: "2.0.0"
+    date: "2026-08-02"
+    summary: "简化重构：移除 behaviorTags/stackRule/maxStacks/duration，新增 stackable/variable/tag/defaultValue"
+    trigger: "redesign:buff-system-simplified"
+    synced-to-server: true
+---

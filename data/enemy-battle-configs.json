@@ -8,14 +8,16 @@
       "技能队列结构 = [{skillId, conditions[{metric, operator, value}]}]，与玩家方 SkillQueueEntry 一致",
       "conditions 为空数组时技能无条件释放（按队列顺序优先）",
       "skillQueue 为空时引擎回退到 pig_basic_attack",
-      "configId 命名格式：c_enemy_{描述名}，全局唯一"
+      "configId 命名格式：c_enemy_{描述名}，全局唯一",
+      "v4.2.0：新增 stanceCondition 字段（null = 无条件入场），与玩家方对齐"
     ]
   },
   "configs": [
     {
       "configId": "c_enemy_basic",
       "name": "基础敌人配置",
-      "preferredRanks": [1],
+      "preferredRanks": [1, 2],
+      "stanceCondition": null,
       "targetRule": "weakest",
       "aoeTargetRule": "sequential",
       "skillQueue": [
@@ -25,6 +27,7 @@
         "configId": ["enemies.json.defaultConfigId", "enemy-groups.json.enemies[].configId", "battle.service"],
         "name": ["ui.wiki"],
         "preferredRanks": ["battle.service", "battle.engine"],
+        "stanceCondition": ["battle.service", "ui.wiki"],
         "targetRule": ["battle.service", "battle.engine"],
         "aoeTargetRule": ["battle.service", "battle.engine"],
         "skillQueue": ["battle.service", "battle.engine"]
