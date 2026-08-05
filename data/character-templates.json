@@ -24,10 +24,10 @@
           }
         },
         "attackSpeed": {
-          "base": 5,
+          "base": 0,
           "formula": {
-            "dexterity": 0.05,
-            "agility": 0.05
+            "dexterity": 1.0,
+            "agility": 0.6
           }
         },
         "hit": {
