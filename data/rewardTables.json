@@ -66,7 +66,7 @@
     "mutex_rewards": [],
     "independent_rewards": [
       {
-        "reward_subtype": 1,
+        "reward_subtype": 5,
         "target_id": 7001,
         "amount_min": 1,
         "amount_max": 1,

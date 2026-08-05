@@ -871,7 +871,7 @@
     "shopPrice": 100,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": false,
+    "isInteractive": true,
     "isDecomposable": true,
     "itemDescription": "侦查小猪搜索到的地图碎片，可以合成初始之地的地图。",
     "useActionId": "CRAFT_MAP_INITIAL_LAND",
@@ -940,6 +940,14 @@
       {
         "name": "攻击力",
         "value": 3
+      },
+      {
+        "name": "基础攻速",
+        "value": 110
+      },
+      {
+        "name": "武器类型",
+        "value": "刀"
       }
     ]
   },
@@ -1018,6 +1026,14 @@
       {
         "name": "攻击力",
         "value": 8
+      },
+      {
+        "name": "基础攻速",
+        "value": 125
+      },
+      {
+        "name": "武器类型",
+        "value": "剑"
       }
     ],
     "growthCoefficient": null,
@@ -1066,6 +1082,14 @@
       {
         "name": "采集速度",
         "value": 10
+      },
+      {
+        "name": "基础攻速",
+        "value": 110
+      },
+      {
+        "name": "武器类型",
+        "value": "鞭"
       }
     ],
     "growthCoefficient": null,
@@ -1615,6 +1639,14 @@
       {
         "name": "攻击力",
         "value": 15
+      },
+      {
+        "name": "基础攻速",
+        "value": 145
+      },
+      {
+        "name": "武器类型",
+        "value": "剑"
       }
     ],
     "growthCoefficient": null,
@@ -1712,11 +1744,11 @@
     "itemType": "map",
     "itemDescription": "初始之地的地图模板，用于创建初始之地地图实例",
     "growthCoefficient": null,
-    "shopPrice": 100,
+    "shopPrice": null,
     "iconUrl": "",
-    "isTradable": true,
+    "isTradable": false,
     "isInteractive": false,
-    "isDecomposable": true,
+    "isDecomposable": false,
     "requiredLevels": [],
     "attributes": []
   },
@@ -1726,11 +1758,11 @@
     "itemType": "map",
     "itemDescription": "一片广阔的草原，适合放牧和种植",
     "growthCoefficient": null,
-    "shopPrice": 100,
+    "shopPrice": null,
     "iconUrl": "",
-    "isTradable": true,
+    "isTradable": false,
     "isInteractive": false,
-    "isDecomposable": true,
+    "isDecomposable": false,
     "requiredLevels": [],
     "attributes": []
   },
@@ -1740,11 +1772,11 @@
     "itemType": "map",
     "itemDescription": "茂密的森林，资源丰富但充满危险",
     "growthCoefficient": null,
-    "shopPrice": 150,
+    "shopPrice": null,
     "iconUrl": "",
-    "isTradable": true,
+    "isTradable": false,
     "isInteractive": false,
-    "isDecomposable": true,
+    "isDecomposable": false,
     "requiredLevels": [],
     "attributes": []
   },
@@ -1754,11 +1786,11 @@
     "itemType": "map",
     "itemDescription": "炎热的沙漠，资源稀缺但有独特的宝藏",
     "growthCoefficient": null,
-    "shopPrice": 200,
+    "shopPrice": null,
     "iconUrl": "",
-    "isTradable": true,
+    "isTradable": false,
     "isInteractive": false,
-    "isDecomposable": true,
+    "isDecomposable": false,
     "requiredLevels": [],
     "attributes": []
   },
@@ -1768,11 +1800,11 @@
     "itemType": "map",
     "itemDescription": "高耸的山脉，矿产丰富但环境恶劣",
     "growthCoefficient": null,
-    "shopPrice": 250,
+    "shopPrice": null,
     "iconUrl": "",
-    "isTradable": true,
+    "isTradable": false,
     "isInteractive": false,
-    "isDecomposable": true,
+    "isDecomposable": false,
     "requiredLevels": [],
     "attributes": []
   },
@@ -1782,11 +1814,11 @@
     "itemType": "map",
     "itemDescription": "广阔的海洋，渔业资源丰富",
     "growthCoefficient": null,
-    "shopPrice": 300,
+    "shopPrice": null,
     "iconUrl": "",
-    "isTradable": true,
+    "isTradable": false,
     "isInteractive": false,
-    "isDecomposable": true,
+    "isDecomposable": false,
     "requiredLevels": [],
     "attributes": []
   },
@@ -1796,11 +1828,11 @@
     "itemType": "map",
     "itemDescription": "寒冷的雪域，资源有限但有特殊的冰原生物",
     "growthCoefficient": null,
-    "shopPrice": 350,
+    "shopPrice": null,
     "iconUrl": "",
-    "isTradable": true,
+    "isTradable": false,
     "isInteractive": false,
-    "isDecomposable": true,
+    "isDecomposable": false,
     "requiredLevels": [],
     "attributes": []
   },
