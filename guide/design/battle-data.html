@@ -148,11 +148,11 @@
   <h3>副本配置（DungeonTemplate）</h3>
   <p class="spaced">副本入口配置，将地图/敌人/奖励串联为一个可挑战的关卡：</p>
   <ul>
-    <li><strong>dungeonType</strong>：normal（普通）/ rare（稀有），决定消耗次数类型</li>
-    <li><strong>dailyAttempts</strong>：每日重置次数限制</li>
+    <li><strong>dungeonType（奖励类型）</strong>：normal（普通奖励）/ rare（稀有奖励），决定胜利时消耗奖励次数池的类型——普通副本消耗普通池、稀有副本消耗稀有池</li>
     <li><strong>queueDuration</strong>：战斗队列倒计时（秒）</li>
     <li><strong>rewardPackId</strong>：通关奖励包，引用 rewardTables.json</li>
     <li>副本创建时通过 enemyGroupId 引用对应敌人阵容</li>
+    <li>奖励次数不属于副本配置字段：由存档级共享池（Save.rewardTimes）统一管理，副本仅通过 dungeonType 判定胜利时消耗普通/稀有池（详见战斗系统设计 §4.2）</li>
   </ul>
 
 </div>

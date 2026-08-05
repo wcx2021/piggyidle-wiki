@@ -3,27 +3,31 @@ title: "副本模板配置表"
 change-id: "wiki-data-dungeon-templates"
 status: "synced"
 server-status: "current"
-last-modified: "2026-07-13"
+last-modified: "2026-08-03"
 
 # 版本信息
-wiki-version: "1.0.0"
+wiki-version: "1.1.0"
 server-version: "1.0.0"
 
 # 影响分析（字段级消费者）
 consumers:
   dungeon-templates.json:
-    dungeonId: ["dungeonController.getDetail", "dungeonController.start", "dungeonAttempt.service"]
+    dungeonId: ["dungeonController.getDetail", "dungeonController.start", "rewardTimes.service"]
     mapId: ["dungeonController.getDetail", "ui.dungeon"]
     difficulty: ["ui.dungeon"]
-    dungeonType: ["dungeonController.start", "dungeonAttempt.service", "ui.dungeon"]
+    dungeonType: ["dungeonController.start", "rewardTimes.service", "ui.dungeon", "battle.service.finishBattle"]
     enemyGroupId: ["dungeonController.getDetail", "battle.service.deployBattle"]
     queueDuration: ["battleQueueService", "ui.dungeon"]
     rewardPackId: ["dungeonController.getDetail", "loot.service", "ui.dungeon"]
-    dailyAttempts: ["dungeonAttempt.service"]
     order: ["dungeonController.list", "ui.dungeon"]
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-08-03"
+    summary: "废弃每副本 dailyAttempts 独立配额，副本次数统一接入存档级 rewardTimes 共享池（v1.4.0 设计）；server/data/dungeon-templates.json 已同步（B9）"
+    trigger: "user:副本属性里的次数设计理解确认"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-07-13"
     summary: "初始版本 - 副本模板定义"

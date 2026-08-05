@@ -31,7 +31,7 @@
     sequential: '按序号', lowestHp: '血量最低', random: '随机'
   };
 
-  var DUNGEON_TYPE_LABELS = { normal: '普通', rare: '稀有' };
+  var DUNGEON_TYPE_LABELS = { normal: '普通奖励', rare: '稀有奖励' };
 
   var DIFFICULTY_LABELS = { '1': 'Ⅰ', '2': 'Ⅱ', '3': 'Ⅲ' };
 
@@ -75,15 +75,8 @@
 
   var dungeonColumns = [
     { key: 'difficulty', label: '难度' },
-    { key: 'dungeonType', label: '类型' },
-    { key: 'queueDuration', label: '队列时长' },
-    { key: 'attemptInfo', label: '每日次数', compute: function(d) {
-      var a = d.dailyAttempts || {};
-      var parts = [];
-      if (a.normal > 0) parts.push('普通:' + a.normal);
-      if (a.rare > 0) parts.push('稀有:' + a.rare);
-      return parts.join(' ') || '—';
-    }}
+    { key: 'dungeonType', label: '奖励类型' },
+    { key: 'queueDuration', label: '队列时长' }
   ];
 
   var configColumns = [
@@ -465,17 +458,14 @@
   function renderDungeonDetail(dungeon, groupsData, rewardTablesData, itemsData) {
     var sections = [];
 
-    var attempts = dungeon.dailyAttempts || {};
     var basicHtml = '<table class="detail-table"><thead><tr><th>字段</th><th>值</th></tr></thead><tbody>' +
       '<tr><td>副本ID</td><td>' + window.escapeHTML(dungeon.dungeonId) + '</td></tr>' +
       '<tr><td>地图ID</td><td>' + window.escapeHTML(dungeon.mapId) + '</td></tr>' +
       '<tr><td>难度</td><td>' + (DIFFICULTY_LABELS[dungeon.difficulty] || dungeon.difficulty) + '</td></tr>' +
-      '<tr><td>类型</td><td>' + (DUNGEON_TYPE_LABELS[dungeon.dungeonType] || dungeon.dungeonType) + '</td></tr>' +
+      '<tr><td>奖励类型</td><td>' + (DUNGEON_TYPE_LABELS[dungeon.dungeonType] || dungeon.dungeonType) + '</td></tr>' +
       '<tr><td>敌人阵容</td><td><span class="ref-id">#' + window.escapeHTML(dungeon.enemyGroupId) + '</span></td></tr>' +
       '<tr><td>队列时长</td><td>' + dungeon.queueDuration + '秒</td></tr>' +
       '<tr><td>奖励包ID</td><td><span class="ref-id">#' + window.escapeHTML(dungeon.rewardPackId) + '</span></td></tr>' +
-      '<tr><td>普通次数</td><td>' + attempts.normal + '次/日</td></tr>' +
-      '<tr><td>稀有次数</td><td>' + attempts.rare + '次/日</td></tr>' +
       '<tr><td>排序</td><td>' + dungeon.order + '</td></tr>' +
       '</tbody></table>';
     sections.push('<div class="detail-section"><h5>副本配置</h5>' + basicHtml + '</div>');

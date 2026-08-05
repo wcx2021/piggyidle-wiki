@@ -239,7 +239,7 @@
     "armor": "护甲（物理减伤）",
     "magicResist": "魔法抗性",
     "moveSpeed": "移动速度（行军速度=5+灵巧×0.1，设计 2.2）",
-    "chargeSpeed": "充能速度（每帧充能基础值，设计 2.12 默认100）",
+    "chargeSpeed": "充能速度（引擎字段：每帧充能加成百分比，0=100%基础，100=200%，由模板 attackSpeed 派生，设计 2.12）",
     "critDamage": "暴击伤害（百分比，默认150）",
     "resistance": "抗性"
   },
@@ -300,12 +300,12 @@
     "enemyGroupId": "敌人阵容ID（引用 enemy-groups.json 的 groupId）",
     "queueDuration": "队列时长（秒，战斗队列倒计时）",
     "rewardPackId": "通关奖励包ID（引用 rewardTables.json 的 reward_id）",
-    "dailyAttempts": "每日次数限制（引用 DungeonDailyAttempts）",
     "order": "排序序号"
   },
-  "DungeonDailyAttempts": {
-    "normal": "普通副本每日次数",
-    "rare": "稀有副本每日次数"
+  "RewardTimes": {
+    "normal": "普通奖励次数（存档级共享池，上限4，每日恢复+2，胜利消耗1次）",
+    "rare": "稀有奖励次数（存档级共享池，上限2，每日恢复+1，胜利消耗1次）",
+    "note": "奖励次数绑定存档（Save.rewardTimes），所有普通副本共享普通池、所有稀有副本共享稀有池；挑战次数不限制，次数为0时胜利无最终奖励"
   },
   "BuildingTemplate": {
     "buildingType": "建筑类型标识（hall/altar/temple/library/guild/exchange/workshop/woodshop/stoneworks/farm/windmill）",
