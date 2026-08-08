@@ -240,9 +240,9 @@
     "magicResist": "魔法抗性",
     "moveSpeed": "移动速度（行军速度=5+灵巧×0.1，设计 2.2）",
     "chargeSpeed": "充能速度（引擎字段：每帧充能加成百分比，0=100%基础，100=200%，由模板 attackSpeed 派生，设计 2.12）",
-    "baseChargePerFrame": "每帧充能基础值（引擎字段：由武器\"基础攻速\"归并到小猪 hiddenAttributes，未设置回落 100/帧，设计 2.12）",
-    "weaponType": "武器类型（单位字段：刀/剑/鞭等，由装备 equipType 归并到小猪 hiddenAttributes，供技能按武器分流）",
-    "critDamage": "暴击伤害（百分比，默认150）",
+    "baseChargePerFrame": "每帧充能基础值（引擎字段：由武器\"基础攻速\"归并到小猪 hiddenAttributes；无武器时用职业模板 defaultWeapon 默认 100，设计 2.12）",
+    "weaponType": "武器类型（单位字段：刀/剑/鞭等，由装备 equipType 归并到小猪 hiddenAttributes；无武器时模板默认 none，供技能按武器分流）",
+    "critDamage": "暴击伤害（引擎预留字段，模板不输出，未消费，默认 0）",
     "resistance": "抗性"
   },
   "EnemySkillRef": {
@@ -331,18 +331,18 @@
   },
   "CharacterTemplate": {
     "baseTemplate": "基础角色模板（所有单位共用）",
-    "baseTemplate.attributes": "属性分类（combat/life/core 三大类）",
-    "baseTemplate.attributes.combat": "战斗属性（endurance/attack/attackSpeed/hit/dodge/critRate）",
-    "baseTemplate.attributes.life": "生命属性（maxHp/hpRegen）",
-    "baseTemplate.attributes.core": "核心属性（weight/moveSpeed/chargeSpeed/critDamage/resistance）"
+    "baseTemplate.attributes": "属性分类（combat/life/weight 三大类）",
+    "baseTemplate.attributes.combat": "战斗属性（endurance/attack/attackSpeed/hit/dodge/moveSpeed）",
+    "baseTemplate.attributes.life": "生活属性（speed/efficiency/experience/successRateBonus/luck）",
+    "baseTemplate.attributes.weight": "体重属性（initialWeight/fullWeight/overloadWeight/maxWeight/feedRatios）",
+    "baseTemplate.defaultWeapon": "无武器默认战斗参数（baseChargePerFrame=100，weaponType=none）"
   },
   "CombatAttributeFormula": {
-    "endurance": "耐力（体质×4+意志×2）",
-    "attack": "攻击（力量×0.4+体质×0.2）",
-    "attackSpeed": "攻速（灵巧×0.05+敏捷×0.05）",
-    "hit": "命中（敏捷×0.6+感知×0.4）",
-    "dodge": "闪避（灵巧×0.6）",
-    "critRate": "暴击率（敏捷×0.05+感知×0.03）"
+    "endurance": "耐力（100+体质×4+意志×2）",
+    "attack": "攻击（5+力量×0.4+体质×0.2）",
+    "attackSpeed": "攻速/充能加成（灵巧×1.0+敏捷×0.6，0=100%基础）",
+    "hit": "命中（5+敏捷×0.6+感知×0.4）",
+    "dodge": "闪避（3+灵巧×0.6）"
   },
   "JobConfig": {
     "id": "职业ID（pig=初始起源）",

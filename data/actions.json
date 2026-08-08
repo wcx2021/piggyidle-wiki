@@ -726,6 +726,30 @@
     }
   },
   {
+    "actionId": "PIG_CRAFT_RESEARCH_DECODE_INITIAL_LAND",
+    "actionType": "PIG_CRAFT",
+    "subActionType": "research",
+    "actionName": "研究.解析.初始之地",
+    "triggerType": "INTERNAL",
+    "exposeApi": false,
+    "isNeedActor": true,
+    "isNeedMap": false,
+    "consumeTableId": 10123,
+    "rewardTableId": 20123,
+    "extraParams": {
+      "duration": 15,
+      "minExecutionTimes": 1,
+      "maxExecutionTimes": 1,
+      "requirements": [
+        {
+          "type": "profession_strength",
+          "value": 5,
+          "professionId": "research"
+        }
+      ]
+    }
+  },
+  {
     "actionId": "ITEM_USE_CRAFTBOOK_LOGGING",
     "actionType": "ITEM_USE",
     "subActionType": "craft_book",
@@ -1629,6 +1653,22 @@
     "rewardTableId": null,
     "extraParams": {
       "craftId": "PIG_CRAFT_RESEARCH_COMPLETE",
+      "expPerBook": 500
+    }
+  },
+  {
+    "actionId": "ITEM_USE_CRAFTBOOK_RESEARCH_DECODE",
+    "actionType": "ITEM_USE",
+    "subActionType": "craft_book",
+    "actionName": "使用技艺之书.研究.解析.初始之地",
+    "triggerType": "EXTERNAL",
+    "exposeApi": true,
+    "isNeedActor": false,
+    "isNeedMap": false,
+    "consumeTableId": 10253,
+    "rewardTableId": null,
+    "extraParams": {
+      "craftId": "PIG_CRAFT_RESEARCH_DECODE_INITIAL_LAND",
       "expPerBook": 500
     }
   },

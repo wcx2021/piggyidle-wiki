@@ -43,29 +43,14 @@
             "dexterity": 0.6
           }
         },
-        "critRate": {
-          "base": 0,
-          "formula": {
-            "agility": 0.05,
-            "perception": 0.03
-          }
-        },
         "moveSpeed": {
           "base": 5,
           "formula": {
             "dexterity": 0.1
           }
         },
-        "chargeValue": {
-          "base": 5,
-          "growth": 0
-        },
         "attackRange": {
           "base": 1,
-          "growth": 0
-        },
-        "critDamage": {
-          "base": 150,
           "growth": 0
         },
         "armorPenetration": {
@@ -147,6 +132,10 @@
           "overload": 360
         }
       }
+    },
+    "defaultWeapon": {
+      "baseChargePerFrame": 100,
+      "weaponType": "none"
     }
   },
   "jobTemplates": []

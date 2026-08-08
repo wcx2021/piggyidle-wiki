@@ -443,7 +443,7 @@
       {
         "consume_type": "item",
         "target_id": 3004,
-        "amount": 120,
+        "amount": 30,
         "chance": 1
       },
       {
@@ -1229,6 +1229,36 @@
       {
         "consume_type": "item",
         "target_id": 2310,
+        "amount": 1,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10123,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 3001,
+        "amount": 3,
+        "chance": 1
+      },
+      {
+        "consume_type": "resource",
+        "target_id": 1,
+        "amount": 2,
+        "chance": 1
+      }
+    ],
+    "trigger_condition": ""
+  },
+  {
+    "consume_id": 10253,
+    "consume_items": [
+      {
+        "consume_type": "item",
+        "target_id": 2311,
         "amount": 1,
         "chance": 1
       }

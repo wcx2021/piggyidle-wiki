@@ -3,9 +3,9 @@ title: "角色属性模板配置表"
 change-id: "wiki-data-character-templates"
 status: "synced"
 server-status: "current"
-last-modified: "2026-07-13"
-wiki-version: "1.0.0"
-server-version: "1.0.0"
+last-modified: "2026-08-06"
+wiki-version: "1.0.1"
+server-version: "1.0.1"
 consumers:
   character-templates.json:
     baseTemplate: ["templateCalculateService", "battle.service"]
@@ -15,10 +15,15 @@ consumers:
     baseTemplate.attributes.combat.attackSpeed: ["unit.service"]
     baseTemplate.attributes.combat.hit: ["unit.service"]
     baseTemplate.attributes.combat.dodge: ["unit.service"]
-    baseTemplate.attributes.combat.critRate: ["unit.service"]
     baseTemplate.attributes.life: ["unit.service"]
-    baseTemplate.attributes.core: ["unit.service"]
+    baseTemplate.attributes.weight: ["unit.service"]
+    baseTemplate.defaultWeapon: ["battle.service"]
 changelog:
+  - version: "1.0.1"
+    date: "2026-08-06"
+    summary: "删除 critRate/chargeValue/critDamage（引擎五档自带致命一击，属性无消费）；新增 defaultWeapon（无武器默认 baseChargePerFrame=100/weaponType=none）"
+    trigger: "attribute-unify-2026-08-06"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-07-13"
     summary: "初始版本 - 角色属性模板公式定义"

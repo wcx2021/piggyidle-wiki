@@ -507,7 +507,7 @@
     "itemId": 2110,
     "itemName": "技艺之书.研究.深入.初始之地",
     "itemType": "compendium",
-    "itemDescription": "深入研究产出。记载了深入研究初始之地信息的方法，可产出更多高阶技艺之书。",
+    "itemDescription": "深入探索产出。记载了深入探索初始之地的方法，消耗地图信息产出地图碎片，并有概率直接获得采集技艺手册。",
     "iconUrl": "",
     "isTradable": true,
     "isInteractive": true,
@@ -862,6 +862,26 @@
     "growthCoefficient": null,
     "requiredLevels": [],
     "shopPrice": 15000
+  },
+  {
+    "itemId": 2311,
+    "itemName": "技艺之书.研究.解析.初始之地",
+    "itemType": "compendium",
+    "itemDescription": "初级研究产出。记载了解析地图碎片、还原地图信息的方法，可解锁解析技艺。",
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": true,
+    "useActionId": "ITEM_USE_CRAFTBOOK_RESEARCH_DECODE",
+    "attributes": [
+      {
+        "name": "经验值",
+        "value": 500
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 5000
   },
   {
     "itemId": 3001,
