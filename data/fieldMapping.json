@@ -1,4 +1,31 @@
 {
+  "_tables": {
+    "items": "道具表",
+    "actions": "行动表",
+    "consumeTables": "消耗表",
+    "rewardTables": "奖励表",
+    "jobs": "职业表",
+    "jobConfig": "职业配置表",
+    "professionconfig": "技艺配置表",
+    "skills": "技能表",
+    "buffs": "Buff 表",
+    "enemies": "敌人表",
+    "enemy-groups": "敌人组表",
+    "enemy-battle-configs": "敌人战斗配置表",
+    "battle-templates": "战场模板表",
+    "dungeon-templates": "副本模板表",
+    "buildingTemplates": "建筑模板表",
+    "character-templates": "角色模板表",
+    "experience": "等级经验表",
+    "map-defaults": "地图默认配置表",
+    "mapUpgradeCosts": "地图升级消耗表",
+    "pig-defaults": "小猪默认配置表",
+    "queue-defaults": "队列默认配置表",
+    "mailConfig": "邮件配置表",
+    "territoryDefaults": "领地默认配置表",
+    "weatherSeasonEffects": "天气季节效果表",
+    "shops": "商店表"
+  },
   "Item": {
     "itemId": "标识",
     "itemName": "名称",
@@ -67,7 +94,6 @@
         "minExecutionTimes": "最小执行次数，PIG_CRAFT必填，默认1",
         "maxExecutionTimes": "最大执行次数，PIG_CRAFT必填，默认1",
         "requirements": "职业强度需求 [{type, value, professionId}]",
-        "consumeHunger": "消耗饱食度",
         "mapRequirements": "地图需求 {terrainTags[], resourcePointType}",
         "baseYieldMin": "地图资源最小产出（rewardTarget=map_resource时必填）",
         "baseYieldMax": "地图资源最大产出（rewardTarget=map_resource时必填）",
@@ -446,6 +472,59 @@
     "defaultValue": "默认数值（技能效果可通过 value 覆盖）",
     "variable": "可变输入字段列表（如 ['duration'] 或 ['value','duration']）",
     "tag": "特殊标记（如 silence=沉默，可扩展）",
-    "periodicEffect": "周期性效果配置（DOT/HOT 用）"
+    "periodicEffect": "周期性效果配置（DOT/HOT 用）",
+    "tag": "特殊标记（如 silence=沉默，可扩展）"
+  },
+  "Shop": {
+    "shopType": "商店类型（gold=金币商店 / goodPig=好猪商店）",
+    "shopName": "商店名称",
+    "currency": "货币 itemId（gold=1000 金币 / goodPig=1001 好猪币）",
+    "currencyName": "货币名称",
+    "goodsList": "商品列表（引用 Goods/BenefitGoods）"
+  },
+  "Goods": {
+    "goodsId": "商品唯一ID",
+    "type": {
+      "label": "商品类型",
+      "enum": {
+        "item": "普通物品（发放道具）",
+        "benefit": "权益（永久生效，修改上限）"
+      }
+    },
+    "itemId": "发放道具ID（type=item时必填，引用 items.json）",
+    "name": "商品名称",
+    "price": "售价（item=单次价格；benefit=第一档价格/展示价）",
+    "iconUrl": "图标URL",
+    "description": "商品描述",
+    "requiredLevel": "需求声望等级（0=不限制）",
+    "limitType": {
+      "label": "限购类型",
+      "enum": {
+        "none": "不限购（benefit满级由maxLevel控制）",
+        "once": "终身限购（按limitValue）",
+        "perDay": "每日限购（按limitValue）"
+      }
+    },
+    "limitValue": "限购数量（none=0）",
+    "isOnSale": "是否上架"
+  },
+  "BenefitGoods": {
+    "goodsId": "商品唯一ID",
+    "type": "商品类型（固定 benefit）",
+    "benefitType": "权益类型（pigLimit/dungeonRewardTimesNormal/dungeonRewardTimesRare/marketOrderLimit/formationLimit/mailLimit）",
+    "benefitUnit": "每购买1次的上限增量",
+    "maxLevel": "可购买次数上限（满级后拒绝购买）",
+    "name": "商品名称",
+    "price": "第一档价格（与 priceByLevel[0] 一致）",
+    "priceByLevel": "价格阶梯数组（长度=maxLevel，第i次购买档价格，越买越贵）",
+    "iconUrl": "图标URL",
+    "description": "商品描述",
+    "requiredLevel": "当前购买档位解锁声望等级（=单档商品时即该档；多档数组商品时=最低档）",
+    "requiredLevelByLevel": "各档位解锁声望等级数组（长度=maxLevel，第i档购买需达声望等级，逐级递增，封顶≤120）",
+    "variant": "同档变体（standard=标准/便宜；premium=加办/更贵；无=仅一款）",
+    "tier": "权益档位序号（1起，用于识别同档多份；无=仅一款）",
+    "limitType": "限购类型（benefit 通常 none）",
+    "limitValue": "限购数量",
+    "isOnSale": "是否上架"
   }
 }

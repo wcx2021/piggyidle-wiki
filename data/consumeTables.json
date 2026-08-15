@@ -17,7 +17,7 @@
       {
         "consume_type": "resource",
         "target_id": 1,
-        "amount": 2,
+        "amount": 1,
         "chance": 1
       }
     ],

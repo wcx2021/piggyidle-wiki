@@ -125,6 +125,26 @@
     "shopPrice": 120
   },
   {
+    "itemId": 1304,
+    "itemName": "消化丸",
+    "itemType": "consumable",
+    "itemDescription": "促进消化的药丸，服用后清除300点饱和度（喂食容量占用）",
+    "rarity": 1,
+    "iconUrl": "",
+    "isTradable": true,
+    "isInteractive": true,
+    "isDecomposable": false,
+    "attributes": [
+      {
+        "name": "消化",
+        "value": 300
+      }
+    ],
+    "growthCoefficient": null,
+    "requiredLevels": [],
+    "shopPrice": 500
+  },
+  {
     "itemId": 3200,
     "itemName": "铜锭",
     "itemType": "resource",
