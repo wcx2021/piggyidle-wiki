@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Buff 静态配置定义表。v2.0 简化设计：只修改属性，沉默用 tag 标记。",
-    "designDoc": ".trae/workspace/design/combat/Buff与状态效果系统-版本设计定稿.md",
+    "designDoc": ".harmony/workspace/design/combat/Buff与状态效果系统-版本设计定稿.md",
     "consumers": ["shared-battle-engine.buff", "battle.service", "ui.battle"],
     "notes": [
       "buffId 命名规则：{type}_{effect}，如 buff_atk_up / control_stun / debuff_slow",

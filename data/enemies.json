@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "敌人模板定义 - 八维属性（唯一属性来源）+ AI 配置 + 奖励配置。敌我同源，都通过 character-templates.json 模板派生战斗属性。",
-    "designDoc": ".trae/workspace/design/战场系统-版本设计定稿.md#7.9",
+    "designDoc": ".harmony/workspace/design/战场系统-版本设计定稿.md#7.9",
     "consumers": ["battle.service", "battle.engine", "loot.service", "experience.service", "skillCalculator"],
     "_cacheVersion": 1,
     "notes": [

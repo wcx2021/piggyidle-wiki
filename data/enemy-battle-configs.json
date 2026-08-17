@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "敌人 AI 配置定义 - 独立配置表，与玩家方 PigBattleConfig 对齐（v4.1.0）。敌人通过 defaultConfigId 引用，阵容通过 configId 覆盖。",
-    "designDoc": ".trae/workspace/design/战斗系统-版本设计定稿.md#3.2",
+    "designDoc": ".harmony/workspace/design/战斗系统-版本设计定稿.md#3.2",
     "consumers": ["battle.service", "battleTool"],
     "notes": [
       "每条配置定义敌人的寻敌策略、群攻规则和技能队列",

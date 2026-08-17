@@ -5,26 +5,71 @@
     "description": "系统商店配置（设置表）。金币商店出售普通物品（售价≥物品回收价shopPrice×5）；好猪商店出售永久权益（价格档位递增、越买越贵；权益解锁等级阶梯递增，声望1~200封顶120级）。小猪上限按档位出售两份（standard 便宜 / premium 加办更贵），同档两份解锁等级相同、价格不同、可叠加生效。修改此文件后运行 server/ 下 npm run seed:sync:full 同步到 server/data/shops.json。"
   },
   "_consumers": {
-    "shops[].shopType": ["shop.service.getShopItems", "shop.service.purchase"],
-    "shops[].shopName": ["shop.service.getShopItems"],
-    "shops[].currency": ["shop.service.purchase（扣货币校验）"],
-    "shops[].goodsList[].goodsId": ["shop.service.getShopItems", "shop.service.purchase", "Save.shopPurchaseRecords"],
-    "shops[].goodsList[].type": ["shop.service.purchase（item/benefit 分发）"],
-    "shops[].goodsList[].itemId": ["shop.service.purchase（发放入背包）"],
-    "shops[].goodsList[].benefitType": ["shop.service.purchase（更新 Save.benefits）"],
-    "shops[].goodsList[].benefitUnit": ["shop.service（effectiveLimit 叠加）"],
-    "shops[].goodsList[].maxLevel": ["shop.service.purchase（满级 SHOP_BENEFIT_MAXED）"],
-    "shops[].goodsList[].variant": ["shop.service.getShopItems（standard便宜/premium加办）"],
-    "shops[].goodsList[].tier": ["shop.service.getShopItems（权益档位序号，用于同档两份识别）"],
-    "shops[].goodsList[].price": ["shop.service.getShopItems（展示）", "shop.service.purchase（item 扣价）"],
-    "shops[].goodsList[].priceByLevel": ["shop.service.purchase（benefit 多档购买时第N次价格）"],
-    "shops[].goodsList[].name": ["shop.service.getShopItems"],
-    "shops[].goodsList[].description": ["shop.service.getShopItems"],
-    "shops[].goodsList[].requiredLevel": ["shop.service.getShopItems（展示当前档解锁等级）", "shop.service.purchase（SHOP_LEVEL_LOCKED）"],
-    "shops[].goodsList[].requiredLevelByLevel": ["shop.service.purchase（多档购买时第N档解锁等级 SHOP_LEVEL_LOCKED）"],
-    "shops[].goodsList[].limitType": ["shop.service.purchase（once/perDay 限购）"],
-    "shops[].goodsList[].limitValue": ["shop.service.purchase（限购数量）"],
-    "shops[].goodsList[].isOnSale": ["shop.service.getShopItems（上架过滤）/ SHOP_GOODS_NOT_FOUND"]
+    "shops[].shopType": [
+      "shop.service.getShopItems",
+      "shop.service.purchase"
+    ],
+    "shops[].shopName": [
+      "shop.service.getShopItems"
+    ],
+    "shops[].currency": [
+      "shop.service.purchase（扣货币校验）"
+    ],
+    "shops[].goodsList[].goodsId": [
+      "shop.service.getShopItems",
+      "shop.service.purchase",
+      "Save.shopPurchaseRecords"
+    ],
+    "shops[].goodsList[].type": [
+      "shop.service.purchase（item/benefit 分发）"
+    ],
+    "shops[].goodsList[].itemId": [
+      "shop.service.purchase（发放入背包）"
+    ],
+    "shops[].goodsList[].benefitType": [
+      "shop.service.purchase（更新 Save.benefits）"
+    ],
+    "shops[].goodsList[].benefitUnit": [
+      "shop.service（effectiveLimit 叠加）"
+    ],
+    "shops[].goodsList[].maxLevel": [
+      "shop.service.purchase（满级 SHOP_BENEFIT_MAXED）"
+    ],
+    "shops[].goodsList[].variant": [
+      "shop.service.getShopItems（standard便宜/premium加办）"
+    ],
+    "shops[].goodsList[].tier": [
+      "shop.service.getShopItems（权益档位序号，用于同档两份识别）"
+    ],
+    "shops[].goodsList[].price": [
+      "shop.service.getShopItems（展示）",
+      "shop.service.purchase（item 扣价）"
+    ],
+    "shops[].goodsList[].priceByLevel": [
+      "shop.service.purchase（benefit 多档购买时第N次价格）"
+    ],
+    "shops[].goodsList[].name": [
+      "shop.service.getShopItems"
+    ],
+    "shops[].goodsList[].description": [
+      "shop.service.getShopItems"
+    ],
+    "shops[].goodsList[].requiredLevel": [
+      "shop.service.getShopItems（展示当前档解锁等级）",
+      "shop.service.purchase（SHOP_LEVEL_LOCKED）"
+    ],
+    "shops[].goodsList[].requiredLevelByLevel": [
+      "shop.service.purchase（多档购买时第N档解锁等级 SHOP_LEVEL_LOCKED）"
+    ],
+    "shops[].goodsList[].limitType": [
+      "shop.service.purchase（once/perDay 限购）"
+    ],
+    "shops[].goodsList[].limitValue": [
+      "shop.service.purchase（限购数量）"
+    ],
+    "shops[].goodsList[].isOnSale": [
+      "shop.service.getShopItems（上架过滤）/ SHOP_GOODS_NOT_FOUND"
+    ]
   },
   "shops": [
     {
@@ -42,8 +87,8 @@
           "iconUrl": "",
           "description": "基础武器，用胡萝卜锻造的小刀。商店售价为回收价的5倍。",
           "requiredLevel": 0,
-          "limitType": "perDay",
-          "limitValue": 3,
+          "limitType": "none",
+          "limitValue": 0,
           "isOnSale": true
         },
         {
@@ -55,8 +100,8 @@
           "iconUrl": "",
           "description": "用粗皮缝制的轻甲。商店售价为回收价的5倍。",
           "requiredLevel": 0,
-          "limitType": "perDay",
-          "limitValue": 3,
+          "limitType": "none",
+          "limitValue": 0,
           "isOnSale": true
         },
         {
@@ -68,8 +113,8 @@
           "iconUrl": "",
           "description": "用铜锭锻造的短剑。商店售价为回收价的5倍。",
           "requiredLevel": 0,
-          "limitType": "perDay",
-          "limitValue": 3,
+          "limitType": "none",
+          "limitValue": 0,
           "isOnSale": true
         },
         {
@@ -81,8 +126,8 @@
           "iconUrl": "",
           "description": "用粗皮布缝制的坚韧衣物。商店售价为回收价的5倍。",
           "requiredLevel": 0,
-          "limitType": "perDay",
-          "limitValue": 3,
+          "limitType": "none",
+          "limitValue": 0,
           "isOnSale": true
         },
         {
@@ -94,8 +139,8 @@
           "iconUrl": "",
           "description": "用精炼铜锻造的短剑，品质优于铜剑。商店售价为回收价的5倍。",
           "requiredLevel": 30,
-          "limitType": "perDay",
-          "limitValue": 3,
+          "limitType": "none",
+          "limitValue": 0,
           "isOnSale": true
         }
       ]
@@ -318,11 +363,21 @@
           "maxLevel": 4,
           "name": "普通副本奖励次数上限+1",
           "price": 60,
-          "priceByLevel": [60, 120, 240, 480],
+          "priceByLevel": [
+            60,
+            120,
+            240,
+            480
+          ],
           "iconUrl": "",
           "description": "每日普通副本奖励次数上限 +1（基础 4，每级 +1，可叠到 +4）。",
           "requiredLevel": 20,
-          "requiredLevelByLevel": [20, 40, 60, 80],
+          "requiredLevelByLevel": [
+            20,
+            40,
+            60,
+            80
+          ],
           "limitType": "none",
           "limitValue": 0,
           "isOnSale": true
@@ -335,11 +390,19 @@
           "maxLevel": 3,
           "name": "稀有副本奖励次数上限+1",
           "price": 80,
-          "priceByLevel": [80, 200, 500],
+          "priceByLevel": [
+            80,
+            200,
+            500
+          ],
           "iconUrl": "",
           "description": "每日稀有副本奖励次数上限 +1（基础 2，每级 +1，可叠到 +3）。",
           "requiredLevel": 40,
-          "requiredLevelByLevel": [40, 80, 120],
+          "requiredLevelByLevel": [
+            40,
+            80,
+            120
+          ],
           "limitType": "none",
           "limitValue": 0,
           "isOnSale": true
@@ -352,11 +415,21 @@
           "maxLevel": 4,
           "name": "邮件上限+20",
           "price": 40,
-          "priceByLevel": [40, 80, 160, 320],
+          "priceByLevel": [
+            40,
+            80,
+            160,
+            320
+          ],
           "iconUrl": "",
           "description": "邮件数量上限 +20（基础 50，每级 +20，可叠到 +80）。",
           "requiredLevel": 20,
-          "requiredLevelByLevel": [20, 40, 60, 80],
+          "requiredLevelByLevel": [
+            20,
+            40,
+            60,
+            80
+          ],
           "limitType": "none",
           "limitValue": 0,
           "isOnSale": true
@@ -369,11 +442,19 @@
           "maxLevel": 3,
           "name": "挂单上限+4",
           "price": 100,
-          "priceByLevel": [100, 250, 600],
+          "priceByLevel": [
+            100,
+            250,
+            600
+          ],
           "iconUrl": "",
           "description": "市场挂单数量上限 +4（基础 8，每级 +4，可叠到 +12）。",
           "requiredLevel": 40,
-          "requiredLevelByLevel": [40, 80, 120],
+          "requiredLevelByLevel": [
+            40,
+            80,
+            120
+          ],
           "limitType": "none",
           "limitValue": 0,
           "isOnSale": true
@@ -386,11 +467,19 @@
           "maxLevel": 3,
           "name": "编队上限+2",
           "price": 100,
-          "priceByLevel": [100, 250, 600],
+          "priceByLevel": [
+            100,
+            250,
+            600
+          ],
           "iconUrl": "",
           "description": "可保存的编队数量上限 +2（基础 10，每级 +2，可叠到 +6）。",
           "requiredLevel": 40,
-          "requiredLevelByLevel": [40, 80, 120],
+          "requiredLevelByLevel": [
+            40,
+            80,
+            120
+          ],
           "limitType": "none",
           "limitValue": 0,
           "isOnSale": true

@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "战场模板定义 - 布局规模、规则、敌人组引用。基于战场系统设计定稿 7.1。",
-    "designDoc": ".trae/workspace/design/战场系统-版本设计定稿.md#7.1",
+    "designDoc": ".harmony/workspace/design/战场系统-版本设计定稿.md#7.1",
     "consumers": ["battle.service", "battle.engine"],
     "notes": [
       "战场基于模板创建，模板独立于地图数据（设计 6.1：地图←引用→战场模板←可选→敌人组）",

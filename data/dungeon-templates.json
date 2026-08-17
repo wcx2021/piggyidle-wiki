@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "副本模板定义 - 副本入口配置，关联地图/敌人组/队列时长/奖励包。基于副本系统设计定稿 §4。",
-    "designDoc": ".trae/workspace/design/dungeon/副本系统-版本设计定稿.md#4",
+    "designDoc": ".harmony/workspace/design/dungeon/副本系统-版本设计定稿.md#4",
     "consumers": ["dungeonController", "rewardTimes.service", "battleQueueService", "battle.service.finishBattle"],
     "notes": [
       "dungeonId 为副本唯一标识，前端详情页据此请求 /api/dungeon/:id",

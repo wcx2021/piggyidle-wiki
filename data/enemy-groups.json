@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "敌人阵容定义 - 一场战斗中敌方的阵容配置，引用敌人模板 + 阵型位置 + 可选 overrides。基于战场系统设计定稿 7.9。",
-    "designDoc": ".trae/workspace/design/战场系统-版本设计定稿.md#7.9",
+    "designDoc": ".harmony/workspace/design/战场系统-版本设计定稿.md#7.9",
     "consumers": ["battle.service", "enemy-group.loader", "battle.engine"],
     "notes": [
       "groupId 被 battle-templates.json 的 enemyGroupId 字段引用",
