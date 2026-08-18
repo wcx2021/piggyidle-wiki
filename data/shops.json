@@ -1,8 +1,37 @@
 {
   "_meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-08-15",
-    "description": "系统商店配置（设置表）。金币商店出售普通物品（售价≥物品回收价shopPrice×5）；好猪商店出售永久权益（价格档位递增、越买越贵；权益解锁等级阶梯递增，声望1~200封顶120级）。小猪上限按档位出售两份（standard 便宜 / premium 加办更贵），同档两份解锁等级相同、价格不同、可叠加生效。修改此文件后运行 server/ 下 npm run seed:sync:full 同步到 server/data/shops.json。"
+    "lastUpdated": "2026-08-19",
+    "description": "系统商店配置（设置表）。金币商店出售普通物品（售价≥物品回收价shopPrice×5）；好猪商店出售永久权益（价格档位递增、越买越贵；权益解锁等级阶梯递增，声望1~200封顶120级）。小猪上限按档位出售两份（standard 便宜 / premium 加办更贵），同档两份解锁等级相同、价格不同、可叠加生效。修改此文件后运行 server/ 下 npm run seed:sync:full 同步到 server/data/shops.json。",
+    "consumers": {
+      "shops": [
+        "shops.service",
+        "staticResources.service",
+        "gameRuleConfig(rules)"
+      ]
+    }
+  },
+  "rules": {
+    "_description": "商店规则参数。等值迁移自 shop.service/shop.config.service/battle.instance.service 硬编码（mde-stage1-coverage T2），数值口径不变。",
+    "previewLevelGap": 20,
+    "benefitMaxQty": 1,
+    "currencyItemIds": {
+      "gold": 1000,
+      "premium": 1001
+    },
+    "_consumers": {
+      "previewLevelGap": [
+        "shop.service.getShopItems（声望差超 20 档位隐藏）"
+      ],
+      "benefitMaxQty": [
+        "shop.service.purchase（benefit 固定 1 份）",
+        "shop.config.service.getFullMaxLevel",
+        "shop.config.service.normalizeGoods"
+      ],
+      "currencyItemIds.gold": [
+        "battle.instance.service.parseRewardTableForDisplay（金币判定/排除）"
+      ]
+    }
   },
   "_consumers": {
     "shops[].shopType": [

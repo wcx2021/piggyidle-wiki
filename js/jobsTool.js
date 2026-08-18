@@ -14,7 +14,7 @@
     smart: '聪明系'
   };
 
-  var jobExpSourceLabels = {
+  var jobExpSourceLabelsFallback = {
     none: '不可升级',
     profession_exp: '跟随技艺经验',
     combat_exp: '战斗获取',
@@ -23,7 +23,7 @@
     all_action: '全行动获取'
   };
 
-  var subActionTypeLabels = {
+  var subActionTypeLabelsFallback = {
     surveying: '测绘',
     exploration: '探索',
     enemy_hunt: '寻敌',
@@ -43,21 +43,12 @@
     craft: '制造'
   };
 
-  var typeLabelMap = {
-    race: '种族',
-    combat: '战斗系',
-    production: '生产系'
-  };
+  var getJobExpSourceLabel = window.buildWikiLabelGetter('Job', 'expSource', jobExpSourceLabelsFallback);
+  var getSubActionTypeLabel = window.buildWikiLabelGetter('Action', 'subActionType', subActionTypeLabelsFallback);
 
   var skillTypeLabels = {
     passive: '被动', active: '主动', combat_active: '战斗主动',
     combat_support: '战斗辅助', domain: '领域'
-  };
-
-  var typeColorMap = {
-    race: '#a855f7',
-    combat: '#ef4444',
-    production: '#22c55e'
   };
 
   function formatCell(v, col) {
@@ -111,7 +102,7 @@
         var lProf = lvlProf[k] || {};
         var bStr = (bProf.speed ? '速度+' + bProf.speed : '') + (bProf.efficiency ? ' 效率+' + bProf.efficiency : '') + (bProf.successRate ? ' 成功率+' + bProf.successRate : '') || '—';
         var lStr = (lProf.speed ? '速度+' + lProf.speed : '') + (lProf.efficiency ? ' 效率+' + lProf.efficiency : '') + (lProf.successRate ? ' 成功率+' + lProf.successRate : '') || '—';
-        html += '<tr><td>' + window.escapeHTML(subActionTypeLabels[k] || k) + '</td><td>' + window.escapeHTML(bStr) + '</td><td>' + window.escapeHTML(lStr) + '</td></tr>';
+        html += '<tr><td>' + window.escapeHTML(getSubActionTypeLabel(k)) + '</td><td>' + window.escapeHTML(bStr) + '</td><td>' + window.escapeHTML(lStr) + '</td></tr>';
       });
       html += '</tbody></table>';
     }
@@ -142,7 +133,7 @@
     }
     if (conditions.requiredProfessions && conditions.requiredProfessions.length > 0) {
       condParts.push(conditions.requiredProfessions.map(function(rp) {
-        return (subActionTypeLabels[rp.professionId] || rp.professionId) + ' ≥ ' + rp.minLevel;
+        return (getSubActionTypeLabel(rp.professionId) || rp.professionId) + ' ≥ ' + rp.minLevel;
       }).join('；'));
     }
     html += '<p><strong>转职条件：</strong>' + (condParts.length > 0 ? condParts.join('；') : '无') + '</p>';
@@ -158,7 +149,7 @@
     html += '<p><strong>转职消耗：</strong>' + (costParts.length > 0 ? costParts.join('、') : '无') + '</p>';
 
     // Exp info
-    html += '<p><strong>经验来源：</strong>' + (jobExpSourceLabels[job.expSource] || job.expSource) + '</p>';
+    html += '<p><strong>经验来源：</strong>' + getJobExpSourceLabel(job.expSource) + '</p>';
     html += '<p><strong>经验倍率：</strong>' + (job.expMultiplier !== undefined ? job.expMultiplier : '—') + '</p>';
     var expProfs = job.expProfessions || [];
     html += '<p><strong>触发技艺：</strong>' + (expProfs.length > 0 ? expProfs.join('、') : '全部技艺') + '</p>';

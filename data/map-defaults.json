@@ -4,12 +4,23 @@
     "description": "地图默认配置文件，支持多板块设计",
     "note": "此文件是合法的配置数据源，regions 字段用于板块区分，default 为默认板块"
   },
+  "vitality": {
+    "_description": "地图活力恢复规则。等值迁移自 map.points.service.ts 硬编码（mde-stage1-coverage T2），数值口径不变。",
+    "recoveryRate": 0.1,
+    "_consumers": {
+      "recoveryRate": [
+        "map.points.service.recoverVitalityPoints（controller 未传 rate 时默认）"
+      ]
+    }
+  },
   "regions": {
     "default": {
       "name": "默认板块",
       "description": "初始板块",
       "defaultLevel": 1,
-      "defaultTerrainTags": ["grassland"],
+      "defaultTerrainTags": [
+        "grassland"
+      ],
       "defaultSeason": "spring",
       "defaultWeather": "sunny",
       "defaultResourcePoints": 0,
@@ -20,6 +31,17 @@
       "defaultResourceCapacity": 100000,
       "defaultActiveWorkers": 0,
       "defaultMaxWorkers": 1
+    }
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19",
+    "consumers": {
+      "map-defaults": [
+        "map.vitality.service",
+        "map.service",
+        "gameRuleConfig"
+      ]
     }
   }
 }

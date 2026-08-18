@@ -955,7 +955,7 @@
     "shopPrice": 50,
     "iconUrl": "",
     "isTradable": true,
-    "isInteractive": false,
+    "isInteractive": true,
     "isDecomposable": false,
     "useActionId": "CRAFT_SKILLBOOK_INITIAL_LAND",
     "requiredLevels": [],

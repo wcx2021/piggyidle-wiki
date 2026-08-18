@@ -44,7 +44,8 @@
         { title: '货币和商店', slug: 'design/currency-shop' },
         { title: '装备', slug: 'design/equipment' },
         { title: '星级与精炼', slug: 'design/star-level' },
-        { title: '战斗数据', slug: 'design/battle-data' }
+        { title: '战斗数据', slug: 'design/battle-data' },
+        { title: '数据字典', slug: 'design/data-dictionary' }
       ]
     },
     {

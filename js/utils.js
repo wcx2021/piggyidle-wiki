@@ -28,6 +28,7 @@
   var PATH_MAP_DEFAULTS = 'data/map-defaults.json';
   var PATH_MAP_FRAGMENT_MAPPING = 'data/mapFragmentMapping.json';
   var PATH_MAP_UPGRADE_COSTS = 'data/mapUpgradeCosts.json';
+  var PATH_MAP_TOOL_VIEW = 'data/mapTool.json';
   var PATH_PIG_DEFAULTS = 'data/pig-defaults.json';
   var PATH_QUEUE_DEFAULTS = 'data/queue-defaults.json';
   var PATH_TERRITORY_DEFAULTS = 'data/territoryDefaults.json';
@@ -54,6 +55,7 @@
     mapDefaults: null,
     mapFragmentMapping: null,
     mapUpgradeCosts: null,
+    mapToolView: null,
     pigDefaults: null,
     queueDefaults: null,
     territoryDefaults: null,
@@ -102,6 +104,7 @@
       mapDefaults: PATH_MAP_DEFAULTS,
       mapFragmentMapping: PATH_MAP_FRAGMENT_MAPPING,
       mapUpgradeCosts: PATH_MAP_UPGRADE_COSTS,
+      mapToolView: PATH_MAP_TOOL_VIEW,
       pigDefaults: PATH_PIG_DEFAULTS,
       queueDefaults: PATH_QUEUE_DEFAULTS,
       territoryDefaults: PATH_TERRITORY_DEFAULTS,
@@ -201,5 +204,37 @@
   window.fetchDataset = fetchDataset;
   window.fetchCache = fetchCache;
   window.parseJsonOrNdjson = parseJsonOrNdjson;
+
+  /**
+   * 从 fieldMapping.json 提取短标签的取值器工厂（供各查询工具复用）。
+   * - 支持扁平枚举表（fieldName 为空，如 EnemyAttributes/CombatStats）
+   * - 支持 {label, enum} 包装字段（如 Item.itemType / EnemyAi.targetRule）
+   * - 剥离标签末尾括号内说明文字；fieldMapping 未加载或对应键缺失时回退 inline 兜底值
+   */
+  function buildWikiLabelGetter(tableName, fieldName, fallback) {
+    return function(value) {
+      var fm = window.fieldMapping;
+      if (fm) {
+        var container = fm[tableName];
+        var label = null;
+        if (fieldName) {
+          var entry = container && container[fieldName];
+          label = entry;
+          if (entry && typeof entry === 'object' && 'enum' in entry) {
+            label = entry.enum[value];
+          } else if (entry && typeof entry === 'object') {
+            label = entry[value];
+          }
+        } else {
+          label = container ? container[value] : null;
+        }
+        if (label !== undefined && label !== null && typeof label === 'string') {
+          return label.replace(/\s*[（(].*[）)]\s*$/, '');
+        }
+      }
+      return (fallback && fallback[value]) || value;
+    };
+  }
+  window.buildWikiLabelGetter = buildWikiLabelGetter;
 
 })();

@@ -1,0 +1,94 @@
+<div class="guide-content">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <h2>数据字典（静态主数据）</h2>
+  <p class="spaced">本文为 <code>wiki/data/*.json</code> 全部静态主数据的权威字典展示页（权威版：<code>.harmony/workspace/design/data/数据字典.md</code>），覆盖 33 个文件：29 个管理文件 + 4 个边界文件。版本与变更记录见各文件同名 <code>.meta.yaml</code>。</p>
+
+  <div class="note">
+    <strong>元数据规范：</strong>字段级消费方以各文件 <code>.meta.yaml</code> 的 <code>consumers</code> 为准；数组根文件（items/actions 等）版本/消费方同样以 <code>.meta.yaml</code> 为权威（C-metadata §3.1）。
+  </div>
+
+  <h3>战斗域（battle / combat）</h3>
+  <table class="data-table">
+    <thead><tr><th>文件</th><th>用途</th><th>消费方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><code>enemies.json</code></td><td>敌人模板（属性/技能/AI/掉落/经验）</td><td>battle.data / enemy-group / loot / experience</td><td>implemented</td></tr>
+      <tr><td><code>enemy-groups.json</code></td><td>敌人编组与预览</td><td>battle.data / preview / seed</td><td>implemented</td></tr>
+      <tr><td><code>enemy-battle-configs.json</code></td><td>敌人战斗配置与默认</td><td>battle.instance / defaults / seed</td><td>implemented</td></tr>
+      <tr><td><code>battle-templates.json</code></td><td>战场模板（布局/事件）</td><td>battle.data / staticResources</td><td>implemented</td></tr>
+      <tr><td><code>dungeon-templates.json</code></td><td>副本模板 + 奖励次数 + 实例战斗</td><td>battle.constants / rewardTimes / seed / staticResources</td><td>implemented</td></tr>
+      <tr><td><code>skills.json</code></td><td>技能定义（数组根）</td><td>battle.data / skillCalculator / staticResources</td><td>implemented</td></tr>
+      <tr><td><code>buffs.json</code></td><td>Buff 定义与属性标签</td><td>battle.BuffEngine / buff / seed</td><td>implemented</td></tr>
+      <tr><td><code>character-templates.json</code></td><td>角色/职业模板</td><td>templateCalculate / seed</td><td>implemented</td></tr>
+    </tbody>
+  </table>
+
+  <h3>技艺/制造域（craft）</h3>
+  <table class="data-table">
+    <thead><tr><th>文件</th><th>用途</th><th>消费方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><code>actions.json</code></td><td>行动/技艺执行表（数组根）</td><td>craft.cost / craft.reward / craft.queue / seed</td><td>implemented</td></tr>
+      <tr><td><code>consumeTables.json</code></td><td>消耗表（数组根）</td><td>craft.cost / seed</td><td>implemented</td></tr>
+      <tr><td><code>rewardTables.json</code></td><td>奖励表（数组根）</td><td>loot / craft.reward / seed</td><td>implemented</td></tr>
+      <tr><td><code>professionconfig.json</code></td><td>职业展示/强度系数（数组根）</td><td>professionConfig / loot / staticResources / seed</td><td>implemented</td></tr>
+      <tr><td><code>experience.json</code></td><td>经验公式/技艺书经验/结算默认/等级表</td><td>craft.experience / experience / unifiedSettlement / staticResources</td><td>implemented</td></tr>
+    </tbody>
+  </table>
+
+  <h3>物品/商店/任务域（item / shop / task）</h3>
+  <table class="data-table">
+    <thead><tr><th>文件</th><th>用途</th><th>消费方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><code>items.json</code></td><td>物品表（数组根）</td><td>item / shops / loot / seed / 前端展示</td><td>implemented</td></tr>
+      <tr><td><code>shops.json</code></td><td>商店配置 + 规则</td><td>shops / staticResources / gameRuleConfig</td><td>implemented</td></tr>
+      <tr><td><code>tasks.json</code></td><td>任务模板</td><td>task / taskTemplatesSeed</td><td>implemented</td></tr>
+    </tbody>
+  </table>
+
+  <h3>地图/领土域（map / territory）</h3>
+  <table class="data-table">
+    <thead><tr><th>文件</th><th>用途</th><th>消费方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><code>map-defaults.json</code></td><td>地图活力/区域默认</td><td>map.vitality / map / gameRuleConfig</td><td>implemented</td></tr>
+      <tr><td><code>mapUpgradeCosts.json</code></td><td>地图升级消耗</td><td>map.upgrade / map</td><td>implemented</td></tr>
+      <tr><td><code>resourcePoints.json</code></td><td>地图资源点</td><td>map.resource / mapTool（展示）</td><td>implemented</td></tr>
+      <tr><td><code>weatherSeasonEffects.json</code></td><td>天气季节周期与效果</td><td>map.weather / staticResources / gameRuleConfig</td><td>implemented</td></tr>
+      <tr><td><code>territoryDefaults.json</code></td><td>领土类型/建筑/默认设置</td><td>territory / building / gameRuleConfig</td><td>implemented</td></tr>
+    </tbody>
+  </table>
+
+  <h3>职业/玩家规则域（job / pig / save）</h3>
+  <table class="data-table">
+    <thead><tr><th>文件</th><th>用途</th><th>消费方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><code>jobs.json</code></td><td>职业表（数组根，唯一源）</td><td>job / seed / 前端展示</td><td>implemented</td></tr>
+      <tr><td><code>pig-defaults.json</code></td><td>小猪种族/职业/喂食/饱和度</td><td>pig / saturation / feed / Save / gameRuleConfig</td><td>implemented</td></tr>
+      <tr><td><code>save-defaults.json</code></td><td>存档/邮件/排行榜默认规则</td><td>Save.createNew / mail / leaderboard / gameRuleConfig</td><td>implemented</td></tr>
+      <tr><td><code>formation-defaults.json</code></td><td>编队上限与出战默认</td><td>formation / battleConfigDefaults / gameRuleConfig</td><td>implemented</td></tr>
+      <tr><td><code>queue-defaults.json</code></td><td>队列/等级默认</td><td>craft.queue / delayQueue</td><td>implemented</td></tr>
+      <tr><td><code>star-level-config.json</code></td><td>星级概率/档位/r 公式/属性加成</td><td>starLevel / craft.cost / totalBonus / gameRuleConfig</td><td>implemented</td></tr>
+    </tbody>
+  </table>
+
+  <h3>文案/展示域</h3>
+  <table class="data-table">
+    <thead><tr><th>文件</th><th>用途</th><th>消费方</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td><code>messageTemplates.json</code></td><td>系统消息与邮件模板（{{变量}} 插值）</td><td>message / mail / task</td><td>implemented</td></tr>
+    </tbody>
+  </table>
+
+  <h3>边界文件（不套强标准）</h3>
+  <table class="data-table">
+    <thead><tr><th>文件</th><th>实际状态</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><code>mailConfig.json</code></td><td>运行时写回</td><td>server 公告开关动态修改</td></tr>
+      <tr><td><code>fieldMapping.json</code></td><td>仅 wiki</td><td>字段中文名映射工具</td></tr>
+      <tr><td><code>jobConfig.json</code></td><td>历史别名</td><td>与 jobs.json 重复，主条目=jobs.json</td></tr>
+      <tr><td><code>mapTool.json</code></td><td>仅 wiki</td><td>地图工具数据</td></tr>
+    </tbody>
+  </table>
+
+  <h3>数据模型与血缘</h3>
+  <p class="spaced">实体关系（ER）与三层数据链路见 <a href="../../.harmony/workspace/design/data/数据模型总览.md">数据模型总览</a>；关键字段流转见 <a href="../../.harmony/workspace/design/data/数据血缘追踪.md">数据血缘追踪</a>。</p>
+</div>

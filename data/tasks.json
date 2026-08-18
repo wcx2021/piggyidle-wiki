@@ -1,0 +1,342 @@
+{
+  "_meta": {
+    "description": "任务模板定义 - 每日/一次性/声望/探索任务配置，含标题描述、解锁条件、奖励、冷却。数据源迁自 taskTemplatesSeed.ts 内联硬编码（mde-stage1-coverage T4），建立 wiki 设计源。",
+    "designDoc": ".harmony/workspace/design/task/任务系统-版本设计定稿.md",
+    "consumers": [
+      "taskTemplatesSeed（seed 链路落 MongoDB tasktemplates 集合）",
+      "taskController（读 DB 聚合任务快照）",
+      "ui.tasks（前端 TaskCard/TaskDetailModal 展示 title/description）"
+    ],
+    "notes": [
+      "templateId 为任务唯一标识，前端据 templateId 回退展示（title 缺失时显示 templateId）",
+      "title/description 为玩家可见文案，三端单源：本文件 → seed → MongoDB → API → UI",
+      "rewards[].id 引用物品ID（字符串形式，如 1002 猪饲料）",
+      "unlockConditions.conditions[].project 引用 conditionService 支持的指标（如 reputationLevel）",
+      "visibilityMeta.category 为任务分类（daily/onetime/reputation/exploration），由数据流出前端不做硬编码映射",
+      "cooldownSeconds 为领取冷却（秒）；repeatable=false 的任务冷却无意义恒为 0",
+      "变更流程：wiki 修改 → npm run sync:wiki → npm run seed:local 才落 MongoDB 生效"
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
+  },
+  "templates": [
+    {
+      "templateId": "daily_stipend_1002",
+      "title": "每日俸禄",
+      "description": "每日俸禄：冷却结束后可领取猪饲料 1000 个。",
+      "unlockConditions": {
+        "conditions": [
+          {
+            "project": "reputationLevel",
+            "value": 0
+          }
+        ]
+      },
+      "completion": {},
+      "rewards": [
+        {
+          "type": "item",
+          "id": "1002",
+          "amount": 1000,
+          "meta": {}
+        }
+      ],
+      "repeatable": true,
+      "cooldownSeconds": 79200,
+      "visibilityMeta": {
+        "category": "daily",
+        "note": "示例：每日俸禄，默认无解锁条件"
+      },
+      "_consumers": {
+        "templateId": [
+          "taskController",
+          "ui.tasks"
+        ],
+        "title": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "description": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "rewards[].id": [
+          "lootService 物品发放"
+        ],
+        "rewards[].amount": [
+          "lootService 物品发放"
+        ]
+      }
+    },
+    {
+      "templateId": "premium_stipend_1002",
+      "title": "高级俸禄",
+      "description": "高级俸禄：需声望等级满足条件，冷却结束后可领取猪饲料 1000 个。",
+      "unlockConditions": {
+        "conditions": [
+          {
+            "project": "reputationLevel",
+            "value": 1
+          }
+        ]
+      },
+      "completion": {},
+      "rewards": [
+        {
+          "type": "item",
+          "id": "1002",
+          "amount": 1000,
+          "meta": {
+            "tier": "premium"
+          }
+        },
+        {
+          "type": "item",
+          "id": "4001",
+          "amount": 10,
+          "meta": {
+            "tier": "premium"
+          }
+        },
+        {
+          "type": "item",
+          "id": "2001",
+          "amount": 10,
+          "meta": {
+            "tier": "premium"
+          }
+        }
+      ],
+      "repeatable": true,
+      "cooldownSeconds": 60,
+      "visibilityMeta": {
+        "category": "daily",
+        "note": "示例：高级俸禄，使用新风格条件 conditionService.evaluateCondition"
+      },
+      "_consumers": {
+        "templateId": [
+          "taskController",
+          "ui.tasks"
+        ],
+        "title": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "description": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "rewards[].id": [
+          "lootService 物品发放"
+        ]
+      }
+    },
+    {
+      "templateId": "novice_reward_1002",
+      "title": "新手奖励",
+      "description": "新手奖励：一次性发放的猪饲料 1000 个（不可重复领取，无冷却）。",
+      "unlockConditions": {},
+      "completion": {},
+      "rewards": [
+        {
+          "type": "item",
+          "id": "1002",
+          "amount": 1000,
+          "meta": {
+            "grantForNewPlayers": true
+          }
+        }
+      ],
+      "repeatable": false,
+      "cooldownSeconds": 0,
+      "visibilityMeta": {
+        "category": "onetime",
+        "note": "示例：新手奖励，一次性发放"
+      },
+      "_consumers": {
+        "templateId": [
+          "taskController",
+          "ui.tasks"
+        ],
+        "title": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "description": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "rewards[].id": [
+          "lootService 物品发放"
+        ]
+      }
+    },
+    {
+      "templateId": "reputation_reward_5",
+      "title": "声望奖励（等级 ≥ 5）",
+      "description": "声望到达 5 时可领取的一次性奖励。",
+      "unlockConditions": {
+        "conditions": [
+          {
+            "project": "reputationLevel",
+            "value": 5
+          }
+        ]
+      },
+      "completion": {},
+      "rewards": [
+        {
+          "type": "item",
+          "id": "1002",
+          "amount": 2000,
+          "meta": {
+            "reason": "reputation_bonus"
+          }
+        }
+      ],
+      "repeatable": false,
+      "cooldownSeconds": 0,
+      "visibilityMeta": {
+        "category": "reputation",
+        "note": "Require reputationLevel >= 5"
+      },
+      "_consumers": {
+        "templateId": [
+          "taskController",
+          "ui.tasks"
+        ],
+        "title": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "description": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "rewards[].id": [
+          "lootService 物品发放"
+        ]
+      }
+    },
+    {
+      "templateId": "reputation_reward_10",
+      "title": "声望奖励（等级 ≥ 10）",
+      "description": "声望到达 10 时可领取的一次性奖励。",
+      "unlockConditions": {
+        "conditions": [
+          {
+            "project": "reputationLevel",
+            "value": 10
+          }
+        ]
+      },
+      "completion": {},
+      "rewards": [
+        {
+          "type": "item",
+          "id": "1002",
+          "amount": 5000,
+          "meta": {
+            "reason": "reputation_bonus"
+          }
+        }
+      ],
+      "repeatable": false,
+      "cooldownSeconds": 0,
+      "visibilityMeta": {
+        "category": "reputation",
+        "note": "Require reputationLevel >= 10"
+      },
+      "_consumers": {
+        "templateId": [
+          "taskController",
+          "ui.tasks"
+        ],
+        "title": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "description": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "rewards[].id": [
+          "lootService 物品发放"
+        ]
+      }
+    },
+    {
+      "templateId": "reputation_reward_15",
+      "title": "声望奖励（等级 ≥ 15）",
+      "description": "声望到达 15 时可领取的一次性奖励。",
+      "unlockConditions": {
+        "conditions": [
+          {
+            "project": "reputationLevel",
+            "value": 15
+          }
+        ]
+      },
+      "completion": {},
+      "rewards": [
+        {
+          "type": "item",
+          "id": "1002",
+          "amount": 10000,
+          "meta": {
+            "reason": "reputation_bonus"
+          }
+        }
+      ],
+      "repeatable": false,
+      "cooldownSeconds": 0,
+      "visibilityMeta": {
+        "category": "reputation",
+        "note": "Require reputationLevel >= 15"
+      },
+      "_consumers": {
+        "templateId": [
+          "taskController",
+          "ui.tasks"
+        ],
+        "title": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "description": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "rewards[].id": [
+          "lootService 物品发放"
+        ]
+      }
+    },
+    {
+      "templateId": "grassland_exploration_reward",
+      "title": "草原探索奖励",
+      "description": "草原探索采集作物奖励。",
+      "unlockConditions": {},
+      "completion": {},
+      "rewards": [
+        {
+          "type": "item",
+          "id": "2002",
+          "amount": 1,
+          "meta": {
+            "reason": "技艺之书：草原探索·采集作物"
+          }
+        }
+      ],
+      "repeatable": false,
+      "cooldownSeconds": 0,
+      "visibilityMeta": {
+        "category": "exploration",
+        "note": "Grassland exploration reward"
+      },
+      "_consumers": {
+        "templateId": [
+          "taskController",
+          "ui.tasks"
+        ],
+        "title": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "description": [
+          "ui.tasks.TaskCard/TaskDetailModal"
+        ],
+        "rewards[].id": [
+          "lootService 物品发放"
+        ]
+      }
+    }
+  ]
+}

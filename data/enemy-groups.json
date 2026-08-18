@@ -2,14 +2,20 @@
   "_meta": {
     "description": "敌人阵容定义 - 一场战斗中敌方的阵容配置，引用敌人模板 + 阵型位置 + 可选 overrides。基于战场系统设计定稿 7.9。",
     "designDoc": ".harmony/workspace/design/战场系统-版本设计定稿.md#7.9",
-    "consumers": ["battle.service", "enemy-group.loader", "battle.engine"],
+    "consumers": [
+      "battle.service",
+      "enemy-group.loader",
+      "battle.engine"
+    ],
     "notes": [
       "groupId 被 battle-templates.json 的 enemyGroupId 字段引用",
       "lane=路（从1开始），rank 由 enemy-battle-configs.json 的 preferredRanks 决定",
       "overrides 限定为 attributes/startingWeight/skills/modifiers 覆盖，不再覆盖 AI 设置",
       "enemies[].configId 可选字段，提供时覆盖敌人模板的 defaultConfigId",
       "敌人出生即 status='active' 在战场线上，不行军（设计 7.9 生成 BattleUnit 流程）"
-    ]
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
   },
   "groups": [
     {
@@ -17,16 +23,37 @@
       "name": "初级试炼阵容",
       "description": "1 只 Lv1 试炼小猪守在前排",
       "enemies": [
-        { "enemyId": "e_training_basic", "lane": 1 }
+        {
+          "enemyId": "e_training_basic",
+          "lane": 1
+        }
       ],
       "_consumers": {
-        "groupId": ["battle.service", "battle-templates.reference"],
-        "name": ["ui.battle"],
-        "description": ["ui.battle"],
-        "enemies": ["enemy-group.loader", "battle.engine"],
-        "enemies[].enemyId": ["enemy-group.loader"],
-        "enemies[].lane": ["battle.engine", "battle.snapshot"],
-        "enemies[].overrides": ["enemy-group.loader", "battle.engine"]
+        "groupId": [
+          "battle.service",
+          "battle-templates.reference"
+        ],
+        "name": [
+          "ui.battle"
+        ],
+        "description": [
+          "ui.battle"
+        ],
+        "enemies": [
+          "enemy-group.loader",
+          "battle.engine"
+        ],
+        "enemies[].enemyId": [
+          "enemy-group.loader"
+        ],
+        "enemies[].lane": [
+          "battle.engine",
+          "battle.snapshot"
+        ],
+        "enemies[].overrides": [
+          "enemy-group.loader",
+          "battle.engine"
+        ]
       },
       "_comment": "试炼·初级使用的阵容。1 只初级小猪在 Lane 1 前排"
     },
@@ -35,16 +62,37 @@
       "name": "进阶试炼阵容",
       "description": "1 只 Lv5 试炼小猪守在前排",
       "enemies": [
-        { "enemyId": "e_training_advanced", "lane": 1 }
+        {
+          "enemyId": "e_training_advanced",
+          "lane": 1
+        }
       ],
       "_consumers": {
-        "groupId": ["battle.service", "battle-templates.reference"],
-        "name": ["ui.battle"],
-        "description": ["ui.battle"],
-        "enemies": ["enemy-group.loader", "battle.engine"],
-        "enemies[].enemyId": ["enemy-group.loader"],
-        "enemies[].lane": ["battle.engine", "battle.snapshot"],
-        "enemies[].overrides": ["enemy-group.loader", "battle.engine"]
+        "groupId": [
+          "battle.service",
+          "battle-templates.reference"
+        ],
+        "name": [
+          "ui.battle"
+        ],
+        "description": [
+          "ui.battle"
+        ],
+        "enemies": [
+          "enemy-group.loader",
+          "battle.engine"
+        ],
+        "enemies[].enemyId": [
+          "enemy-group.loader"
+        ],
+        "enemies[].lane": [
+          "battle.engine",
+          "battle.snapshot"
+        ],
+        "enemies[].overrides": [
+          "enemy-group.loader",
+          "battle.engine"
+        ]
       },
       "_comment": "试炼·进阶使用的阵容。1 只进阶小猪在 Lane 1 前排"
     },
@@ -53,17 +101,41 @@
       "name": "终极试炼阵容",
       "description": "初级 + 进阶两只试炼小猪同时上场，各守一路前排",
       "enemies": [
-        { "enemyId": "e_training_basic", "lane": 1 },
-        { "enemyId": "e_training_advanced", "lane": 2 }
+        {
+          "enemyId": "e_training_basic",
+          "lane": 1
+        },
+        {
+          "enemyId": "e_training_advanced",
+          "lane": 2
+        }
       ],
       "_consumers": {
-        "groupId": ["battle.service", "battle-templates.reference"],
-        "name": ["ui.battle"],
-        "description": ["ui.battle"],
-        "enemies": ["enemy-group.loader", "battle.engine"],
-        "enemies[].enemyId": ["enemy-group.loader"],
-        "enemies[].lane": ["battle.engine", "battle.snapshot"],
-        "enemies[].overrides": ["enemy-group.loader", "battle.engine"]
+        "groupId": [
+          "battle.service",
+          "battle-templates.reference"
+        ],
+        "name": [
+          "ui.battle"
+        ],
+        "description": [
+          "ui.battle"
+        ],
+        "enemies": [
+          "enemy-group.loader",
+          "battle.engine"
+        ],
+        "enemies[].enemyId": [
+          "enemy-group.loader"
+        ],
+        "enemies[].lane": [
+          "battle.engine",
+          "battle.snapshot"
+        ],
+        "enemies[].overrides": [
+          "enemy-group.loader",
+          "battle.engine"
+        ]
       },
       "_comment": "试炼·终极使用的阵容。Lane 1 前排初级 + Lane 2 前排进阶，2 路同时出战"
     }

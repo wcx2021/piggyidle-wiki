@@ -29,32 +29,20 @@
     { value: 'BUILD_DEPLOY', label: '建筑部署' }
   ];
 
-  var subActionTypeLabels = {
-    surveying: '测绘',
-    exploration: '探索',
-    enemy_hunt: '寻敌',
-    treasure_hunt: '寻宝',
-    research: '研究',
-    logging: '伐木',
-    mining: '采矿',
-    harvesting: '采摘',
-    hunting: '狩猎',
-    forge: '锻造',
-    weave: '纺织',
-    cook: '烹饪',
-    alchemy: '炼金',
-    enchant: '附魔',
-    craft_book: '技艺之书',
-    harvest: '采摘',
-    craft: '制造'
+  var subActionTypeLabelsFallback = {
+    surveying: '测绘', exploration: '探索', enemy_hunt: '寻敌',
+    treasure_hunt: '寻宝', research: '研究', logging: '伐木',
+    mining: '采矿', harvesting: '采摘', hunting: '狩猎',
+    forge: '锻造', weave: '纺织', cook: '烹饪', alchemy: '炼金',
+    enchant: '附魔', craft_book: '技艺之书', harvest: '采摘', craft: '制造'
   };
 
-  var triggerTypeLabels = {
-    INTERNAL: '自动',
-    EXTERNAL: '手动',
-    AUTO: '自动',
-    MANUAL: '手动'
+  var triggerTypeLabelsFallback = {
+    INTERNAL: '自动', EXTERNAL: '手动', AUTO: '自动', MANUAL: '手动'
   };
+
+  var getSubActionTypeLabel = window.buildWikiLabelGetter('Action', 'subActionType', subActionTypeLabelsFallback);
+  var getTriggerTypeLabel = window.buildWikiLabelGetter('Action', 'triggerType', triggerTypeLabelsFallback);
 
   var extraParamLabels = {
     duration: '耗时(秒)',
@@ -91,15 +79,26 @@
     3: '外交'
   };
 
-  var typeLabelMap = {
-    PIG_CRAFT: '小猪技艺',
-    ITEM_USE: '物品使用',
-    SHOP_BUY: '商店购买',
-    MARKET_TRADE: '市场交易',
-    TASK_FINISH: '任务完成',
-    PIG_RECLASS: '小猪转职',
+  var typeLabelsFallback = {
+    PIG_CRAFT: '小猪技艺', ITEM_USE: '物品使用', SHOP_BUY: '商店购买',
+    MARKET_TRADE: '市场交易', TASK_FINISH: '任务完成', PIG_RECLASS: '小猪转职',
     BUILD_DEPLOY: '建筑部署'
   };
+
+  var getActionTypeLabel = window.buildWikiLabelGetter('Action', 'actionType', typeLabelsFallback);
+
+  /** 行动类型筛选下拉选项：fieldMapping 缺失时回退静态列表 */
+  function getActionTypeOptions() {
+    var fm = window.fieldMapping;
+    if (fm && fm.Action && fm.Action.actionType && fm.Action.actionType.enum) {
+      var opts = [{ value: 'all', label: '全部' }];
+      Object.keys(fm.Action.actionType.enum).forEach(function(k) {
+        opts.push({ value: k, label: String(fm.Action.actionType.enum[k]).replace(/\s*[（(].*[）)]\s*$/, '') });
+      });
+      return opts;
+    }
+    return actionTypeOptions;
+  }
 
   var typeColorMap = {
     PIG_CRAFT: '#8b5cf6',
@@ -111,23 +110,18 @@
     BUILD_DEPLOY: '#64748b'
   };
 
-  var consumeTypeLabels = {
-    item: '物品',
-    suit: '套装',
-    build: '建筑',
-    map: '地图',
-    resource: '身体资源',
-    map_resource: '地图资源'
+  var consumeTypeLabelsFallback = {
+    item: '物品', suit: '套装', build: '建筑', map: '地图',
+    resource: '身体资源', map_resource: '地图资源'
   };
 
-  var rewardSubtypeLabels = {
-    1: '物品',
-    2: '经验值',
-    3: '权限',
-    4: '其他',
-    5: '地图创建',
-    6: '地图资源点'
+  var getConsumeTypeLabel = window.buildWikiLabelGetter('ConsumeItem', 'consume_type', consumeTypeLabelsFallback);
+
+  var rewardSubtypeLabelsFallback = {
+    1: '物品', 2: '经验值', 3: '权限', 4: '其他', 5: '地图创建', 6: '地图资源点'
   };
+
+  var getRewardSubtypeLabel = window.buildWikiLabelGetter('RewardItem', 'reward_subtype', rewardSubtypeLabelsFallback);
 
   function formatCell(v, col) {
     if (v === null || v === undefined || v === '') return '—';
@@ -152,7 +146,7 @@
 
   function renderBadge(text, colorKey) {
     var color = typeColorMap[colorKey] || '#6b7280';
-    var label = typeLabelMap[colorKey] || text;
+    var label = getActionTypeLabel(colorKey) || text;
     return '<span class="type-badge" style="background:' + color + '1a;color:' + color + ';border:1px solid ' + color + '33;">' + window.escapeHTML(label) + '</span>';
   }
 
@@ -185,7 +179,7 @@
     if (items.length === 0) return '<p class="detail-empty">消耗表 #' + window.escapeHTML(String(consumeTableId)) + '（空）</p>';
 
     var rows = items.map(function(ci) {
-      var typeLabel = consumeTypeLabels[ci.consume_type] || ci.consume_type;
+      var typeLabel = getConsumeTypeLabel(ci.consume_type);
       var targetName;
       if (ci.consume_type === 'item') {
         targetName = resolveItemName(ci.target_id, itemsData);
@@ -231,7 +225,7 @@
     if (mutex.length > 0) {
       html += '<p class="detail-sub-title">互斥奖励池（权重随机选一）</p>';
       var mutexRows = mutex.map(function(ri) {
-        var subtypeLabel = rewardSubtypeLabels[ri.reward_subtype] || '类型' + ri.reward_subtype;
+        var subtypeLabel = getRewardSubtypeLabel(ri.reward_subtype) || ('类型' + ri.reward_subtype);
         var targetName;
         if (ri.reward_subtype === 1) {
           targetName = resolveItemName(ri.target_id, itemsData);
@@ -264,7 +258,7 @@
     if (independent.length > 0) {
       if (mutex.length > 0) html += '<p class="detail-sub-title">独立奖励池（每项独立判定）</p>';
       var indRows = independent.map(function(ri) {
-        var subtypeLabel = rewardSubtypeLabels[ri.reward_subtype] || '类型' + ri.reward_subtype;
+        var subtypeLabel = getRewardSubtypeLabel(ri.reward_subtype) || ('类型' + ri.reward_subtype);
         var targetName;
         if (ri.reward_subtype === 1) {
           targetName = resolveItemName(ri.target_id, itemsData);
@@ -312,14 +306,14 @@
         displayVal = val.map(function(req) {
           var parts = [];
           if (req.type === 'profession_strength') {
-            parts.push('技艺「' + (subActionTypeLabels[req.professionId] || req.professionId) + '」强度 ≥ ' + req.value);
+            parts.push('技艺「' + (getSubActionTypeLabel(req.professionId) || req.professionId) + '」强度 ≥ ' + req.value);
           } else {
             parts.push((req.type || '') + ' ≥ ' + (req.value || ''));
           }
           return parts.join('，');
         }).join('；');
       } else if (key === 'professionId') {
-        displayVal = subActionTypeLabels[val] || val;
+        displayVal = getSubActionTypeLabel(val) || val;
       } else if (key === 'expPerBook') {
         displayVal = val === 0 ? '—' : val + ' 经验';
       } else if (key === 'mapRequirements' && typeof val === 'object') {
@@ -383,7 +377,8 @@
     var itemsData = [];
 
     // Build type filter options
-    actionTypeOptions.forEach(function(opt) {
+    typeFilter.innerHTML = '';
+    getActionTypeOptions().forEach(function(opt) {
       var option = document.createElement('option');
       option.value = opt.value;
       option.textContent = opt.label;
@@ -461,10 +456,10 @@
           } else if (col.isBool) {
             td.innerHTML = renderBoolCell(value);
           } else if (col.key === 'subActionType') {
-            var subLabel = subActionTypeLabels[value] || value;
+            var subLabel = getSubActionTypeLabel(value);
             td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(subLabel) + '</span>';
           } else if (col.key === 'triggerType') {
-            var trigLabel = triggerTypeLabels[value] || value;
+            var trigLabel = getTriggerTypeLabel(value);
             td.innerHTML = '<span title="' + window.escapeHTML(String(value)) + '">' + window.escapeHTML(trigLabel) + '</span>';
           } else {
             td.textContent = formatCell(value, col);

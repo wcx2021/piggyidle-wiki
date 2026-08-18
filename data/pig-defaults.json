@@ -16,14 +16,32 @@
       "initialAttributeLevel": 1,
       "initialAttributeExp": 0,
       "equipmentSlots": [
-        { "slot": "head" },
-        { "slot": "mainHand" },
-        { "slot": "offHand" },
-        { "slot": "body" },
-        { "slot": "feet" },
-        { "slot": "bag" },
-        { "slot": "pocket", "pocketIndex": 0 },
-        { "slot": "pocket", "pocketIndex": 1 }
+        {
+          "slot": "head"
+        },
+        {
+          "slot": "mainHand"
+        },
+        {
+          "slot": "offHand"
+        },
+        {
+          "slot": "body"
+        },
+        {
+          "slot": "feet"
+        },
+        {
+          "slot": "bag"
+        },
+        {
+          "slot": "pocket",
+          "pocketIndex": 0
+        },
+        {
+          "slot": "pocket",
+          "pocketIndex": 1
+        }
       ]
     }
   },
@@ -31,5 +49,58 @@
     "defaultLevel": 1,
     "defaultExp": 0,
     "defaultIsActive": false
+  },
+  "feedDefaults": {
+    "_description": "喂食公式参数。等值迁移自 pig.feeding.service.ts 硬编码（mde-stage1-coverage T2），数值口径不变。注意：食物饱食度计入饱和度的比例（0.1）即 saturation.baseRatio，T1 已迁移，此处不重复定义。",
+    "defaultWeight": 300,
+    "ratioConvert": 10,
+    "gramPerFeedUnit": 100,
+    "_consumers": {
+      "defaultWeight": [
+        "pig.feeding.service.calculateFeedCost",
+        "pig.feeding.service.feedPig",
+        "save.init.service 初始体重展示"
+      ],
+      "ratioConvert": [
+        "pig.feeding.service 三段阈值增重公式（克换算）"
+      ],
+      "gramPerFeedUnit": [
+        "pig.feeding.service 克→喂食单位换算"
+      ]
+    }
+  },
+  "saturation": {
+    "_description": "饱和度机制参数。等值迁移自 pig.saturation.service.ts 硬编码（mde-stage1-coverage T1）。",
+    "recoverPerHour": 1200,
+    "baseRatio": 0.1,
+    "starDiscountPerStar": 0.1,
+    "capFallback": 12000,
+    "_consumers": {
+      "recoverPerHour": [
+        "pig.saturation.service.recoverSaturation"
+      ],
+      "baseRatio": [
+        "pig.saturation.service.getSatietyContribution"
+      ],
+      "starDiscountPerStar": [
+        "pig.saturation.service.starDiscount"
+      ],
+      "capFallback": [
+        "pig.saturation.service.getSaturationCap"
+      ]
+    }
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19",
+    "consumers": {
+      "pig-defaults": [
+        "pig.service",
+        "saturation.service",
+        "feed.service",
+        "Save.createNew",
+        "gameRuleConfig"
+      ]
+    }
   }
 }

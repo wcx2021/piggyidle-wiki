@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "地图工具（mapTool.js）展示数据单源。升级消耗由 mapUpgradeCosts.json 权威提供，本文件仅承载纯展示元数据：地图基本信息 / 地块池 / 地形标签中文 / 类型徽章配色。",
+    "consumers": ["wiki.js.mapTool"],
+    "notes": [
+      "upgradeCosts 不在此处，读 mapUpgradeCosts.json（三级源 server/data/mapUpgradeCosts.json）",
+      "本文件为 wiki 站点纯展示数据，无 server 消费方，不参与 syncWikiToServerFull 同步"
+    ]
+  },
+  "mapInfo": {
+    "id": 7001,
+    "name": "初始之地",
+    "terrainTags": ["grassland"],
+    "acquire": "地图碎片 ×300 合成"
+  },
+  "plotPool": [
+    { "name": "肥沃农田", "tags": ["farm"], "bonus": "效率+5%", "type": "初始", "resourcePoints": ["胡萝卜", "小麦"] },
+    { "name": "涓涓河流", "tags": ["water"], "bonus": "容量+5000", "type": "初始", "resourcePoints": ["鱼", "芦苇"] },
+    { "name": "小型矿脉", "tags": ["mine"], "bonus": "速度+5%", "type": "初始", "resourcePoints": ["铜矿", "铁矿"] },
+    { "name": "茂密林地", "tags": ["forest"], "bonus": "效率+8%", "type": "Lv.3解锁" },
+    { "name": "草药园", "tags": ["farm"], "bonus": "效率+10%", "type": "Lv.3解锁" },
+    { "name": "采石场", "tags": ["mine"], "bonus": "容量+10000", "type": "Lv.3解锁" },
+    { "name": "狩猎场", "tags": ["hunting_ground"], "bonus": "效率+12%", "type": "Lv.5解锁" },
+    { "name": "训练场", "tags": ["combat"], "bonus": "速度+10%", "type": "Lv.5解锁" },
+    { "name": "钻井平台", "tags": ["oilfield"], "bonus": "容量+20000", "type": "Lv.5解锁" },
+    { "name": "工坊区", "tags": ["workshop"], "bonus": "效率+15%", "type": "Lv.7解锁" },
+    { "name": "观测站", "tags": ["research"], "bonus": "速度+15%", "type": "Lv.7解锁" },
+    { "name": "地下洞穴", "tags": ["mine", "mysterious"], "bonus": "稀有掉落+20%", "type": "Lv.7解锁" }
+  ],
+  "terrainTagLabels": {
+    "grassland": "草原",
+    "farm": "农田",
+    "water": "水域",
+    "mine": "矿脉",
+    "forest": "林地",
+    "hunting_ground": "狩猎场",
+    "combat": "训练场",
+    "oilfield": "油田",
+    "workshop": "工坊",
+    "research": "研究",
+    "mysterious": "神秘"
+  },
+  "typeBadgeColors": {
+    "初始": "#3b82f6",
+    "Lv.3解锁": "#10b981",
+    "Lv.5解锁": "#f97316",
+    "Lv.7解锁": "#8b5cf6"
+  },
+  "_consumers": {
+    "mapInfo": ["wiki.js.mapTool.info"],
+    "plotPool": ["wiki.js.mapTool.plots"],
+    "terrainTagLabels": ["wiki.js.mapTool.info/plots"],
+    "typeBadgeColors": ["wiki.js.mapTool.plots"]
+  }
+}

@@ -2,7 +2,11 @@
   "_meta": {
     "description": "Buff 静态配置定义表。v2.0 简化设计：只修改属性，沉默用 tag 标记。",
     "designDoc": ".harmony/workspace/design/combat/Buff与状态效果系统-版本设计定稿.md",
-    "consumers": ["shared-battle-engine.buff", "battle.service", "ui.battle"],
+    "consumers": [
+      "shared-battle-engine.buff",
+      "battle.service",
+      "ui.battle"
+    ],
     "notes": [
       "buffId 命名规则：{type}_{effect}，如 buff_atk_up / control_stun / debuff_slow",
       "type 可选：buff(增益)/debuff(减益)/control(控制)",
@@ -14,7 +18,9 @@
       "tag: 特殊标记，如 silence=沉默（禁止释放技能，可普攻），可扩展",
       "variable: 可变输入字段列表，如 ['duration'] 表示 duration 由技能提供，['value','duration'] 表示两者都由技能提供",
       "periodicEffect 可选，仅 DOT/HOT 类型需要；tickDamage = baseValue + buff.value（累加值）"
-    ]
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
   },
   "_attributeLabels": {
     "type": {
@@ -56,7 +62,9 @@
       "modifyMode": "percent",
       "defaultValue": 0.2,
       "stackable": true,
-      "variable": ["duration"]
+      "variable": [
+        "duration"
+      ]
     },
     "buff_def_up": {
       "name_cn": "护甲提升",
@@ -65,7 +73,9 @@
       "modifyMode": "percent",
       "defaultValue": 0.2,
       "stackable": true,
-      "variable": ["duration"]
+      "variable": [
+        "duration"
+      ]
     },
     "buff_spd_up": {
       "name_cn": "充能速度提升",
@@ -74,7 +84,9 @@
       "modifyMode": "percent",
       "defaultValue": 0.2,
       "stackable": true,
-      "variable": ["duration"]
+      "variable": [
+        "duration"
+      ]
     },
     "debuff_atk_down": {
       "name_cn": "攻击力降低",
@@ -83,7 +95,9 @@
       "modifyMode": "percent",
       "defaultValue": -0.2,
       "stackable": false,
-      "variable": ["duration"]
+      "variable": [
+        "duration"
+      ]
     },
     "debuff_armor_down": {
       "name_cn": "护甲降低",
@@ -92,7 +106,9 @@
       "modifyMode": "percent",
       "defaultValue": -0.2,
       "stackable": false,
-      "variable": ["duration"]
+      "variable": [
+        "duration"
+      ]
     },
     "debuff_burning": {
       "name_cn": "灼烧",
@@ -101,7 +117,9 @@
       "modifyMode": "percent",
       "defaultValue": 3,
       "stackable": true,
-      "variable": ["duration"],
+      "variable": [
+        "duration"
+      ],
       "periodicEffect": {
         "interval": 10,
         "baseValue": 5,
@@ -115,7 +133,9 @@
       "modifyMode": "percent",
       "defaultValue": 2,
       "stackable": true,
-      "variable": ["duration"],
+      "variable": [
+        "duration"
+      ],
       "periodicEffect": {
         "interval": 5,
         "baseValue": 3,
@@ -127,9 +147,11 @@
       "type": "control",
       "targetAttribute": "chargeSpeed",
       "modifyMode": "percent",
-      "defaultValue": -1.0,
+      "defaultValue": -1,
       "stackable": false,
-      "variable": ["duration"]
+      "variable": [
+        "duration"
+      ]
     },
     "control_silence": {
       "name_cn": "沉默",
@@ -138,7 +160,9 @@
       "modifyMode": "percent",
       "defaultValue": 0,
       "stackable": false,
-      "variable": ["duration"],
+      "variable": [
+        "duration"
+      ],
       "tag": "silence"
     },
     "debuff_slow": {
@@ -148,7 +172,10 @@
       "modifyMode": "percent",
       "defaultValue": -0.3,
       "stackable": true,
-      "variable": ["value", "duration"]
+      "variable": [
+        "value",
+        "duration"
+      ]
     }
   }
 }

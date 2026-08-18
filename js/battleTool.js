@@ -7,35 +7,48 @@
 (function() {
   'use strict';
 
-  /* ========== 常量定义 ========== */
+  /* ========== 常量定义（兜底值，展示标准优先读 fieldMapping.json） ========== */
 
-  var ATTRIBUTE_LABELS = {
+  var ATTRIBUTE_LABELS_FALLBACK = {
     strength: '力量', constitution: '体质', agility: '敏捷',
     dexterity: '灵巧', intelligence: '智力', perception: '感知',
     will: '意志', charisma: '魅力', startingWeight: '起始体重'
   };
 
-  var COMBAT_LABELS = {
+  var COMBAT_LABELS_FALLBACK = {
     attack: '攻击力', endurance: '耐力', hit: '命中', dodge: '闪避',
     armor: '护甲', magicResist: '魔法抗性', moveSpeed: '移动速度',
     chargeSpeed: '充能速度', critDamage: '暴击伤害', resistance: '抗性'
   };
 
-  var RANK_LABELS = { front: '前排', mid: '中排', rear: '后排', 1: '前排', 2: '中排', 3: '后排' };
+  var RANK_LABELS_FALLBACK = { front: '前排', mid: '中排', rear: '后排', 1: '前排', 2: '中排', 3: '后排' };
 
-  var TARGET_RULE_LABELS = {
+  var TARGET_RULE_LABELS_FALLBACK = {
     weakest: '欺负弱小', threat: '排除威胁', follow: '跟随行动', rear: '优先后排'
   };
 
-  var AOE_TARGET_LABELS = {
+  var AOE_TARGET_LABELS_FALLBACK = {
     sequential: '按序号', lowestHp: '血量最低', random: '随机'
   };
 
-  var DUNGEON_TYPE_LABELS = { normal: '普通奖励', rare: '稀有奖励' };
+  var DUNGEON_TYPE_LABELS_FALLBACK = { normal: '普通副本', rare: '稀有副本' };
 
-  var DIFFICULTY_LABELS = { '1': 'Ⅰ', '2': 'Ⅱ', '3': 'Ⅲ' };
+  var DIFFICULTY_LABELS_FALLBACK = { '1': 'Ⅰ', '2': 'Ⅱ', '3': 'Ⅲ' };
 
-  var BATTLE_TYPE_LABELS = { pve: 'PVE', pvp: 'PVP（预留）' };
+  var BATTLE_TYPE_LABELS_FALLBACK = { pve: 'PVE', pvp: 'PVP' };
+
+  /**
+   * 展示标准优先读 fieldMapping.json（短标签为展示标准，剥括号，inline 仅兜底）。
+   * 取值器工厂由 utils.js 提供（window.buildWikiLabelGetter）。
+   */
+  var getAttributeLabel = window.buildWikiLabelGetter('EnemyAttributes', null, ATTRIBUTE_LABELS_FALLBACK);
+  var getCombatLabel = window.buildWikiLabelGetter('CombatStats', null, COMBAT_LABELS_FALLBACK);
+  var getRankLabel = window.buildWikiLabelGetter('EnemyGroupMember', 'rank', RANK_LABELS_FALLBACK);
+  var getTargetRuleLabel = window.buildWikiLabelGetter('EnemyAi', 'targetRule', TARGET_RULE_LABELS_FALLBACK);
+  var getAoeTargetLabel = window.buildWikiLabelGetter('EnemyAi', 'aoeTargetRule', AOE_TARGET_LABELS_FALLBACK);
+  var getDungeonTypeLabel = window.buildWikiLabelGetter('DungeonTemplate', 'dungeonType', DUNGEON_TYPE_LABELS_FALLBACK);
+  var getDifficultyLabel = window.buildWikiLabelGetter('DungeonTemplate', 'difficulty', DIFFICULTY_LABELS_FALLBACK);
+  var getBattleTypeLabel = window.buildWikiLabelGetter('BattleTemplate', 'battleType', BATTLE_TYPE_LABELS_FALLBACK);
 
   // 分页配置
   var PAGE_SIZE = 50;
@@ -88,10 +101,10 @@
       return formatStanceCondition(c.stanceCondition);
     }},
     { key: 'targetRule', label: '寻敌策略', compute: function(c) {
-      return TARGET_RULE_LABELS[c.targetRule] || c.targetRule || '—';
+      return getTargetRuleLabel(c.targetRule) || '—';
     }},
     { key: 'aoeTargetRule', label: '群攻规则', compute: function(c) {
-      return AOE_TARGET_LABELS[c.aoeTargetRule] || c.aoeTargetRule || '—';
+      return getAoeTargetLabel(c.aoeTargetRule) || '—';
     }},
     { key: 'skillQueue', label: '技能队列', compute: function(c) {
       var sq = c.skillQueue || [];
@@ -240,12 +253,12 @@
 
   function formatPreferredRanks(preferredRanks) {
     if (!preferredRanks || !Array.isArray(preferredRanks) || preferredRanks.length === 0) return '—';
-    return preferredRanks.map(function(r) { return RANK_LABELS[r] || r; }).join(', ');
+    return preferredRanks.map(function(r) { return getRankLabel(r); }).join(', ');
   }
 
   function formatStanceCondition(cond) {
     if (!cond) return '—';
-    var rankLabel = RANK_LABELS[cond.rank] || cond.rank;
+    var rankLabel = cond.rank !== undefined ? getRankLabel(cond.rank) : '';
     if (cond.type === 'ally_in_lane_rank') {
       return '同路该排有友军(' + rankLabel + '≥' + (cond.minCount || 1) + '人)';
     }
@@ -288,10 +301,10 @@
     // Attributes (八维)
     var attrs = enemy.attributes || {};
     var attrHtml = '<table class="detail-table"><thead><tr><th>属性</th><th>值</th></tr></thead><tbody>';
-    Object.keys(ATTRIBUTE_LABELS).forEach(function(k) {
+    Object.keys(ATTRIBUTE_LABELS_FALLBACK).forEach(function(k) {
       var v = attrs[k];
       if (v === undefined || v === null) v = '—';
-      attrHtml += '<tr><td>' + ATTRIBUTE_LABELS[k] + '</td><td>' + v + '</td></tr>';
+      attrHtml += '<tr><td>' + getAttributeLabel(k) + '</td><td>' + v + '</td></tr>';
     });
     attrHtml += '</tbody></table>';
     sections.push('<div class="detail-section"><h5>八维属性</h5>' + attrHtml + '</div>');
@@ -305,14 +318,14 @@
       var ab = mods.abilityBonus;
       if (ab && Object.keys(ab).length > 0) {
         Object.keys(ab).forEach(function(k) {
-          var label = ATTRIBUTE_LABELS[k] || k;
+          var label = getAttributeLabel(k);
           modHtml += '<tr><td>abilityBonus</td><td>' + label + '</td><td>' + (ab[k] > 0 ? '+' : '') + ab[k] + '</td></tr>';
         });
       }
       var cb = mods.combatBonus;
       if (cb && Object.keys(cb).length > 0) {
         Object.keys(cb).forEach(function(k) {
-          var label = COMBAT_LABELS[k] || k;
+          var label = getCombatLabel(k);
           modHtml += '<tr><td>combatBonus</td><td>' + label + '</td><td>' + (cb[k] > 0 ? '+' : '') + cb[k] + '</td></tr>';
         });
       }
@@ -438,7 +451,7 @@
       { label: 'ID', value: template.templateId },
       { label: '名称', value: template.name },
       { label: '描述', value: template.description },
-      { label: '战场类型', value: BATTLE_TYPE_LABELS[template.battleType] || template.battleType },
+      { label: '战场类型', value: getBattleTypeLabel(template.battleType) },
       { label: '布局', value: (template.layout ? (template.layout.lanes + '路×' + template.layout.ranks + '排') : '—') },
       { label: '最大单位数', value: String(template.maxUnitsPerSide) },
       { label: '敌人阵容', value: template.enemyGroupId ? '<span class="ref-id">#' + window.escapeHTML(template.enemyGroupId) + '</span>' : '无（副本指定）' },
@@ -461,8 +474,8 @@
     var basicHtml = '<table class="detail-table"><thead><tr><th>字段</th><th>值</th></tr></thead><tbody>' +
       '<tr><td>副本ID</td><td>' + window.escapeHTML(dungeon.dungeonId) + '</td></tr>' +
       '<tr><td>地图ID</td><td>' + window.escapeHTML(dungeon.mapId) + '</td></tr>' +
-      '<tr><td>难度</td><td>' + (DIFFICULTY_LABELS[dungeon.difficulty] || dungeon.difficulty) + '</td></tr>' +
-      '<tr><td>奖励类型</td><td>' + (DUNGEON_TYPE_LABELS[dungeon.dungeonType] || dungeon.dungeonType) + '</td></tr>' +
+      '<tr><td>难度</td><td>' + getDifficultyLabel(dungeon.difficulty) + '</td></tr>' +
+      '<tr><td>奖励类型</td><td>' + getDungeonTypeLabel(dungeon.dungeonType) + '</td></tr>' +
       '<tr><td>敌人阵容</td><td><span class="ref-id">#' + window.escapeHTML(dungeon.enemyGroupId) + '</span></td></tr>' +
       '<tr><td>队列时长</td><td>' + dungeon.queueDuration + '秒</td></tr>' +
       '<tr><td>奖励包ID</td><td><span class="ref-id">#' + window.escapeHTML(dungeon.rewardPackId) + '</span></td></tr>' +
@@ -504,8 +517,8 @@
       '<tr><td>配置名</td><td>' + window.escapeHTML(config.name || '—') + '</td></tr>' +
       '<tr><td>可入排位</td><td>' + window.escapeHTML(preferredRanksDisplay) + '</td></tr>' +
       '<tr><td>条件入场</td><td>' + (stanceConditionDisplay === '—' ? '—' : stanceConditionDisplay) + '</td></tr>' +
-      '<tr><td>寻敌策略</td><td>' + window.escapeHTML(TARGET_RULE_LABELS[config.targetRule] || config.targetRule || '—') + '</td></tr>' +
-      '<tr><td>群攻规则</td><td>' + window.escapeHTML(AOE_TARGET_LABELS[config.aoeTargetRule] || config.aoeTargetRule || '—') + '</td></tr>' +
+      '<tr><td>寻敌策略</td><td>' + window.escapeHTML(getTargetRuleLabel(config.targetRule) || '—') + '</td></tr>' +
+      '<tr><td>群攻规则</td><td>' + window.escapeHTML(getAoeTargetLabel(config.aoeTargetRule) || '—') + '</td></tr>' +
       '</tbody></table>';
     sections.push('<div class="detail-section"><h5>基本信息</h5>' + basicHtml + '</div>');
 
@@ -644,11 +657,11 @@
         }
 
         if (col.key === 'difficulty') {
-          td.textContent = DIFFICULTY_LABELS[String(value)] || value;
+          td.textContent = getDifficultyLabel(value);
         } else if (col.key === 'dungeonType') {
-          td.textContent = DUNGEON_TYPE_LABELS[value] || value;
+          td.textContent = getDungeonTypeLabel(value);
         } else if (col.key === 'battleType') {
-          td.textContent = BATTLE_TYPE_LABELS[value] || value;
+          td.textContent = getBattleTypeLabel(value);
         } else if (col.key === 'rewardTableId' || col.key === 'enemyGroupId') {
           td.innerHTML = '<span class="ref-id">#' + window.escapeHTML(String(value)) + '</span>';
         } else if (col.key === 'queueDuration') {

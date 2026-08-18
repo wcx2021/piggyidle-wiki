@@ -2,7 +2,12 @@
   "_meta": {
     "description": "副本模板定义 - 副本入口配置，关联地图/敌人组/队列时长/奖励包。基于副本系统设计定稿 §4。",
     "designDoc": ".harmony/workspace/design/dungeon/副本系统-版本设计定稿.md#4",
-    "consumers": ["dungeonController", "rewardTimes.service", "battleQueueService", "battle.service.finishBattle"],
+    "consumers": [
+      "dungeonController",
+      "rewardTimes.service",
+      "battleQueueService",
+      "battle.service.finishBattle"
+    ],
     "notes": [
       "dungeonId 为副本唯一标识，前端详情页据此请求 /api/dungeon/:id",
       "enemyGroupId 引用 enemy-groups.json 的 groupId",
@@ -12,7 +17,9 @@
       "queueDuration 单位为秒，统一战斗队列据此倒计时",
       "mapId 为字符串标识，关联地图场景（Map.mapId 为 number，此处用语义化字符串占位）",
       "difficulty 为难度分级字符串（'1'/'2'/'3'），对应前端显示难度Ⅰ/Ⅱ/Ⅲ"
-    ]
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
   },
   "templates": [
     {
@@ -25,14 +32,42 @@
       "rewardPackId": "30001",
       "order": 1,
       "_consumers": {
-        "dungeonId": ["dungeonController.getDetail", "dungeonController.start", "rewardTimes.service"],
-        "mapId": ["dungeonController.getDetail", "ui.dungeon"],
-        "difficulty": ["ui.dungeon"],
-        "dungeonType": ["dungeonController.start", "rewardTimes.service", "ui.dungeon", "battle.service.finishBattle"],
-        "enemyGroupId": ["dungeonController.getDetail", "battle.service.deployBattle", "battle.service.validateInstanceBattleStart"],
-        "queueDuration": ["battleQueueService", "ui.dungeon"],
-        "rewardPackId": ["dungeonController.getDetail", "loot.service", "ui.dungeon"],
-        "order": ["dungeonController.list", "ui.dungeon"]
+        "dungeonId": [
+          "dungeonController.getDetail",
+          "dungeonController.start",
+          "rewardTimes.service"
+        ],
+        "mapId": [
+          "dungeonController.getDetail",
+          "ui.dungeon"
+        ],
+        "difficulty": [
+          "ui.dungeon"
+        ],
+        "dungeonType": [
+          "dungeonController.start",
+          "rewardTimes.service",
+          "ui.dungeon",
+          "battle.service.finishBattle"
+        ],
+        "enemyGroupId": [
+          "dungeonController.getDetail",
+          "battle.service.deployBattle",
+          "battle.service.validateInstanceBattleStart"
+        ],
+        "queueDuration": [
+          "battleQueueService",
+          "ui.dungeon"
+        ],
+        "rewardPackId": [
+          "dungeonController.getDetail",
+          "loot.service",
+          "ui.dungeon"
+        ],
+        "order": [
+          "dungeonController.list",
+          "ui.dungeon"
+        ]
       },
       "_comment": "试炼场·普通。1只初级试炼小猪，难度Ⅰ。rewardPackId=30001（初级试炼击杀掉落表）。胜利消耗存档级普通奖励次数（共享池，上限4）"
     },
@@ -46,14 +81,42 @@
       "rewardPackId": "30002",
       "order": 2,
       "_consumers": {
-        "dungeonId": ["dungeonController.getDetail", "dungeonController.start", "rewardTimes.service"],
-        "mapId": ["dungeonController.getDetail", "ui.dungeon"],
-        "difficulty": ["ui.dungeon"],
-        "dungeonType": ["dungeonController.start", "rewardTimes.service", "ui.dungeon", "battle.service.finishBattle"],
-        "enemyGroupId": ["dungeonController.getDetail", "battle.service.deployBattle", "battle.service.validateInstanceBattleStart"],
-        "queueDuration": ["battleQueueService", "ui.dungeon"],
-        "rewardPackId": ["dungeonController.getDetail", "loot.service", "ui.dungeon"],
-        "order": ["dungeonController.list", "ui.dungeon"]
+        "dungeonId": [
+          "dungeonController.getDetail",
+          "dungeonController.start",
+          "rewardTimes.service"
+        ],
+        "mapId": [
+          "dungeonController.getDetail",
+          "ui.dungeon"
+        ],
+        "difficulty": [
+          "ui.dungeon"
+        ],
+        "dungeonType": [
+          "dungeonController.start",
+          "rewardTimes.service",
+          "ui.dungeon",
+          "battle.service.finishBattle"
+        ],
+        "enemyGroupId": [
+          "dungeonController.getDetail",
+          "battle.service.deployBattle",
+          "battle.service.validateInstanceBattleStart"
+        ],
+        "queueDuration": [
+          "battleQueueService",
+          "ui.dungeon"
+        ],
+        "rewardPackId": [
+          "dungeonController.getDetail",
+          "loot.service",
+          "ui.dungeon"
+        ],
+        "order": [
+          "dungeonController.list",
+          "ui.dungeon"
+        ]
       },
       "_comment": "试炼场·稀有。初级+进阶两只试炼小猪，难度Ⅲ。rewardPackId=30002（进阶试炼击杀掉落表）。胜利消耗存档级稀有奖励次数（共享池，上限2）"
     },
@@ -67,16 +130,108 @@
       "rewardPackId": "30001",
       "order": 3,
       "_consumers": {
-        "dungeonId": ["dungeonController.getDetail", "dungeonController.start", "rewardTimes.service"],
-        "mapId": ["dungeonController.getDetail", "ui.dungeon"],
-        "difficulty": ["ui.dungeon"],
-        "dungeonType": ["dungeonController.start", "rewardTimes.service", "ui.dungeon", "battle.service.finishBattle"],
-        "enemyGroupId": ["dungeonController.getDetail", "battle.service.deployBattle", "battle.service.validateInstanceBattleStart"],
-        "queueDuration": ["battleQueueService", "ui.dungeon"],
-        "rewardPackId": ["dungeonController.getDetail", "loot.service", "ui.dungeon"],
-        "order": ["dungeonController.list", "ui.dungeon"]
+        "dungeonId": [
+          "dungeonController.getDetail",
+          "dungeonController.start",
+          "rewardTimes.service"
+        ],
+        "mapId": [
+          "dungeonController.getDetail",
+          "ui.dungeon"
+        ],
+        "difficulty": [
+          "ui.dungeon"
+        ],
+        "dungeonType": [
+          "dungeonController.start",
+          "rewardTimes.service",
+          "ui.dungeon",
+          "battle.service.finishBattle"
+        ],
+        "enemyGroupId": [
+          "dungeonController.getDetail",
+          "battle.service.deployBattle",
+          "battle.service.validateInstanceBattleStart"
+        ],
+        "queueDuration": [
+          "battleQueueService",
+          "ui.dungeon"
+        ],
+        "rewardPackId": [
+          "dungeonController.getDetail",
+          "loot.service",
+          "ui.dungeon"
+        ],
+        "order": [
+          "dungeonController.list",
+          "ui.dungeon"
+        ]
       },
       "_comment": "迷雾森林·普通。1只进阶试炼小猪，难度Ⅱ。rewardPackId=30001（初级试炼击杀掉落表）。胜利消耗存档级普通奖励次数（共享池，上限4）"
     }
-  ]
+  ],
+  "rewardTimes": {
+    "_description": "奖励次数池规则（按 dungeonType 键）。等值迁移自 rewardTimes.service.ts 硬编码（mde-stage1-coverage T1）；存档初始值取满（= max），由 init 路径引用本规则。",
+    "normal": {
+      "max": 4,
+      "dailyAccrual": 2
+    },
+    "rare": {
+      "max": 2,
+      "dailyAccrual": 1
+    },
+    "_consumers": {
+      "normal.max": [
+        "rewardTimes.service.accrueSlot",
+        "rewardTimes.service.getRewardTimes",
+        "rewardTimes.service.ensureRewardTimes"
+      ],
+      "normal.dailyAccrual": [
+        "rewardTimes.service.accrueSlot"
+      ],
+      "rare.max": [
+        "rewardTimes.service.accrueSlot",
+        "rewardTimes.service.getRewardTimes",
+        "rewardTimes.service.ensureRewardTimes"
+      ],
+      "rare.dailyAccrual": [
+        "rewardTimes.service.accrueSlot"
+      ]
+    }
+  },
+  "instanceBattle": {
+    "_description": "副本战斗入口（instanceDifficulty 直连路径）难度映射。等值迁移自 battle.constants DIFFICULTY_ENEMY_GROUP/INSTANCE_CONFIGS/INSTANCE_TEMPLATE_ID 与 config/battleDifficulty.ts 双向映射硬编码（mde-stage1-coverage T3），消除第四组映射副本。instanceDifficulty（basic/advanced/ultimate）为 battle 系统入口标识，difficulty（'1'/'2'/'3'）为 dungeonTemplate 难度分级，两套标识经本段一一对应。",
+    "templateId": "bt_training_arena",
+    "difficulties": {
+      "basic": {
+        "name": "试炼·初级",
+        "enemyGroupId": "eg_training_basic",
+        "difficulty": "1"
+      },
+      "advanced": {
+        "name": "试炼·进阶",
+        "enemyGroupId": "eg_training_advanced",
+        "difficulty": "2"
+      },
+      "ultimate": {
+        "name": "试炼·终极",
+        "enemyGroupId": "eg_training_ultimate",
+        "difficulty": "3"
+      }
+    },
+    "_consumers": {
+      "templateId": [
+        "battle.instance.service.validateInstanceBattleStart/startInstanceBattle（副本战场模板）"
+      ],
+      "difficulties.*.name": [
+        "battle.settlement.service 副本名称展示"
+      ],
+      "difficulties.*.enemyGroupId": [
+        "battle.instance.service.validateInstanceBattleStart/startInstanceBattle 难度→敌组兜底"
+      ],
+      "difficulties.*.difficulty": [
+        "battleDifficulty.INSTANCE_TO_DIFFICULTY/DIFFICULTY_TO_INSTANCE 双向映射派生"
+      ]
+    }
+  }
 }

@@ -6,14 +6,9 @@
 (function() {
   'use strict';
 
-  var equipSlotLabelMap = {
-    mainHand: '主手',
-    offHand: '副手',
-    body: '身体',
-    head: '头部',
-    feet: '脚部',
-    bag: '包裹',
-    pocket: '口袋',
+  var equipSlotLabelsFallback = {
+    mainHand: '主手', offHand: '副手', body: '身体',
+    head: '头部', feet: '脚部', bag: '包裹', pocket: '口袋'
   };
 
   var itemColumns = [
@@ -31,11 +26,16 @@
     { key: 'growthCoefficient', label: '成长系数', aliases: ['growthCoefficient', 'growth_coefficient'] },
   ];
 
-  var itemTypeOptions = [
+  var typeLabelsFallback = {
+    currency: '货币', consumable: '消耗品', map: '地图', compendium: '图鉴',
+    equipment: '装备', pig: '小猪', suit: '套装', treasure: '宝箱',
+    resource: '资源', building: '建筑'
+  };
+
+  var itemTypeOptionsFallback = [
     { value: 'all', label: '全部' },
     { value: 'currency', label: '货币' },
     { value: 'consumable', label: '消耗品' },
-    { value: 'map', label: '地图' },
     { value: 'compendium', label: '图鉴' },
     { value: 'equipment', label: '装备' },
     { value: 'pig', label: '小猪' },
@@ -45,18 +45,21 @@
     { value: 'building', label: '建筑' }
   ];
 
-  var typeLabelMap = {
-    currency: '货币',
-    consumable: '消耗品',
-    map: '地图',
-    compendium: '图鉴',
-    equipment: '装备',
-    pig: '小猪',
-    suit: '套装',
-    treasure: '宝箱',
-    resource: '资源',
-    building: '建筑'
-  };
+  var getEquipSlotLabel = window.buildWikiLabelGetter('Item', 'equipSlot', equipSlotLabelsFallback);
+  var getItemTypeLabel = window.buildWikiLabelGetter('Item', 'itemType', typeLabelsFallback);
+
+  /** 类别筛选下拉选项：fieldMapping 缺失时回退静态列表 */
+  function getItemTypeOptions() {
+    var fm = window.fieldMapping;
+    if (fm && fm.Item && fm.Item.itemType && fm.Item.itemType.enum) {
+      var opts = [{ value: 'all', label: '全部' }];
+      Object.keys(fm.Item.itemType.enum).forEach(function(k) {
+        opts.push({ value: k, label: String(fm.Item.itemType.enum[k]).replace(/\s*[（(].*[）)]\s*$/, '') });
+      });
+      return opts;
+    }
+    return itemTypeOptionsFallback;
+  }
 
   var typeColorMap = {
     currency: '#f59e0b',
@@ -94,7 +97,7 @@
 
   function renderBadge(text, colorKey) {
     var color = typeColorMap[colorKey] || '#6b7280';
-    var label = typeLabelMap[colorKey] || text;
+    var label = getItemTypeLabel(colorKey) || text;
     return '<span class="type-badge" style="background:' + color + '1a;color:' + color + ';border:1px solid ' + color + '33;">' + window.escapeHTML(label) + '</span>';
   }
 
@@ -252,7 +255,7 @@
           if (col.isBadge && value) {
             td.innerHTML = renderBadge(String(value), String(value));
           } else if (col.isEquipSlot && value) {
-            var slotLabel = equipSlotLabelMap[String(value)] || String(value);
+            var slotLabel = getEquipSlotLabel(value);
             td.textContent = slotLabel;
           } else if (col.isBool) {
             td.innerHTML = renderBoolCell(value);
@@ -330,6 +333,14 @@
     }
 
     function init() {
+      typeFilter.innerHTML = '';
+      getItemTypeOptions().forEach(function(o) {
+        var option = document.createElement('option');
+        option.value = o.value;
+        option.textContent = o.label;
+        typeFilter.appendChild(option);
+      });
+
       typeFilter.addEventListener('change', function() {
         render();
       });

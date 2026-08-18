@@ -6,60 +6,29 @@
 (function() {
   'use strict';
 
-  var mapInfo = {
-    id: 7001,
-    name: '初始之地',
-    terrainTags: ['grassland'],
-    acquire: '地图碎片 ×300 合成'
-  };
+  /** 展示数据（来自 data/mapTool.json）：地图信息/地块池/地形标签/类型配色 */
+  var viewData = null;
+  /** 升级消耗（来自 data/mapUpgradeCosts.json，权威源） */
+  var upgradeCostsArr = [];
 
-  var upgradeCosts = [
-    { level: 1, fragments: 1000, gold: 500 },
-    { level: 2, fragments: 3000, gold: 1500 },
-    { level: 3, fragments: 8000, gold: 4000 },
-    { level: 4, fragments: 15000, gold: 7500 },
-    { level: 5, fragments: 60000, gold: 30000 },
-    { level: 6, fragments: 100000, gold: 50000 },
-    { level: 7, fragments: 200000, gold: 100000 },
-    { level: 8, fragments: 0, gold: 0 }
-  ];
-
-  var plotPool = [
-    { name: '肥沃农田', tags: ['farm'], bonus: '效率+5%', type: '初始', resourcePoints: ['胡萝卜', '小麦'] },
-    { name: '涓涓河流', tags: ['water'], bonus: '容量+5000', type: '初始', resourcePoints: ['鱼', '芦苇'] },
-    { name: '小型矿脉', tags: ['mine'], bonus: '速度+5%', type: '初始', resourcePoints: ['铜矿', '铁矿'] },
-    // 可解锁地块x9
-    { name: '茂密林地', tags: ['forest'], bonus: '效率+8%', type: 'Lv.3解锁' },
-    { name: '草药园', tags: ['farm'], bonus: '效率+10%', type: 'Lv.3解锁' },
-    { name: '采石场', tags: ['mine'], bonus: '容量+10000', type: 'Lv.3解锁' },
-    { name: '狩猎场', tags: ['hunting_ground'], bonus: '效率+12%', type: 'Lv.5解锁' },
-    { name: '训练场', tags: ['combat'], bonus: '速度+10%', type: 'Lv.5解锁' },
-    { name: '钻井平台', tags: ['oilfield'], bonus: '容量+20000', type: 'Lv.5解锁' },
-    { name: '工坊区', tags: ['workshop'], bonus: '效率+15%', type: 'Lv.7解锁' },
-    { name: '观测站', tags: ['research'], bonus: '速度+15%', type: 'Lv.7解锁' },
-    { name: '地下洞穴', tags: ['mine', 'mysterious'], bonus: '稀有掉落+20%', type: 'Lv.7解锁' }
-  ];
-
-  var terrainTagLabels = {
-    grassland: '草原',
-    farm: '农田',
-    water: '水域',
-    mine: '矿脉',
-    forest: '林地',
-    hunting_ground: '狩猎场',
-    combat: '训练场',
-    oilfield: '油田',
-    workshop: '工坊',
-    research: '研究',
-    mysterious: '神秘'
-  };
-
-  var typeBadgeColors = {
-    '初始': '#3b82f6',
-    'Lv.3解锁': '#10b981',
-    'Lv.5解锁': '#f97316',
-    'Lv.7解锁': '#8b5cf6'
-  };
+  /** upgradeCosts 普通转换：从 {level:{costs[],effects}} 提取 碎片(3001)/金币(1000) */
+  function transformUpgradeCosts(obj) {
+    if (!obj || typeof obj !== 'object') return [];
+    var out = [];
+    Object.keys(obj).forEach(function(levelKey) {
+      var lv = obj[levelKey];
+      if (!lv || !Array.isArray(lv.costs)) return;
+      var fragments = 0;
+      var gold = 0;
+      lv.costs.forEach(function(c) {
+        if (c.itemId === 3001) fragments = c.amount || 0;
+        else if (c.itemId === 1000) gold = c.amount || 0;
+      });
+      out.push({ level: Number(levelKey), fragments: fragments, gold: gold });
+    });
+    out.sort(function(a, b) { return a.level - b.level; });
+    return out;
+  }
 
   function escapeHTML(s) {
     if (s === null || s === undefined) return '';
@@ -105,11 +74,28 @@
       renderCategory(selectEl.value);
     });
 
-    // 默认显示第一个分类
-    renderCategory(selectEl.value);
+    // 先加载数据，完成后再渲染默认分类
+    Promise.all([
+      window.fetchDataset('mapToolView'),
+      window.fetchDataset('mapUpgradeCosts')
+    ]).then(function(results) {
+      var view = results[0] || {};
+      var costs = results[1] || {};
+      viewData = view;
+      upgradeCostsArr = transformUpgradeCosts(
+        (costs && costs.mapUpgradeCosts) || costs
+      );
+      renderCategory(selectEl.value);
+    }).catch(function() {
+      viewData = null;
+      upgradeCostsArr = [];
+      renderCategory(selectEl.value);
+    });
   }
 
   function renderMapInfo(contentEl) {
+    var mapInfo = (viewData && viewData.mapInfo) || {};
+    var terrainTagLabels = (viewData && viewData.terrainTagLabels) || {};
     var tagsHtml = (mapInfo.terrainTags || []).map(function(tag) {
       var label = terrainTagLabels[tag] || tag;
       return '<span class="type-badge" style="background:#6366f11a;color:#6366f1;border:1px solid #6366f133;">' + escapeHTML(label) + '</span>';
@@ -128,7 +114,7 @@
   }
 
   function renderUpgradeCosts(contentEl) {
-    var rows = upgradeCosts.map(function(c) {
+    var rows = upgradeCostsArr.map(function(c) {
       var levelLabel = 'Lv.' + c.level;
       if (c.level === 3) levelLabel += '（解锁地块）';
       if (c.level === 5) levelLabel += '（解锁地块）';
@@ -142,6 +128,15 @@
         '</tr>';
     }).join('');
 
+    if (rows === '') {
+      contentEl.innerHTML +=
+        '<div class="detail-section">' +
+        '<h5>升级消耗表</h5>' +
+        '<p class="detail-empty">暂无数据</p>' +
+        '</div>';
+      return;
+    }
+
     contentEl.innerHTML +=
       '<div class="detail-section">' +
       '<h5>升级消耗表</h5>' +
@@ -153,6 +148,9 @@
   }
 
   function renderPlotPool(contentEl) {
+    var plotPool = (viewData && viewData.plotPool) || [];
+    var terrainTagLabels = (viewData && viewData.terrainTagLabels) || {};
+    var typeBadgeColors = (viewData && viewData.typeBadgeColors) || {};
     var initialCount = 0;
     var unlockableCount = 0;
     plotPool.forEach(function(p) {

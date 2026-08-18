@@ -2,7 +2,10 @@
   "_meta": {
     "description": "敌人 AI 配置定义 - 独立配置表，与玩家方 PigBattleConfig 对齐（v4.1.0）。敌人通过 defaultConfigId 引用，阵容通过 configId 覆盖。",
     "designDoc": ".harmony/workspace/design/战斗系统-版本设计定稿.md#3.2",
-    "consumers": ["battle.service", "battleTool"],
+    "consumers": [
+      "battle.service",
+      "battleTool"
+    ],
     "notes": [
       "每条配置定义敌人的寻敌策略、群攻规则和技能队列",
       "技能队列结构 = [{skillId, conditions[{metric, operator, value}]}]，与玩家方 SkillQueueEntry 一致",
@@ -10,28 +13,86 @@
       "skillQueue 为空时引擎回退到 pig_basic_attack",
       "configId 命名格式：c_enemy_{描述名}，全局唯一",
       "v4.2.0：新增 stanceCondition 字段（null = 无条件入场），与玩家方对齐"
-    ]
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
   },
   "configs": [
     {
       "configId": "c_enemy_basic",
       "name": "基础敌人配置",
-      "preferredRanks": [1, 2],
+      "preferredRanks": [
+        1,
+        2
+      ],
       "stanceCondition": null,
       "targetRule": "weakest",
       "aoeTargetRule": "sequential",
       "skillQueue": [
-        { "skillId": "pig_basic_attack", "conditions": [] }
+        {
+          "skillId": "pig_basic_attack",
+          "conditions": []
+        }
       ],
       "_consumers": {
-        "configId": ["enemies.json.defaultConfigId", "enemy-groups.json.enemies[].configId", "battle.service"],
-        "name": ["ui.wiki"],
-        "preferredRanks": ["battle.service", "battle.engine"],
-        "stanceCondition": ["battle.service", "ui.wiki"],
-        "targetRule": ["battle.service", "battle.engine"],
-        "aoeTargetRule": ["battle.service", "battle.engine"],
-        "skillQueue": ["battle.service", "battle.engine"]
+        "configId": [
+          "enemies.json.defaultConfigId",
+          "enemy-groups.json.enemies[].configId",
+          "battle.service"
+        ],
+        "name": [
+          "ui.wiki"
+        ],
+        "preferredRanks": [
+          "battle.service",
+          "battle.engine"
+        ],
+        "stanceCondition": [
+          "battle.service",
+          "ui.wiki"
+        ],
+        "targetRule": [
+          "battle.service",
+          "battle.engine"
+        ],
+        "aoeTargetRule": [
+          "battle.service",
+          "battle.engine"
+        ],
+        "skillQueue": [
+          "battle.service",
+          "battle.engine"
+        ]
       }
     }
-  ]
+  ],
+  "defaults": {
+    "_description": "敌方 AI 兜底配置（敌人无 defaultConfigId 或 configId 未命中 configs 时的回退）。等值迁移自 battle.constants DEFAULT_ENEMY_CONFIG 硬编码（mde-stage1-coverage T3）。",
+    "preferredRanks": [
+      1
+    ],
+    "targetRule": "weakest",
+    "aoeTargetRule": "sequential",
+    "skillQueue": [
+      {
+        "skillId": "pig_basic_attack",
+        "conditions": []
+      }
+    ],
+    "_consumers": {
+      "preferredRanks": [
+        "battle.unit.service.createEnemyUnit 兜底站位",
+        "battle.deploy.service 敌方部署兜底"
+      ],
+      "targetRule": [
+        "battle.unit.service.createEnemyUnit aiSettings 兜底"
+      ],
+      "aoeTargetRule": [
+        "battle.unit.service.createEnemyUnit aiSettings 兜底"
+      ],
+      "skillQueue": [
+        "battle.unit.service.createEnemyUnit 技能队列兜底"
+      ]
+    }
+  }
 }

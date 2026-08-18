@@ -7,9 +7,15 @@
       "maxCount": 1,
       "maxCountByReputation": null,
       "initialBuildings": [
-        { "buildingType": "hall", "level": 1 }
+        {
+          "buildingType": "hall",
+          "level": 1
+        }
       ],
-      "availableBuildingCategories": ["common", "base_special"]
+      "availableBuildingCategories": [
+        "common",
+        "base_special"
+      ]
     },
     "territory": {
       "name": "普通领地",
@@ -17,17 +23,41 @@
       "description": "提供资源产出和职业加成的领地。每座领地可以建造一座特殊建筑（工厂、码头、灯塔或农场）。",
       "maxCount": null,
       "maxCountByReputation": [
-        { "minReputation": 0, "maxCount": 0 },
-        { "minReputation": 20, "maxCount": 1 },
-        { "minReputation": 40, "maxCount": 2 },
-        { "minReputation": 60, "maxCount": 3 },
-        { "minReputation": 80, "maxCount": 4 },
-        { "minReputation": 100, "maxCount": 5 }
+        {
+          "minReputation": 0,
+          "maxCount": 0
+        },
+        {
+          "minReputation": 20,
+          "maxCount": 1
+        },
+        {
+          "minReputation": 40,
+          "maxCount": 2
+        },
+        {
+          "minReputation": 60,
+          "maxCount": 3
+        },
+        {
+          "minReputation": 80,
+          "maxCount": 4
+        },
+        {
+          "minReputation": 100,
+          "maxCount": 5
+        }
       ],
       "initialBuildings": [
-        { "buildingType": "hall", "level": 1 }
+        {
+          "buildingType": "hall",
+          "level": 1
+        }
       ],
-      "availableBuildingCategories": ["common", "territory_special"],
+      "availableBuildingCategories": [
+        "common",
+        "territory_special"
+      ],
       "specialBuildingLimit": 1
     },
     "hunting_ground": {
@@ -36,16 +66,37 @@
       "description": "专为狩猎设计的领地，可以开启战场进行战斗。猎场拥有独特的补给站建筑。",
       "maxCount": null,
       "maxCountByReputation": [
-        { "minReputation": 0, "maxCount": 0 },
-        { "minReputation": 50, "maxCount": 1 },
-        { "minReputation": 100, "maxCount": 2 },
-        { "minReputation": 150, "maxCount": 3 },
-        { "minReputation": 200, "maxCount": 4 }
+        {
+          "minReputation": 0,
+          "maxCount": 0
+        },
+        {
+          "minReputation": 50,
+          "maxCount": 1
+        },
+        {
+          "minReputation": 100,
+          "maxCount": 2
+        },
+        {
+          "minReputation": 150,
+          "maxCount": 3
+        },
+        {
+          "minReputation": 200,
+          "maxCount": 4
+        }
       ],
       "initialBuildings": [
-        { "buildingType": "hall", "level": 1 }
+        {
+          "buildingType": "hall",
+          "level": 1
+        }
       ],
-      "availableBuildingCategories": ["common", "hunting_special"]
+      "availableBuildingCategories": [
+        "common",
+        "hunting_special"
+      ]
     }
   },
   "buildingCategories": {
@@ -71,9 +122,33 @@
     }
   },
   "defaultSettings": {
+    "_description": "领地默认规则。relocationDuration/maxBuildingLevel 等值迁移自 territory.core/building.service 与 Save Schema 硬编码（mde-stage1-coverage T2）。",
     "relocationDuration": 86400000,
     "relocationDurationHours": 24,
     "maxBuildingLevel": 10,
-    "buildingIdStart": 8000
+    "buildingIdStart": 8000,
+    "_consumers": {
+      "relocationDuration": [
+        "territory.core.service.startRelocation（优先读 defaultSettings，缺失兜底 loadTerritoryRules）"
+      ],
+      "maxBuildingLevel": [
+        "territory.building.service 升级上限兜底",
+        "models/Save.BuildingInstanceSchema.level max 校验"
+      ],
+      "buildingIdStart": [
+        "territory.building.service 建筑ID分配"
+      ]
+    }
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19",
+    "consumers": {
+      "territoryDefaults": [
+        "territory.service",
+        "building.service",
+        "gameRuleConfig"
+      ]
+    }
   }
 }

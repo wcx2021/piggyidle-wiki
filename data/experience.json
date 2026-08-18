@@ -1,10 +1,45 @@
 {
   "meta": {
-    "version": "1.0",
+    "version": "1.1",
     "levels": 200,
     "description": "经验与等级对照表：根据 exp.md 数据扩展到200级",
     "formula": "数据来源于 exp.md 文件",
     "note": "level 表示当前等级，要升到下一级所需经验为 xpToNext；xpTotal 为达到该等级所需的累计经验（level 1 为 0）。"
+  },
+  "craftBookExp": {
+    "_description": "使用技艺之书时获得的经验。统一为 500，无论书籍层级。等值迁移自 unifiedSettlementService.ts 硬编码回退（mde-stage1-coverage T1）；行动 extraParams.expPerBook 覆盖优先级不变。",
+    "expPerBook": 500,
+    "_consumers": {
+      "expPerBook": [
+        "unifiedSettlementService.技艺之书结算"
+      ]
+    }
+  },
+  "expRatios": {
+    "_description": "技艺行动结算后总经验的分配比例。等值迁移自 craft.experience.service.ts DEFAULT_EXP_RATIOS 硬编码（mde-stage1-coverage T1）。",
+    "craftExpRatio": 0.1,
+    "reputationExpRatio": 0.05,
+    "_consumers": {
+      "craftExpRatio": [
+        "craft.experience.service.distributeExperience"
+      ],
+      "reputationExpRatio": [
+        "craft.experience.service.distributeExperience"
+      ]
+    }
+  },
+  "settlementDefaults": {
+    "_description": "结算回退中性倍率。等值迁移自 lootService/totalBonus.service.ts 硬编码回退（mde-stage1-coverage T2）：无效/缺失输入回退到中性值 1.0（单次执行、无经验增益）。",
+    "neutralActionMultiplier": 1,
+    "neutralExpGain": 1,
+    "_consumers": {
+      "neutralActionMultiplier": [
+        "lootService.processRewardTable 奖励倍率回退"
+      ],
+      "neutralExpGain": [
+        "totalBonus.service.calculateBonus 经验增益回退"
+      ]
+    }
   },
   "levels": [
     {
@@ -1007,5 +1042,17 @@
       "xpToNext": 0,
       "xpTotal": 100000000000
     }
-  ]
+  ],
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19",
+    "consumers": {
+      "experience": [
+        "craft.experience.service",
+        "experience.service",
+        "unifiedSettlement.service",
+        "staticResources.service"
+      ]
+    }
+  }
 }

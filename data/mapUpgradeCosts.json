@@ -157,5 +157,15 @@
         "maxBuildings": 3
       }
     }
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19",
+    "consumers": {
+      "mapUpgradeCosts": [
+        "map.upgrade.service",
+        "map.service"
+      ]
+    }
   }
 }

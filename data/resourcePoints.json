@@ -1,0 +1,100 @@
+{
+  "_meta": {
+    "description": "资源点展示元数据（name/icon/category/desc）。名称收敛自 server RESOURCE_POINT_NAMES（mde-stage1-coverage T7c1），字段入主数据链路后经 staticResourcesService RESOURCE_POINTS 静态资源下发前端 dispatch。hunting_boar 为前端既有地图狩猎点类型（server RESOURCE_POINT_TYPES 未收录），此处补入权威展示数据、category 归 harvest，保证收敛后前端职能不丢。",
+    "consumers": [
+      "ui.ResourceLabel",
+      "ui.map.resourcePoints",
+      "ui.dungeon.resourcePreview"
+    ],
+    "notes": [
+      "key 遵循 C-item 资源点类型标识（server types/constants.ts RESOURCE_POINT_TYPES）",
+      "name 唯一权威中文名（以此为准，前后端展示一致）；外交点 5 项与既有前端一致，收获类 5 项由简名收敛为 '资源点：X' 前缀形式"
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
+  },
+  "resourcePoints": {
+    "crop": {
+      "name": "资源点：作物",
+      "icon": "🌾",
+      "category": "harvest",
+      "desc": "可采集的作物"
+    },
+    "ore": {
+      "name": "资源点：矿石",
+      "icon": "🪨",
+      "category": "harvest",
+      "desc": "可开采的矿石"
+    },
+    "wood": {
+      "name": "资源点：木材",
+      "icon": "🪵",
+      "category": "harvest",
+      "desc": "基础建筑材料"
+    },
+    "herb": {
+      "name": "资源点：草药",
+      "icon": "🌿",
+      "category": "harvest",
+      "desc": "治疗与炼金材料"
+    },
+    "fish": {
+      "name": "资源点：鱼类",
+      "icon": "🐟",
+      "category": "harvest",
+      "desc": "可捕捞的鱼类"
+    },
+    "diplomacy_rabbit": {
+      "name": "外交点：兔子",
+      "icon": "🐰",
+      "category": "diplomacy",
+      "desc": "兔子阵营外交点"
+    },
+    "diplomacy_deer": {
+      "name": "外交点：麋鹿",
+      "icon": "🦌",
+      "category": "diplomacy",
+      "desc": "麋鹿阵营外交点"
+    },
+    "diplomacy_fox": {
+      "name": "外交点：狐狸",
+      "icon": "🦊",
+      "category": "diplomacy",
+      "desc": "狐狸阵营外交点"
+    },
+    "diplomacy_bear": {
+      "name": "外交点：熊",
+      "icon": "🐻",
+      "category": "diplomacy",
+      "desc": "熊阵营外交点"
+    },
+    "diplomacy_wolf": {
+      "name": "外交点：狼",
+      "icon": "🐺",
+      "category": "diplomacy",
+      "desc": "狼阵营外交点"
+    },
+    "hunting_boar": {
+      "name": "狩猎：野猪",
+      "icon": "🐗",
+      "category": "harvest",
+      "desc": "可狩猎的野猪"
+    }
+  },
+  "_consumers": {
+    "resourcePoints.*.name": [
+      "ui.ResourceLabel",
+      "ui.map.resourcePoints"
+    ],
+    "resourcePoints.*.icon": [
+      "ui.ResourceLabel"
+    ],
+    "resourcePoints.*.category": [
+      "ui.map.resourcePoints 养分/外交归类",
+      "server.config.getResourcePointCategory"
+    ],
+    "resourcePoints.*.desc": [
+      "ui.ResourceLabel description"
+    ]
+  }
+}

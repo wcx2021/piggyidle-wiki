@@ -1,4 +1,37 @@
 {
+  "cycle": {
+    "_description": "季节与天气的确定性轮换规则。等值迁移自 map.weather.service.ts 硬编码（mde-stage1-coverage T1）。",
+    "seasons": [
+      "spring",
+      "summer",
+      "autumn",
+      "winter"
+    ],
+    "weathers": [
+      "sunny",
+      "cloudy",
+      "rainy",
+      "snowy",
+      "windy",
+      "foggy"
+    ],
+    "seasonDays": 7,
+    "rules": {
+      "season": "seasonIndex = floor(dayOfYear / seasonDays % seasons.length)",
+      "weather": "weatherIndex = floor(hourOfDay % weathers.length)"
+    },
+    "_consumers": {
+      "seasons": [
+        "map.weather.service.getCurrentSeason"
+      ],
+      "weathers": [
+        "map.weather.service.getCurrentWeather"
+      ],
+      "seasonDays": [
+        "map.weather.service.getCurrentSeason"
+      ]
+    }
+  },
   "weatherEffects": {
     "sunny": {
       "resourceCollectionBonus": 0.2,
@@ -9,7 +42,7 @@
     "cloudy": {
       "resourceCollectionBonus": 0.05,
       "diplomacyBonus": 0.05,
-      "vitalityConsumption": 1.0,
+      "vitalityConsumption": 1,
       "experienceBonus": 0.05
     },
     "rainy": {
@@ -26,7 +59,7 @@
     },
     "windy": {
       "resourceCollectionBonus": -0.05,
-      "diplomacyBonus": 0.0,
+      "diplomacyBonus": 0,
       "vitalityConsumption": 1.1,
       "experienceBonus": 0.08
     },
@@ -58,9 +91,179 @@
     },
     "winter": {
       "resourceCollectionBonus": -0.1,
-      "diplomacyBonus": 0.0,
+      "diplomacyBonus": 0,
       "vitalityRecovery": 0.08,
       "experienceBonus": 0.12
+    }
+  },
+  "display": {
+    "_description": "天气/季节展示元数据（name/icon/color/effects 列表展示字符串）。等值迁移自前端 constants/labels/weatherConfig.ts 与 seasonConfig.ts 硬编码（mde-stage1-coverage T7c1）；被删前端源文件后此处为唯一展示数据源。展示字符串（+10% 采集效率等）与 weatherEffects/seasonEffects 数值效果条目属不同字段维度：数值归 gameplay（map.weather.service），字符串归 UI（Label 展示）。",
+    "weathers": {
+      "sunny": {
+        "name": "晴天",
+        "icon": "☀️",
+        "color": "#f59e0b",
+        "effects": [
+          {
+            "name": "采集效率",
+            "value": "+10%",
+            "isPositive": true
+          },
+          {
+            "name": "探索速度",
+            "value": "+5%",
+            "isPositive": true
+          }
+        ]
+      },
+      "cloudy": {
+        "name": "多云",
+        "icon": "⛅",
+        "color": "#6b7280",
+        "effects": []
+      },
+      "rainy": {
+        "name": "雨天",
+        "icon": "🌧️",
+        "color": "#3b82f6",
+        "effects": [
+          {
+            "name": "采集效率",
+            "value": "-10%",
+            "isPositive": false
+          },
+          {
+            "name": "水源恢复",
+            "value": "+20%",
+            "isPositive": true
+          }
+        ]
+      },
+      "snowy": {
+        "name": "雪天",
+        "icon": "❄️",
+        "color": "#06b6d4",
+        "effects": [
+          {
+            "name": "移动速度",
+            "value": "-15%",
+            "isPositive": false
+          },
+          {
+            "name": "耐寒需求",
+            "value": "必要",
+            "isPositive": false
+          }
+        ]
+      },
+      "windy": {
+        "name": "大风",
+        "icon": "💨",
+        "color": "#10b981",
+        "effects": [
+          {
+            "name": "飞行速度",
+            "value": "+20%",
+            "isPositive": true
+          }
+        ]
+      },
+      "foggy": {
+        "name": "大雾",
+        "icon": "🌫️",
+        "color": "#9ca3af",
+        "effects": [
+          {
+            "name": "视野范围",
+            "value": "-50%",
+            "isPositive": false
+          },
+          {
+            "name": "隐蔽效果",
+            "value": "+30%",
+            "isPositive": true
+          }
+        ]
+      }
+    },
+    "seasons": {
+      "spring": {
+        "name": "春季",
+        "icon": "🌸",
+        "color": "#ec4899",
+        "effects": [
+          {
+            "name": "植物生长",
+            "value": "+25%",
+            "isPositive": true
+          }
+        ]
+      },
+      "summer": {
+        "name": "夏季",
+        "icon": "☀️",
+        "color": "#f59e0b",
+        "effects": [
+          {
+            "name": "作物成熟",
+            "value": "+20%",
+            "isPositive": true
+          },
+          {
+            "name": "水源消耗",
+            "value": "+15%",
+            "isPositive": false
+          }
+        ]
+      },
+      "autumn": {
+        "name": "秋季",
+        "icon": "🍂",
+        "color": "#d97706",
+        "effects": [
+          {
+            "name": "收获加成",
+            "value": "+30%",
+            "isPositive": true
+          }
+        ]
+      },
+      "winter": {
+        "name": "冬季",
+        "icon": "❄️",
+        "color": "#06b6d4",
+        "effects": [
+          {
+            "name": "活动消耗",
+            "value": "+20%",
+            "isPositive": false
+          },
+          {
+            "name": "耐寒需求",
+            "value": "必要",
+            "isPositive": false
+          }
+        ]
+      }
+    },
+    "_consumers": {
+      "weathers": [
+        "ui.WeatherLabel"
+      ],
+      "seasons": [
+        "ui.SeasonLabel"
+      ]
+    }
+  },
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19",
+    "consumers": {
+      "weatherSeasonEffects": [
+        "map.weather.effects.service",
+        "staticResources.service",
+        "gameRuleConfig"
+      ]
     }
   }
 }

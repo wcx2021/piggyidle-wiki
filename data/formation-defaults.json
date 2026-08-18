@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "description": "编队与出征默认规则。等值迁移自 formationService/battleQueueService/battle.data.service 硬编码（mde-stage1-coverage T2），数值口径不变。",
+    "designDoc": ".harmony/workspace/design/combat/备战策略与编队系统-版本设计定稿.md",
+    "consumers": [
+      "battle.formationService（编队/成员上限）",
+      "save.profile.service.getBenefitBase（formationLimit 权益基数）",
+      "battle.data.service.getBattleTemplateQueueDuration（queueDuration 缺失兜底）"
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
+  },
+  "maxFormations": 10,
+  "maxMembers": 5,
+  "deployQueueDurationMs": 30000,
+  "battleConfigDefaults": {
+    "_description": "默认备战策略兜底值。等值迁移自 PigBattleConfig Schema default 与 pigBattleConfigService.DEFAULT_CONFIG 硬编码（mde-stage1-coverage T2），消除双源。目标规则枚举集合（weakest/threat/follow/rear 与 sequential/lowestHp/random）为 TS 类型/API 契约，保留代码不数据化。",
+    "preferredRanks": [
+      1
+    ],
+    "targetRule": "weakest",
+    "aoeTargetRule": "sequential",
+    "_consumers": {
+      "preferredRanks": [
+        "models/PigBattleConfig.schema default",
+        "pigBattleConfigService.DEFAULT_CONFIG（resolveConfig 无配置兜底）"
+      ],
+      "targetRule": [
+        "models/PigBattleConfig.schema default",
+        "pigBattleConfigService.DEFAULT_CONFIG"
+      ],
+      "aoeTargetRule": [
+        "models/PigBattleConfig.schema default",
+        "pigBattleConfigService.DEFAULT_CONFIG"
+      ]
+    }
+  },
+  "_consumers": {
+    "maxFormations": [
+      "formationService.create",
+      "save.profile.service.getBenefitBase"
+    ],
+    "maxMembers": [
+      "formationService.validateEntries"
+    ],
+    "deployQueueDurationMs": [
+      "battle.data.service.getBattleTemplateQueueDuration 兜底"
+    ]
+  }
+}

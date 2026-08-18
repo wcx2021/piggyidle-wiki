@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "description": "系统消息与邮件文案模板 - {{变量}} 占位语法，插值仅替换调用方传入的白名单变量键（昵称等用户可控内容只作为替换值，不做模板源，防止注入）。文案等值迁自 systemMessageBuilder.ts / mail.trigger.service.ts / mail.announcement.service.ts 硬编码（mde-stage1-coverage T5）。",
+    "designDoc": ".harmony/workspace/design/mail/邮件系统-版本设计定稿.md",
+    "consumers": [
+      "systemMessageBuilder.ts（系统消息 body 构建）",
+      "mail.trigger.service.ts（战斗/技艺邮件标题、摘要、fromName）",
+      "mail.announcement.service.ts（公告 fromName 兜底）"
+    ],
+    "notes": [
+      "插值实现：utils/templateInterpolate.ts 的 interpolateTemplate（{{var}} 全局替换，replacer 函数规避 $& 语义）",
+      "未知变量占位符原样保留（fail-safe），模板键缺失由 gameRuleConfigService.loadMessageTemplates 启动时 fail-fast",
+      "formatDuration（X秒）为格式化函数保留在 mail.trigger.service 代码中，不入数据",
+      "entryId（运行时 ID）不入数据",
+      "变更流程：wiki 修改 → npm run sync:wiki 后生效（纯展示文案无需 seed）"
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
+  },
+  "systemMessages": {
+    "taskReward": "领取{{templateTitle}}奖励",
+    "craftActionUnlock": "🎉 解锁新技艺：{{craftName}}",
+    "craftActionExpGain": "{{craftName}}经验+{{expAdded}}",
+    "craftActionDefault": "使用成功",
+    "itemUse": "使用了 {{quantity}} 个 {{itemName}}，{{messageBody}}",
+    "itemSell": "卖出 {{quantity}} 个 {{itemName}}",
+    "pigFeed": "🐷 小猪「{{pigName}}」进食成功，体重 +{{weightGained}}kg",
+    "pigRename": "小猪「{{oldName}}」已改名为「{{newName}}」",
+    "mapUpgrade": "📈 地图「{{mapName}}」升级成功！当前等级：Lv.{{newLevel}}",
+    "levelupReputation": "⭐ 声望提升：Lv.{{prevLevel}} → Lv.{{newLevel}}",
+    "levelupCraftUnlock": "🎉 解锁新技艺：{{craftName}}",
+    "levelupCraft": "技艺 {{craftName}} 升级：Lv.{{prevLevel}} → Lv.{{newLevel}}",
+    "levelupAttribute": "📈 小猪「{{pigName}}」{{attributeName}} 提升：Lv.{{prevLevel}} → Lv.{{newLevel}}",
+    "queueTerminate": {
+      "vitality_depleted": "地图活力耗尽，任务已终止",
+      "resource_capacity_full": "地图资源容量已满，任务已终止",
+      "map_not_found": "地图不存在，任务已终止",
+      "insufficient_resources": "资源不足，任务已终止",
+      "consume_failed": "消耗失败，任务已终止",
+      "pig_not_found": "小猪不存在，任务已终止",
+      "pig_not_working": "小猪未在工作，任务已终止",
+      "craft_not_found": "技艺不存在，任务已终止",
+      "save_not_found": "存档不存在，任务已终止",
+      "default": "任务已终止"
+    }
+  },
+  "mailTemplates": {
+    "titlePrefix": {
+      "victory": "[胜利]",
+      "defeat": "[失败]",
+      "cancel": "[取消]"
+    },
+    "battle": {
+      "fromName": "战斗结算",
+      "title": {
+        "victory": "[胜利] {{winner}} · {{battlefieldName}} · 历时{{duration}}",
+        "defeat": "[失败] {{winner}} · {{battlefieldName}} · 历时{{duration}}",
+        "cancel": "[取消] {{battlefieldName}}"
+      },
+      "summary": {
+        "victory": "[胜利] {{result}} · {{battlefieldName}} · 历时{{duration}}",
+        "defeat": "[失败] {{result}} · {{battlefieldName}} · 历时{{duration}}",
+        "cancel": "[取消] 排队异常终止 · {{battlefieldName}}"
+      },
+      "winner": {
+        "victory": "红方胜出",
+        "defeat": "蓝方胜出"
+      },
+      "result": {
+        "victory": "己方获胜",
+        "defeat": "己方失利"
+      }
+    },
+    "craft": {
+      "fromName": "采集结算",
+      "summary": {
+        "terminated": "{{terminateReason}}，已完成{{times}}次",
+        "completed": "完成{{times}}次 · 总经验{{totalExp}}",
+        "defaultTerminateReason": "已终止"
+      }
+    },
+    "announcement": {
+      "fromName": "系统公告"
+    }
+  }
+}

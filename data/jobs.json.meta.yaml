@@ -1,0 +1,24 @@
+---
+title: "职业表"
+change-id: "wiki-data-jobs"
+status: "draft"
+server-status: "pending"
+last-modified: "2026-08-19"
+
+# 版本信息
+wiki-version: "1.0.0"
+server-version: "0.0.0"
+
+# 影响分析（文件级消费方）
+consumers:
+  jobs:
+    _file_: ["job.service","jobSeed","client.pigsSlice","client.JobDetail"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-08-19"
+    summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"
+    trigger: "mde-stage2-metadata"
+    synced-to-server: false
+---

@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "description": "存档与账号级规则默认值。等值迁移自 server 各服务硬编码（mde-stage1-coverage T2），数值口径不变。存档初始 rewardTimes 次数不在此重复定义——单一来源为 dungeon-templates.json → rewardTimes 段（max 值即初始满额），创建路径经 rewardTimes.service.getRewardTimesRules() 读取。",
+    "designDoc": ".harmony/workspace/design/save/存档初始规则-版本设计定稿.md",
+    "consumers": [
+      "save.business.service.createSave/saveLimit",
+      "models/Save.createNew",
+      "redisSaveOnline.DEFAULT_MAX_OFFLINE_HOURS",
+      "save.profile.service.getBenefitBase",
+      "mail.send.service / mail.claim.service / mail.query.service / mailCleanup.worker",
+      "leaderboard.service.TOP_N"
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-19"
+  },
+  "save": {
+    "_description": "存档创建与账号级上限。pigLimit=2.0 为 Save.createNew/Schema 实际生效值；save.business.service.ts 旧 `|| 3` 兜底为历史漂移，T2 统一到 2.0（消除三源）。",
+    "saveLimit": 3,
+    "pigLimit": 2,
+    "territoryLimit": 1,
+    "marketOrderLimit": 8,
+    "mailLimit": 50,
+    "maxOfflineHours": 12,
+    "defaultNickname": "小猪",
+    "initWeight": 300,
+    "_consumers": {
+      "saveLimit": [
+        "save.business.service.createSave（LIMIT_REACHED 校验）"
+      ],
+      "pigLimit": [
+        "models/Save.createNew",
+        "save.business.service.pigLimit 兜底",
+        "save.profile.service.getBenefitBase"
+      ],
+      "territoryLimit": [
+        "models/Save.createNew"
+      ],
+      "marketOrderLimit": [
+        "models/Save.createNew",
+        "save.profile.service.getBenefitBase"
+      ],
+      "mailLimit": [
+        "models/Save.createNew",
+        "save.profile.service.getBenefitBase"
+      ],
+      "maxOfflineHours": [
+        "models/Save.createNew",
+        "redisSaveOnline.markVirtualOnline TTL"
+      ],
+      "defaultNickname": [
+        "save.business.service.recruitPigForSave"
+      ],
+      "initWeight": [
+        "save.init.service 初始体重展示兜底",
+        "pig.feeding.service 默认体重回退"
+      ]
+    }
+  },
+  "mail": {
+    "_description": "邮箱规则。放此文件而非 mailConfig.json——后者被 server 运行时写回（公告开关），同步脚本已排除，规则参数入同步链路需避开。等值迁移自 mail.send/claim/query 与 mailCleanup.worker 硬编码。",
+    "maxMailsPerUser": 50,
+    "retentionDays": 7,
+    "softDeleteRetentionDays": 7,
+    "orphanReceiptRetentionDays": 14,
+    "batchClaimLimit": 20,
+    "queryLimits": {
+      "default": 20,
+      "max": 50,
+      "recent": 10
+    },
+    "_consumers": {
+      "maxMailsPerUser": [
+        "mail.send.service.enforceFifoCap"
+      ],
+      "retentionDays": [
+        "mail.send.service.sendMail expireInDays 默认"
+      ],
+      "softDeleteRetentionDays": [
+        "mailCleanup.worker 软删清理"
+      ],
+      "orphanReceiptRetentionDays": [
+        "mailCleanup.worker 孤儿回执清理"
+      ],
+      "batchClaimLimit": [
+        "mail.claim.service.batchClaim"
+      ],
+      "queryLimits.default": [
+        "mail.query.service.parseLimit"
+      ],
+      "queryLimits.max": [
+        "mail.query.service.parseLimit"
+      ],
+      "queryLimits.recent": [
+        "mail.query.service.getUnreadSummary"
+      ]
+    }
+  },
+  "leaderboard": {
+    "_description": "榜单容量。等值迁移自 leaderboard.service TOP_N。",
+    "topN": 100,
+    "_consumers": {
+      "topN": [
+        "leaderboard.service.rebuildPigLeaderboards",
+        "leaderboard.service.rebuildLordLeaderboards",
+        "leaderboard.service.getLeaderboard 默认分页终点"
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+---
+title: "星级系统规则参数表"
+change-id: "wiki-data-star-level-config"
+status: "draft"
+server-status: "pending"
+last-modified: "2026-08-18"
+
+# 版本信息
+wiki-version: "1.0.0"
+server-version: "0.0.0"
+
+# 影响分析（字段级消费者）
+consumers:
+  star-level-config.json:
+    probabilityBounds: ["starLevel.service.calculateStarProbability"]
+    materialTierCap: ["starLevel.service.determineStarLevel"]
+    defaultStarLevelCap: ["starLevel.service.determineStarLevel"]
+    rCraft: ["starLevel.service.determineStarLevel"]
+    luckRCoef: ["starLevel.service.determineStarLevel"]
+    rFinalClamp: ["starLevel.service.determineStarLevel"]
+    starAttr: ["utils/starLevelBonus.applyStarLevelBonus"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-08-18"
+    summary: "初始版本 - 星级概率边界/档位上限映射/r公式参数/星级属性加成参数，等值迁移自 starLevel.service.ts 与 utils/starLevelBonus.ts 硬编码"
+    trigger: "mde-stage1-coverage T1"
+    synced-to-server: false
+---

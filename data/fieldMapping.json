@@ -19,6 +19,7 @@
     "experience": "等级经验表",
     "map-defaults": "地图默认配置表",
     "mapUpgradeCosts": "地图升级消耗表",
+    "mapTool": "地图工具展示表",
     "pig-defaults": "小猪默认配置表",
     "queue-defaults": "队列默认配置表",
     "mailConfig": "邮件配置表",
@@ -34,8 +35,8 @@
       "enum": {
         "currency": "货币",
         "consumable": "消耗品",
-        "compendium": "图鉴/技艺之书",
-        "resource": "资源/原料",
+        "compendium": "图鉴（技艺之书）",
+        "resource": "资源（原料）",
         "equipment": "装备",
         "treasure": "宝箱",
         "suit": "套装",
@@ -44,6 +45,18 @@
         "building": "建筑",
         "chest": "箱子",
         "skillbook": "技能书"
+      }
+    },
+    "equipSlot": {
+      "label": "装备位置",
+      "enum": {
+        "mainHand": "主手",
+        "offHand": "副手",
+        "body": "身体",
+        "head": "头部",
+        "feet": "脚部",
+        "bag": "包裹",
+        "pocket": "口袋"
       }
     },
     "itemDescription": "简介",
@@ -73,13 +86,34 @@
         "BUILD_DEPLOY": "建筑部署"
       }
     },
-    "subActionType": "子类型",
+    "subActionType": {
+      "label": "子类型",
+      "enum": {
+        "surveying": "测绘",
+        "exploration": "探索",
+        "enemy_hunt": "寻敌",
+        "treasure_hunt": "寻宝",
+        "research": "研究",
+        "logging": "伐木",
+        "mining": "采矿",
+        "harvesting": "采摘",
+        "harvest": "采摘",
+        "craft": "制造",
+        "hunting": "狩猎",
+        "forge": "锻造",
+        "weave": "纺织",
+        "cook": "烹饪",
+        "alchemy": "炼金",
+        "enchant": "附魔",
+        "craft_book": "技艺之书"
+      }
+    },
     "actionName": "行动名称",
     "triggerType": {
       "label": "触发方式",
       "enum": {
-        "EXTERNAL": "手动触发",
-        "INTERNAL": "自动触发"
+        "EXTERNAL": "手动",
+        "INTERNAL": "自动"
       }
     },
     "exposeApi": "暴露API",
@@ -119,7 +153,7 @@
         "build": "建筑（从领地扣除）",
         "map": "地图（扣除地图实例）",
         "resource": "身体资源（体重等，target_id=1为体重）",
-        "map_resource": "地图资源耐久（扣除地图资源点耐久）"
+        "map_resource": "地图资源"
       }
     },
     "target_id": "目标ID（consume_type=item时为itemId，resource时1=体重，resource_point时为资源点类型字符串如crop/wood/ore/herb/hunting_boar）",
@@ -259,7 +293,7 @@
   },
   "CombatStats": {
     "attack": "攻击力",
-    "endurance": "耐力/血量上限",
+    "endurance": "耐力（血量上限）",
     "hit": "命中",
     "dodge": "闪避",
     "armor": "护甲（物理减伤）",
@@ -317,7 +351,14 @@
   "DungeonTemplate": {
     "dungeonId": "副本ID（dn_开头）",
     "mapId": "关联地图场景ID",
-    "difficulty": "难度分级（1/2/3，对应难度Ⅰ/Ⅱ/Ⅲ）",
+    "difficulty": {
+      "label": "难度分级（1/2/3，对应难度Ⅰ/Ⅱ/Ⅲ）",
+      "enum": {
+        "1": "Ⅰ（简单）",
+        "2": "Ⅱ（普通）",
+        "3": "Ⅲ（困难）"
+      }
+    },
     "dungeonType": {
       "label": "副本类型",
       "enum": {
