@@ -39,7 +39,6 @@
         "resource": "资源（原料）",
         "equipment": "装备",
         "treasure": "宝箱",
-        "suit": "套装",
         "pig": "小猪",
         "map": "地图",
         "building": "建筑",
@@ -149,7 +148,6 @@
       "label": "消耗类型",
       "enum": {
         "item": "物品（从背包扣除）",
-        "suit": "套装（从背包扣除）",
         "build": "建筑（从领地扣除）",
         "map": "地图（扣除地图实例）",
         "resource": "身体资源（体重等，target_id=1为体重）",
@@ -514,7 +512,20 @@
     "variable": "可变输入字段列表（如 ['duration'] 或 ['value','duration']）",
     "tag": "特殊标记（如 silence=沉默，可扩展）",
     "periodicEffect": "周期性效果配置（DOT/HOT 用）",
-    "tag": "特殊标记（如 silence=沉默，可扩展）"
+    "timeSource": {
+      "label": "计时源",
+      "enum": {
+        "life": "生活结算（业务队列，无帧时钟）",
+        "battle": "战斗时钟（进格子后 deltaTime 扣时）"
+      }
+    },
+    "lifeCycle": {
+      "label": "持久性",
+      "enum": {
+        "battleOnly": "仅战斗内（离开格子/战斗结束销毁）",
+        "persist": "可跨战斗（离开格子暂停计时）"
+      }
+    }
   },
   "Shop": {
     "shopType": "商店类型（gold=金币商店 / goodPig=好猪商店）",
