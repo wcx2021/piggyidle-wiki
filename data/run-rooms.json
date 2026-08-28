@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "description": "副本房间模板 - 构成多战场副本的结点。基于多战场副本系统-版本设计稿 §6。",
+    "designDoc": ".harmony/workspace/design/dungeon/多战场副本系统-版本设计稿.md#6",
+    "consumers": [
+      "runEngine.service",
+      "runNodeRunner.service",
+      "runController",
+      "ui.dungeon",
+      "ui.runPrep"
+    ],
+    "notes": [
+      "roomId 为房间唯一标识，前缀 rm_",
+      "type：battle/boss=战斗房；story/event/chest=奖励·状态房",
+      "outcomes[] 为跳转结果池：每项 when(条件数组，1~3 子句 AND)+weight(权重)+action(goto|end)；命中的项组成概率权重池，按 weight 随机抽一项执行",
+      "条件子句：win/lose（战斗结果）、option:<key>（事件选择）、visitedCount:op:n（结点经历次数）、always（恒成立），预留扩展",
+      "战斗房失败用 when:['lose']→goto 回本结点表达无限重试；副本内不支持增援",
+      "baseRewards 引用 rewardTables.json 的 reward_id，结点首通结算一次防重",
+      "chest 房 state=generated：进入即生成奖励，玩家点击领取（POST /run/:runId/chest/claim）后触发 outcome(end)"
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-08-26"
+  },
+  "rooms": {
+    "rm_multi_intro": {
+      "roomId": "rm_multi_intro",
+      "type": "story",
+      "name": "序章·雾谷入口",
+      "storyId": "st_multi_intro",
+      "outcomes": [
+        { "when": ["always"], "weight": 100, "action": "goto", "target": "rm_multi_battle1" }
+      ],
+      "_consumers": {
+        "storyId": ["runNodeRunner.service.story"],
+        "type": ["ui.runPrep"]
+      }
+    },
+    "rm_multi_battle1": {
+      "roomId": "rm_multi_battle1",
+      "type": "battle",
+      "name": "守关·初级试炼",
+      "enemyGroupId": "eg_training_basic",
+      "battleConfig": { "waves": 1 },
+      "baseRewards": ["30001"],
+      "outcomes": [
+        { "when": ["win"], "weight": 100, "action": "goto", "target": "rm_multi_battle2" },
+        { "when": ["lose"], "weight": 100, "action": "goto", "target": "rm_multi_battle1" }
+      ],
+      "_consumers": {
+        "enemyGroupId": ["runNodeRunner.service.battle", "battle.instance.service"],
+        "baseRewards": ["loot.service"]
+      }
+    },
+    "rm_multi_battle2": {
+      "roomId": "rm_multi_battle2",
+      "type": "battle",
+      "name": "中盘·进阶试炼",
+      "enemyGroupId": "eg_training_advanced",
+      "battleConfig": { "waves": 1 },
+      "baseRewards": ["30001"],
+      "outcomes": [
+        { "when": ["win"], "weight": 100, "action": "goto", "target": "rm_multi_battle3" },
+        { "when": ["lose"], "weight": 100, "action": "goto", "target": "rm_multi_battle2" }
+      ],
+      "_consumers": {
+        "enemyGroupId": ["runNodeRunner.service.battle", "battle.instance.service"],
+        "baseRewards": ["loot.service"]
+      }
+    },
+    "rm_multi_battle3": {
+      "roomId": "rm_multi_battle3",
+      "type": "battle",
+      "name": "决战·终极试炼",
+      "enemyGroupId": "eg_training_ultimate",
+      "battleConfig": { "waves": 1 },
+      "baseRewards": ["30001"],
+      "outcomes": [
+        { "when": ["win"], "weight": 100, "action": "goto", "target": "rm_multi_reward" },
+        { "when": ["lose"], "weight": 100, "action": "goto", "target": "rm_multi_battle3" }
+      ],
+      "_consumers": {
+        "enemyGroupId": ["runNodeRunner.service.battle", "battle.instance.service"],
+        "baseRewards": ["loot.service"]
+      }
+    },
+    "rm_multi_reward": {
+      "roomId": "rm_multi_reward",
+      "type": "chest",
+      "name": "通关宝箱",
+      "rewardPackId": "30001",
+      "state": "generated",
+      "outcomes": [
+        { "when": ["always"], "weight": 100, "action": "end" }
+      ],
+      "_consumers": {
+        "rewardPackId": ["runNodeRunner.service.chest", "loot.service"],
+        "state": ["ui.runPrep"]
+      }
+    }
+  }
+}

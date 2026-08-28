@@ -1,0 +1,33 @@
+---
+title: "副本房间模板配置表"
+change-id: "wiki-data-run-rooms"
+status: "synced"
+server-status: "current"
+last-modified: "2026-08-26"
+
+# 版本信息
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+
+# 影响分析（字段级消费者）
+consumers:
+  run-rooms.json:
+    roomId: ["runEngine.service", "runSession.service", "ui.runPrep"]
+    type: ["runEngine.service", "runSession.service", "ui.runPrep"]
+    name: ["ui.runPrep"]
+    storyId: ["runNodeRunner.service.story"]
+    eventId: ["runNodeRunner.service.event"]
+    enemyGroupId: ["runSession.service.startBattleRoom", "battle.instance.service"]
+    rewardPackId: ["runSession.service.completeNode", "loot.service"]
+    baseRewards: ["loot.service"]
+    outcomes: ["runEngine.service.resolveNext", "ui.runPrep"]
+    state: ["ui.runPrep"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-08-26"
+    summary: "初始版本 - 多战场副本房间模板（rm_multi_* 教程副本：剧情房→三战斗房→奖励房）"
+    trigger: "spec:multi-battlefield-dungeon"
+    synced-to-server: true
+---

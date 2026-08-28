@@ -7,11 +7,12 @@
       "save.profile.service.getBenefitBase（formationLimit 权益基数）",
       "battle.data.service.getBattleTemplateQueueDuration（queueDuration 缺失兜底）"
     ],
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19"
+    "version": "1.1.0",
+    "lastUpdated": "2026-08-29"
   },
   "maxFormations": 10,
   "maxMembers": 5,
+  "maxTotalRoles": 200,
   "deployQueueDurationMs": 30000,
   "battleConfigDefaults": {
     "_description": "默认备战策略兜底值。等值迁移自 PigBattleConfig Schema default 与 pigBattleConfigService.DEFAULT_CONFIG 硬编码（mde-stage1-coverage T2），消除双源。目标规则枚举集合（weakest/threat/follow/rear 与 sequential/lowestHp/random）为 TS 类型/API 契约，保留代码不数据化。",
@@ -42,6 +43,9 @@
     ],
     "maxMembers": [
       "formationService.validateEntries"
+    ],
+    "maxTotalRoles": [
+      "runSessionService.prepareBattle（集结区总角色数 ≤200 校验）"
     ],
     "deployQueueDurationMs": [
       "battle.data.service.getBattleTemplateQueueDuration 兜底"
