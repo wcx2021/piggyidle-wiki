@@ -34,6 +34,7 @@
   var PATH_TERRITORY_DEFAULTS = 'data/territoryDefaults.json';
   var PATH_WEATHER_SEASON_EFFECTS = 'data/weatherSeasonEffects.json';
   var PATH_BUFFS = 'data/buffs.json';
+  var PATH_RUN_ROOMS = 'data/run-rooms.json';
 
   var fetchCache = {
     items: null,
@@ -60,7 +61,8 @@
     queueDefaults: null,
     territoryDefaults: null,
     weatherSeasonEffects: null,
-    buffs: null
+    buffs: null,
+    runRooms: null
   };
 
   /**
@@ -109,7 +111,8 @@
       queueDefaults: PATH_QUEUE_DEFAULTS,
       territoryDefaults: PATH_TERRITORY_DEFAULTS,
       weatherSeasonEffects: PATH_WEATHER_SEASON_EFFECTS,
-      buffs: PATH_BUFFS
+      buffs: PATH_BUFFS,
+      runRooms: PATH_RUN_ROOMS
     };
     var path = pathMap[name];
     if (!path) return Promise.resolve([]);

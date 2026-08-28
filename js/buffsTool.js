@@ -19,7 +19,9 @@
     targetAttribute: {},
     modifyMode: {},
     damageType: {},
-    variable: {}
+    variable: {},
+    timeSource: {},
+    lifeCycle: {}
   };
 
   var buffColumns = [
@@ -30,6 +32,8 @@
     { key: 'defaultValue', label: '默认数值', aliases: ['defaultValue'] },
     { key: 'stackable', label: '可叠加', aliases: ['stackable'], isBool: true },
     { key: 'variable', label: '可变输入', aliases: ['variable'], useLabelMap: 'variable' },
+    { key: 'timeSource', label: '计时源', aliases: ['timeSource', 'lifecycle'], useLabelMap: 'timeSource' },
+    { key: 'lifeCycle', label: '持久性', aliases: ['lifeCycle'], useLabelMap: 'lifeCycle' },
     { key: 'tag', label: '特殊标记', aliases: ['tag'] }
   ];
 
@@ -85,6 +89,12 @@
     if (item.variable && item.variable.length > 0) {
       var variableLabels = item.variable.map(function(v) { return getLabel('variable', v) || v; });
       html += '<div class="detail-card"><span class="detail-card-label">可变输入</span><span class="detail-card-value">' + variableLabels.join(', ') + '</span></div>';
+    }
+    if (item.timeSource) {
+      html += '<div class="detail-card"><span class="detail-card-label">计时源</span><span class="detail-card-value">' + window.escapeHTML(getLabel('timeSource', item.timeSource) || item.timeSource) + '</span></div>';
+    }
+    if (item.lifeCycle) {
+      html += '<div class="detail-card"><span class="detail-card-label">持久性</span><span class="detail-card-value">' + window.escapeHTML(getLabel('lifeCycle', item.lifeCycle) || item.lifeCycle) + '</span></div>';
     }
     if (item.tag) {
       html += '<div class="detail-card"><span class="detail-card-label">特殊标记</span><span class="detail-card-value">' + window.escapeHTML(item.tag) + '</span></div>';

@@ -37,6 +37,12 @@
 
   var BATTLE_TYPE_LABELS_FALLBACK = { pve: 'PVE', pvp: 'PVP' };
 
+  var DUNGEON_MODE_LABELS_FALLBACK = { single_fight: '单场战斗', node_run: '多战场' };
+
+  var ROOM_TYPE_LABELS_FALLBACK = { battle: '战斗房', boss: 'Boss房', story: '剧情房', event: '事件房', chest: '宝箱房' };
+
+  var ROOM_ACTION_LABELS_FALLBACK = { goto: '跳转', end: '结束' };
+
   /**
    * 展示标准优先读 fieldMapping.json（短标签为展示标准，剥括号，inline 仅兜底）。
    * 取值器工厂由 utils.js 提供（window.buildWikiLabelGetter）。
@@ -49,6 +55,9 @@
   var getDungeonTypeLabel = window.buildWikiLabelGetter('DungeonTemplate', 'dungeonType', DUNGEON_TYPE_LABELS_FALLBACK);
   var getDifficultyLabel = window.buildWikiLabelGetter('DungeonTemplate', 'difficulty', DIFFICULTY_LABELS_FALLBACK);
   var getBattleTypeLabel = window.buildWikiLabelGetter('BattleTemplate', 'battleType', BATTLE_TYPE_LABELS_FALLBACK);
+  var getDungeonModeLabel = window.buildWikiLabelGetter('DungeonTemplate', 'dungeonMode', DUNGEON_MODE_LABELS_FALLBACK);
+  var getRoomTypeLabel = window.buildWikiLabelGetter('RunRoom', 'type', ROOM_TYPE_LABELS_FALLBACK);
+  var getRoomActionLabel = window.buildWikiLabelGetter('RunRoom', 'action', ROOM_ACTION_LABELS_FALLBACK);
 
   // 分页配置
   var PAGE_SIZE = 50;
@@ -87,8 +96,12 @@
   ];
 
   var dungeonColumns = [
+    { key: 'dungeonId', label: 'ID' },
+    { key: 'name', label: '名称', compute: function(d) { return d.name || '—'; } },
     { key: 'difficulty', label: '难度' },
     { key: 'dungeonType', label: '奖励类型' },
+    { key: 'dungeonMode', label: '副本模式' },
+    { key: 'entryRoomId', label: '入口房间' },
     { key: 'queueDuration', label: '队列时长' }
   ];
 
@@ -468,23 +481,92 @@
     return '<div class="details">' + sections.join('') + '</div>';
   }
 
-  function renderDungeonDetail(dungeon, groupsData, rewardTablesData, itemsData) {
-    var sections = [];
+  function renderRoomChain(entryRoomId, roomsData) {
+    var chain = [];
+    var seen = {};
+    var room = roomsData && roomsData[entryRoomId];
+    while (room && !seen[room.roomId]) {
+      seen[room.roomId] = true;
+      chain.push(room);
+      var next = null;
+      var outs = room.outcomes || [];
+      for (var i = 0; i < outs.length; i++) {
+        if (outs[i].action === 'goto' && outs[i].target) {
+          next = outs[i].target;
+          break;
+        }
+      }
+      if (!next) break;
+      room = roomsData[next];
+    }
+    if (chain.length === 0) {
+      return '<div class="detail-section"><h5>房间链路</h5><p class="detail-empty">入口房间 #' + window.escapeHTML(entryRoomId || '') + ' 未在 run-rooms.json 中找到</p></div>';
+    }
+    var html = '<div class="detail-section"><h5>房间链路</h5>';
+    chain.forEach(function(r, idx) {
+      var typeBadge = getRoomTypeLabel(r.type) || r.type;
+      var outcomes = (r.outcomes || []).map(function(o) {
+        var conds = (o.when || ['always']).filter(function(w) { return w !== 'always'; });
+        var condStr = conds.length ? conds.join(' & ') : '恒成立';
+        var act = o.action === 'end'
+          ? '<b>结束副本</b>'
+          : getRoomActionLabel(o.action) + ' → <span class="ref-id">#' + window.escapeHTML(o.target) + '</span>';
+        return condStr + ' · 权重' + (o.weight !== undefined ? o.weight : '1') + ' · ' + act;
+      }).join('<br>');
+      html += '<div class="room-node">' +
+        '<span class="room-order">' + (idx + 1) + '</span> ' +
+        '<span class="room-badge">' + window.escapeHTML(typeBadge) + '</span> ' +
+        '<strong>' + window.escapeHTML(r.name || r.roomId) + '</strong>' +
+        ' <span class="ref-id">#' + window.escapeHTML(r.roomId) + '</span>' +
+        (outcomes ? '<div class="room-outcomes">' + outcomes + '</div>' : '') +
+        '</div>';
+    });
+    html += '</div>';
+    return html;
+  }
 
-    var basicHtml = '<table class="detail-table"><thead><tr><th>字段</th><th>值</th></tr></thead><tbody>' +
-      '<tr><td>副本ID</td><td>' + window.escapeHTML(dungeon.dungeonId) + '</td></tr>' +
-      '<tr><td>地图ID</td><td>' + window.escapeHTML(dungeon.mapId) + '</td></tr>' +
-      '<tr><td>难度</td><td>' + getDifficultyLabel(dungeon.difficulty) + '</td></tr>' +
-      '<tr><td>奖励类型</td><td>' + getDungeonTypeLabel(dungeon.dungeonType) + '</td></tr>' +
-      '<tr><td>敌人阵容</td><td><span class="ref-id">#' + window.escapeHTML(dungeon.enemyGroupId) + '</span></td></tr>' +
-      '<tr><td>队列时长</td><td>' + dungeon.queueDuration + '秒</td></tr>' +
-      '<tr><td>奖励包ID</td><td><span class="ref-id">#' + window.escapeHTML(dungeon.rewardPackId) + '</span></td></tr>' +
-      '<tr><td>排序</td><td>' + dungeon.order + '</td></tr>' +
-      '</tbody></table>';
+  function renderDungeonDetail(dungeon, groupsData, rewardTablesData, itemsData, roomsData) {
+    var sections = [];
+    var isNodeRun = dungeon.dungeonMode === 'node_run';
+
+    var rows = [
+      { label: '副本ID', value: dungeon.dungeonId },
+      { label: '名称', value: window.escapeHTML(dungeon.name || '—') },
+      { label: '地图ID', value: window.escapeHTML(dungeon.mapId) },
+      { label: '难度', value: getDifficultyLabel(dungeon.difficulty) },
+      { label: '奖励类型', value: getDungeonTypeLabel(dungeon.dungeonType) },
+      { label: '副本模式', value: getDungeonModeLabel(dungeon.dungeonMode || 'single_fight') }
+    ];
+    if (isNodeRun) {
+      rows.push({ label: '入口房间', value: '<span class="ref-id">#' + window.escapeHTML(dungeon.entryRoomId) + '</span>' });
+      if (dungeon.queueDuration !== undefined && dungeon.queueDuration !== null) {
+        rows.push({ label: '队列时长', value: dungeon.queueDuration + '秒' });
+      }
+    } else {
+      rows.push({ label: '敌人阵容', value: '<span class="ref-id">#' + window.escapeHTML(dungeon.enemyGroupId) + '</span>' });
+      if (dungeon.queueDuration !== undefined && dungeon.queueDuration !== null) {
+        rows.push({ label: '队列时长', value: dungeon.queueDuration + '秒' });
+      }
+      if (dungeon.rewardPackId) {
+        rows.push({ label: '奖励包ID', value: '<span class="ref-id">#' + window.escapeHTML(dungeon.rewardPackId) + '</span>' });
+      }
+    }
+    rows.push({ label: '排序', value: String(dungeon.order) });
+
+    var basicHtml = '<table class="detail-table"><thead><tr><th>字段</th><th>值</th></tr></thead><tbody>';
+    rows.forEach(function(r) {
+      basicHtml += '<tr><td>' + window.escapeHTML(r.label) + '</td><td>' + r.value + '</td></tr>';
+    });
+    basicHtml += '</tbody></table>';
     sections.push('<div class="detail-section"><h5>副本配置</h5>' + basicHtml + '</div>');
 
-    // Enemy group reference
-    if (groupsData && dungeon.enemyGroupId) {
+    // 多战场副本：房间链路
+    if (isNodeRun && dungeon.entryRoomId) {
+      sections.push(renderRoomChain(dungeon.entryRoomId, roomsData));
+    }
+
+    // 单场战斗副本：阵容引用 + 奖励包
+    if (!isNodeRun && groupsData && dungeon.enemyGroupId) {
       var refGroup = null;
       for (var i = 0; i < groupsData.length; i++) {
         if (groupsData[i].groupId === dungeon.enemyGroupId) {
@@ -497,9 +579,7 @@
           window.escapeHTML(refGroup.name) + '（' + (refGroup.enemies || []).length + '个敌人）</p></div>');
       }
     }
-
-    // Reward pack
-    if (dungeon.rewardPackId) {
+    if (!isNodeRun && dungeon.rewardPackId) {
       sections.push(renderRewardTable(dungeon.rewardPackId, rewardTablesData, itemsData));
     }
 
@@ -559,7 +639,7 @@
     tableHead.appendChild(tr);
   }
 
-  function renderList(tabName, columns, data, expanded, sortAsc, searchKeyword, root, enemiesData, groupsData, itemsData, rewardTablesData, configsData) {
+  function renderList(tabName, columns, data, expanded, sortAsc, searchKeyword, root, enemiesData, groupsData, itemsData, rewardTablesData, configsData, roomsData) {
     var tableHead = root.querySelector('.battle-tableHead');
     var itemsBody = root.querySelector('.battle-itemsBody');
     var statsCount = root.querySelector('.battle-stats-count');
@@ -662,6 +742,10 @@
           td.textContent = getDungeonTypeLabel(value);
         } else if (col.key === 'battleType') {
           td.textContent = getBattleTypeLabel(value);
+        } else if (col.key === 'dungeonMode') {
+          td.textContent = getDungeonModeLabel(value || 'single_fight');
+        } else if (col.key === 'entryRoomId') {
+          td.innerHTML = value ? '<span class="ref-id">#' + window.escapeHTML(String(value)) + '</span>' : '—';
         } else if (col.key === 'rewardTableId' || col.key === 'enemyGroupId') {
           td.innerHTML = '<span class="ref-id">#' + window.escapeHTML(String(value)) + '</span>';
         } else if (col.key === 'queueDuration') {
@@ -701,7 +785,7 @@
       } else if (tabName === 'templates') {
         detailContent = renderTemplateDetail(item);
       } else if (tabName === 'dungeons') {
-        detailContent = renderDungeonDetail(item, groupsData, rewardTablesData, itemsData);
+        detailContent = renderDungeonDetail(item, groupsData, rewardTablesData, itemsData, roomsData);
       } else if (tabName === 'configs') {
         detailContent = renderConfigDetail(item);
       }
@@ -720,7 +804,7 @@
 
       expandBtn.addEventListener('click', function() {
         expanded[id] = !expanded[id];
-        renderList(tabName, columns, data, expanded, sortAsc, searchKeyword, root, enemiesData, groupsData, itemsData, rewardTablesData, configsData);
+        renderList(tabName, columns, data, expanded, sortAsc, searchKeyword, root, enemiesData, groupsData, itemsData, rewardTablesData, configsData, roomsData);
       });
     });
   }
@@ -743,6 +827,10 @@
       '    .battle-sort-btn{padding:4px 12px;border:1px solid var(--btn-border,#ddd);border-radius:4px;cursor:pointer;font-size:13px;background:var(--card,#f9f9f9);}' +
       '    .battle-sort-btn:hover{background:var(--btn-hover-bg,#eee);}' +
       '    .battle-page-info{margin-left:16px;font-size:13px;color:var(--muted,#888);}' +
+      '    .room-node{margin:6px 0;padding:8px 10px;border:1px solid var(--btn-border,#e3e6e9);border-radius:6px;background:var(--card,#fafbfc);}' +
+      '    .room-order{display:inline-block;min-width:20px;height:20px;line-height:20px;text-align:center;border-radius:50%;background:var(--accent,#4a6cf7);color:#fff;font-size:12px;margin-right:6px;}' +
+      '    .room-badge{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;background:var(--accent,#4a6cf7)1a;color:var(--accent,#4a6cf7);border:1px solid var(--accent,#4a6cf7)33;}' +
+      '    .room-outcomes{margin-top:6px;padding-left:28px;font-size:13px;color:var(--muted,#666);}' +
     '  </style>' +
       '  <h3 class="battle-title">战斗数据查询器</h3>' +
       '  <div class="toolbar">' +
@@ -793,6 +881,7 @@
     var itemsData = [];
     var rewardTablesData = [];
     var configsData = [];
+    var roomsData = {};
 
     // Load all data
     function loadAllData() {
@@ -803,7 +892,8 @@
         window.fetchDataset('dungeonTemplates'),
         window.fetchDataset('items'),
         window.fetchDataset('rewardTables'),
-        window.fetchDataset('enemyBattleConfigs')
+        window.fetchDataset('enemyBattleConfigs'),
+        window.fetchDataset('runRooms')
       ]).then(function(results) {
         // Helper: 提取包装格式 JSON {_meta:..., key:[...]} 中的数据数组
         function extractArray(result, key) {
@@ -815,6 +905,13 @@
           if (Array.isArray(result)) return result;
           return [];
         }
+        // 提取 roomId→room 映射对象（run-rooms.json 的 rooms 为对象而非数组）
+        function extractObject(result, key) {
+          if (result && typeof result === 'object' && !Array.isArray(result) && result[key] && typeof result[key] === 'object') {
+            return result[key];
+          }
+          return {};
+        }
 
         enemiesData = extractArray(results[0], 'enemies');
         groupsData = extractArray(results[1], 'groups');
@@ -823,6 +920,7 @@
         itemsData = extractArray(results[4], 'items');
         rewardTablesData = extractArray(results[5], 'rewardTables');
         configsData = extractArray(results[6], 'configs');
+        roomsData = extractObject(results[7], 'rooms');
 
         expanded = {};
         renderCurrentTab();
@@ -856,7 +954,7 @@
       var columns = getCurrentColumns();
 
       // Move page info, pagination inside renderList
-      renderList(currentTab, columns, data, expanded, sortAsc, searchKeyword, root, enemiesData, groupsData, itemsData, rewardTablesData, configsData);
+      renderList(currentTab, columns, data, expanded, sortAsc, searchKeyword, root, enemiesData, groupsData, itemsData, rewardTablesData, configsData, roomsData);
     }
 
     // Dataset selection
