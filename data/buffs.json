@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Buff 静态配置定义表。v2.0 简化设计：只修改属性，沉默用 tag 标记。",
+    "description": "Buff 静态配置定义表。v2.2 简化设计：只修改属性，沉默用 tag 标记；双轴 timeSource/lifeCycle 统一生命周期。",
     "designDoc": ".harmony/workspace/design/combat/Buff与状态效果系统-版本设计定稿.md",
     "consumers": [
       "shared-battle-engine.buff",
@@ -17,9 +17,13 @@
       "stackable: true=可叠加强度（value 累加）, false=覆盖（新替旧）",
       "tag: 特殊标记，如 silence=沉默（禁止释放技能，可普攻），可扩展",
       "variable: 可变输入字段列表，如 ['duration'] 表示 duration 由技能提供，['value','duration'] 表示两者都由技能提供",
-      "periodicEffect 可选，仅 DOT/HOT 类型需要；tickDamage = baseValue + buff.value（累加值）"
+      "periodicEffect 可选，仅 DOT/HOT 类型需要；tickDamage = baseValue + buff.value（累加值）",
+      "timeSource: 计时源，life=生活业务结算队列计时(非战斗,无帧时钟) / battle=战斗逻辑时间(仅单位进战斗格子后按deltaTime扣时)",
+      "lifeCycle: 持久性，battleOnly=仅战斗内有效,离开战斗格子/战斗结束即销毁 / persist=可跨战斗,离开战斗格子暂停计时",
+      "双轴(两两组合): life+battleOnly / life+persist / battle+battleOnly / battle+persist",
+      "首版 10 条 buff 均为战斗内效果，统一 timeSource=battle + lifeCycle=battleOnly；生活类与 persist 型后续扩展"
     ],
-    "version": "1.0.0",
+    "version": "2.0.0",
     "lastUpdated": "2026-08-19"
   },
   "_attributeLabels": {
@@ -52,6 +56,14 @@
     "variable": {
       "value": "强度",
       "duration": "持续时间"
+    },
+    "timeSource": {
+      "life": "生活结算",
+      "battle": "战斗时钟"
+    },
+    "lifeCycle": {
+      "battleOnly": "战斗内",
+      "persist": "可跨战斗"
     }
   },
   "buffs": {
@@ -64,7 +76,9 @@
       "stackable": true,
       "variable": [
         "duration"
-      ]
+      ],
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "buff_def_up": {
       "name_cn": "护甲提升",
@@ -75,7 +89,9 @@
       "stackable": true,
       "variable": [
         "duration"
-      ]
+      ],
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "buff_spd_up": {
       "name_cn": "充能速度提升",
@@ -86,7 +102,9 @@
       "stackable": true,
       "variable": [
         "duration"
-      ]
+      ],
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "debuff_atk_down": {
       "name_cn": "攻击力降低",
@@ -97,7 +115,9 @@
       "stackable": false,
       "variable": [
         "duration"
-      ]
+      ],
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "debuff_armor_down": {
       "name_cn": "护甲降低",
@@ -108,7 +128,9 @@
       "stackable": false,
       "variable": [
         "duration"
-      ]
+      ],
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "debuff_burning": {
       "name_cn": "灼烧",
@@ -124,7 +146,9 @@
         "interval": 10,
         "baseValue": 5,
         "damageType": "magic"
-      }
+      },
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "debuff_poison": {
       "name_cn": "中毒",
@@ -140,18 +164,23 @@
         "interval": 5,
         "baseValue": 3,
         "damageType": "physical"
-      }
+      },
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "control_stun": {
       "name_cn": "眩晕",
       "type": "control",
-      "targetAttribute": "chargeSpeed",
-      "modifyMode": "percent",
-      "defaultValue": -1,
+      "targetAttribute": null,
+      "modifyMode": "flat",
+      "defaultValue": 1,
       "stackable": false,
       "variable": [
         "duration"
-      ]
+      ],
+      "tag": "stun",
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "control_silence": {
       "name_cn": "沉默",
@@ -163,7 +192,9 @@
       "variable": [
         "duration"
       ],
-      "tag": "silence"
+      "tag": "silence",
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     },
     "debuff_slow": {
       "name_cn": "迟缓",
@@ -175,7 +206,9 @@
       "variable": [
         "value",
         "duration"
-      ]
+      ],
+      "timeSource": "battle",
+      "lifeCycle": "battleOnly"
     }
   }
 }

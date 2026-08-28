@@ -14,10 +14,11 @@
       "unlockConditions.conditions[].project 引用 conditionService 支持的指标（如 reputationLevel）",
       "visibilityMeta.category 为任务分类（daily/onetime/reputation/exploration），由数据流出前端不做硬编码映射",
       "cooldownSeconds 为领取冷却（秒）；repeatable=false 的任务冷却无意义恒为 0",
+      "completion 契约（v1.1.0 任务基础设施改造）：{} = 无条件直接可提交；{mode:'count'|'flag',key,total} = legacy 自报单条件（兼容保留）；{mode:'all'|'any',conditions:[...]} = 新契约——conditions[].type 即该条件是否依赖统计系统的配表标记：stat=直读玩家统计（field=itemAcquisitionStats|monsterKillStats|dungeonClearStats + key + target，服务端权威，物品获取仅制作/掉落计入、交易/商店不计入）、save=存档阈值（project/value，同 unlockConditions 指标）、event=事件回调（key/target，由调用方提交 progress）；visibilityMeta.expireAt（可选，ISO/毫秒）为过期时间",
       "变更流程：wiki 修改 → npm run sync:wiki → npm run seed:local 才落 MongoDB 生效"
     ],
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19"
+    "version": "1.1.0",
+    "lastUpdated": "2026-08-23"
   },
   "templates": [
     {

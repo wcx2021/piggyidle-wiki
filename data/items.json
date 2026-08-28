@@ -195,7 +195,7 @@
   },
   {
     "itemId": 2001,
-    "itemName": "技艺之书.探索.初始之地",
+    "itemName": "技艺之书：初始之地探索",
     "itemType": "compendium",
     "itemDescription": "记载了探索猪圈外世界的方法，初始之地的第一本技艺之书。",
     "growthCoefficient": null,
@@ -210,7 +210,7 @@
   },
   {
     "itemId": 2002,
-    "itemName": "技艺之书.探索.草原.采集",
+    "itemName": "技艺之书：草原作物探索",
     "itemType": "compendium",
     "itemDescription": "记载了在草原地形上搜索作物的方法，产出给地图资源点。",
     "growthCoefficient": null,
@@ -225,7 +225,7 @@
   },
   {
     "itemId": 2003,
-    "itemName": "技艺之书.研究.初步.初始之地",
+    "itemName": "技艺之书：初始之地初步研究",
     "itemType": "compendium",
     "itemDescription": "记载了研究初始之地信息的方法，通过研究可产出更多技艺之书。",
     "growthCoefficient": null,
@@ -240,7 +240,7 @@
   },
   {
     "itemId": 2004,
-    "itemName": "技艺之书.采摘.胡萝卜",
+    "itemName": "技艺之书：胡萝卜采摘",
     "itemType": "compendium",
     "itemDescription": "记载了在初始之地采摘胡萝卜的方法，胡萝卜是小猪最爱的食材。",
     "growthCoefficient": null,
@@ -255,7 +255,7 @@
   },
   {
     "itemId": 2005,
-    "itemName": "技艺之书.采摘.猪草",
+    "itemName": "技艺之书：猪草采摘",
     "itemType": "compendium",
     "itemDescription": "记载了在初始之地采摘猪草的方法，猪草是纺织的基础原料。",
     "growthCoefficient": null,
@@ -270,7 +270,7 @@
   },
   {
     "itemId": 2006,
-    "itemName": "技艺之书.锻造.萝卜刀",
+    "itemName": "技艺之书：萝卜刀锻造",
     "itemType": "compendium",
     "itemDescription": "记载了用胡萝卜锻造小刀的方法，萝卜刀锋利且实用。",
     "growthCoefficient": null,
@@ -285,7 +285,7 @@
   },
   {
     "itemId": 2007,
-    "itemName": "技艺之书.纺织.草绳",
+    "itemName": "技艺之书：草绳纺织",
     "itemType": "compendium",
     "itemDescription": "记载了用猪草纺织绳子的方法，草绳结实耐用。",
     "growthCoefficient": null,
@@ -300,7 +300,7 @@
   },
   {
     "itemId": 2008,
-    "itemName": "技艺之书.制造.草纸",
+    "itemName": "技艺之书：草纸制造",
     "itemType": "compendium",
     "itemDescription": "记载了用猪草制造纸张的方法，草纸粗糙但可用。",
     "growthCoefficient": null,
@@ -315,7 +315,7 @@
   },
   {
     "itemId": 2009,
-    "itemName": "技艺之书.制造.萝卜砖",
+    "itemName": "技艺之书：萝卜砖制造",
     "itemType": "compendium",
     "itemDescription": "记载了用胡萝卜制造砖块的方法，萝卜砖可用于建造。",
     "growthCoefficient": null,
@@ -330,7 +330,7 @@
   },
   {
     "itemId": 2010,
-    "itemName": "技艺之书.烹饪.猪饲料",
+    "itemName": "技艺之书：猪饲料烹饪",
     "itemType": "compendium",
     "itemDescription": "记载了烹饪猪饲料的方法，猪饲料是小猪日常所需。",
     "growthCoefficient": null,
@@ -345,7 +345,7 @@
   },
   {
     "itemId": 2101,
-    "itemName": "技艺之书.伐木.草原木",
+    "itemName": "技艺之书：草原木伐木",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了在初始之地草原上伐木的方法，可获得草原木等木材。",
     "iconUrl": "",
@@ -365,7 +365,7 @@
   },
   {
     "itemId": 2102,
-    "itemName": "技艺之书.采矿.铜矿石",
+    "itemName": "技艺之书：铜矿石采矿",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了在初始之地草原上采矿的方法，可获得铜矿石等矿物。",
     "iconUrl": "",
@@ -385,7 +385,7 @@
   },
   {
     "itemId": 2103,
-    "itemName": "技艺之书.采摘.草原",
+    "itemName": "技艺之书：草原草药采摘",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了在初始之地草原上采摘的方法，可在草原上采摘多种草药。",
     "iconUrl": "",
@@ -405,7 +405,7 @@
   },
   {
     "itemId": 2104,
-    "itemName": "技艺之书.狩猎.草原",
+    "itemName": "技艺之书：草原猎物狩猎",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了在初始之地草原上狩猎的方法，可在草原上狩猎多种猎物。",
     "iconUrl": "",
@@ -425,7 +425,7 @@
   },
   {
     "itemId": 2105,
-    "itemName": "技艺之书.锻造.铜锭",
+    "itemName": "技艺之书：铜锭锻造",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了粗加工铜矿石的方法，铜锭是锻造的基础半成品。",
     "iconUrl": "",
@@ -445,7 +445,7 @@
   },
   {
     "itemId": 2106,
-    "itemName": "技艺之书.纺织.粗皮甲",
+    "itemName": "技艺之书：粗皮甲纺织",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了用粗皮缝制轻甲的方法，粗皮甲灵活防护。",
     "iconUrl": "",
@@ -465,7 +465,7 @@
   },
   {
     "itemId": 2107,
-    "itemName": "技艺之书.烹饪.蘑菇汤",
+    "itemName": "技艺之书：蘑菇汤烹饪",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了用草原蘑菇熬制浓汤的方法，蘑菇汤鲜香可口。",
     "iconUrl": "",
@@ -485,7 +485,7 @@
   },
   {
     "itemId": 2108,
-    "itemName": "技艺之书.测绘.初始之地",
+    "itemName": "技艺之书：初始之地测绘",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了测绘初始之地地图的方法，可获得地图碎片。",
     "iconUrl": "",
@@ -505,7 +505,7 @@
   },
   {
     "itemId": 2109,
-    "itemName": "技艺之书.寻敌.初始草原",
+    "itemName": "技艺之书：草原寻敌",
     "itemType": "compendium",
     "itemDescription": "初步研究产出。记载了在初始之地草原上寻找威胁的方法，可开启狩猎战场。",
     "iconUrl": "",
@@ -525,7 +525,7 @@
   },
   {
     "itemId": 2110,
-    "itemName": "技艺之书.研究.深入.初始之地",
+    "itemName": "技艺之书：初始之地深入研究",
     "itemType": "compendium",
     "itemDescription": "深入探索产出。记载了深入探索初始之地的方法，消耗地图信息产出地图碎片，并有概率直接获得采集技艺手册。",
     "iconUrl": "",
@@ -545,7 +545,7 @@
   },
   {
     "itemId": 2201,
-    "itemName": "技艺之书.锻造.铜剑",
+    "itemName": "技艺之书：铜剑锻造",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了用铜锭锻造短剑的方法，铜剑锋利且实用。",
     "iconUrl": "",
@@ -565,7 +565,7 @@
   },
   {
     "itemId": 2202,
-    "itemName": "技艺之书.烹饪.草药茶",
+    "itemName": "技艺之书：草药茶烹饪",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了用薄荷泡制茶饮的方法，草药茶清凉解渴。",
     "iconUrl": "",
@@ -585,7 +585,7 @@
   },
   {
     "itemId": 2203,
-    "itemName": "技艺之书.炼金.草药粉",
+    "itemName": "技艺之书：草药粉炼金",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了研磨草药的方法，草药粉是炼金的基础原料。",
     "iconUrl": "",
@@ -605,7 +605,7 @@
   },
   {
     "itemId": 2204,
-    "itemName": "技艺之书.狩猎.猛兽",
+    "itemName": "技艺之书：猛兽狩猎",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了狩猎猛兽的方法，猛兽产出高品质粗皮和兽骨。",
     "iconUrl": "",
@@ -625,7 +625,7 @@
   },
   {
     "itemId": 2205,
-    "itemName": "技艺之书.采摘.薄荷",
+    "itemName": "技艺之书：薄荷采摘",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了采摘薄荷的方法，薄荷是进阶采药资源。",
     "iconUrl": "",
@@ -645,7 +645,7 @@
   },
   {
     "itemId": 2206,
-    "itemName": "技艺之书.伐木.硬木材",
+    "itemName": "技艺之书：硬木伐木",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了在初始之地获取硬木材的方法，硬木材品质优于草原木。",
     "iconUrl": "",
@@ -665,7 +665,7 @@
   },
   {
     "itemId": 2207,
-    "itemName": "技艺之书.采矿.深层矿",
+    "itemName": "技艺之书：深层矿采矿",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了在初始之地深层采矿的方法，可获得银矿石等稀有矿物。",
     "iconUrl": "",
@@ -685,7 +685,7 @@
   },
   {
     "itemId": 2208,
-    "itemName": "技艺之书.纺织.草原布",
+    "itemName": "技艺之书：草原布纺织",
     "itemType": "compendium",
     "itemDescription": "深入研究产出。记载了用草原木纺织布料的方法，草原布轻便保暖。",
     "iconUrl": "",
@@ -705,7 +705,7 @@
   },
   {
     "itemId": 2301,
-    "itemName": "技艺之书.炼金.恢复药剂",
+    "itemName": "技艺之书：恢复药剂炼金",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了炼制恢复药剂的方法，恢复药剂饱食度+200。",
     "iconUrl": "",
@@ -725,7 +725,7 @@
   },
   {
     "itemId": 2303,
-    "itemName": "技艺之书.锻造.精铜剑",
+    "itemName": "技艺之书：精铜剑锻造",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了锻造精铜剑的方法，精铜剑品质优于铜剑。",
     "iconUrl": "",
@@ -745,7 +745,7 @@
   },
   {
     "itemId": 2304,
-    "itemName": "技艺之书.烹饪.高级饲料",
+    "itemName": "技艺之书：精饲料烹饪",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了配制高级猪饲料的方法，高级饲料饱食度+150。",
     "iconUrl": "",
@@ -765,7 +765,7 @@
   },
   {
     "itemId": 2305,
-    "itemName": "技艺之书.伐木.古木材",
+    "itemName": "技艺之书：古木伐木",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了在初始之地获取古木材的方法，古木材品质最高。",
     "iconUrl": "",
@@ -785,7 +785,7 @@
   },
   {
     "itemId": 2306,
-    "itemName": "技艺之书.采矿.秘银矿",
+    "itemName": "技艺之书：秘银矿采矿",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了在初始之地开采秘银矿的方法，秘银是稀有矿物。",
     "iconUrl": "",
@@ -805,7 +805,7 @@
   },
   {
     "itemId": 2307,
-    "itemName": "技艺之书.采摘.灵草",
+    "itemName": "技艺之书：灵草采摘",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了采摘灵草的方法，灵草是初始之地最珍贵的草药。",
     "iconUrl": "",
@@ -825,7 +825,7 @@
   },
   {
     "itemId": 2308,
-    "itemName": "技艺之书.狩猎.巨兽",
+    "itemName": "技艺之书：巨兽狩猎",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了狩猎猛兽的方法，猛兽产出高品质粗皮和兽骨。",
     "iconUrl": "",
@@ -845,7 +845,7 @@
   },
   {
     "itemId": 2309,
-    "itemName": "技艺之书.纺织.强化粗皮甲",
+    "itemName": "技艺之书：强化粗皮甲纺织",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了缝制强化粗皮甲的方法，品质优于普通粗皮甲。",
     "iconUrl": "",
@@ -865,7 +865,7 @@
   },
   {
     "itemId": 2310,
-    "itemName": "技艺之书.研究.系统.初始之地",
+    "itemName": "技艺之书：初始之地系统研究",
     "itemType": "compendium",
     "itemDescription": "系统研究产出。记载了系统研究初始之地信息的方法，可产出最完整的技艺之书。",
     "iconUrl": "",
@@ -885,7 +885,7 @@
   },
   {
     "itemId": 2311,
-    "itemName": "技艺之书.研究.解析.初始之地",
+    "itemName": "技艺之书：初始之地解析",
     "itemType": "compendium",
     "itemDescription": "初级研究产出。记载了解析地图碎片、还原地图信息的方法，可解锁解析技艺。",
     "iconUrl": "",

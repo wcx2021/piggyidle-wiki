@@ -19,6 +19,13 @@
       "gold": 1000,
       "premium": 1001
     },
+    "marketStampTaxRate": 0,
+    "marketTradeTaxRate": 0.02,
+    "marketTradeFreePriceThreshold": 0,
+    "marketFloorUseShopPrice": true,
+    "marketOrderDurationHours": 72,
+    "marketAskBookLimit": 20,
+    "marketPerItemOrderLimit": 5,
     "_consumers": {
       "previewLevelGap": [
         "shop.service.getShopItems（声望差超 20 档位隐藏）"
@@ -30,6 +37,11 @@
       ],
       "currencyItemIds.gold": [
         "battle.instance.service.parseRewardTableForDisplay（金币判定/排除）"
+      ],
+      "marketPerItemOrderLimit": [
+        "gameRuleConfig.loadMarketRules",
+        "market.order.service.createOrder（单商品 open 挂单数 ≤ 该值校验）",
+        "前端 GET /market/rules（提示文案，可选）"
       ]
     }
   },

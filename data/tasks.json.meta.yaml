@@ -3,19 +3,24 @@ title: "任务模板表"
 change-id: "wiki-data-tasks"
 status: "draft"
 server-status: "pending"
-last-modified: "2026-08-19"
+last-modified: "2026-08-23"
 
 # 版本信息
-wiki-version: "1.0.0"
+wiki-version: "1.1.0"
 server-version: "0.0.0"
 
 # 影响分析（文件级消费方）
 consumers:
   tasks:
-    _file_: ["task.service","taskTemplatesSeed"]
+    _file_: ["task.core/listing/conditions/progress.service","taskTemplatesSeed"]
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-08-23"
+    summary: "_meta.notes 补充 completion 条件契约（stat=统计系统/save=存档/event=事件回调）与 visibilityMeta.expireAt 过期配置说明；现有 7 个模板数据未变更"
+    trigger: "task-infra-stats-condition-contract"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"

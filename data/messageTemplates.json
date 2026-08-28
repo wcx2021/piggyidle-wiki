@@ -12,10 +12,11 @@
       "未知变量占位符原样保留（fail-safe），模板键缺失由 gameRuleConfigService.loadMessageTemplates 启动时 fail-fast",
       "formatDuration（X秒）为格式化函数保留在 mail.trigger.service 代码中，不入数据",
       "entryId（运行时 ID）不入数据",
-      "变更流程：wiki 修改 → npm run sync:wiki 后生效（纯展示文案无需 seed）"
+      "变更流程：wiki 修改 → npm run seed:sync:full 后生效（纯展示文案无需 seed）",
+      "v1.1.0（2026-08-23）：battle.title 按战斗类型分键——instance（副本）「挑战副本 {名称} 成功/失败」、deploy（出征/狩猎）「狩猎 {名称} 结束」，删除 battle.winner 段；标题不再含红方/蓝方阵营措辞（阵营结果仅见于战斗日志/战报与摘要 result）"
     ],
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19"
+    "version": "1.1.0",
+    "lastUpdated": "2026-08-23"
   },
   "systemMessages": {
     "taskReward": "领取{{templateTitle}}奖励",
@@ -53,18 +54,21 @@
     "battle": {
       "fromName": "战斗结算",
       "title": {
-        "victory": "[胜利] {{winner}} · {{battlefieldName}} · 历时{{duration}}",
-        "defeat": "[失败] {{winner}} · {{battlefieldName}} · 历时{{duration}}",
-        "cancel": "[取消] {{battlefieldName}}"
+        "instance": {
+          "victory": "[胜利] 挑战副本 {{battlefieldName}} 成功 · 历时{{duration}}",
+          "defeat": "[失败] 挑战副本 {{battlefieldName}} 失败 · 历时{{duration}}",
+          "cancel": "[取消] {{battlefieldName}}"
+        },
+        "deploy": {
+          "victory": "[胜利] 狩猎 {{battlefieldName}} 结束 · 历时{{duration}}",
+          "defeat": "[失败] 狩猎 {{battlefieldName}} 结束 · 历时{{duration}}",
+          "cancel": "[取消] {{battlefieldName}}"
+        }
       },
       "summary": {
         "victory": "[胜利] {{result}} · {{battlefieldName}} · 历时{{duration}}",
         "defeat": "[失败] {{result}} · {{battlefieldName}} · 历时{{duration}}",
         "cancel": "[取消] 排队异常终止 · {{battlefieldName}}"
-      },
-      "winner": {
-        "victory": "红方胜出",
-        "defeat": "蓝方胜出"
       },
       "result": {
         "victory": "己方获胜",

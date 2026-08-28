@@ -14,6 +14,7 @@
     "enemy-battle-configs": "敌人战斗配置表",
     "battle-templates": "战场模板表",
     "dungeon-templates": "副本模板表",
+    "run-rooms": "副本房间表（多战场副本）",
     "buildingTemplates": "建筑模板表",
     "character-templates": "角色模板表",
     "experience": "等级经验表",
@@ -367,7 +368,36 @@
     "enemyGroupId": "敌人阵容ID（引用 enemy-groups.json 的 groupId）",
     "queueDuration": "队列时长（秒，战斗队列倒计时）",
     "rewardPackId": "通关奖励包ID（引用 rewardTables.json 的 reward_id）",
-    "order": "排序序号"
+    "order": "排序序号",
+    "name": "副本名称",
+    "dungeonMode": {
+      "label": "副本模式",
+      "enum": {
+        "single_fight": "单场战斗",
+        "node_run": "多战场"
+      }
+    },
+    "entryRoomId": "入口房间ID（多战场副本，引用 run-rooms.json 的 roomId）"
+  },
+  "RunRoom": {
+    "roomId": "房间ID（rm_开头）",
+    "type": {
+      "label": "房间类型",
+      "enum": {
+        "battle": "战斗房",
+        "boss": "Boss房",
+        "story": "剧情房",
+        "event": "事件房",
+        "chest": "宝箱房"
+      }
+    },
+    "action": {
+      "label": "跳转动作",
+      "enum": {
+        "goto": "跳转节点",
+        "end": "结束副本"
+      }
+    }
   },
   "RewardTimes": {
     "normal": "普通奖励次数（存档级共享池，上限4，每日恢复+2，胜利消耗1次）",

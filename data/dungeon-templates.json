@@ -168,6 +168,22 @@
         ]
       },
       "_comment": "迷雾森林·普通。1只进阶试炼小猪，难度Ⅱ。rewardPackId=30001（初级试炼击杀掉落表）。胜利消耗存档级普通奖励次数（共享池，上限4）"
+    },
+  {
+      "dungeonId": "dn_multi_tutorial",
+      "mapId": "map_mist_forest",
+      "name": "雾谷试炼·序",
+      "difficulty": "1",
+      "dungeonType": "normal",
+      "dungeonMode": "node_run",
+      "entryRoomId": "rm_multi_intro",
+      "order": 4,
+      "_consumers": {
+        "dungeonId": ["dungeonController.getDetail", "runController.start", "rewardTimes.service"],
+        "dungeonMode": ["dungeonController.getDetail", "runController.start", "ui.dungeon"],
+        "entryRoomId": ["runController.start", "runSession.service"]
+      },
+      "_comment": "首个多战场副本·教程：剧情房→三战斗房（初级/进阶/终极）→奖励房；进入统一扣普通奖励次数；房间见 run-rooms.json（rm_multi_*）"
     }
   ],
   "rewardTimes": {
@@ -196,41 +212,6 @@
       ],
       "rare.dailyAccrual": [
         "rewardTimes.service.accrueSlot"
-      ]
-    }
-  },
-  "instanceBattle": {
-    "_description": "副本战斗入口（instanceDifficulty 直连路径）难度映射。等值迁移自 battle.constants DIFFICULTY_ENEMY_GROUP/INSTANCE_CONFIGS/INSTANCE_TEMPLATE_ID 与 config/battleDifficulty.ts 双向映射硬编码（mde-stage1-coverage T3），消除第四组映射副本。instanceDifficulty（basic/advanced/ultimate）为 battle 系统入口标识，difficulty（'1'/'2'/'3'）为 dungeonTemplate 难度分级，两套标识经本段一一对应。",
-    "templateId": "bt_training_arena",
-    "difficulties": {
-      "basic": {
-        "name": "试炼·初级",
-        "enemyGroupId": "eg_training_basic",
-        "difficulty": "1"
-      },
-      "advanced": {
-        "name": "试炼·进阶",
-        "enemyGroupId": "eg_training_advanced",
-        "difficulty": "2"
-      },
-      "ultimate": {
-        "name": "试炼·终极",
-        "enemyGroupId": "eg_training_ultimate",
-        "difficulty": "3"
-      }
-    },
-    "_consumers": {
-      "templateId": [
-        "battle.instance.service.validateInstanceBattleStart/startInstanceBattle（副本战场模板）"
-      ],
-      "difficulties.*.name": [
-        "battle.settlement.service 副本名称展示"
-      ],
-      "difficulties.*.enemyGroupId": [
-        "battle.instance.service.validateInstanceBattleStart/startInstanceBattle 难度→敌组兜底"
-      ],
-      "difficulties.*.difficulty": [
-        "battleDifficulty.INSTANCE_TO_DIFFICULTY/DIFFICULTY_TO_INSTANCE 双向映射派生"
       ]
     }
   }
