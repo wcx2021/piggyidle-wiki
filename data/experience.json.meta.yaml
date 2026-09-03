@@ -1,21 +1,27 @@
 ---
 title: "经验值配置表"
 change-id: "wiki-data-experience"
-status: "draft"
-server-status: "pending"
-last-modified: "2026-08-19"
+status: "synced"
+server-status: "current"
+last-modified: "2026-09-03"
 
 # 版本信息
-wiki-version: "1.0.0"
-server-version: "0.0.0"
+wiki-version: "1.1.0"
+server-version: "1.1.0"
 
 # 影响分析（文件级消费方）
 consumers:
   experience:
     _file_: ["craft.experience.service","experience.service","unifiedSettlement.service","staticResources.service"]
+    expRatios.battleExpRatio: ["battle.exp.service.grantBattleExp"]
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-09-03"
+    summary: "expRatios 段新增 battleExpRatio=1.0（战斗 baseExp 全额入八维属性经验通道，经验值数据设计规范 §4.10.2 定稿；消费者 battle.exp.service.grantBattleExp，幂等键 battleId+unitId+pigId）；战斗框架落地计划阶段4 经验发放落地"
+    trigger: "plan:2026-09-03-战斗框架落地计划-阶段4"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"

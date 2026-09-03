@@ -25,8 +25,12 @@
       ],
       "reputationExpRatio": [
         "craft.experience.service.distributeExperience"
+      ],
+      "battleExpRatio": [
+        "battle.exp.service.grantBattleExp"
       ]
-    }
+    },
+    "battleExpRatio": 1
   },
   "settlementDefaults": {
     "_description": "结算回退中性倍率。等值迁移自 lootService/totalBonus.service.ts 硬编码回退（mde-stage1-coverage T2）：无效/缺失输入回退到中性值 1.0（单次执行、无经验增益）。",
@@ -1044,8 +1048,8 @@
     }
   ],
   "_meta": {
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19",
+    "version": "1.1.0",
+    "lastUpdated": "2026-09-03",
     "consumers": {
       "experience": [
         "craft.experience.service",
