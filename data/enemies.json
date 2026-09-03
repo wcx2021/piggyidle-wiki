@@ -9,7 +9,7 @@
       "experience.service",
       "skillCalculator"
     ],
-    "_cacheVersion": 1,
+    "_cacheVersion": 2,
     "notes": [
       "敌人 = 角色模板实例（八维属性驱动）+ 奖励表，敌我同源，底层数据结构无区别，阵营只是标签",
       "attributes（八维）是唯一属性来源，combatStats 由 character-templates.json 模板公式派生，不再写死",
@@ -22,8 +22,8 @@
       "生成 BattleUnit 时 enemy-group 的 overrides 可覆盖 attributes/startingWeight 等字段",
       "EnemyModifiers schema: { abilityBonus?: { strength?, constitution?, agility?, dexterity?, intelligence?, perception?, will?, charisma?, startingWeight? }, combatBonus?: { attack?, endurance?, hit?, dodge?, armor?, magicResist?, moveSpeed?, chargeSpeed?, critDamage?, resistance? } }"
     ],
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19"
+    "version": "1.1.0",
+    "lastUpdated": "2026-09-03"
   },
   "enemies": [
     {
@@ -165,6 +165,238 @@
         ]
       },
       "_comment": "试炼小猪·进阶。八维总和=30级。startingWeight=1000(10kg)。combatStats由模板派生：attack=5+6*0.4+7*0.2=8.8≈9, endurance=100+7*4+4*2=136, exitThreshold=100+7=107(1.07kg)。expReward=15, rewardTable=30002 | modifiers.combatBonus.attack=+2 | 使用配置 c_enemy_advanced"
+    },
+    {
+      "startingWeight": 800,
+      "rewardTableId": 30001,
+      "modifiers": {},
+      "_consumers": {
+        "enemyId": [
+          "battle.service",
+          "enemy-group.loader",
+          "loot.service",
+          "experience.service"
+        ],
+        "attributes": [
+          "battle.unit.service"
+        ],
+        "skills": [
+          "battle.unit.service",
+          "skill.service"
+        ],
+        "defaultConfigId": [
+          "battle.service"
+        ],
+        "expReward": [
+          "experience.service",
+          "battleWorker"
+        ],
+        "rewardTableId": [
+          "loot.service"
+        ],
+        "modifiers": [
+          "battle.unit.service"
+        ]
+      },
+      "enemyId": "e_firecaster",
+      "name": "火术士·焰爪",
+      "description": "掌握火焰法术的敌人，远程法术判定（spell，4档）+ 火焰免伤通道",
+      "attributes": {
+        "strength": 4,
+        "constitution": 6,
+        "agility": 4,
+        "dexterity": 6,
+        "intelligence": 10,
+        "perception": 8,
+        "will": 6,
+        "charisma": 2
+      },
+      "skills": [
+        {
+          "skillId": "enemy_firebolt",
+          "level": 1
+        },
+        {
+          "skillId": "pig_basic_attack",
+          "level": 1
+        }
+      ],
+      "defaultConfigId": "c_enemy_caster",
+      "expReward": 25
+    },
+    {
+      "startingWeight": 800,
+      "rewardTableId": 30001,
+      "modifiers": {},
+      "_consumers": {
+        "enemyId": [
+          "battle.service",
+          "enemy-group.loader",
+          "loot.service",
+          "experience.service"
+        ],
+        "attributes": [
+          "battle.unit.service"
+        ],
+        "skills": [
+          "battle.unit.service",
+          "skill.service"
+        ],
+        "defaultConfigId": [
+          "battle.service"
+        ],
+        "expReward": [
+          "experience.service",
+          "battleWorker"
+        ],
+        "rewardTableId": [
+          "loot.service"
+        ],
+        "modifiers": [
+          "battle.unit.service"
+        ]
+      },
+      "enemyId": "e_auramancer",
+      "name": "心惑师·低语",
+      "description": "精神系气场敌人，气场判定（aura，4档）+ 精神免伤通道",
+      "attributes": {
+        "strength": 3,
+        "constitution": 6,
+        "agility": 3,
+        "dexterity": 4,
+        "intelligence": 8,
+        "perception": 6,
+        "will": 8,
+        "charisma": 10
+      },
+      "skills": [
+        {
+          "skillId": "enemy_mindspike",
+          "level": 1
+        },
+        {
+          "skillId": "pig_basic_attack",
+          "level": 1
+        }
+      ],
+      "defaultConfigId": "c_enemy_aura",
+      "expReward": 25
+    },
+    {
+      "startingWeight": 800,
+      "rewardTableId": 30001,
+      "modifiers": {},
+      "_consumers": {
+        "enemyId": [
+          "battle.service",
+          "enemy-group.loader",
+          "loot.service",
+          "experience.service"
+        ],
+        "attributes": [
+          "battle.unit.service"
+        ],
+        "skills": [
+          "battle.unit.service",
+          "skill.service"
+        ],
+        "defaultConfigId": [
+          "battle.service"
+        ],
+        "expReward": [
+          "experience.service",
+          "battleWorker"
+        ],
+        "rewardTableId": [
+          "loot.service"
+        ],
+        "modifiers": [
+          "battle.unit.service"
+        ]
+      },
+      "enemyId": "e_suppressor",
+      "name": "压制者·铁腕",
+      "description": "以威压削弱对手的敌人，压制判定（suppress，4档，对意志抗性）",
+      "attributes": {
+        "strength": 8,
+        "constitution": 8,
+        "agility": 4,
+        "dexterity": 4,
+        "intelligence": 8,
+        "perception": 4,
+        "will": 6,
+        "charisma": 6
+      },
+      "skills": [
+        {
+          "skillId": "enemy_weaken",
+          "level": 1
+        },
+        {
+          "skillId": "pig_basic_attack",
+          "level": 1
+        }
+      ],
+      "defaultConfigId": "c_enemy_suppressor",
+      "expReward": 25
+    },
+    {
+      "startingWeight": 800,
+      "rewardTableId": 30001,
+      "modifiers": {},
+      "_consumers": {
+        "enemyId": [
+          "battle.service",
+          "enemy-group.loader",
+          "loot.service",
+          "experience.service"
+        ],
+        "attributes": [
+          "battle.unit.service"
+        ],
+        "skills": [
+          "battle.unit.service",
+          "skill.service"
+        ],
+        "defaultConfigId": [
+          "battle.service"
+        ],
+        "expReward": [
+          "experience.service",
+          "battleWorker"
+        ],
+        "rewardTableId": [
+          "loot.service"
+        ],
+        "modifiers": [
+          "battle.unit.service"
+        ]
+      },
+      "enemyId": "e_archer",
+      "name": "远程手·长翎",
+      "description": "远程穿刺敌人，远程射击判定（ranged_shot，5档）+ 穿刺免伤通道",
+      "attributes": {
+        "strength": 4,
+        "constitution": 5,
+        "agility": 6,
+        "dexterity": 10,
+        "intelligence": 2,
+        "perception": 10,
+        "will": 4,
+        "charisma": 2
+      },
+      "skills": [
+        {
+          "skillId": "enemy_snipe",
+          "level": 1
+        },
+        {
+          "skillId": "pig_basic_attack",
+          "level": 1
+        }
+      ],
+      "defaultConfigId": "c_enemy_archer",
+      "expReward": 25
     }
   ]
 }

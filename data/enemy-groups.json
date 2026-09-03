@@ -14,8 +14,8 @@
       "enemies[].configId 可选字段，提供时覆盖敌人模板的 defaultConfigId",
       "敌人出生即 status='active' 在战场线上，不行军（设计 7.9 生成 BattleUnit 流程）"
     ],
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19"
+    "version": "1.1.0",
+    "lastUpdated": "2026-09-03"
   },
   "groups": [
     {
@@ -138,6 +138,58 @@
         ]
       },
       "_comment": "试炼·终极使用的阵容。Lane 1 前排初级 + Lane 2 前排进阶，2 路同时出战"
+    },
+    {
+      "groupId": "eg_mixed_trial",
+      "name": "混合试炼阵容",
+      "description": "多判定类型混合编队：前排压制者 + 后排法术/气场/远程（验证不同敌人打不同判定类型）",
+      "enemies": [
+        {
+          "enemyId": "e_suppressor",
+          "lane": 1,
+          "configId": "c_enemy_suppressor"
+        },
+        {
+          "enemyId": "e_firecaster",
+          "lane": 2,
+          "configId": "c_enemy_caster"
+        },
+        {
+          "enemyId": "e_archer",
+          "lane": 2,
+          "configId": "c_enemy_archer"
+        },
+        {
+          "enemyId": "e_auramancer",
+          "lane": 2,
+          "configId": "c_enemy_aura"
+        }
+      ],
+      "_consumers": {
+        "groupId": [
+          "battle.service",
+          "battle-templates.reference"
+        ],
+        "name": [
+          "ui.battle"
+        ],
+        "description": [
+          "ui.battle"
+        ],
+        "enemies": [
+          "enemy-group.loader",
+          "battle.engine"
+        ],
+        "enemies[].enemyId": [
+          "enemy-group.loader"
+        ],
+        "enemies[].lane": [
+          "battle.engine"
+        ],
+        "enemies[].configId": [
+          "enemy-group.loader"
+        ]
+      }
     }
   ]
 }

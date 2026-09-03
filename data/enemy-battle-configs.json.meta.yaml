@@ -1,13 +1,13 @@
 ---
 title: "敌人战斗配置表"
 change-id: "wiki-data-enemy-battle-configs"
-status: "draft"
-server-status: "pending"
-last-modified: "2026-08-19"
+status: "synced"
+server-status: "current"
+last-modified: "2026-09-03"
 
 # 版本信息
-wiki-version: "1.0.0"
-server-version: "0.0.0"
+wiki-version: "1.1.0"
+server-version: "1.1.0"
 
 # 影响分析（文件级消费方）
 consumers:
@@ -16,6 +16,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-09-03"
+    summary: "新增 4 个敌人 AI 配置：c_enemy_caster/c_enemy_aura/c_enemy_suppressor/c_enemy_archer（签名技能优先 + 普攻兜底的技能队列）；战斗框架落地计划阶段5"
+    trigger: "plan:2026-09-03-战斗框架落地计划-阶段5"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"

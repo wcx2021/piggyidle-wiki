@@ -3,11 +3,11 @@ title: "敌人模板配置表"
 change-id: "wiki-data-enemies"
 status: "synced"
 server-status: "current"
-last-modified: "2026-07-13"
+last-modified: "2026-09-03"
 
 # 版本信息
-wiki-version: "1.0.0"
-server-version: "1.0.0"
+wiki-version: "1.1.0"
+server-version: "1.1.0"
 
 # 影响分析（字段级消费者）
 consumers:
@@ -24,6 +24,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-09-03"
+    summary: "新增 4 个多判定类型敌人：e_firecaster（法术/spell）/e_auramancer（气场/aura）/e_suppressor（压制/suppress）/e_archer（远程射击/ranged_shot）；_cacheVersion 1→2 刷新 Redis 缓存；战斗框架落地计划阶段5（判定类型区分度战场观察样本）"
+    trigger: "plan:2026-09-03-战斗框架落地计划-阶段5"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-07-13"
     summary: "初始版本 - 战场系统敌人模板定义"

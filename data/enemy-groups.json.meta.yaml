@@ -3,11 +3,11 @@ title: "敌人阵容配置表"
 change-id: "wiki-data-enemy-groups"
 status: "synced"
 server-status: "current"
-last-modified: "2026-07-13"
+last-modified: "2026-09-03"
 
 # 版本信息
-wiki-version: "1.0.0"
-server-version: "1.0.0"
+wiki-version: "1.1.0"
+server-version: "1.1.0"
 
 # 影响分析（字段级消费者）
 consumers:
@@ -23,6 +23,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-09-03"
+    summary: "新增 eg_mixed_trial 混合试炼阵容（前排压制者 + 后排法术/气场/远程，四类判定类型同场）；战斗框架落地计划阶段5"
+    trigger: "plan:2026-09-03-战斗框架落地计划-阶段5"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-07-13"
     summary: "初始版本 - 战场系统敌人阵容定义"

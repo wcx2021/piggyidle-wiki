@@ -13,10 +13,21 @@
       "attribute": "constitution"
     },
     "_consumers": {
-      "id": ["skill.service", "skillCalculator", "JobDetail"],
-      "scope": ["skill.service"],
-      "effect": ["skillCalculator", "combatEngine"],
-      "params": ["skillCalculator"]
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
+      "scope": [
+        "skill.service"
+      ],
+      "effect": [
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "params": [
+        "skillCalculator"
+      ]
     },
     "_comment": "effect 可选: attribute / exp_bonus / proficiency / resource_bonus。scope 可选: life / combat / both"
   },
@@ -40,14 +51,36 @@
       "itemCount": 1
     },
     "_consumers": {
-      "id": ["skill.service", "skillCalculator", "JobDetail"],
-      "cooldown": ["skill.service"],
-      "energyFormula": ["skill.service", "skillCalculator"],
-      "energyMaxFormula": ["skill.service", "skillCalculator"],
-      "energyCostFormula": ["skill.service", "skillCalculator"],
-      "regenRateFormula": ["skill.service", "skillCalculator"],
-      "effect": ["skill.service"],
-      "params": ["skillCalculator"]
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "JobDetail"
+      ],
+      "cooldown": [
+        "skill.service"
+      ],
+      "energyFormula": [
+        "skill.service",
+        "skillCalculator"
+      ],
+      "energyMaxFormula": [
+        "skill.service",
+        "skillCalculator"
+      ],
+      "energyCostFormula": [
+        "skill.service",
+        "skillCalculator"
+      ],
+      "regenRateFormula": [
+        "skill.service",
+        "skillCalculator"
+      ],
+      "effect": [
+        "skill.service"
+      ],
+      "params": [
+        "skillCalculator"
+      ]
     },
     "_comment": "scope 固定 life。effect 可选: item_gain / global_buff / resource_gain / instant_heal / special。能量相关数值统一使用公式字段，固定值也是公式字符串"
   },
@@ -63,20 +96,50 @@
     "target": "single",
     "range": "melee",
     "effect": "damage",
-    "damageType": "物理",
+    "damageType": "slash",
     "damageFormula": "10 + $level * 5 + $attack * 1.0",
     "params": {},
     "_consumers": {
-      "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
-      "cooldown": ["combatEngine"],
-      "target": ["combatEngine"],
-      "targetCount": ["skill.service", "combatEngine", "JobDetail"],
-      "range": ["combatEngine"],
-      "requiredWeaponTypes": ["skill.service", "combatEngine", "JobDetail"],
-      "extraEffects": ["skill.service", "JobDetail"],
-      "effect": ["combatEngine", "skillCalculator"],
-      "damageType": ["combatEngine"],
-      "damageFormula": ["skillCalculator", "combatEngine"]
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine",
+        "JobDetail"
+      ],
+      "cooldown": [
+        "combatEngine"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "targetCount": [
+        "skill.service",
+        "combatEngine",
+        "JobDetail"
+      ],
+      "range": [
+        "combatEngine"
+      ],
+      "requiredWeaponTypes": [
+        "skill.service",
+        "combatEngine",
+        "JobDetail"
+      ],
+      "extraEffects": [
+        "skill.service",
+        "JobDetail"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageType": [
+        "combatEngine"
+      ],
+      "damageFormula": [
+        "skillCalculator",
+        "combatEngine"
+      ]
     },
     "_comment": "scope 固定 combat。target 可选: self/single/aoe/all_allies/all_enemies。damageType 可选: 冲撞/物理/魔法/灼烧/毒素。damageFormula 使用 $attack/$weight(当前重量)/$strength/$skillLevel/$maxHp 等变量（伤害已走完Sigmoid判定，此公式仅计算管道B纯伤害）"
   },
@@ -96,12 +159,28 @@
       "attribute": "attack"
     },
     "_consumers": {
-      "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
-      "target": ["combatEngine"],
-      "range": ["combatEngine"],
-      "duration": ["combatEngine"],
-      "effect": ["combatEngine", "skillCalculator"],
-      "damageFormula": ["skillCalculator"]
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine",
+        "JobDetail"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "range": [
+        "combatEngine"
+      ],
+      "duration": [
+        "combatEngine"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageFormula": [
+        "skillCalculator"
+      ]
     },
     "_comment": "scope 固定 combat。effect 可选: buff/debuff/shield。range 可选: melee/ranged/adjacent/column/row/area/all"
   },
@@ -115,19 +194,37 @@
     "target": "self",
     "range": "melee",
     "triggerCondition": "position_front",
-    "positionBonus": 1.0,
+    "positionBonus": 1,
     "duration": null,
     "effect": "position_bonus",
     "damageFormula": "$attack * 1.5 * positionBonus",
     "params": {},
     "_consumers": {
-      "id": ["skill.service", "skillCalculator", "combatEngine", "JobDetail"],
-      "target": ["combatEngine"],
-      "range": ["combatEngine"],
-      "triggerCondition": ["combatEngine"],
-      "positionBonus": ["combatEngine"],
-      "effect": ["combatEngine", "skillCalculator"],
-      "damageFormula": ["skillCalculator"]
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine",
+        "JobDetail"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "range": [
+        "combatEngine"
+      ],
+      "triggerCondition": [
+        "combatEngine"
+      ],
+      "positionBonus": [
+        "combatEngine"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageFormula": [
+        "skillCalculator"
+      ]
     },
     "_comment": "scope 固定 combat。triggerCondition 可选: position_front/middle/back / hp_below_30 / on_kill / always"
   },
@@ -146,28 +243,57 @@
     "range": "melee",
     "requiredWeaponTypes": [],
     "extraEffects": {
-      "greatSuccess": ["击倒目标"],
+      "greatSuccess": [
+        "击倒目标"
+      ],
       "success": [],
       "normal": [],
       "failure": []
     },
     "effect": "damage",
-    "damageType": "冲撞",
+    "damageType": "blunt",
     "damageFormula": "$weight * $attack * (0.5 + $skillLevel * 0.01)",
     "damageCoeff": 0.51,
     "params": {},
     "_consumers": {
-      "id": ["skill.service", "skillCalculator", "combatEngine"],
-      "effectDesc": ["PigLevelsTab", "skillDisplayConfig"],
-      "cooldown": ["combatEngine"],
-      "target": ["combatEngine"],
-      "targetCount": ["combatEngine"],
-      "range": ["combatEngine"],
-      "requiredWeaponTypes": ["combatEngine"],
-      "extraEffects": ["skill.service"],
-      "effect": ["combatEngine", "skillCalculator"],
-      "damageType": ["combatEngine"],
-      "damageFormula": ["skillCalculator", "combatEngine"]
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "effectDesc": [
+        "PigLevelsTab",
+        "skillDisplayConfig"
+      ],
+      "cooldown": [
+        "combatEngine"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "targetCount": [
+        "combatEngine"
+      ],
+      "range": [
+        "combatEngine"
+      ],
+      "requiredWeaponTypes": [
+        "combatEngine"
+      ],
+      "extraEffects": [
+        "skill.service"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageType": [
+        "combatEngine"
+      ],
+      "damageFormula": [
+        "skillCalculator",
+        "combatEngine"
+      ]
     }
   },
   {
@@ -183,10 +309,19 @@
       "jobLevelCoeff": 0
     },
     "_consumers": {
-      "id": ["skill.service", "skillCalculator"],
-      "scope": ["skill.service"],
-      "effect": ["skillCalculator"],
-      "params": ["skillCalculator"]
+      "id": [
+        "skill.service",
+        "skillCalculator"
+      ],
+      "scope": [
+        "skill.service"
+      ],
+      "effect": [
+        "skillCalculator"
+      ],
+      "params": [
+        "skillCalculator"
+      ]
     }
   },
   {
@@ -203,21 +338,302 @@
     "range": "melee",
     "requiredWeaponTypes": [],
     "extraEffects": {
-      "greatSuccess": ["撤离战场"],
-      "success": ["撤离战场，体重减少5%"],
-      "normal": ["撤离战场，体重减少10%"],
-      "failure": ["撤退失败，不撤离"],
-      "greatFailure": ["撤退失败，不撤离，体重减少5%"]
+      "greatSuccess": [
+        "撤离战场"
+      ],
+      "success": [
+        "撤离战场，体重减少5%"
+      ],
+      "normal": [
+        "撤离战场，体重减少10%"
+      ],
+      "failure": [
+        "撤退失败，不撤离"
+      ],
+      "greatFailure": [
+        "撤退失败，不撤离，体重减少5%"
+      ]
     },
     "effect": "special",
     "params": {},
     "_consumers": {
-      "id": ["skill.service", "skillCalculator", "combatEngine"],
-      "cooldown": ["combatEngine"],
-      "target": ["combatEngine"],
-      "extraEffects": ["skill.service"],
-      "effect": ["combatEngine", "skillCalculator"]
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "cooldown": [
+        "combatEngine"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "extraEffects": [
+        "skill.service"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ]
     },
     "_comment": "effect=special，引擎不执行伤害计算，直接触发单位退出战场。skillQueue 中此技能由引擎 sentinel 值匹配，AI 条件满足时自动触发撤退。extraEffects 定义各档位效果：大成功=撤离战场，成功=撤离战场-5%体重，普通=撤离战场-10%体重，失败=不撤离，大失败=不撤离-5%体重"
+  },
+  {
+    "type": "combat_active",
+    "scope": "combat",
+    "maxLevel": 1,
+    "duration": null,
+    "target": "single",
+    "targetCount": 1,
+    "requiredWeaponTypes": [],
+    "extraEffects": {
+      "greatSuccess": [],
+      "success": [],
+      "normal": [],
+      "failure": []
+    },
+    "damageFormula": "$weight * $attack * (0.5 + $skillLevel * 0.01)",
+    "params": {},
+    "id": "enemy_firebolt",
+    "name": "火焰弹",
+    "desc": "远程火焰法术",
+    "effectDesc": "掷出火焰弹，造成55%攻击力*体重的火焰伤害（法术判定，走抗性-火焰通道）",
+    "cooldown": 2,
+    "range": "ranged",
+    "effect": "damage",
+    "damageType": "fire",
+    "damageCoeff": 0.55,
+    "_consumers": {
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageType": [
+        "combatEngine"
+      ],
+      "damageFormula": [
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "cooldown": [
+        "combatEngine"
+      ],
+      "duration": [
+        "combatEngine"
+      ],
+      "buffId": [
+        "combatEngine"
+      ],
+      "healCoeff": [
+        "combatEngine"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "targetCount": [
+        "combatEngine"
+      ],
+      "range": [
+        "combatEngine"
+      ]
+    }
+  },
+  {
+    "type": "combat_active",
+    "scope": "combat",
+    "maxLevel": 1,
+    "duration": null,
+    "target": "single",
+    "targetCount": 1,
+    "requiredWeaponTypes": [],
+    "extraEffects": {
+      "greatSuccess": [],
+      "success": [],
+      "normal": [],
+      "failure": []
+    },
+    "damageFormula": "$weight * $attack * (0.5 + $skillLevel * 0.01)",
+    "params": {},
+    "id": "enemy_mindspike",
+    "name": "心灵穿刺",
+    "desc": "精神系气场攻击",
+    "effectDesc": "以精神冲击刺穿目标心智，造成50%攻击力*体重的精神伤害（气场判定，走抗性-精神通道）",
+    "cooldown": 2,
+    "range": "ranged",
+    "effect": "damage",
+    "damageType": "psychic",
+    "damageCoeff": 0.5,
+    "_consumers": {
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageType": [
+        "combatEngine"
+      ],
+      "damageFormula": [
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "cooldown": [
+        "combatEngine"
+      ],
+      "duration": [
+        "combatEngine"
+      ],
+      "buffId": [
+        "combatEngine"
+      ],
+      "healCoeff": [
+        "combatEngine"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "targetCount": [
+        "combatEngine"
+      ],
+      "range": [
+        "combatEngine"
+      ]
+    }
+  },
+  {
+    "type": "combat_active",
+    "scope": "combat",
+    "maxLevel": 1,
+    "duration": null,
+    "target": "single",
+    "targetCount": 1,
+    "requiredWeaponTypes": [],
+    "extraEffects": {
+      "greatSuccess": [],
+      "success": [],
+      "normal": [],
+      "failure": []
+    },
+    "damageFormula": "$weight * $attack * (0.5 + $skillLevel * 0.01)",
+    "params": {},
+    "id": "enemy_snipe",
+    "name": "贯穿狙击",
+    "desc": "远程穿刺射击",
+    "effectDesc": "瞄准目标要害射击，造成60%攻击力*体重的穿刺伤害（远程射击判定，走护甲-穿刺通道）",
+    "cooldown": 1,
+    "range": "ranged",
+    "effect": "damage",
+    "damageType": "pierce",
+    "damageCoeff": 0.6,
+    "_consumers": {
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageType": [
+        "combatEngine"
+      ],
+      "damageFormula": [
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "cooldown": [
+        "combatEngine"
+      ],
+      "duration": [
+        "combatEngine"
+      ],
+      "buffId": [
+        "combatEngine"
+      ],
+      "healCoeff": [
+        "combatEngine"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "targetCount": [
+        "combatEngine"
+      ],
+      "range": [
+        "combatEngine"
+      ]
+    }
+  },
+  {
+    "type": "combat_active",
+    "scope": "combat",
+    "maxLevel": 1,
+    "duration": 3,
+    "target": "single",
+    "targetCount": 1,
+    "requiredWeaponTypes": [],
+    "extraEffects": {
+      "greatSuccess": [],
+      "success": [],
+      "normal": [],
+      "failure": []
+    },
+    "params": {},
+    "id": "enemy_weaken",
+    "name": "威压",
+    "desc": "对敌压制类 debuff",
+    "effectDesc": "以气势压制目标，使其攻击力降低20%，持续3个行动周期（压制判定，对目标意志抗性）",
+    "cooldown": 3,
+    "range": "ranged",
+    "effect": "enemy_debuff",
+    "buffId": "debuff_atk_down",
+    "_consumers": {
+      "id": [
+        "skill.service",
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "effect": [
+        "combatEngine",
+        "skillCalculator"
+      ],
+      "damageType": [
+        "combatEngine"
+      ],
+      "damageFormula": [
+        "skillCalculator",
+        "combatEngine"
+      ],
+      "cooldown": [
+        "combatEngine"
+      ],
+      "duration": [
+        "combatEngine"
+      ],
+      "buffId": [
+        "combatEngine"
+      ],
+      "healCoeff": [
+        "combatEngine"
+      ],
+      "target": [
+        "combatEngine"
+      ],
+      "targetCount": [
+        "combatEngine"
+      ],
+      "range": [
+        "combatEngine"
+      ]
+    }
   }
 ]
