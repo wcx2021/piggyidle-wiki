@@ -1,0 +1,183 @@
+{
+  "_meta": {
+    "description": "战斗判定体系配置：判定类型表（11 类三组，判定端/免伤端分离）+ 伤害类型表（10 类）+ 免伤通道。设计定稿源：战场系统-版本设计定稿 v1.5.0 §4.8。",
+    "designDoc": ".harmony/workspace/design/combat/战场系统-版本设计定稿.md",
+    "designSection": "4.8",
+    "consumers": [
+      "shared-battle-engine/damage.ts（判定类型求值器，未实施——落地轮接入，接入前本文件为惰性数据）"
+    ],
+    "notes": [
+      "判定端与免伤端正交：判定类型决定 H/E 属性权重（八维键名同 professionconfig：strength/dexterity/agility/constitution/intelligence/perception/will/charisma），伤害类型决定免伤通道",
+      "攻击 = 1 个判定类型 × ≥1 个伤害成分，各成分分别过对应免伤通道后加总（燃斧=近战劈砍×[劈砍+火焰]）",
+      "免伤公式：减伤 = 值/(值+100)，按伤害类型取对应通道值；护甲/抗性数值仍纯装备来源",
+      "defenseKind=dodge 走闪避五档（含完美闪避反击）；resist/detect 走 4 档无反击；dc 走五档施法判定语境（大失败=反噬或无效/失败=无效/普通·成功=标准效果/大成功=效果增强且持续延长）",
+      "C 组 dcBase=30 为难度基准默认值，具体技能可覆盖",
+      "技能挂接：skills 新增可选字段 judgmentType（缺省按 effect 推导：damage→按 damageType 映射攻击判定、debuff→suppress、buff/heal→blessing、special→按技能声明）",
+      "⚠️ 求值器未实施：引擎现行 H=combatStats.hit+距离修正、E=combatStats.dodge（engine.ts），本表落地后由 damage.ts 求值器消费（战场定稿 §9.3 落地清单 ②）"
+    ],
+    "version": "1.0.0",
+    "lastUpdated": "2026-09-03"
+  },
+  "_consumers": {
+    "judgmentTypes": ["shared-battle-engine/damage.ts（未实施）"],
+    "judgmentTypes.hitWeights": ["shared-battle-engine/damage.ts（未实施）"],
+    "judgmentTypes.evadeWeights": ["shared-battle-engine/damage.ts（未实施）"],
+    "judgmentTypes.defenseKind": ["shared-battle-engine/damage.ts（未实施）"],
+    "judgmentTypes.tierCount": ["shared-battle-engine/damage.ts（未实施）"],
+    "judgmentTypes.dcBase": ["shared-battle-engine/damage.ts（未实施）"],
+    "damageTypes": ["shared-battle-engine/damage.ts（未实施）"],
+    "damageTypes.mitigationChannel": ["shared-battle-engine/damage.ts（未实施）"],
+    "mitigationChannels": ["shared-battle-engine/damage.ts（未实施）", "character-templates 免伤端扩展（预留）"]
+  },
+  "judgmentTypes": [
+    {
+      "id": "melee_blunt",
+      "no": 1,
+      "name": "近战冲击",
+      "group": "attack",
+      "hitWeights": { "dexterity": 0.6, "strength": 0.4 },
+      "defenseKind": "dodge",
+      "evadeWeights": { "agility": 0.6, "dexterity": 0.4 },
+      "tierCount": 5,
+      "wodRef": "Nahkampf 标准格挡（敏捷/灵巧，同构）"
+    },
+    {
+      "id": "melee_slash",
+      "no": 2,
+      "name": "近战劈砍",
+      "group": "attack",
+      "hitWeights": { "dexterity": 0.6, "perception": 0.4 },
+      "defenseKind": "dodge",
+      "evadeWeights": { "agility": 0.6, "dexterity": 0.4 },
+      "tierCount": 5,
+      "wodRef": "基准型（=模板 hit 对照）"
+    },
+    {
+      "id": "melee_pierce",
+      "no": 3,
+      "name": "近战穿刺",
+      "group": "attack",
+      "hitWeights": { "dexterity": 0.5, "perception": 0.5 },
+      "defenseKind": "dodge",
+      "evadeWeights": { "agility": 0.6, "dexterity": 0.4 },
+      "tierCount": 5,
+      "wodRef": "Nahkampf 标准格挡（敏捷/灵巧，同构）"
+    },
+    {
+      "id": "ranged_thrown",
+      "no": 4,
+      "name": "远程投掷",
+      "group": "attack",
+      "hitWeights": { "perception": 0.6, "strength": 0.4 },
+      "defenseKind": "dodge",
+      "evadeWeights": { "agility": 0.6, "perception": 0.4 },
+      "tierCount": 5,
+      "wodRef": "Fernkampf 格挡（敏捷/感知，同构）"
+    },
+    {
+      "id": "ranged_shot",
+      "no": 5,
+      "name": "远程射击",
+      "group": "attack",
+      "hitWeights": { "perception": 0.7, "dexterity": 0.3 },
+      "defenseKind": "dodge",
+      "evadeWeights": { "agility": 0.6, "perception": 0.4 },
+      "tierCount": 5,
+      "wodRef": "Fernkampf 格挡（敏捷/感知，同构）"
+    },
+    {
+      "id": "spell",
+      "no": 6,
+      "name": "法术",
+      "group": "attack",
+      "hitWeights": { "intelligence": 0.6, "perception": 0.4 },
+      "defenseKind": "resist",
+      "evadeWeights": { "will": 0.6, "intelligence": 0.4 },
+      "tierCount": 4,
+      "wodRef": "Magie 格挡（意志/智力，同构）"
+    },
+    {
+      "id": "aura",
+      "no": 7,
+      "name": "气场",
+      "group": "attack",
+      "hitWeights": { "charisma": 0.6, "will": 0.4 },
+      "defenseKind": "resist",
+      "evadeWeights": { "will": 0.8, "intelligence": 0.2 },
+      "tierCount": 4,
+      "wodRef": "Sozial/Verfluchen 格挡（意志/魅力）"
+    },
+    {
+      "id": "suppress",
+      "no": 8,
+      "name": "压制",
+      "group": "hostile",
+      "hitWeights": { "intelligence": 0.5, "charisma": 0.5 },
+      "defenseKind": "resist",
+      "evadeWeights": { "will": 0.8, "intelligence": 0.2 },
+      "tierCount": 4,
+      "wodRef": "Verfluchen/Verschrecken 标准格挡",
+      "effectMapping": "combat_support: debuff / combat_active: enemy_debuff（诅咒/嘲讽/破甲类）"
+    },
+    {
+      "id": "trap",
+      "no": 9,
+      "name": "陷阱",
+      "group": "hostile",
+      "hitWeights": { "intelligence": 0.6, "dexterity": 0.4 },
+      "defenseKind": "detect",
+      "evadeWeights": { "perception": 0.6, "agility": 0.4 },
+      "tierCount": 4,
+      "wodRef": "Falle auslösen 标准格挡（感知/敏捷，同构）",
+      "effectMapping": "special（机关类，布设与触发）"
+    },
+    {
+      "id": "blessing",
+      "no": 10,
+      "name": "祝福/治疗",
+      "group": "nonhostile",
+      "hitWeights": { "perception": 0.6, "will": 0.4 },
+      "defenseKind": "dc",
+      "dcBase": 30,
+      "tierCount": 5,
+      "wodRef": "WoD 对友方技能免判定只掷效果骰——刻意偏离：保留判定出效果品质",
+      "effectMapping": "combat_support: buff/shield；combat_active: heal/self_buff"
+    },
+    {
+      "id": "ritual",
+      "no": 11,
+      "name": "仪式/召唤",
+      "group": "nonhostile",
+      "hitWeights": { "intelligence": 0.6, "will": 0.4 },
+      "defenseKind": "dc",
+      "dcBase": 30,
+      "tierCount": 5,
+      "wodRef": "WoD 无此组，仪式感扩展",
+      "effectMapping": "active: special / domain 类"
+    }
+  ],
+  "damageTypes": [
+    { "id": "blunt", "no": 1, "name": "冲击", "group": "physical", "mitigationChannel": "armor_blunt", "wodRef": "Hieb" },
+    { "id": "slash", "no": 2, "name": "劈砍", "group": "physical", "mitigationChannel": "armor_slash", "wodRef": "Schneid" },
+    { "id": "pierce", "no": 3, "name": "穿刺", "group": "physical", "mitigationChannel": "armor_pierce", "wodRef": "Stich" },
+    { "id": "fire", "no": 4, "name": "火焰", "group": "elemental", "mitigationChannel": "resist_fire", "wodRef": "Feuer" },
+    { "id": "lightning", "no": 5, "name": "闪电", "group": "elemental", "mitigationChannel": "resist_lightning", "wodRef": "Blitz" },
+    { "id": "frost", "no": 6, "name": "寒冰", "group": "elemental", "mitigationChannel": "resist_frost", "wodRef": "Eis" },
+    { "id": "poison", "no": 7, "name": "毒素", "group": "nature", "mitigationChannel": "resist_poison", "wodRef": "Gift/Säure" },
+    { "id": "psychic", "no": 8, "name": "精神", "group": "mental", "mitigationChannel": "resist_psychic", "wodRef": "psychologisch" },
+    { "id": "mana", "no": 9, "name": "法力", "group": "mana", "mitigationChannel": "resist_mana", "wodRef": "Mana（并入现 magicResist 语义）" },
+    { "id": "holy", "no": 10, "name": "灵气", "group": "holy", "mitigationChannel": "resist_holy", "wodRef": "heilig" }
+  ],
+  "mitigationChannels": [
+    { "id": "armor_blunt", "name": "护甲-冲击", "kind": "armor" },
+    { "id": "armor_slash", "name": "护甲-劈砍", "kind": "armor" },
+    { "id": "armor_pierce", "name": "护甲-穿刺", "kind": "armor" },
+    { "id": "resist_fire", "name": "抗性-火焰", "kind": "resist" },
+    { "id": "resist_lightning", "name": "抗性-闪电", "kind": "resist" },
+    { "id": "resist_frost", "name": "抗性-寒冰", "kind": "resist" },
+    { "id": "resist_poison", "name": "抗性-毒素", "kind": "resist" },
+    { "id": "resist_psychic", "name": "抗性-精神", "kind": "resist" },
+    { "id": "resist_mana", "name": "抗性-法力", "kind": "resist" },
+    { "id": "resist_holy", "name": "抗性-灵气", "kind": "resist" }
+  ]
+}

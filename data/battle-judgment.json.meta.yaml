@@ -1,0 +1,32 @@
+---
+title: "战斗判定体系配置表"
+change-id: "wiki-data-battle-judgment"
+status: "synced"
+server-status: "current"
+last-modified: "2026-09-03"
+
+# 版本信息
+wiki-version: "1.0.0"
+server-version: "1.0.0"
+
+# 影响分析（字段级消费者）
+consumers:
+  battle-judgment.json:
+    judgmentTypes: ["shared-battle-engine/damage.ts（未实施）"]
+    judgmentTypes.hitWeights: ["shared-battle-engine/damage.ts（未实施）"]
+    judgmentTypes.evadeWeights: ["shared-battle-engine/damage.ts（未实施）"]
+    judgmentTypes.defenseKind: ["shared-battle-engine/damage.ts（未实施）"]
+    judgmentTypes.tierCount: ["shared-battle-engine/damage.ts（未实施）"]
+    judgmentTypes.dcBase: ["shared-battle-engine/damage.ts（未实施）"]
+    damageTypes: ["shared-battle-engine/damage.ts（未实施）"]
+    damageTypes.mitigationChannel: ["shared-battle-engine/damage.ts（未实施）"]
+    mitigationChannels: ["shared-battle-engine/damage.ts（未实施）"]
+
+# 变更记录
+changelog:
+  - version: "1.0.0"
+    date: "2026-09-03"
+    summary: "初始版本 - 判定类型表（11 类三组）+ 伤害类型表（10 类）+ 免伤通道（护甲 3 + 抗性 7），设计源：战场系统-版本设计定稿 v1.5.0 §4.8；求值器未实施前为惰性数据"
+    trigger: "research-to-design:wod-调研转化-命中八维化与经验分配定稿（落地清单①）"
+    synced-to-server: true
+---
