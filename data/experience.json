@@ -1058,5 +1058,18 @@
         "staticResources.service"
       ]
     }
+  },
+  "craftActionRules": {
+    "_description": "技艺行动需求与强度结算规则。需求减免：有效需求强度=max(0, 基础需求−技艺等级×requirementReductionPerLevel+需求修饰[buff])，下限 0（生活公式与统一修饰器落地计划 阶段1；MWI 对照见 2026-09-03-R 调研报告 §3.2）。",
+    "requirementReductionPerLevel": 0.2,
+    "requirementFloor": 0,
+    "_consumers": {
+      "requirementReductionPerLevel": [
+        "totalBonus.service.calculateBonus（有效需求计算）"
+      ],
+      "requirementFloor": [
+        "totalBonus.service.calculateBonus（下限钳制）"
+      ]
+    }
   }
 }

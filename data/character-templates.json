@@ -78,11 +78,17 @@
       "life": {
         "speed": {
           "base": 0,
-          "growth": 0
+          "formula": {
+            "agility": 0.3,
+            "perception": 0.2
+          }
         },
         "efficiency": {
           "base": 0,
-          "growth": 0
+          "formula": {
+            "strength": 0.25,
+            "dexterity": 0.25
+          }
         },
         "experience": {
           "base": 0,
@@ -141,8 +147,8 @@
   },
   "jobTemplates": [],
   "_meta": {
-    "version": "1.1.0",
-    "lastUpdated": "2026-09-03",
+    "version": "1.2.0",
+    "lastUpdated": "2026-09-04",
     "consumers": {
       "character-templates": [
         "templateCalculateService",

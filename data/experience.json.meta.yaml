@@ -3,20 +3,27 @@ title: "经验值配置表"
 change-id: "wiki-data-experience"
 status: "synced"
 server-status: "current"
-last-modified: "2026-09-03"
+last-modified: "2026-09-04"
 
 # 版本信息
-wiki-version: "1.1.0"
-server-version: "1.1.0"
+wiki-version: "1.2.0"
+server-version: "1.2.0"
 
 # 影响分析（文件级消费方）
 consumers:
   experience:
     _file_: ["craft.experience.service","experience.service","unifiedSettlement.service","staticResources.service"]
     expRatios.battleExpRatio: ["battle.exp.service.grantBattleExp"]
+    craftActionRules.requirementReductionPerLevel: ["totalBonus.service.calculateBonus"]
+    craftActionRules.requirementFloor: ["totalBonus.service.calculateBonus"]
 
 # 变更记录
 changelog:
+  - version: "1.2.0"
+    date: "2026-09-04"
+    summary: "新增 craftActionRules 段：requirementReductionPerLevel=0.2（技艺等级每级绝对减免强度需求）、requirementFloor=0（下限钳制）——动态有效需求强度=max(0, 基础需求−技艺等级×0.2+需求修饰[buff])；生活公式与统一修饰器落地计划 阶段1，MWI 对照见 .harmony/records/reports/2026-09-03-R-生活公式填法-MWI对照调研.md §3.2"
+    trigger: "plan:2026-09-04-生活公式与统一修饰器落地计划-阶段1"
+    synced-to-server: true
   - version: "1.1.0"
     date: "2026-09-03"
     summary: "expRatios 段新增 battleExpRatio=1.0（战斗 baseExp 全额入八维属性经验通道，经验值数据设计规范 §4.10.2 定稿；消费者 battle.exp.service.grantBattleExp，幂等键 battleId+unitId+pigId）；战斗框架落地计划阶段4 经验发放落地"
