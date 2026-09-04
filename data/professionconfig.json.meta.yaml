@@ -6,7 +6,7 @@ server-status: "current"
 last-modified: "2026-09-04"
 
 # 版本信息
-wiki-version: "2.0.0"
+wiki-version: "2.1.0"
 server-version: "0.0.0"
 
 # 影响分析（文件级消费方）
@@ -16,6 +16,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "2.1.0"
+    date: "2026-09-04"
+    summary: "属性聚焦（专业配置数值设计规范 v2.1.0）：每专业非零 strengthCoeff 收敛为 2~6 个（按职业特点取舍、允许部分专业更分散），其余属性归 0、不设个位数凑数格子；全 15 专业重排为稀疏矩阵，Σ=100 与强度不变量（全20级小猪=全专业强度20）保持"
+    trigger: "用户纠偏：单个专业不需要太多属性，2-6 个即可，按职业特点来"
+    synced-to-server: true
   - version: "2.0.0"
     date: "2026-09-04"
     summary: "八维→强度映射重设计落地（专业配置数值设计规范 v2.0.0）：15 专业 strengthCoeff 全八维参与（每项≥2、Σ=100，全20级小猪=全专业强度20）；strengthEffect 盈余预算重排——成功率让渡（有成功率 5 专业 speed+eff=0.20 + successRate 0.10~0.15，无成功率 10 专业 0.30 三型差异化）；strengthFormula 去底数（shared-game-formulas 同步，+1.0 删除）"

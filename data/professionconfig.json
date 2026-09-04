@@ -8,14 +8,10 @@
     "category": "explorer",
     "desc": "获取地图残页的技艺",
     "strengthCoeff": {
-      "intelligence": 36,
-      "perception": 18,
-      "dexterity": 16,
-      "constitution": 16,
-      "agility": 6,
-      "will": 4,
-      "strength": 2,
-      "charisma": 2
+      "intelligence": 45,
+      "perception": 25,
+      "constitution": 20,
+      "dexterity": 10
     },
     "strengthEffect": {
       "efficiency": 0.15,
@@ -50,14 +46,10 @@
     "category": "explorer",
     "desc": "探索地图并定位资源",
     "strengthCoeff": {
-      "perception": 36,
-      "constitution": 24,
-      "dexterity": 16,
-      "agility": 10,
-      "intelligence": 6,
-      "strength": 4,
-      "will": 2,
-      "charisma": 2
+      "perception": 40,
+      "constitution": 30,
+      "dexterity": 20,
+      "agility": 10
     },
     "strengthEffect": {
       "efficiency": 0.15,
@@ -93,14 +85,9 @@
     "category": "explorer",
     "desc": "获取地图威胁度，用于开启狩猎战场",
     "strengthCoeff": {
-      "agility": 42,
-      "perception": 28,
-      "constitution": 12,
-      "strength": 8,
-      "will": 4,
-      "dexterity": 2,
-      "intelligence": 2,
-      "charisma": 2
+      "agility": 50,
+      "perception": 30,
+      "constitution": 20
     },
     "strengthEffect": {
       "efficiency": 0.08,
@@ -137,14 +124,9 @@
     "category": "explorer",
     "desc": "探索地图并定位宝藏",
     "strengthCoeff": {
-      "perception": 40,
-      "constitution": 22,
-      "agility": 12,
-      "dexterity": 8,
-      "intelligence": 6,
-      "strength": 4,
-      "will": 4,
-      "charisma": 4
+      "perception": 60,
+      "constitution": 30,
+      "agility": 10
     },
     "strengthEffect": {
       "efficiency": 0.12,
@@ -181,14 +163,8 @@
     "category": "craft",
     "desc": "研究地图信息，产出技艺之书",
     "strengthCoeff": {
-      "intelligence": 44,
-      "perception": 26,
-      "will": 12,
-      "dexterity": 6,
-      "charisma": 4,
-      "constitution": 4,
-      "strength": 2,
-      "agility": 2
+      "intelligence": 60,
+      "perception": 40
     },
     "strengthEffect": {
       "efficiency": 0.1,
@@ -214,14 +190,10 @@
     "category": "production",
     "desc": "采集木材类资源",
     "strengthCoeff": {
-      "strength": 38,
-      "constitution": 28,
-      "dexterity": 12,
-      "agility": 10,
-      "perception": 6,
-      "intelligence": 2,
-      "will": 2,
-      "charisma": 2
+      "strength": 40,
+      "constitution": 30,
+      "dexterity": 20,
+      "perception": 10
     },
     "strengthEffect": {
       "efficiency": 0.1,
@@ -256,14 +228,10 @@
     "category": "production",
     "desc": "采集矿石类资源",
     "strengthCoeff": {
-      "strength": 42,
-      "constitution": 28,
-      "perception": 10,
-      "dexterity": 8,
-      "agility": 6,
-      "intelligence": 2,
-      "will": 2,
-      "charisma": 2
+      "strength": 50,
+      "constitution": 30,
+      "dexterity": 10,
+      "perception": 10
     },
     "strengthEffect": {
       "efficiency": 0.1,
@@ -299,14 +267,11 @@
     "category": "production",
     "desc": "采集草药和作物类资源",
     "strengthCoeff": {
-      "perception": 26,
-      "dexterity": 24,
-      "intelligence": 16,
-      "constitution": 12,
-      "agility": 10,
-      "will": 6,
-      "strength": 4,
-      "charisma": 2
+      "perception": 30,
+      "dexterity": 30,
+      "intelligence": 20,
+      "constitution": 10,
+      "agility": 10
     },
     "strengthEffect": {
       "efficiency": 0.2,
@@ -341,14 +306,11 @@
     "category": "production",
     "desc": "猎取动物类资源（皮/肉/骨）",
     "strengthCoeff": {
-      "agility": 34,
-      "strength": 24,
-      "perception": 14,
-      "constitution": 12,
-      "dexterity": 8,
-      "will": 4,
-      "intelligence": 2,
-      "charisma": 2
+      "agility": 40,
+      "strength": 30,
+      "dexterity": 10,
+      "constitution": 10,
+      "perception": 10
     },
     "strengthEffect": {
       "efficiency": 0.08,
@@ -385,14 +347,11 @@
     "category": "craft",
     "desc": "将矿石锻造成装备和工具",
     "strengthCoeff": {
-      "strength": 32,
-      "dexterity": 24,
-      "constitution": 18,
-      "intelligence": 12,
-      "perception": 6,
-      "will": 4,
-      "agility": 2,
-      "charisma": 2
+      "strength": 30,
+      "dexterity": 30,
+      "constitution": 20,
+      "intelligence": 10,
+      "perception": 10
     },
     "strengthEffect": {
       "efficiency": 0.1,
@@ -427,14 +386,12 @@
     "category": "craft",
     "desc": "将纤维纺织成布料和衣物",
     "strengthCoeff": {
-      "dexterity": 32,
-      "perception": 16,
-      "intelligence": 14,
-      "agility": 14,
+      "dexterity": 40,
+      "agility": 20,
       "constitution": 10,
-      "will": 6,
-      "charisma": 6,
-      "strength": 2
+      "intelligence": 10,
+      "perception": 10,
+      "charisma": 10
     },
     "strengthEffect": {
       "efficiency": 0.2,
@@ -469,14 +426,10 @@
     "category": "craft",
     "desc": "将食材烹饪成食物和饲料",
     "strengthCoeff": {
-      "intelligence": 32,
-      "perception": 22,
-      "dexterity": 16,
-      "constitution": 12,
-      "charisma": 8,
-      "will": 6,
-      "agility": 2,
-      "strength": 2
+      "intelligence": 40,
+      "perception": 30,
+      "dexterity": 20,
+      "constitution": 10
     },
     "strengthEffect": {
       "efficiency": 0.2,
@@ -511,14 +464,10 @@
     "category": "craft",
     "desc": "将草药炼制成药剂和强化剂",
     "strengthCoeff": {
-      "intelligence": 40,
-      "perception": 24,
-      "will": 14,
-      "dexterity": 8,
-      "constitution": 6,
-      "agility": 4,
-      "charisma": 2,
-      "strength": 2
+      "intelligence": 50,
+      "perception": 30,
+      "will": 10,
+      "dexterity": 10
     },
     "strengthEffect": {
       "efficiency": 0.12,
@@ -555,14 +504,10 @@
     "category": "craft",
     "desc": "将符文注入装备赋予特殊效果",
     "strengthCoeff": {
-      "intelligence": 38,
+      "intelligence": 50,
       "perception": 20,
-      "will": 16,
-      "dexterity": 10,
-      "charisma": 8,
-      "constitution": 4,
-      "agility": 2,
-      "strength": 2
+      "will": 20,
+      "dexterity": 10
     },
     "strengthEffect": {
       "efficiency": 0.1,
@@ -599,14 +544,11 @@
     "category": "craft",
     "desc": "将材料加工成各种制品",
     "strengthCoeff": {
-      "dexterity": 28,
-      "intelligence": 18,
-      "constitution": 16,
-      "perception": 16,
-      "strength": 10,
-      "agility": 6,
-      "will": 4,
-      "charisma": 2
+      "dexterity": 30,
+      "intelligence": 20,
+      "constitution": 20,
+      "perception": 20,
+      "strength": 10
     },
     "strengthEffect": {
       "efficiency": 0.15,
