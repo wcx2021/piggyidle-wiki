@@ -1,77 +1,203 @@
 [
   {
     "key": "surveying",
-    "subActionTypes": ["surveying"],
+    "subActionTypes": [
+      "surveying"
+    ],
     "name": "测绘",
     "category": "explorer",
     "desc": "获取地图残页的技艺",
-    "strengthCoeff": { "strength": 0, "dexterity": 20, "agility": 0, "constitution": 20, "intelligence": 40, "perception": 20, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1 },
+    "strengthCoeff": {
+      "intelligence": 36,
+      "perception": 18,
+      "dexterity": 16,
+      "constitution": 16,
+      "agility": 6,
+      "will": 4,
+      "strength": 2,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.15,
+      "speed": 0.15
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "exploration",
-    "subActionTypes": ["exploration"],
+    "subActionTypes": [
+      "exploration"
+    ],
     "name": "探索",
     "category": "explorer",
     "desc": "探索地图并定位资源",
-    "strengthCoeff": { "strength": 0, "dexterity": 20, "agility": 10, "constitution": 30, "intelligence": 0, "perception": 40, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
+    "strengthCoeff": {
+      "perception": 36,
+      "constitution": 24,
+      "dexterity": 16,
+      "agility": 10,
+      "intelligence": 6,
+      "strength": 4,
+      "will": 2,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.15,
+      "speed": 0.15
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1,
+      "successRate": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "enemy_hunt",
-    "subActionTypes": ["enemy_hunt"],
+    "subActionTypes": [
+      "enemy_hunt"
+    ],
     "name": "寻敌",
     "category": "explorer",
     "desc": "获取地图威胁度，用于开启狩猎战场",
-    "strengthCoeff": { "strength": 0, "dexterity": 0, "agility": 40, "constitution": 0, "intelligence": 0, "perception": 60, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
+    "strengthCoeff": {
+      "agility": 42,
+      "perception": 28,
+      "constitution": 12,
+      "strength": 8,
+      "will": 4,
+      "dexterity": 2,
+      "intelligence": 2,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.08,
+      "speed": 0.12,
+      "successRate": 0.1
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1,
+      "successRate": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": true,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "treasure_hunt",
-    "subActionTypes": ["treasure_hunt"],
+    "subActionTypes": [
+      "treasure_hunt"
+    ],
     "name": "寻宝",
     "category": "explorer",
     "desc": "探索地图并定位宝藏",
-    "strengthCoeff": { "strength": 0, "dexterity": 0, "agility": 10, "constitution": 30, "intelligence": 0, "perception": 60, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
+    "strengthCoeff": {
+      "perception": 40,
+      "constitution": 22,
+      "agility": 12,
+      "dexterity": 8,
+      "intelligence": 6,
+      "strength": 4,
+      "will": 4,
+      "charisma": 4
+    },
+    "strengthEffect": {
+      "efficiency": 0.12,
+      "speed": 0.08,
+      "successRate": 0.1
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1,
+      "successRate": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": true,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "research",
-    "subActionTypes": ["research"],
+    "subActionTypes": [
+      "research"
+    ],
     "name": "研究",
     "category": "craft",
     "desc": "研究地图信息，产出技艺之书",
-    "strengthCoeff": { "strength": 0, "dexterity": 0, "agility": 0, "constitution": 0, "intelligence": 60, "perception": 40, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1 },
+    "strengthCoeff": {
+      "intelligence": 44,
+      "perception": 26,
+      "will": 12,
+      "dexterity": 6,
+      "charisma": 4,
+      "constitution": 4,
+      "strength": 2,
+      "agility": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.1,
+      "speed": 0.2
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
     "starThresholds": {},
@@ -81,162 +207,429 @@
   },
   {
     "key": "logging",
-    "subActionTypes": ["logging"],
+    "subActionTypes": [
+      "logging"
+    ],
     "name": "伐木",
     "category": "production",
     "desc": "采集木材类资源",
-    "strengthCoeff": { "strength": 40, "dexterity": 20, "agility": 0, "constitution": 30, "intelligence": 0, "perception": 10, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.15, "speed": 0.1 },
-    "levelEffect": { "efficiency": 0.15, "speed": 0.1 },
+    "strengthCoeff": {
+      "strength": 38,
+      "constitution": 28,
+      "dexterity": 12,
+      "agility": 10,
+      "perception": 6,
+      "intelligence": 2,
+      "will": 2,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.1,
+      "speed": 0.2
+    },
+    "levelEffect": {
+      "efficiency": 0.15,
+      "speed": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "mining",
-    "subActionTypes": ["mining"],
+    "subActionTypes": [
+      "mining"
+    ],
     "name": "采矿",
     "category": "production",
     "desc": "采集矿石类资源",
-    "strengthCoeff": { "strength": 50, "dexterity": 10, "agility": 0, "constitution": 30, "intelligence": 0, "perception": 10, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.15, "speed": 0.1 },
-    "levelEffect": { "efficiency": 0.15, "speed": 0.1 },
+    "strengthCoeff": {
+      "strength": 42,
+      "constitution": 28,
+      "perception": 10,
+      "dexterity": 8,
+      "agility": 6,
+      "intelligence": 2,
+      "will": 2,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.1,
+      "speed": 0.2
+    },
+    "levelEffect": {
+      "efficiency": 0.15,
+      "speed": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "harvesting",
-    "subActionTypes": ["harvesting", "harvest"],
+    "subActionTypes": [
+      "harvesting",
+      "harvest"
+    ],
     "name": "采摘",
     "category": "production",
     "desc": "采集草药和作物类资源",
-    "strengthCoeff": { "strength": 0, "dexterity": 30, "agility": 10, "constitution": 10, "intelligence": 20, "perception": 30, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.15 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.15 },
+    "strengthCoeff": {
+      "perception": 26,
+      "dexterity": 24,
+      "intelligence": 16,
+      "constitution": 12,
+      "agility": 10,
+      "will": 6,
+      "strength": 4,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.2,
+      "speed": 0.1
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.15
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "hunting",
-    "subActionTypes": ["hunting"],
+    "subActionTypes": [
+      "hunting"
+    ],
     "name": "狩猎",
     "category": "production",
     "desc": "猎取动物类资源（皮/肉/骨）",
-    "strengthCoeff": { "strength": 30, "dexterity": 10, "agility": 40, "constitution": 10, "intelligence": 0, "perception": 10, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
+    "strengthCoeff": {
+      "agility": 34,
+      "strength": 24,
+      "perception": 14,
+      "constitution": 12,
+      "dexterity": 8,
+      "will": 4,
+      "intelligence": 2,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.08,
+      "speed": 0.12,
+      "successRate": 0.1
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1,
+      "successRate": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": true,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "blacksmith",
-    "subActionTypes": ["forge"],
+    "subActionTypes": [
+      "forge"
+    ],
     "name": "锻造",
     "category": "craft",
     "desc": "将矿石锻造成装备和工具",
-    "strengthCoeff": { "strength": 30, "dexterity": 30, "agility": 0, "constitution": 20, "intelligence": 10, "perception": 10, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1 },
+    "strengthCoeff": {
+      "strength": 32,
+      "dexterity": 24,
+      "constitution": 18,
+      "intelligence": 12,
+      "perception": 6,
+      "will": 4,
+      "agility": 2,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.1,
+      "speed": 0.2
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "weaving",
-    "subActionTypes": ["weave"],
+    "subActionTypes": [
+      "weave"
+    ],
     "name": "纺织",
     "category": "craft",
     "desc": "将纤维纺织成布料和衣物",
-    "strengthCoeff": { "strength": 0, "dexterity": 40, "agility": 20, "constitution": 10, "intelligence": 10, "perception": 20, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.15 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.15 },
+    "strengthCoeff": {
+      "dexterity": 32,
+      "perception": 16,
+      "intelligence": 14,
+      "agility": 14,
+      "constitution": 10,
+      "will": 6,
+      "charisma": 6,
+      "strength": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.2,
+      "speed": 0.1
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.15
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "cooking",
-    "subActionTypes": ["cook"],
+    "subActionTypes": [
+      "cook"
+    ],
     "name": "烹饪",
     "category": "craft",
     "desc": "将食材烹饪成食物和饲料",
-    "strengthCoeff": { "strength": 0, "dexterity": 20, "agility": 0, "constitution": 10, "intelligence": 40, "perception": 30, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.15, "speed": 0.1 },
-    "levelEffect": { "efficiency": 0.15, "speed": 0.1 },
+    "strengthCoeff": {
+      "intelligence": 32,
+      "perception": 22,
+      "dexterity": 16,
+      "constitution": 12,
+      "charisma": 8,
+      "will": 6,
+      "agility": 2,
+      "strength": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.2,
+      "speed": 0.1
+    },
+    "levelEffect": {
+      "efficiency": 0.15,
+      "speed": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "alchemy",
-    "subActionTypes": ["alchemy"],
+    "subActionTypes": [
+      "alchemy"
+    ],
     "name": "炼金",
     "category": "craft",
     "desc": "将草药炼制成药剂和强化剂",
-    "strengthCoeff": { "strength": 0, "dexterity": 10, "agility": 0, "constitution": 0, "intelligence": 50, "perception": 30, "will": 10, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.1 },
+    "strengthCoeff": {
+      "intelligence": 40,
+      "perception": 24,
+      "will": 14,
+      "dexterity": 8,
+      "constitution": 6,
+      "agility": 4,
+      "charisma": 2,
+      "strength": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.12,
+      "speed": 0.08,
+      "successRate": 0.1
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1,
+      "successRate": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": true,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "enchantment",
-    "subActionTypes": ["enchant"],
+    "subActionTypes": [
+      "enchant"
+    ],
     "name": "附魔",
     "category": "craft",
     "desc": "将符文注入装备赋予特殊效果",
-    "strengthCoeff": { "strength": 0, "dexterity": 10, "agility": 0, "constitution": 0, "intelligence": 50, "perception": 20, "will": 20, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.15 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1, "successRate": 0.15 },
+    "strengthCoeff": {
+      "intelligence": 38,
+      "perception": 20,
+      "will": 16,
+      "dexterity": 10,
+      "charisma": 8,
+      "constitution": 4,
+      "agility": 2,
+      "strength": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1,
+      "successRate": 0.15
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1,
+      "successRate": 0.15
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": true,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   },
   {
     "key": "crafting",
-    "subActionTypes": ["craft"],
+    "subActionTypes": [
+      "craft"
+    ],
     "name": "制造",
     "category": "craft",
     "desc": "将材料加工成各种制品",
-    "strengthCoeff": { "strength": 10, "dexterity": 30, "agility": 0, "constitution": 20, "intelligence": 20, "perception": 20, "will": 0, "charisma": 0 },
-    "strengthEffect": { "efficiency": 0.1, "speed": 0.1 },
-    "levelEffect": { "efficiency": 0.1, "speed": 0.1 },
+    "strengthCoeff": {
+      "dexterity": 28,
+      "intelligence": 18,
+      "constitution": 16,
+      "perception": 16,
+      "strength": 10,
+      "agility": 6,
+      "will": 4,
+      "charisma": 2
+    },
+    "strengthEffect": {
+      "efficiency": 0.15,
+      "speed": 0.15
+    },
+    "levelEffect": {
+      "efficiency": 0.1,
+      "speed": 0.1
+    },
     "hasEfficiencyBonus": true,
     "hasSuccessRateBonus": false,
-    "starThresholds": { "20": 3, "40": 4, "60": 5 },
+    "starThresholds": {
+      "20": 3,
+      "40": 4,
+      "60": 5
+    },
     "luckPerLevel": 1,
-    "breakthroughLuck": { "20": 20, "40": 30, "60": 50, "100": 50 },
+    "breakthroughLuck": {
+      "20": 20,
+      "40": 30,
+      "60": 50,
+      "100": 50
+    },
     "_deprecated_breakthroughLuck": "突破只解锁星级上限，不给幸运值奖励。此字段已废弃，代码不应读取。"
   }
 ]

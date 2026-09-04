@@ -2,11 +2,11 @@
 title: "职业展示配置表"
 change-id: "wiki-data-professionconfig"
 status: "draft"
-server-status: "pending"
-last-modified: "2026-08-19"
+server-status: "current"
+last-modified: "2026-09-04"
 
 # 版本信息
-wiki-version: "1.0.0"
+wiki-version: "2.0.0"
 server-version: "0.0.0"
 
 # 影响分析（文件级消费方）
@@ -16,6 +16,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "2.0.0"
+    date: "2026-09-04"
+    summary: "八维→强度映射重设计落地（专业配置数值设计规范 v2.0.0）：15 专业 strengthCoeff 全八维参与（每项≥2、Σ=100，全20级小猪=全专业强度20）；strengthEffect 盈余预算重排——成功率让渡（有成功率 5 专业 speed+eff=0.20 + successRate 0.10~0.15，无成功率 10 专业 0.30 三型差异化）；strengthFormula 去底数（shared-game-formulas 同步，+1.0 删除）"
+    trigger: "plan:用户纠偏-职业映射系数重设计"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"
