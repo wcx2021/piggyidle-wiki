@@ -4,8 +4,8 @@ change-id: "wiki-data-character-templates"
 status: "synced"
 server-status: "current"
 last-modified: "2026-09-04"
-wiki-version: "1.2.0"
-server-version: "1.2.0"
+wiki-version: "1.3.0"
+server-version: "1.3.0"
 consumers:
   character-templates.json:
     baseTemplate: ["templateCalculateService", "battle.service"]
@@ -19,6 +19,11 @@ consumers:
     baseTemplate.attributes.weight: ["unit.service"]
     baseTemplate.defaultWeapon: ["battle.service"]
 changelog:
+  - version: "1.3.0"
+    date: "2026-09-04"
+    summary: "回滚 v1.2.0：life speed/efficiency 八维公式归零——用户纠偏：八维与强度一体（jobStrength 本由八维×strengthCoeff 构成，对应 MWI 技能等级），速度/效率只走强度盈余通道（盈余×strengthEffect + 技艺等级×levelEffect + 需求减免抬盈余），八维不再直接映射生活属性；生活属性基线通道保留给装备词条与 buff"
+    trigger: "plan:2026-09-04-生活公式与统一修饰器落地计划-用户纠偏"
+    synced-to-server: true
   - version: "1.2.0"
     date: "2026-09-04"
     summary: "life 段 speed/efficiency 填八维公式：speed=0.3敏捷+0.2感知（每级+0.5pp 速度）、efficiency=0.25力量+0.25灵巧（每级+0.5pp 效率）；experience/successRateBonus/luck 保持 0（experience 归全局属性层、successRateBonus 除名、luck 锚点技艺等级）——生活公式定稿（MWI 对照 §3.2），speed/efficiency 参与行动结算在 totalBonus 接入（阶段2）"
