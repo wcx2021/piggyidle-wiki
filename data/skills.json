@@ -337,23 +337,6 @@
     "targetCount": 1,
     "range": "melee",
     "requiredWeaponTypes": [],
-    "extraEffects": {
-      "greatSuccess": [
-        "撤离战场"
-      ],
-      "success": [
-        "撤离战场，体重减少5%"
-      ],
-      "normal": [
-        "撤离战场，体重减少10%"
-      ],
-      "failure": [
-        "撤退失败，不撤离"
-      ],
-      "greatFailure": [
-        "撤退失败，不撤离，体重减少5%"
-      ]
-    },
     "effect": "special",
     "params": {},
     "_consumers": {
@@ -368,15 +351,12 @@
       "target": [
         "combatEngine"
       ],
-      "extraEffects": [
-        "skill.service"
-      ],
       "effect": [
         "combatEngine",
         "skillCalculator"
       ]
     },
-    "_comment": "effect=special，引擎不执行伤害计算，直接触发单位退出战场。skillQueue 中此技能由引擎 sentinel 值匹配，AI 条件满足时自动触发撤退。extraEffects 定义各档位效果：大成功=撤离战场，成功=撤离战场-5%体重，普通=撤离战场-10%体重，失败=不撤离，大失败=不撤离-5%体重"
+    "_comment": "effect=special，引擎不执行伤害/判定结算，直接触发单位退出战场。skillQueue 中此技能由引擎 sentinel 值匹配，AI 条件满足时自动触发撤退；撤退保留当前体重（战斗定稿 §六），无五档分支效果——原 extraEffects 五档文本（体重减少5%/10%）为旧伪技能判定版遗物，引擎 effect=special 绕过判定结算永不消费，已删除（P14，2026-09-09）"
   },
   {
     "type": "combat_active",

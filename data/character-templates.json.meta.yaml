@@ -3,9 +3,9 @@ title: "角色属性模板配置表"
 change-id: "wiki-data-character-templates"
 status: "synced"
 server-status: "current"
-last-modified: "2026-09-04"
-wiki-version: "1.3.0"
-server-version: "1.3.0"
+last-modified: "2026-09-09"
+wiki-version: "1.4.0"
+server-version: "1.4.0"
 consumers:
   character-templates.json:
     baseTemplate: ["templateCalculateService", "battle.service"]
@@ -17,8 +17,14 @@ consumers:
     baseTemplate.attributes.combat.dodge: ["unit.service", "battle.unit.service"]
     baseTemplate.attributes.life: ["unit.service"]
     baseTemplate.attributes.weight: ["unit.service"]
+    baseTemplate.attributes.weight.feedRatios: ["pig.resource.service", "pig.feeding.service", "attributeCalculateService(PigAttributesTab 展示)"]
     baseTemplate.defaultWeapon: ["battle.service"]
 changelog:
+  - version: "1.4.0"
+    date: "2026-09-09"
+    summary: "feedRatios 160/240/360 → 16/24/36（÷10 迁移完成，喂猪定稿 §4.4/任务2）：统一结算与展示口径（值=每10g增重耗料克数，结算公式内 ratioConvert=10 分母）；P13 双数据源分叉销项，结算链路同步收敛改读本表（getBaseTemplateSync），硬编码 DEFAULT_BASE_TEMPLATE 回归加载失败降级角色"
+    trigger: "plan:2026-09-09-01-R-P13-P14-P15-遗留三项调研与实施计划"
+    synced-to-server: true
   - version: "1.3.0"
     date: "2026-09-04"
     summary: "回滚 v1.2.0：life speed/efficiency 八维公式归零——用户纠偏：八维与强度一体（jobStrength 本由八维×strengthCoeff 构成，对应 MWI 技能等级），速度/效率只走强度盈余通道（盈余×strengthEffect + 技艺等级×levelEffect + 需求减免抬盈余），八维不再直接映射生活属性；生活属性基线通道保留给装备词条与 buff"

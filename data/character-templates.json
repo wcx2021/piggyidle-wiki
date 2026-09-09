@@ -128,9 +128,9 @@
           }
         },
         "feedRatios": {
-          "underFull": 160,
-          "overFull": 240,
-          "overload": 360
+          "underFull": 16,
+          "overFull": 24,
+          "overload": 36
         }
       }
     },

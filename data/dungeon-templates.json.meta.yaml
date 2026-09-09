@@ -3,11 +3,11 @@ title: "副本模板配置表"
 change-id: "wiki-data-dungeon-templates"
 status: "synced"
 server-status: "current"
-last-modified: "2026-08-03"
+last-modified: "2026-09-09"
 
 # 版本信息
-wiki-version: "1.1.0"
-server-version: "1.0.0"
+wiki-version: "1.2.0"
+server-version: "1.2.0"
 
 # 影响分析（字段级消费者）
 consumers:
@@ -23,6 +23,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "1.2.0"
+    date: "2026-09-09"
+    summary: "清理 3 座 single_fight 死副本（dn_trial_normal/dn_trial_rare/dn_mistforest_normal）：v2.0.0 node_run 模型换代后无进入路径（dungeonController 仅放行 dungeonMode=node_run）、server/client/引擎零代码引用、关联敌人组 eg_training_* 与奖励包 30001/30002 均有在役消费方不受影响；Mongo 侧由一次性 deleteMany 同步清理（seed 为 upsert-only 不删除）；P15 台账销项。rewardTimes rare 池定义保留（暂无 rare 消费副本，待未来稀有 node_run 副本）"
+    trigger: "plan:2026-09-09-01-R-P13-P14-P15-遗留三项调研与实施计划"
+    synced-to-server: true
   - version: "1.1.0"
     date: "2026-08-03"
     summary: "废弃每副本 dailyAttempts 独立配额，副本次数统一接入存档级 rewardTimes 共享池（v1.4.0 设计）；server/data/dungeon-templates.json 已同步（B9）"

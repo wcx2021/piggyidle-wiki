@@ -3,11 +3,11 @@ title: "技能表"
 change-id: "wiki-data-skills"
 status: "synced"
 server-status: "current"
-last-modified: "2026-09-03"
+last-modified: "2026-09-09"
 
 # 版本信息
-wiki-version: "1.1.0"
-server-version: "1.1.0"
+wiki-version: "1.2.0"
+server-version: "1.2.0"
 
 # 影响分析（文件级消费方）
 consumers:
@@ -16,6 +16,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "1.2.0"
+    date: "2026-09-09"
+    summary: "删除 pig_retreat.extraEffects 死配置（五档文本为旧伪技能判定版遗物：引擎 effect=special 绕过判定结算永不消费，文本『体重减少5%/10%』与战斗定稿『保留当前体重』矛盾）；_consumers 同步移除 stale 消费方 skill.service（该服务不存在，server/src 全仓无 extraEffects 消费）；P14 台账销项"
+    trigger: "plan:2026-09-09-01-R-P13-P14-P15-遗留三项调研与实施计划"
+    synced-to-server: true
   - version: "1.1.0"
     date: "2026-09-03"
     summary: "damageType 词汇迁移到新 10 类 id（冲撞→blunt、物理→slash，用户拍板无双源）；新增 4 个敌人战斗技能：enemy_firebolt（fire→spell 判定）/enemy_mindspike（psychic→aura）/enemy_snipe（pierce→ranged_shot）/enemy_weaken（enemy_debuff→suppress，挂 debuff_atk_down）；战斗框架落地计划阶段5"
