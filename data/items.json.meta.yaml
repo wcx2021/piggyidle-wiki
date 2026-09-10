@@ -1,21 +1,32 @@
 ---
 title: "物品表"
 change-id: "wiki-data-items"
-status: "draft"
+status: "synced"
 server-status: "pending"
-last-modified: "2026-08-19"
+last-modified: "2026-09-09"
 
 # 版本信息
-wiki-version: "1.0.0"
+wiki-version: "1.2.0"
 server-version: "0.0.0"
 
 # 影响分析（文件级消费方）
 consumers:
   items:
     _file_: ["item.service","shops.service","loot.service","itemsSeed","client.items/pigsSlice"]
+    requiredLevels: ["equipment.service(validateEquip/cascadeUnequipUnmet)","requirement模块(评估器)","client EquipmentPanel(需求展示)"]
 
 # 变更记录
 changelog:
+  - version: "1.2.0"
+    date: "2026-09-09"
+    summary: "requiredLevels 契约升级 v2（{type,key,tier?,level}：ability base/final 双口径、jobLevel、jobStrength）并完成 5 件示范批配置：5010 铜剑(力量base≥5)、5011 精铜剑(灵巧final≥12)、5303 粗皮甲(体质base≥5)、5500 草布袋(采集强度≥3)、5101 萝卜镐(肥猪职业等级≥2)；P6 空桩实装，plan:2026-09-09-02-D"
+    trigger: "plan:2026-09-09-02-D-装备需求校验-P6"
+    synced-to-server: false
+  - version: "1.1.0"
+    date: "2026-09-06"
+    summary: "4101/4102/4103 全系改名：去掉地图名前缀，改用地图序号字母（远古猪宝藏A·小、好运猪松露丛A·小、工匠猪匣子A·小；A=初始之地，新地图依次 B/C/D/E/F…）；来源地图信息保留在 itemDescription"
+    trigger: "用户命名简化决策（稀有掉落宝箱机制 §3.3 命名规则同步改版）"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"

@@ -1077,7 +1077,14 @@
       }
     ],
     "growthCoefficient": null,
-    "requiredLevels": [],
+    "requiredLevels": [
+      {
+        "type": "ability",
+        "key": "strength",
+        "tier": "base",
+        "level": 5
+      }
+    ],
     "shopPrice": 300
   },
   {
@@ -1099,7 +1106,14 @@
       }
     ],
     "growthCoefficient": null,
-    "requiredLevels": [],
+    "requiredLevels": [
+      {
+        "type": "ability",
+        "key": "constitution",
+        "tier": "base",
+        "level": 5
+      }
+    ],
     "shopPrice": 250
   },
   {
@@ -1270,7 +1284,13 @@
       }
     ],
     "growthCoefficient": null,
-    "requiredLevels": [],
+    "requiredLevels": [
+      {
+        "type": "jobStrength",
+        "key": "harvesting",
+        "level": 3
+      }
+    ],
     "shopPrice": 400
   },
   {
@@ -1314,7 +1334,13 @@
       }
     ],
     "growthCoefficient": null,
-    "requiredLevels": [],
+    "requiredLevels": [
+      {
+        "type": "jobLevel",
+        "key": "meat_pig",
+        "level": 2
+      }
+    ],
     "shopPrice": 250
   },
   {
@@ -1690,7 +1716,14 @@
       }
     ],
     "growthCoefficient": null,
-    "requiredLevels": [],
+    "requiredLevels": [
+      {
+        "type": "ability",
+        "key": "dexterity",
+        "tier": "final",
+        "level": 12
+      }
+    ],
     "shopPrice": 800
   },
   {
@@ -1710,7 +1743,7 @@
   },
   {
     "itemId": 4101,
-    "itemName": "初始之地·远古猪宝藏·小",
+    "itemName": "远古猪宝藏A·小",
     "itemType": "treasure",
     "itemDescription": "在初始之地侦查时发现的远古宝藏，打开可获得稀有资源和地图信息",
     "iconUrl": "",
@@ -1724,7 +1757,7 @@
   },
   {
     "itemId": 4102,
-    "itemName": "初始之地·好运猪松露丛·小",
+    "itemName": "好运猪松露丛A·小",
     "itemType": "treasure",
     "itemDescription": "在初始之地采集时发现的松露丛，打开可获得黑松露、白松露或紫松露",
     "iconUrl": "",
@@ -1738,7 +1771,7 @@
   },
   {
     "itemId": 4103,
-    "itemName": "初始之地·工匠猪匣子·小",
+    "itemName": "工匠猪匣子A·小",
     "itemType": "treasure",
     "itemDescription": "在初始之地制造时发现的工匠匣子，打开可获得稀有半成品和金币",
     "iconUrl": "",
