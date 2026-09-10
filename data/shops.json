@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19",
+    "version": "1.1.0",
+    "lastUpdated": "2026-08-30",
     "description": "系统商店配置（设置表）。金币商店出售普通物品（售价≥物品回收价shopPrice×5）；好猪商店出售永久权益（价格档位递增、越买越贵；权益解锁等级阶梯递增，声望1~200封顶120级）。小猪上限按档位出售两份（standard 便宜 / premium 加办更贵），同档两份解锁等级相同、价格不同、可叠加生效。修改此文件后运行 server/ 下 npm run seed:sync:full 同步到 server/data/shops.json。",
     "consumers": {
       "shops": [
@@ -26,6 +26,8 @@
     "marketOrderDurationHours": 72,
     "marketAskBookLimit": 20,
     "marketPerItemOrderLimit": 5,
+    "marketMaxPrice": 1000000000,
+    "marketMaxNotional": 10000000000,
     "_consumers": {
       "previewLevelGap": [
         "shop.service.getShopItems（声望差超 20 档位隐藏）"
@@ -42,6 +44,17 @@
         "gameRuleConfig.loadMarketRules",
         "market.order.service.createOrder（单商品 open 挂单数 ≤ 该值校验）",
         "前端 GET /market/rules（提示文案，可选）"
+      ],
+      "marketMaxPrice": [
+        "gameRuleConfig.loadMarketRules（v1.6.0 键名对齐 market* 前缀）",
+        "market.order.service.createOrder（单价硬顶校验）",
+        "market.match.service.match（留单价硬顶校验）",
+        "client MarketModals（前端预校验）"
+      ],
+      "marketMaxNotional": [
+        "gameRuleConfig.loadMarketRules",
+        "market.order.service.createOrder（数量×单价总价校验）",
+        "client MarketModals（前端预校验）"
       ]
     }
   },

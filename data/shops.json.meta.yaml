@@ -1,13 +1,13 @@
 ---
 title: "商店配置表"
 change-id: "wiki-data-shops"
-status: "draft"
-server-status: "pending"
-last-modified: "2026-08-19"
+status: "finalized"
+server-status: "synced"
+last-modified: "2026-08-30"
 
 # 版本信息
-wiki-version: "1.0.0"
-server-version: "0.0.0"
+wiki-version: "1.1.0"
+server-version: "1.1.0"
 
 # 影响分析（文件级消费方）
 consumers:
@@ -16,6 +16,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-08-30"
+    summary: "rules 段新增 marketMaxPrice=1e9 / marketMaxNotional=1e10（价格硬顶，交易系统设计 v1.6.0 §3.3.1），双副本（wiki/server）同步；同时修正 loadMarketRules 键名读取（market* 前缀对齐）"
+    trigger: "user:输入框软上限机制没有——按交易系统排查报告改造项 2 执行"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"
