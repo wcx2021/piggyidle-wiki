@@ -131,6 +131,12 @@
           "underFull": 16,
           "overFull": 24,
           "overload": 36
+        },
+        "saturationCap": {
+          "base": 12000,
+          "formula": {
+            "constitution": 600
+          }
         }
       }
     },
@@ -141,8 +147,8 @@
   },
   "jobTemplates": [],
   "_meta": {
-    "version": "1.3.0",
-    "lastUpdated": "2026-09-04",
+    "version": "1.5.0",
+    "lastUpdated": "2026-09-14",
     "consumers": {
       "character-templates": [
         "templateCalculateService",

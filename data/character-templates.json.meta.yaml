@@ -3,9 +3,9 @@ title: "角色属性模板配置表"
 change-id: "wiki-data-character-templates"
 status: "synced"
 server-status: "current"
-last-modified: "2026-09-09"
-wiki-version: "1.4.0"
-server-version: "1.4.0"
+last-modified: "2026-09-14"
+wiki-version: "1.5.0"
+server-version: "1.5.0"
 consumers:
   character-templates.json:
     baseTemplate: ["templateCalculateService", "battle.service"]
@@ -18,8 +18,14 @@ consumers:
     baseTemplate.attributes.life: ["unit.service"]
     baseTemplate.attributes.weight: ["unit.service"]
     baseTemplate.attributes.weight.feedRatios: ["pig.resource.service", "pig.feeding.service", "attributeCalculateService(PigAttributesTab 展示)"]
+    baseTemplate.attributes.weight.saturationCap: ["templateCalculateService", "attributeCalculateService", "pig.resource.service", "pig.saturation.service", "pig.feeding.service"]
     baseTemplate.defaultWeapon: ["battle.service"]
 changelog:
+  - version: "1.5.0"
+    date: "2026-09-14"
+    summary: "补录 baseTemplate.attributes.weight.saturationCap = { base: 12000, formula: { constitution: 600 } }（饱和度定稿 §4.3/§6.1 与喂猪定稿 §九早已声明该字段配置于本表，JSON 权威源从未落条目——P49 数据流程销项）；同时补齐内嵌 _meta.version 缺失的 1.4.0 递增（feedRatios 迁移仅改了 meta.yaml，P51 口径对账）"
+    trigger: "plan:2026-09-14-05-R-general-台账无决策项销项批评估与实施计划"
+    synced-to-server: true
   - version: "1.4.0"
     date: "2026-09-09"
     summary: "feedRatios 160/240/360 → 16/24/36（÷10 迁移完成，喂猪定稿 §4.4/任务2）：统一结算与展示口径（值=每10g增重耗料克数，结算公式内 ratioConvert=10 分母）；P13 双数据源分叉销项，结算链路同步收敛改读本表（getBaseTemplateSync），硬编码 DEFAULT_BASE_TEMPLATE 回归加载失败降级角色"

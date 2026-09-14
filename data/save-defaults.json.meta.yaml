@@ -3,19 +3,24 @@ title: "存档默认规则表"
 change-id: "wiki-data-save-defaults"
 status: "draft"
 server-status: "pending"
-last-modified: "2026-08-19"
+last-modified: "2026-09-13"
 
 # 版本信息
-wiki-version: "1.0.0"
-server-version: "0.0.0"
+wiki-version: "1.1.0"
+server-version: "1.1.0"
 
 # 影响分析（文件级消费方）
 consumers:
   save-defaults:
-    _file_: ["Save.createNew","mail.service(limits)","leaderboard.service","gameRuleConfig"]
+    _file_: ["Save.createNew","mail.service(limits)","leaderboard.service","gameRuleConfig","map.core.service(mapLimit)"]
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-09-13"
+    summary: "save 段新增 mapLimit=50（单存档地图实例数量上限，性能护栏：地图无销毁机制，控制实例无界增长）；服务端校验待实装，server-status 维持 pending（2026-09-14 已 seed:sync:full 落 server/data 与 SaveRules 类型，消费方待接）"
+    trigger: "设计文档性能审查（2026-09-13-R-设计文档性能与服务器内存审查报告 H3）"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"

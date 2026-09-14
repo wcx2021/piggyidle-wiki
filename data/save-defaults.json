@@ -10,14 +10,15 @@
       "mail.send.service / mail.claim.service / mail.query.service / mailCleanup.worker",
       "leaderboard.service.TOP_N"
     ],
-    "version": "1.0.0",
-    "lastUpdated": "2026-08-19"
+    "version": "1.1.0",
+    "lastUpdated": "2026-09-13"
   },
   "save": {
     "_description": "存档创建与账号级上限。pigLimit=2.0 为 Save.createNew/Schema 实际生效值；save.business.service.ts 旧 `|| 3` 兜底为历史漂移，T2 统一到 2.0（消除三源）。",
     "saveLimit": 3,
     "pigLimit": 2,
     "territoryLimit": 1,
+    "mapLimit": 50,
     "marketOrderLimit": 8,
     "mailLimit": 50,
     "maxOfflineHours": 12,
@@ -34,6 +35,10 @@
       ],
       "territoryLimit": [
         "models/Save.createNew"
+      ],
+      "mapLimit": [
+        "地图创建校验（map.core.service，待实装）",
+        "models/Save.createNew（随下次 schema 触碰一并显式传值）"
       ],
       "marketOrderLimit": [
         "models/Save.createNew",

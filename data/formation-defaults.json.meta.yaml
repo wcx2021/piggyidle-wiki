@@ -3,11 +3,11 @@ title: "编队默认配置表"
 change-id: "wiki-data-formation-defaults"
 status: "draft"
 server-status: "pending"
-last-modified: "2026-08-19"
+last-modified: "2026-08-29"
 
 # 版本信息
-wiki-version: "1.0.0"
-server-version: "0.0.0"
+wiki-version: "1.1.0"
+server-version: "1.1.0"
 
 # 影响分析（文件级消费方）
 consumers:
@@ -16,6 +16,11 @@ consumers:
 
 # 变更记录
 changelog:
+  - version: "1.1.0"
+    date: "2026-08-29"
+    summary: "新增 maxTotalRoles=200（单玩家全部编队成员并集上限，集结区/普通出征共用；消费方 runSessionService.prepareBattle）——原仅内嵌 _meta.version 递增、meta.yaml 未记 changelog，本次补齐（P51 版本号对账）"
+    trigger: "plan:2026-08-27-03-C-dungeon-集结区多队伍出征与队列同步-实施报告"
+    synced-to-server: true
   - version: "1.0.0"
     date: "2026-08-19"
     summary: "初始版本 - 元数据初始化（阶段二 mde-stage2-metadata）"
